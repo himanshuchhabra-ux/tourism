@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Application Admin Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="login-container">
+        <div class="login-wrapper">
+            <!-- Left Side - Branding -->
+            <div class="login-brand">
+                <div class="brand-content">
+                    <div class="brand-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h1>Tourism Application</h1>
+                    <p>Manage Your Tourism Platform</p>
+                    <div class="brand-features">
+                        <div class="feature-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Real-time Analytics</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-users"></i>
+                            <span>User Management</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-umbrella-beach"></i>
+                            <span>Service Control</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Login Form -->
+            <div class="login-form-wrapper">
+                <div class="login-form-content">
+                    <h2>Admin Login</h2>
+                    <p class="form-subtitle">Secure access to your admin panel</p>
+
+                    <form id="loginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="email">Email or Username</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input 
+                                    type="text" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="admin@tourhub.com" 
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="••••••••" 
+                                >
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="remember-me">
+                                <input type="checkbox" name="remember">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+
+
+                        <button type="submit" class="login-btn">
+                            <span>Sign In</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
