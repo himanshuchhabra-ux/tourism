@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Tourism Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <nav class="topbar">
+            <div class="topbar-left">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <span>Tourism</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                    <div class="profile-info">
+                        <span class="profile-name">Admin User</span>
+                        <span class="profile-role">Super Admin</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="users.html" class="nav-item active" data-section="users">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="vendors.html" class="nav-item" data-section="vendors">
+                    <i class="fas fa-store"></i>
+                    <span>Vendors</span>
+                </a>
+                <a href="dashboard.html" class="nav-item" data-section="bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </a>
+                <a href="dashboard.html" class="nav-item" data-section="reports">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="dashboard.html" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <h1>User Management</h1>
+                        <p class="page-subtitle">Manage all registered users, view profiles, and monitor activity</p>
+                    </div>
+                    <div class="page-header-right">
+                        <button class="btn btn-outline" id="exportUsersBtn">
+                            <i class="fas fa-download"></i> Export CSV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- User Stats Cards -->
+                <section class="kpi-section" style="margin-bottom: 2rem;">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>Total Users</h3>
+                            <div class="kpi-icon gradient-purple">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value">14,285</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12.5% from last month</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>Active Users</h3>
+                            <div class="kpi-icon gradient-cyan">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value">11,432</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>8.1% from last month</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>Blocked Users</h3>
+                            <div class="kpi-icon gradient-orange">
+                                <i class="fas fa-user-slash"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value">156</div>
+                        <div class="kpi-change negative">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>3.2% from last month</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>New This Month</h3>
+                            <div class="kpi-icon gradient-pink">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value">1,847</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>22.4% from last month</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Filters & Search -->
+                <div class="table-controls">
+                    <div class="table-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="userSearchInput" placeholder="Search users by name, email, or ID...">
+                    </div>
+                    <div class="table-filters">
+                        <select id="statusFilter" class="filter-select">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="blocked">Blocked</option>
+                        </select>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="name-asc">Name A-Z</option>
+                            <option value="name-desc">Name Z-A</option>
+                            <option value="bookings">Most Bookings</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="data-table-container">
+                    <table class="data-table" id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Bookings</th>
+                                <th>Status</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Ahmed+Al-Rashid&background=667eea&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Ahmed Al-Rashid</span>
+                                            <span class="table-user-id">#USR-001</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>ahmed.rashid@email.com</td>
+                                <td>+966 50 123 4567</td>
+                                <td><span class="booking-count">24</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>Jan 15, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="user-view.html?id=USR-001" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
+                                        <a href="user-edit.html?id=USR-001" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Fatima+Noor&background=f093fb&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Fatima Noor</span>
+                                            <span class="table-user-id">#USR-002</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>fatima.noor@email.com</td>
+                                <td>+966 55 987 6543</td>
+                                <td><span class="booking-count">18</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>Feb 03, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="user-view.html?id=USR-002" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
+                                        <a href="user-edit.html?id=USR-002" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Mohammed+Saeed&background=4facfe&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Mohammed Saeed</span>
+                                            <span class="table-user-id">#USR-003</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>m.saeed@email.com</td>
+                                <td>+966 54 456 7890</td>
+                                <td><span class="booking-count">7</span></td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>Mar 21, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="user-view.html?id=USR-003" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
+                                        <a href="user-edit.html?id=USR-003" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Sara+Abdullah&background=27ae60&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Sara Abdullah</span>
+                                            <span class="table-user-id">#USR-004</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>sara.abdullah@email.com</td>
+                                <td>+966 56 321 0987</td>
+                                <td><span class="booking-count">31</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>Apr 10, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="user-view.html?id=USR-004" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
+                                        <a href="user-edit.html?id=USR-004" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Khalid+Omar&background=e74c3c&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Khalid Omar</span>
+                                            <span class="table-user-id">#USR-005</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>k.omar@email.com</td>
+                                <td>+966 59 654 3210</td>
+                                <td><span class="booking-count">2</span></td>
+                                <td><span class="status-badge status-blocked">Blocked</span></td>
+                                <td>May 05, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="user-view.html?id=USR-005" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
+                                        <a href="user-edit.html?id=USR-005" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-unblock" title="Unblock User"><i class="fas fa-check-circle"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Layla+Hassan&background=f39c12&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Layla Hassan</span>
+                                            <span class="table-user-id">#USR-006</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>layla.h@email.com</td>
+                                <td>+966 53 789 0123</td>
+                                <td><span class="booking-count">15</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>Jun 18, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="user-view.html?id=USR-006" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
+                                        <a href="user-edit.html?id=USR-006" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Omar+Farooq&background=16a085&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Omar Farooq</span>
+                                            <span class="table-user-id">#USR-007</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>omar.farooq@email.com</td>
+                                <td>+966 51 234 5678</td>
+                                <td><span class="booking-count">42</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>Jul 02, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="user-view.html?id=USR-007" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
+                                        <a href="user-edit.html?id=USR-007" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Nadia+Khan&background=9b59b6&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Nadia Khan</span>
+                                            <span class="table-user-id">#USR-008</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>nadia.khan@email.com</td>
+                                <td>+966 58 876 5432</td>
+                                <td><span class="booking-count">9</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>Aug 14, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="user-view.html?id=USR-008" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
+                                        <a href="user-edit.html?id=USR-008" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="table-pagination">
+                    <div class="pagination-info">
+                        Showing <strong>1-8</strong> of <strong>14,285</strong> users
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="pagination-btn pagination-active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span class="pagination-dots">...</span>
+                        <button class="pagination-btn">1,786</button>
+                        <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,313 +1,359 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - TourHub Admin</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Tourism Admin</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
-        <i class="fas fa-moon"></i>
-    </button>
+
     <div class="dashboard-container">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <i class="fas fa-globe"></i>
-                    <span>TourHub</span>
-                </div>
-                <button class="sidebar-toggle" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
+      <!-- Top Navigation (full width) -->
+      <nav class="topbar">
+        <div class="topbar-left">
+          <div class="logo">
+            <i class="fas fa-globe"></i>
+            <span>Tourism</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="date-filter-container">
+            <select id="dateFilter" class="date-filter">
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly" selected>Monthly</option>
+              <option value="yearly">Yearly</option>
+              <option value="custom">Custom Range</option>
+            </select>
+            <!-- Custom Date Range Picker -->
+            <div class="custom-range-picker" id="customRangePicker">
+              <div class="range-picker-header">
+                <h3><i class="fas fa-calendar-alt"></i> Select Date Range</h3>
+                <button class="range-picker-close" id="rangePickerClose">
+                  <i class="fas fa-times"></i>
                 </button>
-            </div>
-
-            <nav class="sidebar-nav">
-                <a href="#" class="nav-item active" data-section="dashboard">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="#" class="nav-item" data-section="users">
-                    <i class="fas fa-users"></i>
-                    <span>Users</span>
-                </a>
-                <a href="#" class="nav-item" data-section="vendors">
-                    <i class="fas fa-store"></i>
-                    <span>Vendors</span>
-                </a>
-                <a href="#" class="nav-item" data-section="bookings">
-                    <i class="fas fa-calendar-check"></i>
-                    <span>Bookings</span>
-                </a>
-                <a href="#" class="nav-item" data-section="reports">
-                    <i class="fas fa-file-chart-line"></i>
-                    <span>Reports</span>
-                </a>
-                <a href="#" class="nav-item" data-section="settings">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </a>
-            </nav>
-
-            <div class="sidebar-footer">
-                <a href="#" class="logout-link" id="logoutBtn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </a>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Top Navigation -->
-            <nav class="topbar">
-                <div class="topbar-left">
-                    <h1 id="pageTitle">Dashboard</h1>
+              </div>
+              <div class="range-picker-body">
+                <div class="range-input-group">
+                  <label for="startDate">Start Date</label>
+                  <input type="date" id="startDate" class="range-date-input" />
                 </div>
-                <div class="topbar-right">
-                    <div class="date-filter-container">
-                        <select id="dateFilter" class="date-filter">
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly" selected>Monthly</option>
-                            <option value="yearly">Yearly</option>
-                            <option value="custom">Custom Range</option>
-                        </select>
-                    </div>
-                    <div class="notifications">
-                        <button class="notification-btn">
-                            <i class="fas fa-bell"></i>
-                            <span class="notification-badge">3</span>
-                        </button>
-                    </div>
-                    <div class="user-profile">
-                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
-                        <div class="profile-info">
-                            <span class="profile-name">Admin User</span>
-                            <span class="profile-role">Super Admin</span>
-                        </div>
-                    </div>
+                <div class="range-input-group">
+                  <label for="endDate">End Date</label>
+                  <input type="date" id="endDate" class="range-date-input" />
                 </div>
-            </nav>
-
-            <!-- Dashboard Content -->
-            <div class="dashboard-content">
-                <!-- KPI Cards -->
-                <section class="kpi-section">
-                    <div class="kpi-card">
-                        <div class="kpi-header">
-                            <h3>Total Users</h3>
-                            <div class="kpi-icon gradient-purple">
-                                <i class="fas fa-users"></i>
-                            </div>
-                        </div>
-                        <div class="kpi-value">14,285</div>
-                        <div class="kpi-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>12.5% from last month</span>
-                        </div>
-                    </div>
-
-                    <div class="kpi-card">
-                        <div class="kpi-header">
-                            <h3>Active Vendors</h3>
-                            <div class="kpi-icon gradient-pink">
-                                <i class="fas fa-store"></i>
-                            </div>
-                        </div>
-                        <div class="kpi-value">892</div>
-                        <div class="kpi-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>8.3% from last month</span>
-                        </div>
-                    </div>
-
-                    <div class="kpi-card">
-                        <div class="kpi-header">
-                            <h3>Total Bookings</h3>
-                            <div class="kpi-icon gradient-cyan">
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
-                        </div>
-                        <div class="kpi-value">3,456</div>
-                        <div class="kpi-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>23.7% from last month</span>
-                        </div>
-                    </div>
-
-                    <div class="kpi-card">
-                        <div class="kpi-header">
-                            <h3>Revenue</h3>
-                            <div class="kpi-icon gradient-orange">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                        </div>
-                        <div class="kpi-value">$127,450</div>
-                        <div class="kpi-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>18.2% from last month</span>
-                        </div>
-                    </div>
-
-                    <div class="kpi-card">
-                        <div class="kpi-header">
-                            <h3>Active Subscriptions</h3>
-                            <div class="kpi-icon gradient-mint">
-                                <i class="fas fa-list-check"></i>
-                            </div>
-                        </div>
-                        <div class="kpi-value">567</div>
-                        <div class="kpi-change neutral">
-                            <i class="fas fa-minus"></i>
-                            <span>0% from last month</span>
-                        </div>
-                    </div>
-
-                    <div class="kpi-card">
-                        <div class="kpi-header">
-                            <h3>Ads Performance</h3>
-                            <div class="kpi-icon gradient-peach">
-                                <i class="fas fa-chart-pie"></i>
-                            </div>
-                        </div>
-                        <div class="kpi-value">$24,890</div>
-                        <div class="kpi-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>31.4% from last month</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Charts Section -->
-                <section class="charts-section">
-                    <div class="chart-card">
-                        <div class="chart-header">
-                            <h3>Revenue Trend</h3>
-                            <div class="chart-info">
-                                <span class="info-label">Last 12 months</span>
-                            </div>
-                        </div>
-                        <canvas id="revenueChart"></canvas>
-                    </div>
-
-                    <div class="chart-card">
-                        <div class="chart-header">
-                            <h3>Service Distribution</h3>
-                            <div class="chart-info">
-                                <span class="info-label">Current month</span>
-                            </div>
-                        </div>
-                        <canvas id="distributionChart"></canvas>
-                    </div>
-                </section>
-
-                <!-- Booking & Transaction Stats -->
-                <section class="stats-section">
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <h3>Booking Status Overview</h3>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-item">
-                                <span class="stat-label">Completed</span>
-                                <div class="stat-bar">
-                                    <div class="stat-progress progress-primary width-65"></div>
-                                </div>
-                                <span class="stat-number">2,247</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Pending</span>
-                                <div class="stat-bar">
-                                    <div class="stat-progress progress-warning width-20"></div>
-                                </div>
-                                <span class="stat-number">691</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Cancelled</span>
-                                <div class="stat-bar">
-                                    <div class="stat-progress progress-danger width-15"></div>
-                                </div>
-                                <span class="stat-number">518</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <h3>Subscription Plans</h3>
-                        </div>
-                        <div class="subscription-list">
-                            <div class="subscription-item">
-                                <div class="subscription-info">
-                                    <span class="plan-name">Basic Plan</span>
-                                    <span class="plan-count">234 active</span>
-                                </div>
-                                <span class="plan-revenue">$4,680</span>
-                            </div>
-                            <div class="subscription-item">
-                                <div class="subscription-info">
-                                    <span class="plan-name">Premium Plan</span>
-                                    <span class="plan-count">189 active</span>
-                                </div>
-                                <span class="plan-revenue">$11,340</span>
-                            </div>
-                            <div class="subscription-item">
-                                <div class="subscription-info">
-                                    <span class="plan-name">Enterprise Plan</span>
-                                    <span class="plan-count">144 active</span>
-                                </div>
-                                <span class="plan-revenue">$14,400</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Quick Insights -->
-                <section class="insights-section">
-                    <h2>Quick Insights</h2>
-                    <div class="insights-grid">
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <i class="fas fa-trending-up"></i>
-                            </div>
-                            <h4>Peak Booking Period</h4>
-                            <p>Weekends (Friday-Sunday) have 45% more bookings compared to weekdays</p>
-                        </div>
-
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <i class="fas fa-map-location-dot"></i>
-                            </div>
-                            <h4>Top Destination</h4>
-                            <p>Mountain resorts lead with 32% of total bookings this month</p>
-                        </div>
-
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <i class="fas fa-user-check"></i>
-                            </div>
-                            <h4>User Retention</h4>
-                            <p>68% users return for repeat bookings within 60 days</p>
-                        </div>
-
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <i class="fas fa-exclamation-circle"></i>
-                            </div>
-                            <h4>Pending Reviews</h4>
-                            <p>234 vendor applications awaiting approval - Review needed</p>
-                        </div>
-                    </div>
-                </section>
+              </div>
+              <div class="range-quick-options">
+                <button class="quick-option" data-days="7">Last 7 Days</button>
+                <button class="quick-option" data-days="30">
+                  Last 30 Days
+                </button>
+                <button class="quick-option" data-days="90">
+                  Last 90 Days
+                </button>
+                <button class="quick-option" data-days="365">Last Year</button>
+              </div>
+              <div class="range-picker-footer">
+                <button class="range-btn range-btn-cancel" id="rangeBtnCancel">
+                  Cancel
+                </button>
+                <button class="range-btn range-btn-apply" id="rangeBtnApply">
+                  Apply
+                </button>
+              </div>
             </div>
-        </main>
+          </div>
+          <div class="notifications">
+            <button class="notification-btn">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+            </button>
+          </div>
+          <div class="user-profile">
+            <img
+              src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff"
+              alt="Admin"
+            />
+            <div class="profile-info">
+              <span class="profile-name">Admin User</span>
+              <span class="profile-role">Super Admin</span>
+            </div>
+          </div>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Toggle Dark/Light Mode"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="nav-item active" data-section="dashboard">
+            <i class="fas fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="users.html" class="nav-item" data-section="users">
+            <i class="fas fa-users"></i>
+            <span>Users</span>
+          </a>
+          <a href="vendors.html" class="nav-item" data-section="vendors">
+            <i class="fas fa-store"></i>
+            <span>Vendors</span>
+          </a>
+          <a href="#" class="nav-item" data-section="bookings">
+            <i class="fas fa-calendar-check"></i>
+            <span>Bookings</span>
+          </a>
+          <a href="#" class="nav-item" data-section="reports">
+            <i class="fas fa-file-chart-line"></i>
+            <span>Reports</span>
+          </a>
+          <a href="#" class="nav-item" data-section="settings">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="login.html" class="logout-link" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+          <!-- KPI Cards -->
+          <section class="kpi-section">
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <h3>Total Users</h3>
+                <div class="kpi-icon gradient-purple">
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+              <div class="kpi-value">14,285</div>
+              <div class="kpi-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>12.5% from last month</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <h3>Active Vendors</h3>
+                <div class="kpi-icon gradient-pink">
+                  <i class="fas fa-store"></i>
+                </div>
+              </div>
+              <div class="kpi-value">892</div>
+              <div class="kpi-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>8.3% from last month</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <h3>Total Bookings</h3>
+                <div class="kpi-icon gradient-cyan">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+              </div>
+              <div class="kpi-value">3,456</div>
+              <div class="kpi-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>23.7% from last month</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <h3>Revenue</h3>
+                <div class="kpi-icon gradient-orange">
+                  <i class="fas fa-dollar-sign"></i>
+                </div>
+              </div>
+              <div class="kpi-value">$127,450</div>
+              <div class="kpi-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>18.2% from last month</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <h3>Active Subscriptions</h3>
+                <div class="kpi-icon gradient-mint">
+                  <i class="fas fa-list-check"></i>
+                </div>
+              </div>
+              <div class="kpi-value">567</div>
+              <div class="kpi-change neutral">
+                <i class="fas fa-minus"></i>
+                <span>0% from last month</span>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <h3>Ads Performance</h3>
+                <div class="kpi-icon gradient-peach">
+                  <i class="fas fa-chart-pie"></i>
+                </div>
+              </div>
+              <div class="kpi-value">$24,890</div>
+              <div class="kpi-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>31.4% from last month</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Charts Section -->
+          <section class="charts-section">
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Revenue Trend</h3>
+                <div class="chart-info">
+                  <span class="info-label">Last 12 months</span>
+                </div>
+              </div>
+              <canvas id="revenueChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Service Distribution</h3>
+                <div class="chart-info">
+                  <span class="info-label">Current month</span>
+                </div>
+              </div>
+              <canvas id="distributionChart"></canvas>
+            </div>
+          </section>
+
+          <!-- Booking & Transaction Stats -->
+          <section class="stats-section">
+            <div class="stat-card">
+              <div class="stat-header">
+                <h3>Booking Status Overview</h3>
+              </div>
+              <div class="stat-content">
+                <div class="stat-item">
+                  <span class="stat-label">Completed</span>
+                  <div class="stat-bar">
+                    <div class="stat-progress progress-primary width-65"></div>
+                  </div>
+                  <span class="stat-number">2,247</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Pending</span>
+                  <div class="stat-bar">
+                    <div class="stat-progress progress-warning width-20"></div>
+                  </div>
+                  <span class="stat-number">691</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Cancelled</span>
+                  <div class="stat-bar">
+                    <div class="stat-progress progress-danger width-15"></div>
+                  </div>
+                  <span class="stat-number">518</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <h3>Subscription Plans</h3>
+              </div>
+              <div class="subscription-list">
+                <div class="subscription-item">
+                  <div class="subscription-info">
+                    <span class="plan-name">Basic Plan</span>
+                    <span class="plan-count">234 active</span>
+                  </div>
+                  <span class="plan-revenue">$4,680</span>
+                </div>
+                <div class="subscription-item">
+                  <div class="subscription-info">
+                    <span class="plan-name">Premium Plan</span>
+                    <span class="plan-count">189 active</span>
+                  </div>
+                  <span class="plan-revenue">$11,340</span>
+                </div>
+                <div class="subscription-item">
+                  <div class="subscription-info">
+                    <span class="plan-name">Enterprise Plan</span>
+                    <span class="plan-count">144 active</span>
+                  </div>
+                  <span class="plan-revenue">$14,400</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Quick Insights -->
+          <section class="insights-section">
+            <h2>Quick Insights</h2>
+            <div class="insights-grid">
+              <div class="insight-card">
+                <div class="insight-icon">
+                  <i class="fas fa-trending-up"></i>
+                </div>
+                <h4>Peak Booking Period</h4>
+                <p>
+                  Weekends (Friday-Sunday) have 45% more bookings compared to
+                  weekdays
+                </p>
+              </div>
+
+              <div class="insight-card">
+                <div class="insight-icon">
+                  <i class="fas fa-map-location-dot"></i>
+                </div>
+                <h4>Top Destination</h4>
+                <p>
+                  Mountain resorts lead with 32% of total bookings this month
+                </p>
+              </div>
+
+              <div class="insight-card">
+                <div class="insight-icon">
+                  <i class="fas fa-user-check"></i>
+                </div>
+                <h4>User Retention</h4>
+                <p>68% users return for repeat bookings within 60 days</p>
+              </div>
+
+              <div class="insight-card">
+                <div class="insight-icon">
+                  <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <h4>Pending Reviews</h4>
+                <p>234 vendor applications awaiting approval - Review needed</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

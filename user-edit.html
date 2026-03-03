@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User - Tourism Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <nav class="topbar">
+            <div class="topbar-left">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <span>Tourism</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                    <div class="profile-info">
+                        <span class="profile-name">Admin User</span>
+                        <span class="profile-role">Super Admin</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="users.html" class="nav-item active" data-section="users">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="vendors.html" class="nav-item" data-section="vendors">
+                    <i class="fas fa-store"></i>
+                    <span>Vendors</span>
+                </a>
+                <a href="dashboard.html" class="nav-item" data-section="bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </a>
+                <a href="dashboard.html" class="nav-item" data-section="reports">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="dashboard.html" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-content">
+                <!-- Page Header with Breadcrumb -->
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <nav class="breadcrumb">
+                            <a href="users.html"><i class="fas fa-arrow-left"></i> Back to Users</a>
+                        </nav>
+                        <h1 id="editUserTitle">Edit User</h1>
+                        <p class="page-subtitle">Update user profile information and account settings</p>
+                    </div>
+                </div>
+
+                <!-- Edit Form -->
+                <div class="edit-page-grid">
+                    <!-- Left: Avatar & Status -->
+                    <div class="detail-card profile-card">
+                        <div class="profile-card-header">
+                            <div class="profile-avatar-xl">
+                                <img src="https://ui-avatars.com/api/?name=Ahmed+Al-Rashid&background=667eea&color=fff&size=120" alt="" id="editUserAvatar">
+                            </div>
+                            <h2 id="editUserDisplayName">Ahmed Al-Rashid</h2>
+                            <p class="profile-card-id" id="editUserId">#USR-001</p>
+                        </div>
+                        <div class="profile-card-body">
+                            <div class="form-group">
+                                <label for="editStatus">Account Status</label>
+                                <select id="editStatus" class="form-input">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="blocked">Blocked</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Member Since</label>
+                                <input type="text" class="form-input" id="editUserJoinedDisplay" readonly value="Jan 15, 2025">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Edit Form -->
+                    <div class="detail-card">
+                        <div class="detail-card-header">
+                            <h3><i class="fas fa-user-edit"></i> Personal Information</h3>
+                        </div>
+                        <div class="detail-card-body">
+                            <form id="editUserForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editFirstName">First Name</label>
+                                        <input type="text" id="editFirstName" class="form-input" value="Ahmed" placeholder="Enter first name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editLastName">Last Name</label>
+                                        <input type="text" id="editLastName" class="form-input" value="Al-Rashid" placeholder="Enter last name">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editEmail">Email Address</label>
+                                        <input type="email" id="editEmail" class="form-input" value="ahmed.rashid@email.com" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editPhone">Phone Number</label>
+                                        <input type="tel" id="editPhone" class="form-input" value="+966 50 123 4567" placeholder="Enter phone number">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editLocation">Location</label>
+                                        <input type="text" id="editLocation" class="form-input" value="Riyadh, Saudi Arabia" placeholder="Enter location">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editDob">Date of Birth</label>
+                                        <input type="date" id="editDob" class="form-input" value="1992-06-15">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editGender">Gender</label>
+                                    <select id="editGender" class="form-input">
+                                        <option value="male" selected>Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                        <option value="prefer-not">Prefer not to say</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-divider"></div>
+
+                                <div class="detail-card-header">
+                                    <h3><i class="fas fa-shield-alt"></i> Security & Preferences</h3>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editLanguage">Preferred Language</label>
+                                        <select id="editLanguage" class="form-input">
+                                            <option value="en">English</option>
+                                            <option value="ar" selected>Arabic</option>
+                                            <option value="fr">French</option>
+                                            <option value="ur">Urdu</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editCurrency">Preferred Currency</label>
+                                        <select id="editCurrency" class="form-input">
+                                            <option value="sar" selected>SAR — Saudi Riyal</option>
+                                            <option value="usd">USD — US Dollar</option>
+                                            <option value="eur">EUR — Euro</option>
+                                            <option value="gbp">GBP — British Pound</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="toggle-label">
+                                        <input type="checkbox" id="edit2fa" checked>
+                                        <span>Two-Factor Authentication Enabled</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="toggle-label">
+                                        <input type="checkbox" id="editEmailNotif" checked>
+                                        <span>Email Notifications</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="toggle-label">
+                                        <input type="checkbox" id="editSmsNotif">
+                                        <span>SMS Notifications</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-divider"></div>
+
+                                <div class="detail-card-header">
+                                    <h3><i class="fas fa-sticky-note"></i> Admin Notes</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editNotes">Internal Notes</label>
+                                    <textarea id="editNotes" class="form-input form-textarea" rows="4" placeholder="Add any internal notes about this user...">VIP customer. Frequent traveler with premium bookings. No policy violations.</textarea>
+                                </div>
+
+                                <!-- Form Actions -->
+                                <div class="form-actions">
+                                    <a href="users.html" class="btn btn-outline">
+                                        <i class="fas fa-times"></i> Cancel
+                                    </a>
+                                    <button type="submit" class="btn btn-primary" id="saveUserBtn">
+                                        <i class="fas fa-save"></i> Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

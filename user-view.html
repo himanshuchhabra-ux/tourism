@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View User - Tourism Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <nav class="topbar">
+            <div class="topbar-left">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <span>Tourism</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                    <div class="profile-info">
+                        <span class="profile-name">Admin User</span>
+                        <span class="profile-role">Super Admin</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="users.html" class="nav-item active" data-section="users">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="vendors.html" class="nav-item" data-section="vendors">
+                    <i class="fas fa-store"></i>
+                    <span>Vendors</span>
+                </a>
+                <a href="dashboard.html" class="nav-item" data-section="bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </a>
+                <a href="dashboard.html" class="nav-item" data-section="reports">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="dashboard.html" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-content">
+                <!-- Page Header with Breadcrumb -->
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <nav class="breadcrumb">
+                            <a href="users.html"><i class="fas fa-arrow-left"></i> Back to Users</a>
+                        </nav>
+                        <h1 id="viewUserTitle">User Profile</h1>
+                        <p class="page-subtitle">View complete user profile, activity, and booking history</p>
+                    </div>
+                    <div class="page-header-right">
+                        <a href="#" class="btn btn-primary" id="editUserLink">
+                            <i class="fas fa-pen"></i> Edit User
+                        </a>
+                        <button class="btn btn-outline" id="resetPasswordBtn">
+                            <i class="fas fa-key"></i> Reset Password
+                        </button>
+                        <button class="btn btn-danger" id="blockUserBtn">
+                            <i class="fas fa-ban"></i> Block User
+                        </button>
+                    </div>
+                </div>
+
+                <!-- User Profile Card -->
+                <div class="detail-page-grid">
+                    <!-- Left Column: Profile Info -->
+                    <div class="detail-card profile-card">
+                        <div class="profile-card-header">
+                            <div class="profile-avatar-xl">
+                                <img src="https://ui-avatars.com/api/?name=Ahmed+Al-Rashid&background=667eea&color=fff&size=120" alt="" id="viewUserAvatar">
+                            </div>
+                            <h2 id="viewUserName">Ahmed Al-Rashid</h2>
+                            <span class="status-badge status-active" id="viewUserStatus">Active</span>
+                            <p class="profile-card-id" id="viewUserId">#USR-001</p>
+                        </div>
+                        <div class="profile-card-body">
+                            <div class="info-row">
+                                <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                                <div class="info-content">
+                                    <span class="info-label">Email Address</span>
+                                    <span class="info-value" id="viewUserEmail">ahmed.rashid@email.com</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-icon"><i class="fas fa-phone"></i></div>
+                                <div class="info-content">
+                                    <span class="info-label">Phone Number</span>
+                                    <span class="info-value" id="viewUserPhone">+966 50 123 4567</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-icon"><i class="fas fa-calendar"></i></div>
+                                <div class="info-content">
+                                    <span class="info-label">Joined Date</span>
+                                    <span class="info-value" id="viewUserJoined">Jan 15, 2025</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="info-content">
+                                    <span class="info-label">Location</span>
+                                    <span class="info-value" id="viewUserLocation">Riyadh, Saudi Arabia</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-icon"><i class="fas fa-clock"></i></div>
+                                <div class="info-content">
+                                    <span class="info-label">Last Active</span>
+                                    <span class="info-value" id="viewUserLastActive">2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Stats & Activity -->
+                    <div class="detail-right-col">
+                        <!-- Quick Stats -->
+                        <div class="detail-stats-row">
+                            <div class="detail-stat-card">
+                                <div class="detail-stat-icon gradient-purple"><i class="fas fa-ticket"></i></div>
+                                <div class="detail-stat-info">
+                                    <span class="detail-stat-value" id="viewUserBookings">24</span>
+                                    <span class="detail-stat-label">Total Bookings</span>
+                                </div>
+                            </div>
+                            <div class="detail-stat-card">
+                                <div class="detail-stat-icon gradient-cyan"><i class="fas fa-dollar-sign"></i></div>
+                                <div class="detail-stat-info">
+                                    <span class="detail-stat-value" id="viewUserSpent">$4,250</span>
+                                    <span class="detail-stat-label">Total Spent</span>
+                                </div>
+                            </div>
+                            <div class="detail-stat-card">
+                                <div class="detail-stat-icon gradient-orange"><i class="fas fa-star"></i></div>
+                                <div class="detail-stat-info">
+                                    <span class="detail-stat-value">4.8</span>
+                                    <span class="detail-stat-label">Avg. Rating Given</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Bookings -->
+                        <div class="detail-card">
+                            <div class="detail-card-header">
+                                <h3><i class="fas fa-history"></i> Recent Booking History</h3>
+                            </div>
+                            <div class="detail-card-body">
+                                <div class="booking-list">
+                                    <div class="booking-item">
+                                        <div class="booking-item-icon gradient-purple"><i class="fas fa-mountain"></i></div>
+                                        <div class="booking-item-info">
+                                            <span class="booking-item-title">Mountain Resort Package</span>
+                                            <span class="booking-item-date">Feb 20, 2026 — 3 nights</span>
+                                        </div>
+                                        <div class="booking-item-right">
+                                            <span class="status-badge status-active">Completed</span>
+                                            <span class="booking-item-price">$350</span>
+                                        </div>
+                                    </div>
+                                    <div class="booking-item">
+                                        <div class="booking-item-icon gradient-orange"><i class="fas fa-sun"></i></div>
+                                        <div class="booking-item-info">
+                                            <span class="booking-item-title">Desert Safari Tour</span>
+                                            <span class="booking-item-date">Feb 05, 2026 — Day trip</span>
+                                        </div>
+                                        <div class="booking-item-right">
+                                            <span class="status-badge status-active">Completed</span>
+                                            <span class="booking-item-price">$180</span>
+                                        </div>
+                                    </div>
+                                    <div class="booking-item">
+                                        <div class="booking-item-icon gradient-cyan"><i class="fas fa-umbrella-beach"></i></div>
+                                        <div class="booking-item-info">
+                                            <span class="booking-item-title">Beach Hotel — 3 Nights</span>
+                                            <span class="booking-item-date">Mar 10, 2026 — Upcoming</span>
+                                        </div>
+                                        <div class="booking-item-right">
+                                            <span class="status-badge status-pending">Pending</span>
+                                            <span class="booking-item-price">$720</span>
+                                        </div>
+                                    </div>
+                                    <div class="booking-item">
+                                        <div class="booking-item-icon gradient-pink"><i class="fas fa-utensils"></i></div>
+                                        <div class="booking-item-info">
+                                            <span class="booking-item-title">Traditional Dining Experience</span>
+                                            <span class="booking-item-date">Jan 28, 2026 — Dinner</span>
+                                        </div>
+                                        <div class="booking-item-right">
+                                            <span class="status-badge status-active">Completed</span>
+                                            <span class="booking-item-price">$95</span>
+                                        </div>
+                                    </div>
+                                    <div class="booking-item">
+                                        <div class="booking-item-icon gradient-purple"><i class="fas fa-car"></i></div>
+                                        <div class="booking-item-info">
+                                            <span class="booking-item-title">Airport Transfer — Premium</span>
+                                            <span class="booking-item-date">Jan 15, 2026 — One way</span>
+                                        </div>
+                                        <div class="booking-item-right">
+                                            <span class="status-badge status-active">Completed</span>
+                                            <span class="booking-item-price">$65</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Activity Log -->
+                        <div class="detail-card">
+                            <div class="detail-card-header">
+                                <h3><i class="fas fa-stream"></i> Activity Log</h3>
+                            </div>
+                            <div class="detail-card-body">
+                                <div class="activity-timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot dot-green"></div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-title">Logged in from Riyadh, SA</span>
+                                            <span class="timeline-time">2 hours ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot dot-blue"></div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-title">Booked Beach Hotel — 3 Nights</span>
+                                            <span class="timeline-time">Feb 28, 2026</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot dot-yellow"></div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-title">Updated profile information</span>
+                                            <span class="timeline-time">Feb 22, 2026</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot dot-green"></div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-title">Completed Mountain Resort Package</span>
+                                            <span class="timeline-time">Feb 20, 2026</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot dot-purple"></div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-title">Left a 5-star review for Desert Safari</span>
+                                            <span class="timeline-time">Feb 06, 2026</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
