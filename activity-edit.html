@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Activity - Tourism Admin</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <nav class="topbar">
+            <div class="topbar-left">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <span>Tourism</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                    <div class="profile-info">
+                        <span class="profile-name">Admin User</span>
+                        <span class="profile-role">Super Admin</span>
+                    </div>
+                    <div class="profile-dropdown">
+                        <div class="profile-dropdown-header">
+                            <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                            <div>
+                                <span class="dropdown-user-name">Admin User</span>
+                                <span class="dropdown-user-role">Super Admin</span>
+                            </div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><a href="#"><i class="fas fa-key"></i> Change Password</a></li>
+                            <li class="profile-dropdown-divider"></li>
+                            <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+                <i class="fas fa-angles-left"></i>
+                <span>Collapse</span>
+            </button>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item" data-section="dashboard" data-tooltip="Dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="vendors.html" class="nav-item" data-section="vendors" data-tooltip="Vendors">
+                    <i class="fas fa-store"></i>
+                    <span>Vendors</span>
+                </a>
+                <a href="service-providers.html" class="nav-item" data-section="providers" data-tooltip="Service Providers">
+                    <i class="fas fa-handshake"></i>
+                    <span>Service Providers</span>
+                </a>
+                <a href="categories.html" class="nav-item" data-section="categories" data-tooltip="Categories">
+                    <i class="fas fa-th-large"></i>
+                    <span>Categories</span>
+                </a>
+                <a href="hotels.html" class="nav-item" data-section="hotels" data-tooltip="Hotels">
+                    <i class="fas fa-hotel"></i>
+                    <span>Hotels</span>
+                </a>
+                <a href="restaurants.html" class="nav-item" data-section="restaurants" data-tooltip="Restaurants">
+                    <i class="fas fa-utensils"></i>
+                    <span>Restaurants</span>
+                </a>
+                <a href="packages.html" class="nav-item" data-section="packages" data-tooltip="Packages">
+                    <i class="fas fa-suitcase-rolling"></i>
+                    <span>Packages</span>
+                </a>
+                <a href="activities.html" class="nav-item active" data-section="activities" data-tooltip="Activities">
+                    <i class="fas fa-hiking"></i>
+                    <span>Activities</span>
+                </a>
+                <a href="cabs.html" class="nav-item" data-section="cabs" data-tooltip="Cabs">
+                    <i class="fas fa-taxi"></i>
+                    <span>Cabs</span>
+                </a>
+                <a href="bookings.html" class="nav-item" data-section="bookings" data-tooltip="Bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </a>
+                <a href="subscriptions.html" class="nav-item" data-section="subscriptions" data-tooltip="Subscriptions">
+                    <i class="fas fa-crown"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="payouts.html" class="nav-item" data-section="payouts" data-tooltip="Payouts">
+                    <i class="fas fa-wallet"></i>
+                    <span>Payouts</span>
+                </a>
+                <a href="ads.html" class="nav-item" data-section="ads" data-tooltip="Ads">
+                    <i class="fas fa-ad"></i>
+                    <span>Ads</span>
+                </a>
+                <a href="banners.html" class="nav-item" data-section="banners" data-tooltip="Banners">
+                    <i class="fas fa-images"></i>
+                    <span>Banners</span>
+                </a>
+                <a href="refunds.html" class="nav-item" data-section="refunds" data-tooltip="Refunds"><i class="fas fa-undo-alt"></i><span>Refunds</span></a>
+                <a href="transactions.html" class="nav-item" data-section="transactions" data-tooltip="Transactions"><i class="fas fa-exchange-alt"></i><span>Transactions</span></a>
+                <a href="notifications.html" class="nav-item" data-section="notifications" data-tooltip="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+                <a href="support.html" class="nav-item" data-section="support" data-tooltip="Support">
+                    <i class="fas fa-headset"></i>
+                    <span>Support</span>
+                </a>
+                <a href="cms.html" class="nav-item" data-section="cms" data-tooltip="CMS">
+                    <i class="fas fa-file-alt"></i>
+                    <span>CMS</span>
+                </a>
+                
+            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
+                <i class="fas fa-percentage"></i>
+                <span>Commission</span>
+            </a>
+            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
+                <i class="fas fa-tags"></i>
+                <span>Ads Rates</span>
+            </a>
+            
+                <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
+                </a>
+            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="settings.html" class="nav-item" data-section="settings" data-tooltip="Settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-content">
+                <!-- Page Header with Breadcrumb -->
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <nav class="breadcrumb">
+                            <a href="activities.html"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+                        </nav>
+                        <h1 id="editActivityTitle">Edit Activity</h1>
+                        <p class="page-subtitle">Update activity details, scheduling, pricing, and guidelines</p>
+                    </div>
+                </div>
+
+                <!-- Edit Form -->
+                <div class="edit-page-grid">
+                    <!-- Left: Avatar & Status -->
+                    <div class="detail-card profile-card">
+                        <div class="profile-card-header">
+                            <div class="profile-avatar-xl">
+                                <img src="https://ui-avatars.com/api/?name=Desert+Safari&background=f093fb&color=fff&size=120" alt="" id="editActivityAvatar">
+                            </div>
+                            <h2 id="editActivityDisplayName">Desert Safari Adventure</h2>
+                            <p class="profile-card-id" id="editActivityId">#ACT-001</p>
+                        </div>
+                        <div class="profile-card-body">
+                            <div class="form-group">
+                                <label for="editActivityStatus">Activity Status</label>
+                                <select id="editActivityStatus" class="form-input">
+                                    <option value="active">Active</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="flagged">Flagged</option>
+                                    <option value="disabled">Disabled</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editActivityFeatured">Featured Activity</label>
+                                <select id="editActivityFeatured" class="form-input">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Edit Form -->
+                    <div class="detail-column-right">
+                        <form id="activityEditForm">
+                            <!-- Basic Information -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-info-circle"></i> Activity Information</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editActivityName">Activity Name *</label>
+                                            <input type="text" id="editActivityName" class="form-input" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityCategory">Category *</label>
+                                            <select id="editActivityCategory" class="form-input" required>
+                                                <option value="">Select Category</option>
+                                                <option value="outdoor">Outdoor</option>
+                                                <option value="cultural">Cultural</option>
+                                                <option value="adventure">Adventure</option>
+                                                <option value="water-sports">Water Sports</option>
+                                                <option value="wellness">Wellness</option>
+                                                <option value="food-tour">Food Tour</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityLocation">Location *</label>
+                                            <select id="editActivityLocation" class="form-input" required>
+                                                <option value="">Select Location</option>
+                                                <option value="riyadh">Riyadh</option>
+                                                <option value="jeddah">Jeddah</option>
+                                                <option value="mecca">Mecca</option>
+                                                <option value="medina">Medina</option>
+                                                <option value="dammam">Dammam</option>
+                                                <option value="al-ula">Al Ula</option>
+                                                <option value="neom">NEOM</option>
+                                                <option value="tabuk">Tabuk</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityDifficulty">Difficulty Level *</label>
+                                            <select id="editActivityDifficulty" class="form-input" required>
+                                                <option value="">Select Difficulty</option>
+                                                <option value="easy">Easy</option>
+                                                <option value="moderate">Moderate</option>
+                                                <option value="challenging">Challenging</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityDuration">Duration (Hours) *</label>
+                                            <input type="number" id="editActivityDuration" class="form-input" min="0.5" step="0.5" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityMaxPax">Max Participants *</label>
+                                            <input type="number" id="editActivityMaxPax" class="form-input" min="1" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editActivityDescription">Activity Description</label>
+                                        <textarea id="editActivityDescription" class="form-input" rows="4" placeholder="Describe the activity, highlights, and what participants can expect..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pricing -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-money-bill-wave"></i> Pricing</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editActivityPrice">Price per Person (SAR) *</label>
+                                            <input type="number" id="editActivityPrice" class="form-input" min="0" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityGroupDiscount">Group Discount (%)</label>
+                                            <input type="number" id="editActivityGroupDiscount" class="form-input" min="0" max="100">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityMinAge">Minimum Age</label>
+                                            <input type="number" id="editActivityMinAge" class="form-input" min="0">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityChildPrice">Child Price (SAR)</label>
+                                            <input type="number" id="editActivityChildPrice" class="form-input" min="0">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Schedule -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-calendar-alt"></i> Schedule</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editActivityStartTime">Start Time *</label>
+                                            <input type="time" id="editActivityStartTime" class="form-input" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityEndTime">End Time *</label>
+                                            <input type="time" id="editActivityEndTime" class="form-input" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Available Days</label>
+                                        <div class="checkbox-grid">
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="day" value="sunday"> Sunday
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="day" value="monday"> Monday
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="day" value="tuesday"> Tuesday
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="day" value="wednesday"> Wednesday
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="day" value="thursday"> Thursday
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="day" value="friday"> Friday
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="day" value="saturday"> Saturday
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Inclusions -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-list-check"></i> What's Included</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="checkbox-grid">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="includes" value="equipment"> Equipment Provided
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="includes" value="guide"> Professional Guide
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="includes" value="transport"> Transportation
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="includes" value="meals"> Meals/Snacks
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="includes" value="photos"> Photography
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="includes" value="insurance"> Insurance
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="includes" value="refreshments"> Refreshments
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="includes" value="certificate"> Certificate
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Operator -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-building"></i> Operator Information</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editActivityOperator">Activity Operator *</label>
+                                            <select id="editActivityOperator" class="form-input" required>
+                                                <option value="">Select Operator</option>
+                                                <option value="desert-adventures">Desert Adventures Ltd</option>
+                                                <option value="saudi-tours">Saudi Tours Co</option>
+                                                <option value="heritage-explorers">Heritage Explorers</option>
+                                                <option value="red-sea-diving">Red Sea Diving Center</option>
+                                                <option value="mountain-trails">Mountain Trails KSA</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityCommission">Commission Rate (%)</label>
+                                            <input type="number" id="editActivityCommission" class="form-input" min="0" max="100">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quality & Compliance -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-shield-alt"></i> Safety & Compliance</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editActivitySafetyScore">Safety Score (0-100)</label>
+                                            <input type="number" id="editActivitySafetyScore" class="form-input" min="0" max="100">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editActivityCompliance">Compliance Status</label>
+                                            <select id="editActivityCompliance" class="form-input">
+                                                <option value="compliant">Compliant</option>
+                                                <option value="minor-issues">Minor Issues</option>
+                                                <option value="non-compliant">Non-Compliant</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Admin Notes -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-sticky-note"></i> Admin Notes</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="editActivityAdminNotes">Internal Notes (Not visible to operators)</label>
+                                        <textarea id="editActivityAdminNotes" class="form-input" rows="4" placeholder="Add internal notes, safety concerns, or special instructions..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                                <button type="button" class="btn btn-outline" onclick="window.history.back()">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/script.js"></script>
+</body>
+</html>

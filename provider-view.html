@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Vendor - Tourism Admin</title>
+    <title>View Service Provider - Tourism Admin</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -69,11 +69,11 @@
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
-                <a href="vendors.html" class="nav-item active" data-section="vendors" data-tooltip="Vendors">
+                <a href="vendors.html" class="nav-item" data-section="vendors" data-tooltip="Vendors">
                     <i class="fas fa-store"></i>
                     <span>Vendors</span>
                 </a>
-                <a href="service-providers.html" class="nav-item" data-section="providers" data-tooltip="Service Providers">
+                <a href="service-providers.html" class="nav-item active" data-section="providers" data-tooltip="Service Providers">
                     <i class="fas fa-handshake"></i>
                     <span>Service Providers</span>
                 </a>
@@ -173,78 +173,78 @@
                 <div class="page-header">
                     <div class="page-header-left">
                         <nav class="breadcrumb">
-                            <a href="vendors.html"><i class="fas fa-arrow-left"></i> Back to Vendors</a>
+                            <a href="service-providers.html"><i class="fas fa-arrow-left"></i> Back to Service Providers</a>
                         </nav>
-                        <h1 id="viewVendorTitle">Vendor Profile</h1>
-                        <p class="page-subtitle">View vendor details, performance, and booking history</p>
+                        <h1 id="viewProviderTitle">Provider Profile</h1>
+                        <p class="page-subtitle">View provider details, performance metrics, and documents</p>
                     </div>
                     <div class="page-header-right">
-                        <a href="#" class="btn btn-primary" id="editVendorLink">
-                            <i class="fas fa-pen"></i> Edit Vendor
+                        <a href="#" class="btn btn-primary" id="editProviderLink">
+                            <i class="fas fa-pen"></i> Edit Provider
                         </a>
-                        <button class="btn btn-outline" id="viewDocumentsBtn">
+                        <button class="btn btn-outline" id="viewProviderDocsBtn">
                             <i class="fas fa-file-alt"></i> Documents
                         </button>
-                        <button class="btn btn-danger" id="disableVendorViewBtn">
-                            <i class="fas fa-toggle-off"></i> Disable Vendor
+                        <button class="btn btn-danger" id="suspendProviderViewBtn">
+                            <i class="fas fa-ban"></i> Suspend Provider
                         </button>
                     </div>
                 </div>
 
-                <!-- Vendor Profile Card -->
+                <!-- Provider Profile -->
                 <div class="detail-page-grid">
                     <!-- Left Column: Profile Info -->
                     <div class="detail-card profile-card">
                         <div class="profile-card-header">
                             <div class="profile-avatar-xl">
-                                <img src="https://ui-avatars.com/api/?name=Al+Faisaliah+Hotel&background=667eea&color=fff&size=120" alt="" id="viewVendorAvatar">
+                                <img src="https://ui-avatars.com/api/?name=Saudi+Tours+Co&background=667eea&color=fff&size=120" alt="" id="viewProviderAvatar">
                             </div>
-                            <h2 id="viewVendorName">Al Faisaliah Hotel</h2>
-                            <span class="status-badge status-approved" id="viewVendorStatus">Approved</span>
-                            <p class="profile-card-id" id="viewVendorId">#VND-001</p>
-                            <span class="type-badge type-hotel" id="viewVendorTypeBadge"><i class="fas fa-hotel"></i> Hotel</span>
+                            <h2 id="viewProviderName">Saudi Tours Co</h2>
+                            <span class="status-badge status-approved" id="viewProviderStatus">Approved</span>
+                            <p class="profile-card-id" id="viewProviderId">#SPR-001</p>
+                            <span class="type-badge type-package" id="viewProviderTypeBadge"><i class="fas fa-suitcase-rolling"></i> Package Provider</span>
                         </div>
                         <div class="profile-card-body">
                             <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-user-tie"></i></div>
                                 <div class="info-content">
-                                    <span class="info-label">Owner / Contact</span>
-                                    <span class="info-value" id="viewVendorOwner">Abdulaziz Al-Faisal</span>
+                                    <span class="info-label">Contact Person</span>
+                                    <span class="info-value" id="viewProviderContact">Mansour Al-Harbi</span>
                                 </div>
                             </div>
                             <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-envelope"></i></div>
                                 <div class="info-content">
                                     <span class="info-label">Email Address</span>
-                                    <span class="info-value" id="viewVendorEmail">info@alfaisaliah.com</span>
+                                    <span class="info-value" id="viewProviderEmail">info@sauditours.com</span>
                                 </div>
                             </div>
                             <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-phone"></i></div>
                                 <div class="info-content">
                                     <span class="info-label">Phone Number</span>
-                                    <span class="info-value" id="viewVendorPhone">+966 11 234 5678</span>
+                                    <span class="info-value" id="viewProviderPhone">+966 11 345 6789</span>
                                 </div>
                             </div>
                             <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                                 <div class="info-content">
-                                    <span class="info-label">Location</span>
-                                    <span class="info-value" id="viewVendorLocation">Riyadh, KSA</span>
+                                    <span class="info-label">Service Area</span>
+                                    <span class="info-value" id="viewProviderArea">Riyadh, Jeddah, Mecca</span>
                                 </div>
                             </div>
                             <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-globe"></i></div>
                                 <div class="info-content">
                                     <span class="info-label">Website</span>
-                                    <span class="info-value" id="viewVendorWebsite">www.alfaisaliahhotel.com</span>
+                                    <span class="info-value" id="viewProviderWebsite">www.sauditours.com</span>
                                 </div>
                             </div>
                             <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-calendar"></i></div>
                                 <div class="info-content">
                                     <span class="info-label">Joined Date</span>
-                                    <span class="info-value" id="viewVendorJoined">Jan 10, 2025</span>
+                                    <span class="info-value" id="viewProviderJoined">Mar 15, 2025</span>
                                 </div>
                             </div>
                         </div>
@@ -257,64 +257,91 @@
                             <div class="detail-stat-card">
                                 <div class="detail-stat-icon gradient-purple"><i class="fas fa-ticket"></i></div>
                                 <div class="detail-stat-info">
-                                    <span class="detail-stat-value" id="viewVendorBookings">1,247</span>
+                                    <span class="detail-stat-value" id="viewProviderBookings">2,845</span>
                                     <span class="detail-stat-label">Total Bookings</span>
                                 </div>
                             </div>
                             <div class="detail-stat-card">
                                 <div class="detail-stat-icon gradient-cyan"><i class="fas fa-dollar-sign"></i></div>
                                 <div class="detail-stat-info">
-                                    <span class="detail-stat-value" id="viewVendorRevenue">$245,000</span>
+                                    <span class="detail-stat-value" id="viewProviderRevenue">$467,500</span>
                                     <span class="detail-stat-label">Total Revenue</span>
                                 </div>
                             </div>
                             <div class="detail-stat-card">
                                 <div class="detail-stat-icon gradient-orange"><i class="fas fa-star"></i></div>
                                 <div class="detail-stat-info">
-                                    <span class="detail-stat-value" id="viewVendorRating">4.8</span>
+                                    <span class="detail-stat-value" id="viewProviderRating">4.9</span>
                                     <span class="detail-stat-label">Avg. Rating</span>
                                 </div>
                             </div>
                             <div class="detail-stat-card">
                                 <div class="detail-stat-icon gradient-pink"><i class="fas fa-percent"></i></div>
                                 <div class="detail-stat-info">
-                                    <span class="detail-stat-value" id="viewVendorCommission">12%</span>
+                                    <span class="detail-stat-value" id="viewProviderCommission">15%</span>
                                     <span class="detail-stat-label">Commission Rate</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Performance Summary -->
+                        <!-- Subscription Status -->
                         <div class="detail-card">
                             <div class="detail-card-header">
-                                <h3><i class="fas fa-chart-line"></i> Performance Summary</h3>
+                                <h3><i class="fas fa-crown"></i> Subscription Status</h3>
                             </div>
                             <div class="detail-card-body">
                                 <div class="vendor-performance-grid">
                                     <div class="performance-item">
-                                        <span class="performance-label">Response Time</span>
-                                        <span class="performance-value" id="viewVendorResponseTime">2.3 hours</span>
+                                        <span class="performance-label">Plan</span>
+                                        <span class="performance-value" id="viewProviderPlan">Premium</span>
                                     </div>
                                     <div class="performance-item">
-                                        <span class="performance-label">Cancellation Rate</span>
-                                        <span class="performance-value" id="viewVendorCancelRate">1.8%</span>
+                                        <span class="performance-label">Billing Cycle</span>
+                                        <span class="performance-value" id="viewProviderBilling">Annual</span>
                                     </div>
                                     <div class="performance-item">
-                                        <span class="performance-label">Payout Schedule</span>
-                                        <span class="performance-value" id="viewVendorPayout">Monthly</span>
+                                        <span class="performance-label">Next Renewal</span>
+                                        <span class="performance-value" id="viewProviderRenewal">Mar 15, 2027</span>
                                     </div>
                                     <div class="performance-item">
-                                        <span class="performance-label">Total Payouts</span>
-                                        <span class="performance-value" id="viewVendorTotalPayouts">$215,600</span>
+                                        <span class="performance-label">Monthly Fee</span>
+                                        <span class="performance-value" id="viewProviderFee">$299/mo</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Business Documents -->
+                        <!-- Performance Metrics -->
                         <div class="detail-card">
                             <div class="detail-card-header">
-                                <h3><i class="fas fa-file-alt"></i> Business Documents</h3>
+                                <h3><i class="fas fa-chart-line"></i> Performance Metrics</h3>
+                            </div>
+                            <div class="detail-card-body">
+                                <div class="vendor-performance-grid">
+                                    <div class="performance-item">
+                                        <span class="performance-label">Response Time</span>
+                                        <span class="performance-value" id="viewProviderResponseTime">1.2 hours</span>
+                                    </div>
+                                    <div class="performance-item">
+                                        <span class="performance-label">Cancellation Rate</span>
+                                        <span class="performance-value" id="viewProviderCancelRate">0.8%</span>
+                                    </div>
+                                    <div class="performance-item">
+                                        <span class="performance-label">Completion Rate</span>
+                                        <span class="performance-value" id="viewProviderCompletionRate">98.5%</span>
+                                    </div>
+                                    <div class="performance-item">
+                                        <span class="performance-label">Customer Satisfaction</span>
+                                        <span class="performance-value" id="viewProviderSatisfaction">96%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Document Verification -->
+                        <div class="detail-card">
+                            <div class="detail-card-header">
+                                <h3><i class="fas fa-file-alt"></i> Document Verification</h3>
                             </div>
                             <div class="detail-card-body">
                                 <div class="document-grid">
@@ -326,9 +353,9 @@
                                         </div>
                                     </div>
                                     <div class="document-card">
-                                        <div class="document-icon"><i class="fas fa-file-invoice"></i></div>
+                                        <div class="document-icon"><i class="fas fa-certificate"></i></div>
                                         <div class="document-info">
-                                            <span class="document-name">Tax Certificate</span>
+                                            <span class="document-name">Tourism License</span>
                                             <span class="document-status verified"><i class="fas fa-check-circle"></i> Verified</span>
                                         </div>
                                     </div>
@@ -336,13 +363,27 @@
                                         <div class="document-icon"><i class="fas fa-shield-alt"></i></div>
                                         <div class="document-info">
                                             <span class="document-name">Insurance Policy</span>
-                                            <span class="document-status pending-doc"><i class="fas fa-clock"></i> Pending Review</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Verified</span>
                                         </div>
                                     </div>
                                     <div class="document-card">
-                                        <div class="document-icon"><i class="fas fa-certificate"></i></div>
+                                        <div class="document-icon"><i class="fas fa-file-invoice"></i></div>
                                         <div class="document-info">
-                                            <span class="document-name">Tourism License</span>
+                                            <span class="document-name">Tax Certificate</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Verified</span>
+                                        </div>
+                                    </div>
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-award"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">Safety Certification</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Verified</span>
+                                        </div>
+                                    </div>
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-file-contract"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">Service Agreement</span>
                                             <span class="document-status verified"><i class="fas fa-check-circle"></i> Verified</span>
                                         </div>
                                     </div>
@@ -350,66 +391,55 @@
                             </div>
                         </div>
 
-                        <!-- Recent Customer Bookings -->
+                        <!-- Recent Bookings -->
                         <div class="detail-card">
                             <div class="detail-card-header">
-                                <h3><i class="fas fa-history"></i> Recent Customer Bookings</h3>
+                                <h3><i class="fas fa-history"></i> Recent Bookings</h3>
                             </div>
                             <div class="detail-card-body">
                                 <div class="booking-list">
                                     <div class="booking-item">
                                         <div class="booking-item-icon gradient-purple"><i class="fas fa-user"></i></div>
                                         <div class="booking-item-info">
-                                            <span class="booking-item-title">Ahmed Al-Rashid — Deluxe Suite</span>
-                                            <span class="booking-item-date">Feb 20, 2026 — 3 nights</span>
+                                            <span class="booking-item-title">Ahmed Al-Rashid — Desert Safari Premium Package</span>
+                                            <span class="booking-item-date">Mar 01, 2026 — 2 days</span>
                                         </div>
                                         <div class="booking-item-right">
                                             <span class="status-badge status-active">Completed</span>
-                                            <span class="booking-item-price">$850</span>
+                                            <span class="booking-item-price">$1,450</span>
                                         </div>
                                     </div>
                                     <div class="booking-item">
                                         <div class="booking-item-icon gradient-orange"><i class="fas fa-user"></i></div>
                                         <div class="booking-item-info">
-                                            <span class="booking-item-title">Sara Abdullah — Executive Room</span>
-                                            <span class="booking-item-date">Feb 15, 2026 — 2 nights</span>
+                                            <span class="booking-item-title">Sara Abdullah — Riyadh City Heritage Tour</span>
+                                            <span class="booking-item-date">Feb 28, 2026 — Full day</span>
                                         </div>
                                         <div class="booking-item-right">
                                             <span class="status-badge status-active">Completed</span>
-                                            <span class="booking-item-price">$520</span>
+                                            <span class="booking-item-price">$320</span>
                                         </div>
                                     </div>
                                     <div class="booking-item">
                                         <div class="booking-item-icon gradient-cyan"><i class="fas fa-user"></i></div>
                                         <div class="booking-item-info">
-                                            <span class="booking-item-title">Omar Farooq — Premium Suite</span>
-                                            <span class="booking-item-date">Mar 05, 2026 — Upcoming</span>
+                                            <span class="booking-item-title">Omar Farooq — Red Sea Diving Experience</span>
+                                            <span class="booking-item-date">Mar 10, 2026 — Upcoming</span>
                                         </div>
                                         <div class="booking-item-right">
                                             <span class="status-badge status-pending">Pending</span>
-                                            <span class="booking-item-price">$1,200</span>
+                                            <span class="booking-item-price">$890</span>
                                         </div>
                                     </div>
                                     <div class="booking-item">
                                         <div class="booking-item-icon gradient-pink"><i class="fas fa-user"></i></div>
                                         <div class="booking-item-info">
-                                            <span class="booking-item-title">Fatima Noor — Standard Room</span>
-                                            <span class="booking-item-date">Feb 10, 2026 — 1 night</span>
+                                            <span class="booking-item-title">Fatima Noor — Mountain Trek Adventure</span>
+                                            <span class="booking-item-date">Feb 25, 2026 — 3 days</span>
                                         </div>
                                         <div class="booking-item-right">
                                             <span class="status-badge status-active">Completed</span>
-                                            <span class="booking-item-price">$280</span>
-                                        </div>
-                                    </div>
-                                    <div class="booking-item">
-                                        <div class="booking-item-icon gradient-purple"><i class="fas fa-user"></i></div>
-                                        <div class="booking-item-info">
-                                            <span class="booking-item-title">Nadia Khan — Family Suite</span>
-                                            <span class="booking-item-date">Jan 28, 2026 — 4 nights</span>
-                                        </div>
-                                        <div class="booking-item-right">
-                                            <span class="status-badge status-active">Completed</span>
-                                            <span class="booking-item-price">$1,600</span>
+                                            <span class="booking-item-price">$2,100</span>
                                         </div>
                                     </div>
                                 </div>
@@ -427,34 +457,34 @@
                                         <div class="timeline-dot dot-green"></div>
                                         <div class="timeline-content">
                                             <span class="timeline-title">New booking received from Omar Farooq</span>
-                                            <span class="timeline-time">3 hours ago</span>
+                                            <span class="timeline-time">2 hours ago</span>
                                         </div>
                                     </div>
                                     <div class="timeline-item">
                                         <div class="timeline-dot dot-blue"></div>
                                         <div class="timeline-content">
-                                            <span class="timeline-title">Payout of $18,400 processed</span>
-                                            <span class="timeline-time">Feb 28, 2026</span>
+                                            <span class="timeline-title">Subscription renewed — Premium Annual Plan</span>
+                                            <span class="timeline-time">Mar 01, 2026</span>
                                         </div>
                                     </div>
                                     <div class="timeline-item">
                                         <div class="timeline-dot dot-yellow"></div>
                                         <div class="timeline-content">
-                                            <span class="timeline-title">Commission rate updated from 10% to 12%</span>
+                                            <span class="timeline-title">Commission rate updated from 12% to 15%</span>
                                             <span class="timeline-time">Feb 20, 2026</span>
                                         </div>
                                     </div>
                                     <div class="timeline-item">
                                         <div class="timeline-dot dot-green"></div>
                                         <div class="timeline-content">
-                                            <span class="timeline-title">Insurance policy document submitted</span>
+                                            <span class="timeline-title">Safety certification document verified</span>
                                             <span class="timeline-time">Feb 15, 2026</span>
                                         </div>
                                     </div>
                                     <div class="timeline-item">
                                         <div class="timeline-dot dot-purple"></div>
                                         <div class="timeline-content">
-                                            <span class="timeline-title">Received 5-star review from Sara Abdullah</span>
+                                            <span class="timeline-title">Achieved 4.9 star rating milestone</span>
                                             <span class="timeline-time">Feb 10, 2026</span>
                                         </div>
                                     </div>

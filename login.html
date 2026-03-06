@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tourism Application Admin Portal</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -84,11 +84,54 @@
                             <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
                         </div>
 
+                        <!-- Optional 2FA Toggle -->
+                        <div class="twofa-toggle-wrapper">
+                            <label class="twofa-toggle-label">
+                                <div class="twofa-toggle-info">
+                                    <i class="fas fa-shield-halved"></i>
+                                    <span>Enable Two-Factor Authentication</span>
+                                </div>
+                                <div class="twofa-switch">
+                                    <input type="checkbox" id="twofa-toggle" name="twofa">
+                                    <span class="twofa-slider"></span>
+                                </div>
+                            </label>
+                        </div>
 
-                        <a href="dashboard.html" class="login-btn">
+                        <a href="javascript:void(0)" class="login-btn" id="loginBtn">
                             <span>Sign In</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
+
+                        <!-- 2FA Verification Section (hidden by default) -->
+                        <div class="twofa-section" id="twofaSection" style="display: none;">
+                            <div class="twofa-notice">
+                                <i class="fas fa-shield-halved"></i>
+                                <span>A 6-digit verification code has been sent to your registered email/device.</span>
+                            </div>
+                            <label class="twofa-code-label">Enter Verification Code</label>
+                            <div class="twofa-code-inputs" id="twofaCodeInputs">
+                                <input type="text" maxlength="1" class="twofa-code-box" data-index="0" inputmode="numeric" autocomplete="one-time-code">
+                                <input type="text" maxlength="1" class="twofa-code-box" data-index="1" inputmode="numeric">
+                                <input type="text" maxlength="1" class="twofa-code-box" data-index="2" inputmode="numeric">
+                                <span class="twofa-code-separator">—</span>
+                                <input type="text" maxlength="1" class="twofa-code-box" data-index="3" inputmode="numeric">
+                                <input type="text" maxlength="1" class="twofa-code-box" data-index="4" inputmode="numeric">
+                                <input type="text" maxlength="1" class="twofa-code-box" data-index="5" inputmode="numeric">
+                            </div>
+                            <button type="button" class="login-btn twofa-verify-btn" id="twofaVerifyBtn">
+                                <span>Verify & Continue</span>
+                                <i class="fas fa-check-circle"></i>
+                            </button>
+                            <div class="twofa-actions">
+                                <button type="button" class="twofa-resend" id="twofaResendBtn">
+                                    <i class="fas fa-rotate-right"></i> Resend Code
+                                </button>
+                                <button type="button" class="twofa-back" id="twofaBackBtn">
+                                    <i class="fas fa-arrow-left"></i> Back to Login
+                                </button>
+                            </div>
+                        </div>
                     </form>
 
                   
@@ -97,6 +140,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="assets/script.js"></script>
 </body>
 </html>

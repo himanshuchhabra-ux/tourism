@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User - Tourism Admin</title>
+    <title>Edit Payout - Tourism Admin</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -25,7 +25,7 @@
                 <div class="notifications">
                     <button class="notification-btn">
                         <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
+                        <span class="notification-badge">5</span>
                     </button>
                 </div>
                 <div class="user-profile">
@@ -65,7 +65,7 @@
                     <i class="fas fa-chart-line"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href="users.html" class="nav-item active" data-section="users" data-tooltip="Users">
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
@@ -109,7 +109,7 @@
                     <i class="fas fa-crown"></i>
                     <span>Subscriptions</span>
                 </a>
-                <a href="payouts.html" class="nav-item" data-section="payouts" data-tooltip="Payouts">
+                <a href="payouts.html" class="nav-item active" data-section="payouts" data-tooltip="Payouts">
                     <i class="fas fa-wallet"></i>
                     <span>Payouts</span>
                 </a>
@@ -173,158 +173,164 @@
                 <div class="page-header">
                     <div class="page-header-left">
                         <nav class="breadcrumb">
-                            <a href="users.html"><i class="fas fa-arrow-left"></i> Back to Users</a>
+                            <a href="payouts.html"><i class="fas fa-arrow-left"></i> Back to Payouts</a>
                         </nav>
-                        <h1 id="editUserTitle">Edit User</h1>
-                        <p class="page-subtitle">Update user profile information and account settings</p>
+                        <h1>Edit Payout</h1>
+                        <p class="page-subtitle">Adjust payout details, commission, and processing information</p>
                     </div>
                 </div>
 
-                <!-- Edit Form -->
+                <!-- Edit Form Grid -->
                 <div class="edit-page-grid">
-                    <!-- Left: Avatar & Status -->
+                    <!-- Left Column: Payout Summary Card -->
                     <div class="detail-card profile-card">
                         <div class="profile-card-header">
                             <div class="profile-avatar-xl">
-                                <img src="https://ui-avatars.com/api/?name=Ahmed+Al-Rashid&background=667eea&color=fff&size=120" alt="" id="editUserAvatar">
+                                <img src="https://ui-avatars.com/api/?name=PAY&background=27ae60&color=fff&size=120" alt="">
                             </div>
-                            <h2 id="editUserDisplayName">Ahmed Al-Rashid</h2>
-                            <p class="profile-card-id" id="editUserId">#USR-001</p>
+                            <h2 id="editPayoutDisplayId">PAY-2025-001</h2>
+                            <p class="profile-card-id" id="editPayoutVendorLabel">Hotel Vendor</p>
                         </div>
                         <div class="profile-card-body">
-                            <div class="form-group">
-                                <label for="editStatus">Account Status</label>
-                                <select id="editStatus" class="form-input">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                    <option value="blocked">Blocked</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Member Since</label>
-                                <input type="text" class="form-input" id="editUserJoinedDisplay" readonly value="Jan 15, 2025">
+                            <div class="info-group">
+                                <div class="form-group">
+                                    <label for="editPayoutStatus">Payout Status</label>
+                                    <select id="editPayoutStatus" class="form-input">
+                                        <option value="completed">Completed</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="processing">Processing</option>
+                                        <option value="failed">Failed</option>
+                                        <option value="on-hold">On Hold</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editPayoutPriority">Priority</label>
+                                    <select id="editPayoutPriority" class="form-input">
+                                        <option value="normal">Normal</option>
+                                        <option value="high">High</option>
+                                        <option value="urgent">Urgent</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right: Edit Form -->
-                    <div class="detail-card">
-                        <div class="detail-card-header">
-                            <h3><i class="fas fa-user-edit"></i> Personal Information</h3>
-                        </div>
-                        <div class="detail-card-body">
-                            <form id="editUserForm">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editFirstName">First Name</label>
-                                        <input type="text" id="editFirstName" class="form-input" value="Ahmed" placeholder="Enter first name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editLastName">Last Name</label>
-                                        <input type="text" id="editLastName" class="form-input" value="Al-Rashid" placeholder="Enter last name">
+                    <!-- Right Column: Edit Form -->
+                    <div class="detail-column-right">
+                        <form id="payoutEditForm">
+                            <!-- Vendor Information -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-store"></i> Vendor Information</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editPayoutVendor">Vendor Name</label>
+                                            <input type="text" id="editPayoutVendor" class="form-input" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editPayoutVendorId">Vendor ID</label>
+                                            <input type="text" id="editPayoutVendorId" class="form-input" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editPayoutVendorType">Vendor Type</label>
+                                            <input type="text" id="editPayoutVendorType" class="form-input" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editPayoutPeriod">Payout Period</label>
+                                            <input type="text" id="editPayoutPeriod" class="form-input" readonly>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editEmail">Email Address</label>
-                                        <input type="email" id="editEmail" class="form-input" value="ahmed.rashid@email.com" placeholder="Enter email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editPhone">Phone Number</label>
-                                        <input type="tel" id="editPhone" class="form-input" value="+966 50 123 4567" placeholder="Enter phone number">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editLocation">Location</label>
-                                        <input type="text" id="editLocation" class="form-input" value="Riyadh, Saudi Arabia" placeholder="Enter location">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editDob">Date of Birth</label>
-                                        <input type="date" id="editDob" class="form-input" value="1992-06-15">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="editGender">Gender</label>
-                                    <select id="editGender" class="form-input">
-                                        <option value="male" selected>Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                        <option value="prefer-not">Prefer not to say</option>
-                                    </select>
-                                </div>
+                            </div>
 
-                                <div class="form-divider"></div>
-
-                                <div class="detail-card-header">
-                                    <h3><i class="fas fa-shield-alt"></i> Security & Preferences</h3>
+                            <!-- Financial Details -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-calculator"></i> Financial Details</h3>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editLanguage">Preferred Language</label>
-                                        <select id="editLanguage" class="form-input">
-                                            <option value="en">English</option>
-                                            <option value="ar" selected>Arabic</option>
-                                            <option value="fr">French</option>
-                                            <option value="ur">Urdu</option>
-                                        </select>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editPayoutGross">Gross Amount (SAR) *</label>
+                                            <input type="number" id="editPayoutGross" class="form-input" min="0" step="0.01" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editPayoutCommissionRate">Commission Rate (%) *</label>
+                                            <input type="number" id="editPayoutCommissionRate" class="form-input" min="0" max="100" step="0.1" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editPayoutCommissionAmount">Commission Amount (SAR)</label>
+                                            <input type="number" id="editPayoutCommissionAmount" class="form-input" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editPayoutNet">Net Payout (SAR)</label>
+                                            <input type="number" id="editPayoutNet" class="form-input" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editPayoutAdjustment">Adjustment (SAR)</label>
+                                            <input type="number" id="editPayoutAdjustment" class="form-input" step="0.01">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editPayoutAdjustmentReason">Adjustment Reason</label>
+                                            <input type="text" id="editPayoutAdjustmentReason" class="form-input" placeholder="Reason for adjustment...">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="editCurrency">Preferred Currency</label>
-                                        <select id="editCurrency" class="form-input">
-                                            <option value="sar" selected>SAR — Saudi Riyal</option>
-                                            <option value="usd">USD — US Dollar</option>
-                                            <option value="eur">EUR — Euro</option>
-                                            <option value="gbp">GBP — British Pound</option>
-                                        </select>
+                                </div>
+                            </div>
+
+                            <!-- Payment Method -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-university"></i> Payment Method</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editPayoutMethod">Payment Method</label>
+                                            <select id="editPayoutMethod" class="form-input">
+                                                <option value="bank-transfer">Bank Transfer</option>
+                                                <option value="cheque">Cheque</option>
+                                                <option value="digital-wallet">Digital Wallet</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editPayoutRef">Reference Number</label>
+                                            <input type="text" id="editPayoutRef" class="form-input">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="edit2fa" checked>
-                                        <span>Two-Factor Authentication Enabled</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editEmailNotif" checked>
-                                        <span>Email Notifications</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editSmsNotif">
-                                        <span>SMS Notifications</span>
-                                    </label>
-                                </div>
+                            </div>
 
-                                <div class="form-divider"></div>
-
-                                <div class="detail-card-header">
+                            <!-- Admin Notes -->
+                            <div class="detail-card">
+                                <div class="card-header">
                                     <h3><i class="fas fa-sticky-note"></i> Admin Notes</h3>
                                 </div>
-                                <div class="form-group">
-                                    <label for="editNotes">Internal Notes</label>
-                                    <textarea id="editNotes" class="form-input form-textarea" rows="4" placeholder="Add any internal notes about this user...">VIP customer. Frequent traveler with premium bookings. No policy violations.</textarea>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="editPayoutAdminNotes">Internal Notes</label>
+                                        <textarea id="editPayoutAdminNotes" class="form-input" rows="4" placeholder="Add internal notes about this payout..."></textarea>
+                                    </div>
                                 </div>
+                            </div>
 
-                                <!-- Form Actions -->
-                                <div class="form-actions">
-                                    <a href="users.html" class="btn btn-outline">
-                                        <i class="fas fa-times"></i> Cancel
-                                    </a>
-                                    <button type="submit" class="btn btn-primary" id="saveUserBtn">
-                                        <i class="fas fa-save"></i> Save Changes
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            <!-- Form Actions -->
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                                <a href="payouts.html" class="btn btn-outline">
+                                    <i class="fas fa-times"></i> Cancel
+                                </a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </main>
     </div>
-
     <script src="assets/script.js"></script>
 </body>
 </html>

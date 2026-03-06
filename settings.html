@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Settings - Tourism Admin</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <nav class="topbar">
+            <div class="topbar-left">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <span>Tourism</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                    <div class="profile-info">
+                        <span class="profile-name">Admin User</span>
+                        <span class="profile-role">Super Admin</span>
+                    </div>
+                    <div class="profile-dropdown">
+                        <div class="profile-dropdown-header">
+                            <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                            <div>
+                                <span class="dropdown-user-name">Admin User</span>
+                                <span class="dropdown-user-role">Super Admin</span>
+                            </div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><a href="#"><i class="fas fa-key"></i> Change Password</a></li>
+                            <li class="profile-dropdown-divider"></li>
+                            <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+                <i class="fas fa-angles-left"></i>
+                <span>Collapse</span>
+            </button>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item" data-section="dashboard" data-tooltip="Dashboard"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users"><i class="fas fa-users"></i><span>Users</span></a>
+                <a href="vendors.html" class="nav-item" data-section="vendors" data-tooltip="Vendors"><i class="fas fa-store"></i><span>Vendors</span></a>
+                <a href="service-providers.html" class="nav-item" data-section="providers" data-tooltip="Service Providers"><i class="fas fa-handshake"></i><span>Service Providers</span></a>
+                <a href="categories.html" class="nav-item" data-section="categories" data-tooltip="Categories"><i class="fas fa-th-large"></i><span>Categories</span></a>
+                <a href="hotels.html" class="nav-item" data-section="hotels" data-tooltip="Hotels"><i class="fas fa-hotel"></i><span>Hotels</span></a>
+                <a href="restaurants.html" class="nav-item" data-section="restaurants" data-tooltip="Restaurants"><i class="fas fa-utensils"></i><span>Restaurants</span></a>
+                <a href="packages.html" class="nav-item" data-section="packages" data-tooltip="Packages"><i class="fas fa-suitcase-rolling"></i><span>Packages</span></a>
+                <a href="activities.html" class="nav-item" data-section="activities" data-tooltip="Activities"><i class="fas fa-hiking"></i><span>Activities</span></a>
+                <a href="cabs.html" class="nav-item" data-section="cabs" data-tooltip="Cabs"><i class="fas fa-taxi"></i><span>Cabs</span></a>
+                <a href="bookings.html" class="nav-item" data-section="bookings" data-tooltip="Bookings"><i class="fas fa-calendar-check"></i><span>Bookings</span></a>
+                <a href="subscriptions.html" class="nav-item" data-section="subscriptions" data-tooltip="Subscriptions"><i class="fas fa-crown"></i><span>Subscriptions</span></a>
+                <a href="payouts.html" class="nav-item" data-section="payouts" data-tooltip="Payouts"><i class="fas fa-wallet"></i><span>Payouts</span></a>
+                <a href="ads.html" class="nav-item" data-section="ads" data-tooltip="Ads"><i class="fas fa-ad"></i><span>Ads</span></a>
+                <a href="banners.html" class="nav-item" data-section="banners" data-tooltip="Banners"><i class="fas fa-images"></i><span>Banners</span></a>
+                <a href="refunds.html" class="nav-item" data-section="refunds" data-tooltip="Refunds"><i class="fas fa-undo-alt"></i><span>Refunds</span></a>
+                <a href="transactions.html" class="nav-item" data-section="transactions" data-tooltip="Transactions"><i class="fas fa-exchange-alt"></i><span>Transactions</span></a>
+                <a href="notifications.html" class="nav-item" data-section="notifications" data-tooltip="Notifications"><i class="fas fa-bell"></i><span>Notifications</span></a>
+                <a href="support.html" class="nav-item" data-section="support" data-tooltip="Support"><i class="fas fa-headset"></i><span>Support</span></a>
+                <a href="cms.html" class="nav-item" data-section="cms" data-tooltip="CMS"><i class="fas fa-file-alt"></i><span>CMS</span></a>
+                
+            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
+                <i class="fas fa-percentage"></i>
+                <span>Commission</span>
+            </a>
+            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
+                <i class="fas fa-tags"></i>
+                <span>Ads Rates</span>
+            </a>
+            
+                <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
+                </a>
+            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports"><i class="fas fa-chart-bar"></i><span>Reports</span></a>
+                <a href="settings.html" class="nav-item active" data-section="settings" data-tooltip="Settings"><i class="fas fa-cog"></i><span>Settings</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-link" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <h1>Admin Settings</h1>
+                        <p class="page-subtitle">Manage your profile, security, and application preferences</p>
+                    </div>
+                </div>
+
+                <!-- Settings Grid -->
+                <div class="edit-page-grid">
+                    <!-- Left Column - Admin Profile Card -->
+                    <div class="detail-card profile-card">
+                        <div class="profile-card-header">
+                            <div class="profile-avatar-xl">
+                                <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff&size=120" alt="Admin" id="settingsAvatar">
+                            </div>
+                            <h2 id="settingsDisplayName">Admin User</h2>
+                            <span class="table-user-id">Super Admin</span>
+                            <span class="status-badge status-active">Active</span>
+                        </div>
+                        <div class="profile-card-body">
+                            <div class="info-item">
+                                <span class="info-label">Email</span>
+                                <span class="info-value">admin@tourhub.com</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Role</span>
+                                <span class="info-value">Super Admin</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Member Since</span>
+                                <span class="info-value">Jan 01, 2026</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Last Login</span>
+                                <span class="info-value">Mar 05, 2026 09:42 AM</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">2FA Status</span>
+                                <span class="info-value"><span class="status-badge status-active">Enabled</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Settings Form -->
+                    <div class="detail-column-right">
+                        <form id="settingsForm">
+                            <!-- Profile Information -->
+                            <div class="detail-card">
+                                <div class="detail-card-header">
+                                    <h3><i class="fas fa-user"></i> Profile Information</h3>
+                                </div>
+                                <div class="detail-card-body">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="settingsProfileName">Full Name</label>
+                                            <input type="text" id="settingsProfileName" class="form-input" value="Admin User">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="settingsProfileEmail">Email Address</label>
+                                            <input type="email" id="settingsProfileEmail" class="form-input" value="admin@tourhub.com">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="settingsProfilePhone">Phone Number</label>
+                                            <input type="tel" id="settingsProfilePhone" class="form-input" value="+966 50 123 4567">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="settingsProfileRole">Role</label>
+                                            <input type="text" id="settingsProfileRole" class="form-input" value="Super Admin" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Security -->
+                            <div class="detail-card">
+                                <div class="detail-card-header">
+                                    <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                                </div>
+                                <div class="detail-card-body">
+                                    <div class="form-group">
+                                        <label for="settingsCurrentPassword">Current Password</label>
+                                        <input type="password" id="settingsCurrentPassword" class="form-input" placeholder="Enter current password">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="settingsNewPassword">New Password</label>
+                                            <input type="password" id="settingsNewPassword" class="form-input" placeholder="Enter new password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="settingsConfirmPassword">Confirm Password</label>
+                                            <input type="password" id="settingsConfirmPassword" class="form-input" placeholder="Confirm new password">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="settingsTwoFactor">Two-Factor Authentication</label>
+                                            <select id="settingsTwoFactor" class="form-input">
+                                                <option value="enabled" selected>Enabled</option>
+                                                <option value="disabled">Disabled</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="settingsSessionTimeout">Session Timeout (minutes)</label>
+                                            <select id="settingsSessionTimeout" class="form-input">
+                                                <option value="15">15 minutes</option>
+                                                <option value="30" selected>30 minutes</option>
+                                                <option value="60">1 hour</option>
+                                                <option value="120">2 hours</option>
+                                                <option value="480">8 hours</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notification Preferences -->
+                            <div class="detail-card">
+                                <div class="detail-card-header">
+                                    <h3><i class="fas fa-bell"></i> Notification Preferences</h3>
+                                </div>
+                                <div class="detail-card-body">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="settingsNotifyEmail">Email Notifications</label>
+                                            <select id="settingsNotifyEmail" class="form-input">
+                                                <option value="all" selected>All Notifications</option>
+                                                <option value="important">Important Only</option>
+                                                <option value="none">None</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="settingsNotifyPush">Push Notifications</label>
+                                            <select id="settingsNotifyPush" class="form-input">
+                                                <option value="all" selected>All Notifications</option>
+                                                <option value="important">Important Only</option>
+                                                <option value="none">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="settingsNotifySms">SMS Notifications</label>
+                                        <select id="settingsNotifySms" class="form-input">
+                                            <option value="important" selected>Important Only</option>
+                                            <option value="all">All Notifications</option>
+                                            <option value="none">None</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- API & Integrations -->
+                            <div class="detail-card">
+                                <div class="detail-card-header">
+                                    <h3><i class="fas fa-key"></i> API & Integrations</h3>
+                                </div>
+                                <div class="detail-card-body">
+                                    <div class="form-group">
+                                        <label for="settingsApiKey">API Key</label>
+                                        <input type="text" id="settingsApiKey" class="form-input" value="th_live_aBcDeFgHiJkLmNoPqRsTuVwXyZ123456" readonly>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>API Key Created</label>
+                                            <input type="text" class="form-input" value="Jan 15, 2026" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>API Key Expires</label>
+                                            <input type="text" class="form-input" value="Jan 15, 2027" readonly>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-outline" id="regenerateApiKeyBtn"><i class="fas fa-sync"></i> Regenerate API Key</button>
+                                </div>
+                            </div>
+
+                            <!-- Login Activity -->
+                            <div class="detail-card">
+                                <div class="detail-card-header">
+                                    <h3><i class="fas fa-history"></i> Recent Login Activity</h3>
+                                </div>
+                                <div class="detail-card-body">
+                                    <div class="activity-log" id="settingsLoginActivity">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" id="resetSettingsBtn"><i class="fas fa-undo"></i> Reset</button>
+                                <button type="submit" class="btn btn-primary" id="saveSettingsBtn"><i class="fas fa-save"></i> Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>

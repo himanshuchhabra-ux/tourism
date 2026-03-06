@@ -3,15 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management - Tourism Admin</title>
+    <title>Sub Admin Management - Tourism Admin</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
-        <i class="fas fa-moon"></i>
-    </button>
     <div class="dashboard-container">
         <!-- Top Navigation -->
         <nav class="topbar">
@@ -51,6 +47,9 @@
                         </ul>
                     </div>
                 </div>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </nav>
 
@@ -65,7 +64,7 @@
                     <i class="fas fa-chart-line"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href="users.html" class="nav-item active" data-section="users" data-tooltip="Users">
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
@@ -135,21 +134,19 @@
                     <i class="fas fa-file-alt"></i>
                     <span>CMS</span>
                 </a>
-                
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-                <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
+                    <i class="fas fa-percentage"></i>
+                    <span>Commission</span>
+                </a>
+                <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
+                    <i class="fas fa-tags"></i>
+                    <span>Ads Rates</span>
+                </a>
+                <a href="sub-admins.html" class="nav-item active" data-section="sub-admins" data-tooltip="Sub Admins">
                     <i class="fas fa-user-shield"></i>
                     <span>Sub Admins</span>
                 </a>
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+                <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
                 </a>
@@ -172,68 +169,71 @@
                 <!-- Page Header -->
                 <div class="page-header">
                     <div class="page-header-left">
-                        <h1>User Management</h1>
-                        <p class="page-subtitle">Manage all registered users, view profiles, and monitor activity</p>
+                        <h1>Sub Admin Management</h1>
+                        <p class="page-subtitle">Manage sub-administrators with role-based permissions and module access control</p>
                     </div>
                     <div class="page-header-right">
-                        <button class="btn btn-outline" id="exportUsersBtn">
+                        <button class="btn btn-outline" id="exportSubAdminsBtn">
                             <i class="fas fa-download"></i> Export CSV
                         </button>
+                        <a href="sub-admin-edit.html" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add Sub Admin
+                        </a>
                     </div>
                 </div>
 
-                <!-- User Stats Cards -->
+                <!-- Sub Admin Stats Cards -->
                 <section class="kpi-section" style="margin-bottom: 2rem;">
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <h3>Total Users</h3>
+                            <h3>Total Sub Admins</h3>
                             <div class="kpi-icon gradient-purple">
-                                <i class="fas fa-users"></i>
+                                <i class="fas fa-user-shield"></i>
                             </div>
                         </div>
-                        <div class="kpi-value">14,285</div>
+                        <div class="kpi-value">12</div>
                         <div class="kpi-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>12.5% from last month</span>
+                            <span>2 added this month</span>
                         </div>
                     </div>
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <h3>Active Users</h3>
+                            <h3>Active Sub Admins</h3>
                             <div class="kpi-icon gradient-cyan">
                                 <i class="fas fa-user-check"></i>
                             </div>
                         </div>
-                        <div class="kpi-value">11,432</div>
+                        <div class="kpi-value">9</div>
                         <div class="kpi-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>8.1% from last month</span>
+                            <span>75% of total</span>
                         </div>
                     </div>
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <h3>Blocked Users</h3>
+                            <h3>Suspended</h3>
                             <div class="kpi-icon gradient-orange">
                                 <i class="fas fa-user-slash"></i>
                             </div>
                         </div>
-                        <div class="kpi-value">156</div>
-                        <div class="kpi-change negative">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>3.2% from last month</span>
+                        <div class="kpi-value">2</div>
+                        <div class="kpi-change neutral">
+                            <i class="fas fa-minus"></i>
+                            <span>No change</span>
                         </div>
                     </div>
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <h3>New This Month</h3>
+                            <h3>Roles Defined</h3>
                             <div class="kpi-icon gradient-pink">
-                                <i class="fas fa-user-plus"></i>
+                                <i class="fas fa-shield-alt"></i>
                             </div>
                         </div>
-                        <div class="kpi-value">1,847</div>
+                        <div class="kpi-value">5</div>
                         <div class="kpi-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>22.4% from last month</span>
+                            <span>1 new role added</span>
                         </div>
                     </div>
                 </section>
@@ -242,213 +242,218 @@
                 <div class="table-controls">
                     <div class="table-search">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="userSearchInput" placeholder="Search users by name, email, or ID...">
+                        <input type="text" id="subAdminSearchInput" placeholder="Search sub admins by name, email, or role...">
                     </div>
                     <div class="table-filters">
-                        <select id="statusFilter" class="filter-select">
+                        <select id="subAdminStatusFilter" class="filter-select">
                             <option value="all">All Status</option>
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>
-                            <option value="blocked">Blocked</option>
+                            <option value="suspended">Suspended</option>
                         </select>
-                        <select id="sortFilter" class="filter-select">
+                        <select id="subAdminRoleFilter" class="filter-select">
+                            <option value="all">All Roles</option>
+                            <option value="content-manager">Content Manager</option>
+                            <option value="booking-manager">Booking Manager</option>
+                            <option value="finance-manager">Finance Manager</option>
+                            <option value="support-manager">Support Manager</option>
+                            <option value="vendor-manager">Vendor Manager</option>
+                        </select>
+                        <select id="subAdminSortFilter" class="filter-select">
                             <option value="newest">Newest First</option>
                             <option value="oldest">Oldest First</option>
                             <option value="name-asc">Name A-Z</option>
                             <option value="name-desc">Name Z-A</option>
-                            <option value="bookings">Most Bookings</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Users Table -->
+                <!-- Sub Admins Table -->
                 <div class="data-table-container">
-                    <table class="data-table" id="usersTable">
+                    <table class="data-table" id="subAdminsTable">
                         <thead>
                             <tr>
-                                <th>User</th>
+                                <th>Sub Admin</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th>Bookings</th>
+                                <th>Role</th>
+                                <th>Permissions</th>
+                                <th>Last Login</th>
                                 <th>Status</th>
-                                <th>Joined</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="usersTableBody">
+                        <tbody id="subAdminsTableBody">
                             <tr>
                                 <td>
                                     <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Ahmed+Al-Rashid&background=667eea&color=fff&size=36" alt="">
-                                        <div>
-                                            <span class="table-user-name">Ahmed Al-Rashid</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>ahmed.rashid@email.com</td>
-                                <td>+966 50 123 4567</td>
-                                <td><span class="booking-count">24</span></td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                                <td>Jan 15, 2025</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="user-view.html?id=USR-001" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-001" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Fatima+Noor&background=f093fb&color=fff&size=36" alt="">
-                                        <div>
-                                            <span class="table-user-name">Fatima Noor</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>fatima.noor@email.com</td>
-                                <td>+966 55 987 6543</td>
-                                <td><span class="booking-count">18</span></td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                                <td>Feb 03, 2025</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="user-view.html?id=USR-002" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-002" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Mohammed+Saeed&background=4facfe&color=fff&size=36" alt="">
-                                        <div>
-                                            <span class="table-user-name">Mohammed Saeed</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>m.saeed@email.com</td>
-                                <td>+966 54 456 7890</td>
-                                <td><span class="booking-count">7</span></td>
-                                <td><span class="status-badge status-inactive">Inactive</span></td>
-                                <td>Mar 21, 2025</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="user-view.html?id=USR-003" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-003" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Sara+Abdullah&background=27ae60&color=fff&size=36" alt="">
-                                        <div>
-                                            <span class="table-user-name">Sara Abdullah</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>sara.abdullah@email.com</td>
-                                <td>+966 56 321 0987</td>
-                                <td><span class="booking-count">31</span></td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                                <td>Apr 10, 2025</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="user-view.html?id=USR-004" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-004" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Khalid+Omar&background=e74c3c&color=fff&size=36" alt="">
-                                        <div>
-                                            <span class="table-user-name">Khalid Omar</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>k.omar@email.com</td>
-                                <td>+966 59 654 3210</td>
-                                <td><span class="booking-count">2</span></td>
-                                <td><span class="status-badge status-blocked">Blocked</span></td>
-                                <td>May 05, 2025</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="user-view.html?id=USR-005" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-005" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-unblock" title="Unblock User"><i class="fas fa-check-circle"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Layla+Hassan&background=f39c12&color=fff&size=36" alt="">
-                                        <div>
-                                            <span class="table-user-name">Layla Hassan</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>layla.h@email.com</td>
-                                <td>+966 53 789 0123</td>
-                                <td><span class="booking-count">15</span></td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                                <td>Jun 18, 2025</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="user-view.html?id=USR-006" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-006" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Omar+Farooq&background=16a085&color=fff&size=36" alt="">
+                                        <img src="https://ui-avatars.com/api/?name=Omar+Farooq&background=667eea&color=fff&size=36" alt="">
                                         <div>
                                             <span class="table-user-name">Omar Farooq</span>
+                                            <span class="table-user-id">#SA-001</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td>omar.farooq@email.com</td>
-                                <td>+966 51 234 5678</td>
-                                <td><span class="booking-count">42</span></td>
+                                <td>omar.farooq@tourism.com</td>
+                                <td><span class="role-badge role-booking-manager">Booking Manager</span></td>
+                                <td>
+                                    <div class="permission-tags">
+                                        <span class="permission-tag">Bookings</span>
+                                        <span class="permission-tag">Users</span>
+                                        <span class="permission-tag-more">+3</span>
+                                    </div>
+                                </td>
+                                <td>2 hours ago</td>
                                 <td><span class="status-badge status-active">Active</span></td>
-                                <td>Jul 02, 2025</td>
                                 <td>
                                     <div class="table-actions">
-                                        <a href="user-view.html?id=USR-007" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-007" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                        <a href="sub-admin-view.html?id=SA-001" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="sub-admin-edit.html?id=SA-001" class="action-btn action-edit" title="Edit Sub Admin"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Suspend Sub Admin"><i class="fas fa-ban"></i></button>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Nadia+Khan&background=9b59b6&color=fff&size=36" alt="">
+                                        <img src="https://ui-avatars.com/api/?name=Aisha+Khan&background=f093fb&color=fff&size=36" alt="">
                                         <div>
-                                            <span class="table-user-name">Nadia Khan</span>
+                                            <span class="table-user-name">Aisha Khan</span>
+                                            <span class="table-user-id">#SA-002</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td>nadia.khan@email.com</td>
-                                <td>+966 58 876 5432</td>
-                                <td><span class="booking-count">9</span></td>
+                                <td>aisha.khan@tourism.com</td>
+                                <td><span class="role-badge role-content-manager">Content Manager</span></td>
+                                <td>
+                                    <div class="permission-tags">
+                                        <span class="permission-tag">CMS</span>
+                                        <span class="permission-tag">Banners</span>
+                                        <span class="permission-tag-more">+2</span>
+                                    </div>
+                                </td>
+                                <td>5 hours ago</td>
                                 <td><span class="status-badge status-active">Active</span></td>
-                                <td>Aug 14, 2025</td>
                                 <td>
                                     <div class="table-actions">
-                                        <a href="user-view.html?id=USR-008" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-008" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                        <a href="sub-admin-view.html?id=SA-002" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="sub-admin-edit.html?id=SA-002" class="action-btn action-edit" title="Edit Sub Admin"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Suspend Sub Admin"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Youssef+Ali&background=4facfe&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Youssef Ali</span>
+                                            <span class="table-user-id">#SA-003</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>youssef.ali@tourism.com</td>
+                                <td><span class="role-badge role-finance-manager">Finance Manager</span></td>
+                                <td>
+                                    <div class="permission-tags">
+                                        <span class="permission-tag">Transactions</span>
+                                        <span class="permission-tag">Payouts</span>
+                                        <span class="permission-tag-more">+4</span>
+                                    </div>
+                                </td>
+                                <td>1 day ago</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="sub-admin-view.html?id=SA-003" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="sub-admin-edit.html?id=SA-003" class="action-btn action-edit" title="Edit Sub Admin"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Suspend Sub Admin"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Nadia+Hassan&background=27ae60&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Nadia Hassan</span>
+                                            <span class="table-user-id">#SA-004</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>nadia.hassan@tourism.com</td>
+                                <td><span class="role-badge role-support-manager">Support Manager</span></td>
+                                <td>
+                                    <div class="permission-tags">
+                                        <span class="permission-tag">Support</span>
+                                        <span class="permission-tag">Notifications</span>
+                                        <span class="permission-tag-more">+1</span>
+                                    </div>
+                                </td>
+                                <td>3 days ago</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="sub-admin-view.html?id=SA-004" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="sub-admin-edit.html?id=SA-004" class="action-btn action-edit" title="Edit Sub Admin"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Suspend Sub Admin"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Tariq+Mahmoud&background=e67e22&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Tariq Mahmoud</span>
+                                            <span class="table-user-id">#SA-005</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>tariq.m@tourism.com</td>
+                                <td><span class="role-badge role-vendor-manager">Vendor Manager</span></td>
+                                <td>
+                                    <div class="permission-tags">
+                                        <span class="permission-tag">Vendors</span>
+                                        <span class="permission-tag">Providers</span>
+                                        <span class="permission-tag-more">+2</span>
+                                    </div>
+                                </td>
+                                <td>1 week ago</td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="sub-admin-view.html?id=SA-005" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="sub-admin-edit.html?id=SA-005" class="action-btn action-edit" title="Edit Sub Admin"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Suspend Sub Admin"><i class="fas fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <img src="https://ui-avatars.com/api/?name=Reem+Al-Saud&background=e74c3c&color=fff&size=36" alt="">
+                                        <div>
+                                            <span class="table-user-name">Reem Al-Saud</span>
+                                            <span class="table-user-id">#SA-006</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>reem.alsaud@tourism.com</td>
+                                <td><span class="role-badge role-booking-manager">Booking Manager</span></td>
+                                <td>
+                                    <div class="permission-tags">
+                                        <span class="permission-tag">Bookings</span>
+                                        <span class="permission-tag">Refunds</span>
+                                        <span class="permission-tag-more">+2</span>
+                                    </div>
+                                </td>
+                                <td>2 weeks ago</td>
+                                <td><span class="status-badge status-blocked">Suspended</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="sub-admin-view.html?id=SA-006" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="sub-admin-edit.html?id=SA-006" class="action-btn action-edit" title="Edit Sub Admin"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-unblock" title="Reactivate Sub Admin"><i class="fas fa-check-circle"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -457,17 +462,12 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="table-pagination">
-                    <div class="pagination-info">
-                        Showing <strong>1-8</strong> of <strong>14,285</strong> users
-                    </div>
+                <div class="pagination">
+                    <span class="pagination-info">Showing 1-6 of 12 sub admins</span>
                     <div class="pagination-controls">
                         <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
-                        <button class="pagination-btn pagination-active">1</button>
+                        <button class="pagination-btn active">1</button>
                         <button class="pagination-btn">2</button>
-                        <button class="pagination-btn">3</button>
-                        <span class="pagination-dots">...</span>
-                        <button class="pagination-btn">1,786</button>
                         <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>

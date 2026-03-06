@@ -3,15 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View User - Tourism Admin</title>
+    <title>View Sub Admin - Tourism Admin</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
-        <i class="fas fa-moon"></i>
-    </button>
     <div class="dashboard-container">
         <!-- Top Navigation -->
         <nav class="topbar">
@@ -51,6 +47,9 @@
                         </ul>
                     </div>
                 </div>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </nav>
 
@@ -65,7 +64,7 @@
                     <i class="fas fa-chart-line"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href="users.html" class="nav-item active" data-section="users" data-tooltip="Users">
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
@@ -135,21 +134,19 @@
                     <i class="fas fa-file-alt"></i>
                     <span>CMS</span>
                 </a>
-                
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-                <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
+                    <i class="fas fa-percentage"></i>
+                    <span>Commission</span>
+                </a>
+                <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
+                    <i class="fas fa-tags"></i>
+                    <span>Ads Rates</span>
+                </a>
+                <a href="sub-admins.html" class="nav-item active" data-section="sub-admins" data-tooltip="Sub Admins">
                     <i class="fas fa-user-shield"></i>
                     <span>Sub Admins</span>
                 </a>
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+                <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
                 </a>
@@ -173,162 +170,198 @@
                 <div class="page-header">
                     <div class="page-header-left">
                         <nav class="breadcrumb">
-                            <a href="users.html"><i class="fas fa-arrow-left"></i> Back to Users</a>
+                            <a href="sub-admins.html"><i class="fas fa-arrow-left"></i> Back to Sub Admins</a>
                         </nav>
-                        <h1 id="viewUserTitle">User Profile</h1>
-                        <p class="page-subtitle">View complete user profile, activity, and booking history</p>
+                        <h1 id="viewSubAdminTitle">Sub Admin Profile</h1>
+                        <p class="page-subtitle">View sub admin details, assigned role, permissions, and activity log</p>
                     </div>
                     <div class="page-header-right">
-                        <a href="#" class="btn btn-primary" id="editUserLink">
-                            <i class="fas fa-pen"></i> Edit User
+                        <a href="sub-admin-edit.html?id=SA-001" class="btn btn-primary" id="editSubAdminLink">
+                            <i class="fas fa-pen"></i> Edit Sub Admin
                         </a>
-                        <button class="btn btn-outline" id="resetPasswordBtn">
+                        <button class="btn btn-outline" id="resetSubAdminPasswordBtn">
                             <i class="fas fa-key"></i> Reset Password
                         </button>
-                        <button class="btn btn-danger" id="blockUserBtn">
-                            <i class="fas fa-ban"></i> Block User
+                        <button class="btn btn-danger" id="suspendSubAdminBtn">
+                            <i class="fas fa-ban"></i> Suspend
                         </button>
                     </div>
                 </div>
 
-                <!-- User Profile Card -->
+                <!-- Sub Admin Profile -->
                 <div class="detail-page-grid">
                     <!-- Left Column: Profile Info -->
                     <div class="detail-card profile-card">
                         <div class="profile-card-header">
                             <div class="profile-avatar-xl">
-                                <img src="https://ui-avatars.com/api/?name=Ahmed+Al-Rashid&background=667eea&color=fff&size=120" alt="" id="viewUserAvatar">
+                                <img src="https://ui-avatars.com/api/?name=Omar+Farooq&background=667eea&color=fff&size=120" alt="" id="viewSubAdminAvatar">
                             </div>
-                            <h2 id="viewUserName">Ahmed Al-Rashid</h2>
-                            <span class="status-badge status-active" id="viewUserStatus">Active</span>
-                            <p class="profile-card-id" id="viewUserId">#USR-001</p>
+                            <h2 id="viewSubAdminName">Omar Farooq</h2>
+                            <span class="status-badge status-active" id="viewSubAdminStatus">Active</span>
+                            <p class="profile-card-id" id="viewSubAdminId">#SA-001</p>
+                            <span class="role-badge role-booking-manager" id="viewSubAdminRole">Booking Manager</span>
                         </div>
                         <div class="profile-card-body">
                             <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-envelope"></i></div>
                                 <div class="info-content">
                                     <span class="info-label">Email Address</span>
-                                    <span class="info-value" id="viewUserEmail">ahmed.rashid@email.com</span>
+                                    <span class="info-value" id="viewSubAdminEmail">omar.farooq@tourism.com</span>
                                 </div>
                             </div>
                             <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-phone"></i></div>
                                 <div class="info-content">
                                     <span class="info-label">Phone Number</span>
-                                    <span class="info-value" id="viewUserPhone">+966 50 123 4567</span>
+                                    <span class="info-value" id="viewSubAdminPhone">+966 50 234 5678</span>
                                 </div>
                             </div>
                             <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-calendar"></i></div>
                                 <div class="info-content">
-                                    <span class="info-label">Joined Date</span>
-                                    <span class="info-value" id="viewUserJoined">Jan 15, 2025</span>
-                                </div>
-                            </div>
-                            <div class="info-row">
-                                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                                <div class="info-content">
-                                    <span class="info-label">Location</span>
-                                    <span class="info-value" id="viewUserLocation">Riyadh, Saudi Arabia</span>
+                                    <span class="info-label">Created Date</span>
+                                    <span class="info-value" id="viewSubAdminCreated">Jan 10, 2026</span>
                                 </div>
                             </div>
                             <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-clock"></i></div>
                                 <div class="info-content">
-                                    <span class="info-label">Last Active</span>
-                                    <span class="info-value" id="viewUserLastActive">2 hours ago</span>
+                                    <span class="info-label">Last Login</span>
+                                    <span class="info-value" id="viewSubAdminLastLogin">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="info-content">
+                                    <span class="info-label">Last Login IP</span>
+                                    <span class="info-value" id="viewSubAdminIP">192.168.1.***</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div class="info-content">
+                                    <span class="info-label">Two-Factor Auth</span>
+                                    <span class="info-value"><span class="status-badge status-active">Enabled</span></span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right Column: Stats & Activity -->
+                    <!-- Right Column: Permissions & Activity -->
                     <div class="detail-right-col">
                         <!-- Quick Stats -->
                         <div class="detail-stats-row">
                             <div class="detail-stat-card">
-                                <div class="detail-stat-icon gradient-purple"><i class="fas fa-ticket"></i></div>
+                                <div class="detail-stat-icon gradient-purple"><i class="fas fa-shield-alt"></i></div>
                                 <div class="detail-stat-info">
-                                    <span class="detail-stat-value" id="viewUserBookings">24</span>
-                                    <span class="detail-stat-label">Total Bookings</span>
+                                    <span class="detail-stat-value">5</span>
+                                    <span class="detail-stat-label">Modules Assigned</span>
                                 </div>
                             </div>
                             <div class="detail-stat-card">
-                                <div class="detail-stat-icon gradient-cyan"><i class="fas fa-dollar-sign"></i></div>
+                                <div class="detail-stat-icon gradient-cyan"><i class="fas fa-tasks"></i></div>
                                 <div class="detail-stat-info">
-                                    <span class="detail-stat-value" id="viewUserSpent">$4,250</span>
-                                    <span class="detail-stat-label">Total Spent</span>
+                                    <span class="detail-stat-value">342</span>
+                                    <span class="detail-stat-label">Actions Performed</span>
                                 </div>
                             </div>
                             <div class="detail-stat-card">
-                                <div class="detail-stat-icon gradient-orange"><i class="fas fa-star"></i></div>
+                                <div class="detail-stat-icon gradient-orange"><i class="fas fa-sign-in-alt"></i></div>
                                 <div class="detail-stat-info">
-                                    <span class="detail-stat-value">4.8</span>
-                                    <span class="detail-stat-label">Avg. Rating Given</span>
+                                    <span class="detail-stat-value">89</span>
+                                    <span class="detail-stat-label">Total Logins</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Recent Bookings -->
+                        <!-- Assigned Permissions -->
                         <div class="detail-card">
                             <div class="detail-card-header">
-                                <h3><i class="fas fa-history"></i> Recent Booking History</h3>
+                                <h3><i class="fas fa-key"></i> Assigned Permissions</h3>
                             </div>
                             <div class="detail-card-body">
-                                <div class="booking-list">
-                                    <div class="booking-item">
-                                        <div class="booking-item-icon gradient-purple"><i class="fas fa-mountain"></i></div>
-                                        <div class="booking-item-info">
-                                            <span class="booking-item-title">Mountain Resort Package</span>
-                                            <span class="booking-item-date">Feb 20, 2026 — 3 nights</span>
+                                <div class="permissions-view-grid">
+                                    <div class="permission-view-module">
+                                        <div class="permission-view-header">
+                                            <i class="fas fa-chart-line"></i>
+                                            <span>Dashboard</span>
+                                            <span class="status-badge status-active">Enabled</span>
                                         </div>
-                                        <div class="booking-item-right">
-                                            <span class="status-badge status-active">Completed</span>
-                                            <span class="booking-item-price">$350</span>
-                                        </div>
-                                    </div>
-                                    <div class="booking-item">
-                                        <div class="booking-item-icon gradient-orange"><i class="fas fa-sun"></i></div>
-                                        <div class="booking-item-info">
-                                            <span class="booking-item-title">Desert Safari Tour</span>
-                                            <span class="booking-item-date">Feb 05, 2026 — Day trip</span>
-                                        </div>
-                                        <div class="booking-item-right">
-                                            <span class="status-badge status-active">Completed</span>
-                                            <span class="booking-item-price">$180</span>
+                                        <div class="permission-view-actions">
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> View</span>
                                         </div>
                                     </div>
-                                    <div class="booking-item">
-                                        <div class="booking-item-icon gradient-cyan"><i class="fas fa-umbrella-beach"></i></div>
-                                        <div class="booking-item-info">
-                                            <span class="booking-item-title">Beach Hotel — 3 Nights</span>
-                                            <span class="booking-item-date">Mar 10, 2026 — Upcoming</span>
+                                    <div class="permission-view-module">
+                                        <div class="permission-view-header">
+                                            <i class="fas fa-calendar-check"></i>
+                                            <span>Bookings</span>
+                                            <span class="status-badge status-active">Enabled</span>
                                         </div>
-                                        <div class="booking-item-right">
-                                            <span class="status-badge status-pending">Pending</span>
-                                            <span class="booking-item-price">$720</span>
-                                        </div>
-                                    </div>
-                                    <div class="booking-item">
-                                        <div class="booking-item-icon gradient-pink"><i class="fas fa-utensils"></i></div>
-                                        <div class="booking-item-info">
-                                            <span class="booking-item-title">Traditional Dining Experience</span>
-                                            <span class="booking-item-date">Jan 28, 2026 — Dinner</span>
-                                        </div>
-                                        <div class="booking-item-right">
-                                            <span class="status-badge status-active">Completed</span>
-                                            <span class="booking-item-price">$95</span>
+                                        <div class="permission-view-actions">
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> View</span>
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> Create</span>
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> Edit</span>
+                                            <span class="perm-badge perm-denied"><i class="fas fa-times"></i> Delete</span>
                                         </div>
                                     </div>
-                                    <div class="booking-item">
-                                        <div class="booking-item-icon gradient-purple"><i class="fas fa-car"></i></div>
-                                        <div class="booking-item-info">
-                                            <span class="booking-item-title">Airport Transfer — Premium</span>
-                                            <span class="booking-item-date">Jan 15, 2026 — One way</span>
+                                    <div class="permission-view-module">
+                                        <div class="permission-view-header">
+                                            <i class="fas fa-users"></i>
+                                            <span>Users</span>
+                                            <span class="status-badge status-active">Enabled</span>
                                         </div>
-                                        <div class="booking-item-right">
-                                            <span class="status-badge status-active">Completed</span>
-                                            <span class="booking-item-price">$65</span>
+                                        <div class="permission-view-actions">
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> View</span>
+                                            <span class="perm-badge perm-denied"><i class="fas fa-times"></i> Create</span>
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> Edit</span>
+                                            <span class="perm-badge perm-denied"><i class="fas fa-times"></i> Delete</span>
+                                        </div>
+                                    </div>
+                                    <div class="permission-view-module">
+                                        <div class="permission-view-header">
+                                            <i class="fas fa-hotel"></i>
+                                            <span>Hotels</span>
+                                            <span class="status-badge status-active">Enabled</span>
+                                        </div>
+                                        <div class="permission-view-actions">
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> View</span>
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> Create</span>
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> Edit</span>
+                                            <span class="perm-badge perm-denied"><i class="fas fa-times"></i> Delete</span>
+                                        </div>
+                                    </div>
+                                    <div class="permission-view-module">
+                                        <div class="permission-view-header">
+                                            <i class="fas fa-suitcase-rolling"></i>
+                                            <span>Packages</span>
+                                            <span class="status-badge status-active">Enabled</span>
+                                        </div>
+                                        <div class="permission-view-actions">
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> View</span>
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> Create</span>
+                                            <span class="perm-badge perm-granted"><i class="fas fa-check"></i> Edit</span>
+                                            <span class="perm-badge perm-denied"><i class="fas fa-times"></i> Delete</span>
+                                        </div>
+                                    </div>
+                                    <div class="permission-view-module disabled-module">
+                                        <div class="permission-view-header">
+                                            <i class="fas fa-store"></i>
+                                            <span>Vendors</span>
+                                            <span class="status-badge status-inactive">Disabled</span>
+                                        </div>
+                                    </div>
+                                    <div class="permission-view-module disabled-module">
+                                        <div class="permission-view-header">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            <span>Transactions</span>
+                                            <span class="status-badge status-inactive">Disabled</span>
+                                        </div>
+                                    </div>
+                                    <div class="permission-view-module disabled-module">
+                                        <div class="permission-view-header">
+                                            <i class="fas fa-cog"></i>
+                                            <span>Settings</span>
+                                            <span class="status-badge status-inactive">Disabled</span>
                                         </div>
                                     </div>
                                 </div>
@@ -338,43 +371,57 @@
                         <!-- Activity Log -->
                         <div class="detail-card">
                             <div class="detail-card-header">
-                                <h3><i class="fas fa-stream"></i> Activity Log</h3>
+                                <h3><i class="fas fa-stream"></i> Recent Activity Log</h3>
                             </div>
                             <div class="detail-card-body">
                                 <div class="activity-timeline">
                                     <div class="timeline-item">
                                         <div class="timeline-dot dot-green"></div>
                                         <div class="timeline-content">
-                                            <span class="timeline-title">Logged in from Riyadh, SA</span>
+                                            <span class="timeline-title">Logged in from 192.168.1.***</span>
                                             <span class="timeline-time">2 hours ago</span>
                                         </div>
                                     </div>
                                     <div class="timeline-item">
                                         <div class="timeline-dot dot-blue"></div>
                                         <div class="timeline-content">
-                                            <span class="timeline-title">Booked Beach Hotel — 3 Nights</span>
-                                            <span class="timeline-time">Feb 28, 2026</span>
+                                            <span class="timeline-title">Updated booking #BK-1245 status to Confirmed</span>
+                                            <span class="timeline-time">3 hours ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot dot-blue"></div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-title">Created new booking #BK-1250</span>
+                                            <span class="timeline-time">5 hours ago</span>
                                         </div>
                                     </div>
                                     <div class="timeline-item">
                                         <div class="timeline-dot dot-yellow"></div>
                                         <div class="timeline-content">
-                                            <span class="timeline-title">Updated profile information</span>
-                                            <span class="timeline-time">Feb 22, 2026</span>
+                                            <span class="timeline-title">Edited hotel listing "Mountain View Resort"</span>
+                                            <span class="timeline-time">Yesterday</span>
                                         </div>
                                     </div>
                                     <div class="timeline-item">
                                         <div class="timeline-dot dot-green"></div>
                                         <div class="timeline-content">
-                                            <span class="timeline-title">Completed Mountain Resort Package</span>
-                                            <span class="timeline-time">Feb 20, 2026</span>
+                                            <span class="timeline-title">Logged in from 192.168.1.***</span>
+                                            <span class="timeline-time">Yesterday</span>
                                         </div>
                                     </div>
                                     <div class="timeline-item">
                                         <div class="timeline-dot dot-purple"></div>
                                         <div class="timeline-content">
-                                            <span class="timeline-title">Left a 5-star review for Desert Safari</span>
-                                            <span class="timeline-time">Feb 06, 2026</span>
+                                            <span class="timeline-title">Exported bookings report (CSV)</span>
+                                            <span class="timeline-time">2 days ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot dot-blue"></div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-title">Updated user profile #USR-045</span>
+                                            <span class="timeline-time">3 days ago</span>
                                         </div>
                                     </div>
                                 </div>

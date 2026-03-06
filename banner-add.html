@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Banner - Tourism Admin</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <nav class="topbar">
+            <div class="topbar-left">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <span>Tourism</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                    <div class="profile-info">
+                        <span class="profile-name">Admin User</span>
+                        <span class="profile-role">Super Admin</span>
+                    </div>
+                    <div class="profile-dropdown">
+                        <div class="profile-dropdown-header">
+                            <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                            <div>
+                                <span class="dropdown-user-name">Admin User</span>
+                                <span class="dropdown-user-role">Super Admin</span>
+                            </div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><a href="#"><i class="fas fa-key"></i> Change Password</a></li>
+                            <li class="profile-dropdown-divider"></li>
+                            <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+                <i class="fas fa-angles-left"></i>
+                <span>Collapse</span>
+            </button>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item" data-section="dashboard" data-tooltip="Dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="vendors.html" class="nav-item" data-section="vendors" data-tooltip="Vendors">
+                    <i class="fas fa-store"></i>
+                    <span>Vendors</span>
+                </a>
+                <a href="service-providers.html" class="nav-item" data-section="providers" data-tooltip="Service Providers">
+                    <i class="fas fa-handshake"></i>
+                    <span>Service Providers</span>
+                </a>
+                <a href="categories.html" class="nav-item" data-section="categories" data-tooltip="Categories">
+                    <i class="fas fa-th-large"></i>
+                    <span>Categories</span>
+                </a>
+                <a href="hotels.html" class="nav-item" data-section="hotels" data-tooltip="Hotels">
+                    <i class="fas fa-hotel"></i>
+                    <span>Hotels</span>
+                </a>
+                <a href="restaurants.html" class="nav-item" data-section="restaurants" data-tooltip="Restaurants">
+                    <i class="fas fa-utensils"></i>
+                    <span>Restaurants</span>
+                </a>
+                <a href="packages.html" class="nav-item" data-section="packages" data-tooltip="Packages">
+                    <i class="fas fa-suitcase-rolling"></i>
+                    <span>Packages</span>
+                </a>
+                <a href="activities.html" class="nav-item" data-section="activities" data-tooltip="Activities">
+                    <i class="fas fa-hiking"></i>
+                    <span>Activities</span>
+                </a>
+                <a href="cabs.html" class="nav-item" data-section="cabs" data-tooltip="Cabs">
+                    <i class="fas fa-taxi"></i>
+                    <span>Cabs</span>
+                </a>
+                <a href="bookings.html" class="nav-item" data-section="bookings" data-tooltip="Bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </a>
+                <a href="subscriptions.html" class="nav-item" data-section="subscriptions" data-tooltip="Subscriptions">
+                    <i class="fas fa-crown"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="payouts.html" class="nav-item" data-section="payouts" data-tooltip="Payouts">
+                    <i class="fas fa-wallet"></i>
+                    <span>Payouts</span>
+                </a>
+                <a href="ads.html" class="nav-item" data-section="ads" data-tooltip="Ads">
+                    <i class="fas fa-ad"></i>
+                    <span>Ads</span>
+                </a>
+                <a href="banners.html" class="nav-item active" data-section="banners" data-tooltip="Banners">
+                    <i class="fas fa-images"></i>
+                    <span>Banners</span>
+                </a>
+                <a href="refunds.html" class="nav-item" data-section="refunds" data-tooltip="Refunds"><i class="fas fa-undo-alt"></i><span>Refunds</span></a>
+                <a href="transactions.html" class="nav-item" data-section="transactions" data-tooltip="Transactions"><i class="fas fa-exchange-alt"></i><span>Transactions</span></a>
+                <a href="notifications.html" class="nav-item" data-section="notifications" data-tooltip="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+                <a href="support.html" class="nav-item" data-section="support" data-tooltip="Support">
+                    <i class="fas fa-headset"></i>
+                    <span>Support</span>
+                </a>
+                <a href="cms.html" class="nav-item" data-section="cms" data-tooltip="CMS">
+                    <i class="fas fa-file-alt"></i>
+                    <span>CMS</span>
+                </a>
+                
+            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
+                <i class="fas fa-percentage"></i>
+                <span>Commission</span>
+            </a>
+            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
+                <i class="fas fa-tags"></i>
+                <span>Ads Rates</span>
+            </a>
+            
+                <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
+                </a>
+            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="settings.html" class="nav-item" data-section="settings" data-tooltip="Settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-content">
+                <!-- Page Header with Breadcrumb -->
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <nav class="breadcrumb">
+                            <a href="banners.html"><i class="fas fa-arrow-left"></i> Back to Banners</a>
+                        </nav>
+                        <h1>Create New Banner</h1>
+                        <p class="page-subtitle">Update banner campaign details, scheduling, and targeting</p>
+                    </div>
+                </div>
+
+                <!-- Edit Form Grid -->
+                <div class="edit-page-grid">
+                    <!-- Left Column: Banner Summary Card -->
+                    <div class="detail-card profile-card">
+                        <div class="profile-card-header">
+                            <div class="profile-avatar-xl">
+                                <img src="https://ui-avatars.com/api/?name=New+Banner&background=16a085&color=fff&size=120" alt="">
+                            </div>
+                            <h2 id="editBannerDisplayName">New Banner</h2>
+                            <p class="profile-card-id" id="editBannerId">#BNR-NEW</p>
+                        </div>
+                        <div class="profile-card-body">
+                            <div class="info-group">
+                                <div class="form-group">
+                                    <label for="editBannerStatus">Banner Status</label>
+                                    <select id="editBannerStatus" class="form-input">
+                                        <option value="active">Active</option>
+                                        <option value="scheduled">Scheduled</option>
+                                        <option value="paused">Paused</option>
+                                        <option value="expired">Expired</option>
+                                        <option value="draft">Draft</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editBannerPriority">Priority Order</label>
+                                    <input type="number" id="editBannerPriority" class="form-input" min="1" max="100" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Edit Form -->
+                    <div class="detail-column-right">
+                        <form id="addBannerForm">
+                            <!-- Campaign Information -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-images"></i> Campaign Information</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editBannerName">Banner Name *</label>
+                                            <input type="text" id="editBannerName" class="form-input" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerPlacement">Placement *</label>
+                                            <select id="editBannerPlacement" class="form-input" required>
+                                                <option value="homepage-hero">Homepage Hero</option>
+                                                <option value="homepage-sidebar">Homepage Sidebar</option>
+                                                <option value="search-results">Search Results</option>
+                                                <option value="category-page">Category Page</option>
+                                                <option value="checkout">Checkout Page</option>
+                                                <option value="mobile-app">Mobile App</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerRedirect">Redirect URL *</label>
+                                            <input type="url" id="editBannerRedirect" class="form-input" placeholder="https://..." required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerAudience">Target Audience</label>
+                                            <select id="editBannerAudience" class="form-input">
+                                                <option value="all">All Users</option>
+                                                <option value="tourists">Tourists</option>
+                                                <option value="business">Business Travelers</option>
+                                                <option value="families">Families</option>
+                                                <option value="premium">Premium Users</option>
+                                                <option value="new-users">New Users</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-top: 16px;">
+                                        <label for="editBannerDescription">Campaign Description</label>
+                                        <textarea id="editBannerDescription" class="form-input" rows="3" placeholder="Describe the campaign objective..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Scheduling -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-calendar-alt"></i> Scheduling</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editBannerStartDate">Start Date *</label>
+                                            <input type="date" id="editBannerStartDate" class="form-input" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerEndDate">End Date *</label>
+                                            <input type="date" id="editBannerEndDate" class="form-input" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerDisplayHours">Display Hours</label>
+                                            <select id="editBannerDisplayHours" class="form-input">
+                                                <option value="all-day">All Day (24h)</option>
+                                                <option value="morning">Morning (6AM-12PM)</option>
+                                                <option value="afternoon">Afternoon (12PM-6PM)</option>
+                                                <option value="evening">Evening (6PM-12AM)</option>
+                                                <option value="peak">Peak Hours (9AM-9PM)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerFrequency">Display Frequency</label>
+                                            <select id="editBannerFrequency" class="form-input">
+                                                <option value="always">Always Show</option>
+                                                <option value="once-per-session">Once per Session</option>
+                                                <option value="once-per-day">Once per Day</option>
+                                                <option value="once-per-week">Once per Week</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Banner Design -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-paint-brush"></i> Banner Design</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editBannerImageUrl">Image URL *</label>
+                                            <input type="url" id="editBannerImageUrl" class="form-input" placeholder="https://..." required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerAltText">Alt Text *</label>
+                                            <input type="text" id="editBannerAltText" class="form-input" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerCtaText">CTA Button Text</label>
+                                            <input type="text" id="editBannerCtaText" class="form-input" placeholder="e.g., Book Now">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerBgColor">Background Color</label>
+                                            <input type="color" id="editBannerBgColor" class="form-input" value="#e67e22">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- A/B Testing -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-flask"></i> A/B Testing</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editBannerABEnabled">Enable A/B Test</label>
+                                            <select id="editBannerABEnabled" class="form-input">
+                                                <option value="no">No</option>
+                                                <option value="yes">Yes</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerVariantName">Variant Name</label>
+                                            <input type="text" id="editBannerVariantName" class="form-input" placeholder="e.g., Variant B">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerTrafficSplit">Traffic Split (%)</label>
+                                            <input type="number" id="editBannerTrafficSplit" class="form-input" min="0" max="100" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editBannerVariantImage">Variant Image URL</label>
+                                            <input type="url" id="editBannerVariantImage" class="form-input" placeholder="https://...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Admin Notes -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-sticky-note"></i> Admin Notes</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="editBannerAdminNotes">Internal Notes</label>
+                                        <textarea id="editBannerAdminNotes" class="form-input" rows="4" placeholder="Add internal notes about this banner campaign..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-plus-circle"></i> Create Banner
+                                </button>
+                                <a href="banners.html" class="btn btn-outline">
+                                    <i class="fas fa-times"></i> Cancel
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/script.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User - Tourism Admin</title>
+    <title>Booking Details - Tourism Admin</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -25,7 +25,7 @@
                 <div class="notifications">
                     <button class="notification-btn">
                         <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
+                        <span class="notification-badge">5</span>
                     </button>
                 </div>
                 <div class="user-profile">
@@ -65,7 +65,7 @@
                     <i class="fas fa-chart-line"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href="users.html" class="nav-item active" data-section="users" data-tooltip="Users">
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
@@ -101,7 +101,7 @@
                     <i class="fas fa-taxi"></i>
                     <span>Cabs</span>
                 </a>
-                <a href="bookings.html" class="nav-item" data-section="bookings" data-tooltip="Bookings">
+                <a href="bookings.html" class="nav-item active" data-section="bookings" data-tooltip="Bookings">
                     <i class="fas fa-calendar-check"></i>
                     <span>Bookings</span>
                 </a>
@@ -173,158 +173,170 @@
                 <div class="page-header">
                     <div class="page-header-left">
                         <nav class="breadcrumb">
-                            <a href="users.html"><i class="fas fa-arrow-left"></i> Back to Users</a>
+                            <a href="bookings.html"><i class="fas fa-arrow-left"></i> Back to Bookings</a>
                         </nav>
-                        <h1 id="editUserTitle">Edit User</h1>
-                        <p class="page-subtitle">Update user profile information and account settings</p>
+                        <h1 id="viewBookingTitle">Booking Details</h1>
+                        <p class="page-subtitle">View booking information, payment details, and service assignment</p>
+                    </div>
+                    <div class="page-header-right">
+                        <a href="#" class="btn btn-primary" id="editBookingLink">
+                            <i class="fas fa-pen"></i> Edit Booking
+                        </a>
+                        <button class="btn btn-outline" id="printBookingBtn">
+                            <i class="fas fa-print"></i> Print
+                        </button>
+                        <button class="btn btn-danger" id="cancelBookingBtn">
+                            <i class="fas fa-times-circle"></i> Cancel
+                        </button>
                     </div>
                 </div>
 
-                <!-- Edit Form -->
-                <div class="edit-page-grid">
-                    <!-- Left: Avatar & Status -->
+                <!-- Booking Detail Grid -->
+                <div class="detail-page-grid">
+                    <!-- Left Column: Booking Summary -->
                     <div class="detail-card profile-card">
                         <div class="profile-card-header">
                             <div class="profile-avatar-xl">
-                                <img src="https://ui-avatars.com/api/?name=Ahmed+Al-Rashid&background=667eea&color=fff&size=120" alt="" id="editUserAvatar">
+                                <img src="https://ui-avatars.com/api/?name=BK+001&background=667eea&color=fff&size=120" alt="" id="viewBookingAvatar">
                             </div>
-                            <h2 id="editUserDisplayName">Ahmed Al-Rashid</h2>
-                            <p class="profile-card-id" id="editUserId">#USR-001</p>
+                            <h2 id="viewBookingId">BK-2025-001</h2>
+                            <p class="profile-card-id" id="viewBookingServiceType">Hotel Booking</p>
+                            <span class="status-badge status-confirmed" id="viewBookingStatus">Confirmed</span>
                         </div>
                         <div class="profile-card-body">
-                            <div class="form-group">
-                                <label for="editStatus">Account Status</label>
-                                <select id="editStatus" class="form-input">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                    <option value="blocked">Blocked</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Member Since</label>
-                                <input type="text" class="form-input" id="editUserJoinedDisplay" readonly value="Jan 15, 2025">
+                            <div class="info-group">
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-user"></i> Customer</span>
+                                    <span class="info-value" id="viewBookingCustomer">Mohammed Al Rashid</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-concierge-bell"></i> Service</span>
+                                    <span class="info-value" id="viewBookingService">Grand Plaza Hotel</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-calendar"></i> Booking Date</span>
+                                    <span class="info-value" id="viewBookingDate">Mar 15, 2025</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-calendar-check"></i> Check-in</span>
+                                    <span class="info-value" id="viewBookingCheckin">Apr 01, 2025</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-calendar-minus"></i> Check-out</span>
+                                    <span class="info-value" id="viewBookingCheckout">Apr 04, 2025</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-users"></i> Guests</span>
+                                    <span class="info-value" id="viewBookingGuests">2 Adults, 1 Child</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-money-bill-wave"></i> Total Amount</span>
+                                    <span class="info-value" id="viewBookingAmount">SAR 2,400</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-credit-card"></i> Payment</span>
+                                    <span class="info-value" id="viewBookingPayment">Paid - Credit Card</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right: Edit Form -->
-                    <div class="detail-card">
-                        <div class="detail-card-header">
-                            <h3><i class="fas fa-user-edit"></i> Personal Information</h3>
+                    <!-- Right Column: Details -->
+                    <div class="detail-column-right">
+                        <!-- Customer Information -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-user-circle"></i> Customer Information</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group">
+                                    <div class="info-item">
+                                        <span class="info-label">Full Name</span>
+                                        <span class="info-value" id="viewBookingCustName">Mohammed Al Rashid</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Email</span>
+                                        <span class="info-value" id="viewBookingCustEmail">m.rashid@email.com</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Phone</span>
+                                        <span class="info-value" id="viewBookingCustPhone">+966-50-555-6789</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Nationality</span>
+                                        <span class="info-value" id="viewBookingCustNationality">Saudi Arabia</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="detail-card-body">
-                            <form id="editUserForm">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editFirstName">First Name</label>
-                                        <input type="text" id="editFirstName" class="form-input" value="Ahmed" placeholder="Enter first name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editLastName">Last Name</label>
-                                        <input type="text" id="editLastName" class="form-input" value="Al-Rashid" placeholder="Enter last name">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editEmail">Email Address</label>
-                                        <input type="email" id="editEmail" class="form-input" value="ahmed.rashid@email.com" placeholder="Enter email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editPhone">Phone Number</label>
-                                        <input type="tel" id="editPhone" class="form-input" value="+966 50 123 4567" placeholder="Enter phone number">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editLocation">Location</label>
-                                        <input type="text" id="editLocation" class="form-input" value="Riyadh, Saudi Arabia" placeholder="Enter location">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editDob">Date of Birth</label>
-                                        <input type="date" id="editDob" class="form-input" value="1992-06-15">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="editGender">Gender</label>
-                                    <select id="editGender" class="form-input">
-                                        <option value="male" selected>Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                        <option value="prefer-not">Prefer not to say</option>
-                                    </select>
-                                </div>
 
-                                <div class="form-divider"></div>
-
-                                <div class="detail-card-header">
-                                    <h3><i class="fas fa-shield-alt"></i> Security & Preferences</h3>
+                        <!-- Service Details -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-concierge-bell"></i> Service Details</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group" id="viewBookingServiceDetails">
+                                    <!-- Will be populated by JavaScript -->
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editLanguage">Preferred Language</label>
-                                        <select id="editLanguage" class="form-input">
-                                            <option value="en">English</option>
-                                            <option value="ar" selected>Arabic</option>
-                                            <option value="fr">French</option>
-                                            <option value="ur">Urdu</option>
-                                        </select>
+                            </div>
+                        </div>
+
+                        <!-- Payment Breakdown -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-receipt"></i> Payment Breakdown</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="payment-breakdown" id="viewBookingPaymentBreakdown">
+                                    <!-- Will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vendor/Provider Assignment -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-store"></i> Vendor Assignment</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group">
+                                    <div class="info-item">
+                                        <span class="info-label">Vendor Name</span>
+                                        <span class="info-value" id="viewBookingVendor">Luxury Hotels Group</span>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="editCurrency">Preferred Currency</label>
-                                        <select id="editCurrency" class="form-input">
-                                            <option value="sar" selected>SAR — Saudi Riyal</option>
-                                            <option value="usd">USD — US Dollar</option>
-                                            <option value="eur">EUR — Euro</option>
-                                            <option value="gbp">GBP — British Pound</option>
-                                        </select>
+                                    <div class="info-item">
+                                        <span class="info-label">Vendor ID</span>
+                                        <span class="info-value" id="viewBookingVendorId">#VND-015</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Commission</span>
+                                        <span class="info-value" id="viewBookingCommission">12% (SAR 288)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Vendor Payout</span>
+                                        <span class="info-value" id="viewBookingPayout">SAR 2,112</span>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="edit2fa" checked>
-                                        <span>Two-Factor Authentication Enabled</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editEmailNotif" checked>
-                                        <span>Email Notifications</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editSmsNotif">
-                                        <span>SMS Notifications</span>
-                                    </label>
-                                </div>
+                            </div>
+                        </div>
 
-                                <div class="form-divider"></div>
-
-                                <div class="detail-card-header">
-                                    <h3><i class="fas fa-sticky-note"></i> Admin Notes</h3>
+                        <!-- Booking Timeline -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-history"></i> Booking Timeline</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="activity-log" id="viewBookingTimeline">
+                                    <!-- Will be populated by JavaScript -->
                                 </div>
-                                <div class="form-group">
-                                    <label for="editNotes">Internal Notes</label>
-                                    <textarea id="editNotes" class="form-input form-textarea" rows="4" placeholder="Add any internal notes about this user...">VIP customer. Frequent traveler with premium bookings. No policy violations.</textarea>
-                                </div>
-
-                                <!-- Form Actions -->
-                                <div class="form-actions">
-                                    <a href="users.html" class="btn btn-outline">
-                                        <i class="fas fa-times"></i> Cancel
-                                    </a>
-                                    <button type="submit" class="btn btn-primary" id="saveUserBtn">
-                                        <i class="fas fa-save"></i> Save Changes
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
-
     <script src="assets/script.js"></script>
 </body>
 </html>

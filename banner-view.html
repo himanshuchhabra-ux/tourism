@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User - Tourism Admin</title>
+    <title>Banner Details - Tourism Admin</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -25,7 +25,7 @@
                 <div class="notifications">
                     <button class="notification-btn">
                         <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
+                        <span class="notification-badge">5</span>
                     </button>
                 </div>
                 <div class="user-profile">
@@ -65,7 +65,7 @@
                     <i class="fas fa-chart-line"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href="users.html" class="nav-item active" data-section="users" data-tooltip="Users">
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
@@ -117,7 +117,7 @@
                     <i class="fas fa-ad"></i>
                     <span>Ads</span>
                 </a>
-                <a href="banners.html" class="nav-item" data-section="banners" data-tooltip="Banners">
+                <a href="banners.html" class="nav-item active" data-section="banners" data-tooltip="Banners">
                     <i class="fas fa-images"></i>
                     <span>Banners</span>
                 </a>
@@ -173,158 +173,128 @@
                 <div class="page-header">
                     <div class="page-header-left">
                         <nav class="breadcrumb">
-                            <a href="users.html"><i class="fas fa-arrow-left"></i> Back to Users</a>
+                            <a href="banners.html"><i class="fas fa-arrow-left"></i> Back to Banners</a>
                         </nav>
-                        <h1 id="editUserTitle">Edit User</h1>
-                        <p class="page-subtitle">Update user profile information and account settings</p>
+                        <h1 id="viewBannerTitle">Banner Details</h1>
+                        <p class="page-subtitle">View banner campaign details, performance metrics, and A/B testing results</p>
+                    </div>
+                    <div class="page-header-right">
+                        <a href="#" class="btn btn-primary" id="editBannerLink">
+                            <i class="fas fa-pen"></i> Edit Banner
+                        </a>
+                        <button class="btn btn-outline" id="duplicateBannerBtn">
+                            <i class="fas fa-copy"></i> Duplicate
+                        </button>
+                        <button class="btn btn-danger" id="deleteBannerBtn">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
                     </div>
                 </div>
 
-                <!-- Edit Form -->
-                <div class="edit-page-grid">
-                    <!-- Left: Avatar & Status -->
+                <!-- Banner Detail Grid -->
+                <div class="detail-page-grid">
+                    <!-- Left Column: Banner Summary -->
                     <div class="detail-card profile-card">
                         <div class="profile-card-header">
                             <div class="profile-avatar-xl">
-                                <img src="https://ui-avatars.com/api/?name=Ahmed+Al-Rashid&background=667eea&color=fff&size=120" alt="" id="editUserAvatar">
+                                <img src="https://ui-avatars.com/api/?name=BN&background=e67e22&color=fff&size=120" alt="" id="viewBannerAvatar">
                             </div>
-                            <h2 id="editUserDisplayName">Ahmed Al-Rashid</h2>
-                            <p class="profile-card-id" id="editUserId">#USR-001</p>
+                            <h2 id="viewBannerName">Summer Sale Banner</h2>
+                            <p class="profile-card-id" id="viewBannerId">#BNR-001</p>
+                            <span class="status-badge status-active" id="viewBannerStatus">Active</span>
                         </div>
                         <div class="profile-card-body">
-                            <div class="form-group">
-                                <label for="editStatus">Account Status</label>
-                                <select id="editStatus" class="form-input">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                    <option value="blocked">Blocked</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Member Since</label>
-                                <input type="text" class="form-input" id="editUserJoinedDisplay" readonly value="Jan 15, 2025">
+                            <div class="info-group">
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-map-marker-alt"></i> Placement</span>
+                                    <span class="info-value" id="viewBannerPlacement">Homepage Hero</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-link"></i> Redirect URL</span>
+                                    <span class="info-value" id="viewBannerRedirect">https://tourhub.com/summer</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-calendar-alt"></i> Start Date</span>
+                                    <span class="info-value" id="viewBannerStart">Mar 01, 2026</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-calendar-times"></i> End Date</span>
+                                    <span class="info-value" id="viewBannerEnd">Mar 31, 2026</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-sort-numeric-up"></i> Priority</span>
+                                    <span class="info-value" id="viewBannerPriority">1 (Highest)</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-user"></i> Created By</span>
+                                    <span class="info-value" id="viewBannerCreatedBy">Admin User</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-clock"></i> Created On</span>
+                                    <span class="info-value" id="viewBannerCreated">Feb 20, 2026</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-crosshairs"></i> Target Audience</span>
+                                    <span class="info-value" id="viewBannerAudience">All Users</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right: Edit Form -->
-                    <div class="detail-card">
-                        <div class="detail-card-header">
-                            <h3><i class="fas fa-user-edit"></i> Personal Information</h3>
+                    <!-- Right Column: Details -->
+                    <div class="detail-column-right">
+                        <!-- Performance Metrics -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-chart-bar"></i> Performance Metrics</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group" id="viewBannerPerformance">
+                                    <!-- Will be populated by JavaScript -->
+                                </div>
+                            </div>
                         </div>
-                        <div class="detail-card-body">
-                            <form id="editUserForm">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editFirstName">First Name</label>
-                                        <input type="text" id="editFirstName" class="form-input" value="Ahmed" placeholder="Enter first name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editLastName">Last Name</label>
-                                        <input type="text" id="editLastName" class="form-input" value="Al-Rashid" placeholder="Enter last name">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editEmail">Email Address</label>
-                                        <input type="email" id="editEmail" class="form-input" value="ahmed.rashid@email.com" placeholder="Enter email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editPhone">Phone Number</label>
-                                        <input type="tel" id="editPhone" class="form-input" value="+966 50 123 4567" placeholder="Enter phone number">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editLocation">Location</label>
-                                        <input type="text" id="editLocation" class="form-input" value="Riyadh, Saudi Arabia" placeholder="Enter location">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editDob">Date of Birth</label>
-                                        <input type="date" id="editDob" class="form-input" value="1992-06-15">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="editGender">Gender</label>
-                                    <select id="editGender" class="form-input">
-                                        <option value="male" selected>Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                        <option value="prefer-not">Prefer not to say</option>
-                                    </select>
-                                </div>
 
-                                <div class="form-divider"></div>
+                        <!-- A/B Testing -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-flask"></i> A/B Testing</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group" id="viewBannerABTest">
+                                    <!-- Will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
 
-                                <div class="detail-card-header">
-                                    <h3><i class="fas fa-shield-alt"></i> Security & Preferences</h3>
+                        <!-- Banner Preview -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-eye"></i> Banner Preview</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="viewBannerPreview">
+                                    <!-- Will be populated by JavaScript -->
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editLanguage">Preferred Language</label>
-                                        <select id="editLanguage" class="form-input">
-                                            <option value="en">English</option>
-                                            <option value="ar" selected>Arabic</option>
-                                            <option value="fr">French</option>
-                                            <option value="ur">Urdu</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editCurrency">Preferred Currency</label>
-                                        <select id="editCurrency" class="form-input">
-                                            <option value="sar" selected>SAR — Saudi Riyal</option>
-                                            <option value="usd">USD — US Dollar</option>
-                                            <option value="eur">EUR — Euro</option>
-                                            <option value="gbp">GBP — British Pound</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="edit2fa" checked>
-                                        <span>Two-Factor Authentication Enabled</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editEmailNotif" checked>
-                                        <span>Email Notifications</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editSmsNotif">
-                                        <span>SMS Notifications</span>
-                                    </label>
-                                </div>
+                            </div>
+                        </div>
 
-                                <div class="form-divider"></div>
-
-                                <div class="detail-card-header">
-                                    <h3><i class="fas fa-sticky-note"></i> Admin Notes</h3>
+                        <!-- Activity Timeline -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-history"></i> Campaign Timeline</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="activity-log" id="viewBannerTimeline">
+                                    <!-- Will be populated by JavaScript -->
                                 </div>
-                                <div class="form-group">
-                                    <label for="editNotes">Internal Notes</label>
-                                    <textarea id="editNotes" class="form-input form-textarea" rows="4" placeholder="Add any internal notes about this user...">VIP customer. Frequent traveler with premium bookings. No policy violations.</textarea>
-                                </div>
-
-                                <!-- Form Actions -->
-                                <div class="form-actions">
-                                    <a href="users.html" class="btn btn-outline">
-                                        <i class="fas fa-times"></i> Cancel
-                                    </a>
-                                    <button type="submit" class="btn btn-primary" id="saveUserBtn">
-                                        <i class="fas fa-save"></i> Save Changes
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
-
     <script src="assets/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sub Admin Dashboard - Tourism Admin</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <nav class="topbar">
+            <div class="topbar-left">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <span>Tourism</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Omar+Farooq&background=667eea&color=fff" alt="Sub Admin">
+                    <div class="profile-info">
+                        <span class="profile-name">Omar Farooq</span>
+                        <span class="profile-role">Booking Manager</span>
+                    </div>
+                    <div class="profile-dropdown">
+                        <div class="profile-dropdown-header">
+                            <img src="https://ui-avatars.com/api/?name=Omar+Farooq&background=667eea&color=fff" alt="Sub Admin">
+                            <div>
+                                <span class="dropdown-user-name">Omar Farooq</span>
+                                <span class="dropdown-user-role">Booking Manager</span>
+                            </div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fas fa-key"></i> Change Password</a></li>
+                            <li class="profile-dropdown-divider"></li>
+                            <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Sidebar Navigation (restricted based on permissions) -->
+        <aside class="sidebar">
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+                <i class="fas fa-angles-left"></i>
+                <span>Collapse</span>
+            </button>
+            <nav class="sidebar-nav" id="subAdminSidebar">
+                <a href="sub-admin-dashboard.html" class="nav-item active" data-section="dashboard" data-tooltip="Dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <!-- Sidebar items rendered dynamically based on permissions -->
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="hotels.html" class="nav-item" data-section="hotels" data-tooltip="Hotels">
+                    <i class="fas fa-hotel"></i>
+                    <span>Hotels</span>
+                </a>
+                <a href="restaurants.html" class="nav-item" data-section="restaurants" data-tooltip="Restaurants">
+                    <i class="fas fa-utensils"></i>
+                    <span>Restaurants</span>
+                </a>
+                <a href="packages.html" class="nav-item" data-section="packages" data-tooltip="Packages">
+                    <i class="fas fa-suitcase-rolling"></i>
+                    <span>Packages</span>
+                </a>
+                <a href="activities.html" class="nav-item" data-section="activities" data-tooltip="Activities">
+                    <i class="fas fa-hiking"></i>
+                    <span>Activities</span>
+                </a>
+                <a href="cabs.html" class="nav-item" data-section="cabs" data-tooltip="Cabs">
+                    <i class="fas fa-taxi"></i>
+                    <span>Cabs</span>
+                </a>
+                <a href="bookings.html" class="nav-item" data-section="bookings" data-tooltip="Bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-content">
+                <!-- Sub Admin Welcome Banner -->
+                <div class="sub-admin-welcome">
+                    <div class="welcome-content">
+                        <div class="welcome-text">
+                            <h1>Welcome back, Omar!</h1>
+                            <p>You are logged in as <strong>Booking Manager</strong>. Here's an overview of your assigned modules.</p>
+                        </div>
+                        <div class="welcome-meta">
+                            <span class="welcome-date"><i class="fas fa-calendar-day"></i> March 5, 2026</span>
+                            <span class="welcome-role-badge"><i class="fas fa-user-shield"></i> Sub Admin</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restricted Notice -->
+                <div class="restricted-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span>You have access to <strong>5 modules</strong> based on your assigned permissions. Contact your administrator for additional access.</span>
+                </div>
+
+                <!-- KPI Cards (only for assigned modules) -->
+                <section class="kpi-section">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>Total Bookings</h3>
+                            <div class="kpi-icon gradient-cyan">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value">3,456</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>23.7% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>Pending Bookings</h3>
+                            <div class="kpi-icon gradient-orange">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value">691</div>
+                        <div class="kpi-change negative">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>5.2% from last week</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>Active Hotels</h3>
+                            <div class="kpi-icon gradient-purple">
+                                <i class="fas fa-hotel"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value">245</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12 new this month</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>Active Packages</h3>
+                            <div class="kpi-icon gradient-pink">
+                                <i class="fas fa-suitcase-rolling"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value">89</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>8 new this month</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Charts Section -->
+                <section class="charts-section">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Booking Trend</h3>
+                            <div class="chart-info">
+                                <span class="info-label">Last 12 months</span>
+                            </div>
+                        </div>
+                        <canvas id="subAdminBookingChart"></canvas>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Booking by Service Type</h3>
+                            <div class="chart-info">
+                                <span class="info-label">Current month</span>
+                            </div>
+                        </div>
+                        <canvas id="subAdminServiceChart"></canvas>
+                    </div>
+                </section>
+
+                <!-- Quick Access Modules + Recent Activity -->
+                <section class="stats-section">
+                    <!-- Quick Module Access -->
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Quick Module Access</h3>
+                        </div>
+                        <div class="quick-modules-grid">
+                            <a href="bookings.html" class="quick-module-card">
+                                <div class="quick-module-icon gradient-cyan">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <span class="quick-module-name">Bookings</span>
+                                <span class="quick-module-count">3,456 total</span>
+                            </a>
+                            <a href="users.html" class="quick-module-card">
+                                <div class="quick-module-icon gradient-purple">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <span class="quick-module-name">Users</span>
+                                <span class="quick-module-count">14,285 total</span>
+                            </a>
+                            <a href="hotels.html" class="quick-module-card">
+                                <div class="quick-module-icon gradient-orange">
+                                    <i class="fas fa-hotel"></i>
+                                </div>
+                                <span class="quick-module-name">Hotels</span>
+                                <span class="quick-module-count">245 active</span>
+                            </a>
+                            <a href="packages.html" class="quick-module-card">
+                                <div class="quick-module-icon gradient-pink">
+                                    <i class="fas fa-suitcase-rolling"></i>
+                                </div>
+                                <span class="quick-module-name">Packages</span>
+                                <span class="quick-module-count">89 active</span>
+                            </a>
+                            <a href="activities.html" class="quick-module-card">
+                                <div class="quick-module-icon gradient-mint">
+                                    <i class="fas fa-hiking"></i>
+                                </div>
+                                <span class="quick-module-name">Activities</span>
+                                <span class="quick-module-count">156 active</span>
+                            </a>
+                            <a href="cabs.html" class="quick-module-card">
+                                <div class="quick-module-icon gradient-peach">
+                                    <i class="fas fa-taxi"></i>
+                                </div>
+                                <span class="quick-module-name">Cabs</span>
+                                <span class="quick-module-count">78 active</span>
+                            </a>
+                            <a href="restaurants.html" class="quick-module-card">
+                                <div class="quick-module-icon gradient-cyan">
+                                    <i class="fas fa-utensils"></i>
+                                </div>
+                                <span class="quick-module-name">Restaurants</span>
+                                <span class="quick-module-count">132 active</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <h3>Your Recent Activity</h3>
+                        </div>
+                        <div class="detail-card-body">
+                            <div class="activity-timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot dot-blue"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-title">Updated booking #BK-1245 status to Confirmed</span>
+                                        <span class="timeline-time">30 min ago</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot dot-green"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-title">Created new booking #BK-1250 for Mountain Resort</span>
+                                        <span class="timeline-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot dot-yellow"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-title">Edited hotel listing "Seaside Grand Hotel"</span>
+                                        <span class="timeline-time">4 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot dot-blue"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-title">Viewed user profile #USR-089</span>
+                                        <span class="timeline-time">5 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot dot-purple"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-title">Cancelled booking #BK-1231 per user request</span>
+                                        <span class="timeline-time">Yesterday</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot dot-green"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-title">Created new package "Weekend Beach Getaway"</span>
+                                        <span class="timeline-time">Yesterday</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Bookings Table (Primary module) -->
+                <section class="recent-bookings-section">
+                    <div class="detail-card">
+                        <div class="detail-card-header">
+                            <h3><i class="fas fa-calendar-check"></i> Recent Bookings</h3>
+                            <a href="bookings.html" class="btn btn-sm btn-outline">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="detail-card-body">
+                            <div class="data-table-container" style="box-shadow: none;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Booking ID</th>
+                                            <th>Customer</th>
+                                            <th>Service</th>
+                                            <th>Date</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>#BK-1250</strong></td>
+                                            <td>
+                                                <div class="table-user">
+                                                    <img src="https://ui-avatars.com/api/?name=Ahmed+R&background=667eea&color=fff&size=28" alt="">
+                                                    <span>Ahmed Al-Rashid</span>
+                                                </div>
+                                            </td>
+                                            <td>Mountain Resort — 3 Nights</td>
+                                            <td>Mar 10, 2026</td>
+                                            <td><strong>$720</strong></td>
+                                            <td><span class="status-badge status-pending">Pending</span></td>
+                                            <td>
+                                                <a href="booking-view.html?id=BK-1250" class="action-btn action-view" title="View"><i class="fas fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>#BK-1249</strong></td>
+                                            <td>
+                                                <div class="table-user">
+                                                    <img src="https://ui-avatars.com/api/?name=Sara+A&background=27ae60&color=fff&size=28" alt="">
+                                                    <span>Sara Abdullah</span>
+                                                </div>
+                                            </td>
+                                            <td>Desert Safari Tour</td>
+                                            <td>Mar 08, 2026</td>
+                                            <td><strong>$180</strong></td>
+                                            <td><span class="status-badge status-active">Confirmed</span></td>
+                                            <td>
+                                                <a href="booking-view.html?id=BK-1249" class="action-btn action-view" title="View"><i class="fas fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>#BK-1248</strong></td>
+                                            <td>
+                                                <div class="table-user">
+                                                    <img src="https://ui-avatars.com/api/?name=Fatima+N&background=f093fb&color=fff&size=28" alt="">
+                                                    <span>Fatima Noor</span>
+                                                </div>
+                                            </td>
+                                            <td>Beach Hotel — 5 Nights</td>
+                                            <td>Mar 06, 2026</td>
+                                            <td><strong>$1,250</strong></td>
+                                            <td><span class="status-badge status-active">Confirmed</span></td>
+                                            <td>
+                                                <a href="booking-view.html?id=BK-1248" class="action-btn action-view" title="View"><i class="fas fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>#BK-1247</strong></td>
+                                            <td>
+                                                <div class="table-user">
+                                                    <img src="https://ui-avatars.com/api/?name=Khalid+O&background=e74c3c&color=fff&size=28" alt="">
+                                                    <span>Khalid Omar</span>
+                                                </div>
+                                            </td>
+                                            <td>Airport Transfer — Premium</td>
+                                            <td>Mar 05, 2026</td>
+                                            <td><strong>$65</strong></td>
+                                            <td><span class="status-badge status-active">Completed</span></td>
+                                            <td>
+                                                <a href="booking-view.html?id=BK-1247" class="action-btn action-view" title="View"><i class="fas fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>#BK-1246</strong></td>
+                                            <td>
+                                                <div class="table-user">
+                                                    <img src="https://ui-avatars.com/api/?name=Layla+H&background=f39c12&color=fff&size=28" alt="">
+                                                    <span>Layla Hassan</span>
+                                                </div>
+                                            </td>
+                                            <td>Traditional Dining Experience</td>
+                                            <td>Mar 04, 2026</td>
+                                            <td><strong>$95</strong></td>
+                                            <td><span class="status-badge status-blocked">Cancelled</span></td>
+                                            <td>
+                                                <a href="booking-view.html?id=BK-1246" class="action-btn action-view" title="View"><i class="fas fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pending Actions -->
+                <section class="insights-section">
+                    <h2>Pending Actions</h2>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>Pending Bookings</h4>
+                            <p>691 bookings awaiting confirmation. Review and process them promptly.</p>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-hotel"></i>
+                            </div>
+                            <h4>Hotel Reviews</h4>
+                            <p>15 new hotel listings pending review and approval.</p>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-user-clock"></i>
+                            </div>
+                            <h4>User Queries</h4>
+                            <p>23 unresolved user queries related to bookings need attention.</p>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h4>Expiring Packages</h4>
+                            <p>5 packages expire within the next 7 days. Update or extend them.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Vendor - Tourism Admin</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -34,34 +34,126 @@
                         <span class="profile-name">Admin User</span>
                         <span class="profile-role">Super Admin</span>
                     </div>
+                    <div class="profile-dropdown">
+                        <div class="profile-dropdown-header">
+                            <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                            <div>
+                                <span class="dropdown-user-name">Admin User</span>
+                                <span class="dropdown-user-role">Super Admin</span>
+                            </div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><a href="#"><i class="fas fa-key"></i> Change Password</a></li>
+                            <li class="profile-dropdown-divider"></li>
+                            <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
 
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+                <i class="fas fa-angles-left"></i>
+                <span>Collapse</span>
+            </button>
             <nav class="sidebar-nav">
-                <a href="dashboard.html" class="nav-item" data-section="dashboard">
+                <a href="dashboard.html" class="nav-item" data-section="dashboard" data-tooltip="Dashboard">
                     <i class="fas fa-chart-line"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href="users.html" class="nav-item" data-section="users">
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
-                <a href="vendors.html" class="nav-item active" data-section="vendors">
+                <a href="vendors.html" class="nav-item active" data-section="vendors" data-tooltip="Vendors">
                     <i class="fas fa-store"></i>
                     <span>Vendors</span>
                 </a>
-                <a href="dashboard.html" class="nav-item" data-section="bookings">
+                <a href="service-providers.html" class="nav-item" data-section="providers" data-tooltip="Service Providers">
+                    <i class="fas fa-handshake"></i>
+                    <span>Service Providers</span>
+                </a>
+                <a href="categories.html" class="nav-item" data-section="categories" data-tooltip="Categories">
+                    <i class="fas fa-th-large"></i>
+                    <span>Categories</span>
+                </a>
+                <a href="hotels.html" class="nav-item" data-section="hotels" data-tooltip="Hotels">
+                    <i class="fas fa-hotel"></i>
+                    <span>Hotels</span>
+                </a>
+                <a href="restaurants.html" class="nav-item" data-section="restaurants" data-tooltip="Restaurants">
+                    <i class="fas fa-utensils"></i>
+                    <span>Restaurants</span>
+                </a>
+                <a href="packages.html" class="nav-item" data-section="packages" data-tooltip="Packages">
+                    <i class="fas fa-suitcase-rolling"></i>
+                    <span>Packages</span>
+                </a>
+                <a href="activities.html" class="nav-item" data-section="activities" data-tooltip="Activities">
+                    <i class="fas fa-hiking"></i>
+                    <span>Activities</span>
+                </a>
+                <a href="cabs.html" class="nav-item" data-section="cabs" data-tooltip="Cabs">
+                    <i class="fas fa-taxi"></i>
+                    <span>Cabs</span>
+                </a>
+                <a href="bookings.html" class="nav-item" data-section="bookings" data-tooltip="Bookings">
                     <i class="fas fa-calendar-check"></i>
                     <span>Bookings</span>
                 </a>
-                <a href="dashboard.html" class="nav-item" data-section="reports">
+                <a href="subscriptions.html" class="nav-item" data-section="subscriptions" data-tooltip="Subscriptions">
+                    <i class="fas fa-crown"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="payouts.html" class="nav-item" data-section="payouts" data-tooltip="Payouts">
+                    <i class="fas fa-wallet"></i>
+                    <span>Payouts</span>
+                </a>
+                <a href="ads.html" class="nav-item" data-section="ads" data-tooltip="Ads">
+                    <i class="fas fa-ad"></i>
+                    <span>Ads</span>
+                </a>
+                <a href="banners.html" class="nav-item" data-section="banners" data-tooltip="Banners">
+                    <i class="fas fa-images"></i>
+                    <span>Banners</span>
+                </a>
+                <a href="refunds.html" class="nav-item" data-section="refunds" data-tooltip="Refunds"><i class="fas fa-undo-alt"></i><span>Refunds</span></a>
+                <a href="transactions.html" class="nav-item" data-section="transactions" data-tooltip="Transactions"><i class="fas fa-exchange-alt"></i><span>Transactions</span></a>
+                <a href="notifications.html" class="nav-item" data-section="notifications" data-tooltip="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+                <a href="support.html" class="nav-item" data-section="support" data-tooltip="Support">
+                    <i class="fas fa-headset"></i>
+                    <span>Support</span>
+                </a>
+                <a href="cms.html" class="nav-item" data-section="cms" data-tooltip="CMS">
+                    <i class="fas fa-file-alt"></i>
+                    <span>CMS</span>
+                </a>
+                
+            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
+                <i class="fas fa-percentage"></i>
+                <span>Commission</span>
+            </a>
+            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
+                <i class="fas fa-tags"></i>
+                <span>Ads Rates</span>
+            </a>
+            
+                <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
+                </a>
+            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
                 </a>
-                <a href="dashboard.html" class="nav-item" data-section="settings">
+                <a href="settings.html" class="nav-item" data-section="settings" data-tooltip="Settings">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </a>
@@ -249,6 +341,6 @@
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <script src="assets/script.js"></script>
 </body>
 </html>

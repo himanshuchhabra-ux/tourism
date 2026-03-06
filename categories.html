@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor Management - Tourism Admin</title>
+    <title>Categories - Tourism Admin</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -69,7 +69,7 @@
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
-                <a href="vendors.html" class="nav-item active" data-section="vendors" data-tooltip="Vendors">
+                <a href="vendors.html" class="nav-item" data-section="vendors" data-tooltip="Vendors">
                     <i class="fas fa-store"></i>
                     <span>Vendors</span>
                 </a>
@@ -77,7 +77,7 @@
                     <i class="fas fa-handshake"></i>
                     <span>Service Providers</span>
                 </a>
-                <a href="categories.html" class="nav-item" data-section="categories" data-tooltip="Categories">
+                <a href="categories.html" class="nav-item active" data-section="categories" data-tooltip="Categories">
                     <i class="fas fa-th-large"></i>
                     <span>Categories</span>
                 </a>
@@ -172,68 +172,71 @@
                 <!-- Page Header -->
                 <div class="page-header">
                     <div class="page-header-left">
-                        <h1>Vendor Management</h1>
-                        <p class="page-subtitle">Manage vendor applications, approvals, and performance</p>
+                        <h1>Category Management</h1>
+                        <p class="page-subtitle">Create and manage service categories, listing structures, and rules</p>
                     </div>
                     <div class="page-header-right">
-                        <button class="btn btn-outline" id="exportVendorsBtn">
-                            <i class="fas fa-download"></i> Export CSV
+                        <a href="category-add.html" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add Category
+                        </a>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Export
                         </button>
                     </div>
                 </div>
 
-                <!-- Vendor Stats Cards -->
-                <section class="kpi-section" style="margin-bottom: 2rem;">
+                <!-- KPI Stats -->
+                <section class="kpi-section">
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <h3>Total Vendors</h3>
+                            <h3>Total Categories</h3>
                             <div class="kpi-icon gradient-purple">
-                                <i class="fas fa-store"></i>
+                                <i class="fas fa-th-large"></i>
                             </div>
                         </div>
-                        <div class="kpi-value">482</div>
+                        <div class="kpi-value">8</div>
                         <div class="kpi-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>8.3% from last month</span>
+                            <span>2 new this quarter</span>
                         </div>
                     </div>
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <h3>Approved</h3>
+                            <h3>Active Categories</h3>
                             <div class="kpi-icon gradient-cyan">
                                 <i class="fas fa-check-circle"></i>
                             </div>
                         </div>
-                        <div class="kpi-value">356</div>
+                        <div class="kpi-value">6</div>
                         <div class="kpi-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>5.7% from last month</span>
+                            <span>All performing well</span>
                         </div>
                     </div>
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <h3>Pending Review</h3>
+                            <h3>Total Listings</h3>
                             <div class="kpi-icon gradient-orange">
-                                <i class="fas fa-hourglass-half"></i>
+                                <i class="fas fa-list-alt"></i>
                             </div>
                         </div>
-                        <div class="kpi-value">47</div>
-                        <div class="kpi-change negative">
+                        <div class="kpi-value">1,247</div>
+                        <div class="kpi-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>15.2% from last month</span>
+                            <span>14.3% from last month</span>
                         </div>
                     </div>
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <h3>Revenue Share</h3>
+                            <h3>Archived</h3>
                             <div class="kpi-icon gradient-pink">
-                                <i class="fas fa-hand-holding-dollar"></i>
+                                <i class="fas fa-archive"></i>
                             </div>
                         </div>
-                        <div class="kpi-value">$128K</div>
+                        <div class="kpi-value">2</div>
                         <div class="kpi-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>18.9% from last month</span>
+                            <i class="fas fa-minus"></i>
+                            <span>No change</span>
                         </div>
                     </div>
                 </section>
@@ -242,277 +245,244 @@
                 <div class="table-controls">
                     <div class="table-search">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="vendorSearchInput" placeholder="Search vendors by name, business, or ID...">
+                        <input type="text" id="categorySearchInput" placeholder="Search categories by name or ID...">
                     </div>
                     <div class="table-filters">
-                        <select id="vendorStatusFilter" class="filter-select">
+                        <select id="categoryStatusFilter" class="filter-select">
                             <option value="all">All Status</option>
-                            <option value="approved">Approved</option>
-                            <option value="pending">Pending</option>
-                            <option value="rejected">Rejected</option>
-                            <option value="disabled">Disabled</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="archived">Archived</option>
                         </select>
-                        <select id="vendorTypeFilter" class="filter-select">
-                            <option value="all">All Types</option>
-                            <option value="hotel">Hotel</option>
-                            <option value="restaurant">Restaurant</option>
-                            <option value="tour">Tour Operator</option>
-                            <option value="transport">Transport</option>
-                            <option value="activity">Activity Provider</option>
-                        </select>
-                        <select id="vendorSortFilter" class="filter-select">
+                        <select id="categorySortFilter" class="filter-select">
+                            <option value="name">Sort by Name</option>
+                            <option value="listings">Most Listings</option>
                             <option value="newest">Newest First</option>
                             <option value="oldest">Oldest First</option>
-                            <option value="rating">Highest Rated</option>
-                            <option value="revenue">Top Revenue</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Vendors Table -->
+                <!-- Categories Table -->
                 <div class="data-table-container">
-                    <table class="data-table" id="vendorsTable">
+                    <table class="data-table" id="categoriesTable">
                         <thead>
                             <tr>
-                                <th>Vendor</th>
-                                <th>Business Type</th>
+                                <th>Category</th>
+                                <th>Slug</th>
                                 <th>Status</th>
-                                <th>Rating</th>
+                                <th>Listings</th>
+                                <th>Vendors</th>
                                 <th>Revenue</th>
-                                <th>Commission</th>
-                                <th>Joined</th>
+                                <th>Created</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="vendorsTableBody">
+                        <tbody id="categoriesTableBody">
                             <tr>
                                 <td>
                                     <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Al+Faisaliah+Hotel&background=667eea&color=fff&size=36" alt="">
+                                        <div class="category-icon-cell gradient-purple">
+                                            <i class="fas fa-hotel"></i>
+                                        </div>
                                         <div>
-                                            <span class="table-user-name">Al Faisaliah Hotel</span>
-                                            <span class="table-user-id">#VND-001</span>
+                                            <span class="table-user-name">Hotels</span>
+                                            <span class="table-user-id">#CAT-001</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td><span class="type-badge type-hotel"><i class="fas fa-hotel"></i> Hotel</span></td>
-                                <td><span class="status-badge status-approved">Approved</span></td>
-                                <td>
-                                    <div class="rating-display">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.8</span>
-                                    </div>
-                                </td>
-                                <td><strong>$245,000</strong></td>
-                                <td><span class="commission-badge">12%</span></td>
-                                <td>Jan 10, 2025</td>
+                                <td><span class="slug-badge">hotels</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td><strong>342</strong></td>
+                                <td><strong>89</strong></td>
+                                <td><strong>$1.2M</strong></td>
+                                <td>Jan 01, 2025</td>
                                 <td>
                                     <div class="table-actions">
-                                        <a href="vendor-view.html?id=VND-001" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                                        <a href="vendor-edit.html?id=VND-001" class="action-btn action-edit" title="Edit Vendor"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
+                                        <a href="category-view.html?id=CAT-001" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="category-edit.html?id=CAT-001" class="action-btn action-edit" title="Edit Category"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Deactivate"><i class="fas fa-toggle-off"></i></button>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Najd+Cuisine&background=27ae60&color=fff&size=36" alt="">
+                                        <div class="category-icon-cell gradient-cyan">
+                                            <i class="fas fa-utensils"></i>
+                                        </div>
                                         <div>
-                                            <span class="table-user-name">Najd Cuisine</span>
-                                            <span class="table-user-id">#VND-002</span>
+                                            <span class="table-user-name">Restaurants</span>
+                                            <span class="table-user-id">#CAT-002</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td><span class="type-badge type-restaurant"><i class="fas fa-utensils"></i> Restaurant</span></td>
-                                <td><span class="status-badge status-approved">Approved</span></td>
-                                <td>
-                                    <div class="rating-display">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.6</span>
-                                    </div>
-                                </td>
-                                <td><strong>$89,500</strong></td>
-                                <td><span class="commission-badge">10%</span></td>
-                                <td>Feb 14, 2025</td>
+                                <td><span class="slug-badge">restaurants</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td><strong>284</strong></td>
+                                <td><strong>156</strong></td>
+                                <td><strong>$680K</strong></td>
+                                <td>Jan 01, 2025</td>
                                 <td>
                                     <div class="table-actions">
-                                        <a href="vendor-view.html?id=VND-002" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                                        <a href="vendor-edit.html?id=VND-002" class="action-btn action-edit" title="Edit Vendor"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
+                                        <a href="category-view.html?id=CAT-002" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="category-edit.html?id=CAT-002" class="action-btn action-edit" title="Edit Category"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Deactivate"><i class="fas fa-toggle-off"></i></button>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Desert+Adventures&background=f39c12&color=fff&size=36" alt="">
+                                        <div class="category-icon-cell gradient-orange">
+                                            <i class="fas fa-suitcase-rolling"></i>
+                                        </div>
                                         <div>
-                                            <span class="table-user-name">Desert Adventures</span>
-                                            <span class="table-user-id">#VND-003</span>
+                                            <span class="table-user-name">Packages</span>
+                                            <span class="table-user-id">#CAT-003</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td><span class="type-badge type-tour"><i class="fas fa-compass"></i> Tour Operator</span></td>
-                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td><span class="slug-badge">packages</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td><strong>198</strong></td>
+                                <td><strong>67</strong></td>
+                                <td><strong>$890K</strong></td>
+                                <td>Jan 01, 2025</td>
                                 <td>
-                                    <div class="rating-display">
-                                        <i class="fas fa-star"></i>
-                                        <span>N/A</span>
+                                    <div class="table-actions">
+                                        <a href="category-view.html?id=CAT-003" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="category-edit.html?id=CAT-003" class="action-btn action-edit" title="Edit Category"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Deactivate"><i class="fas fa-toggle-off"></i></button>
                                     </div>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <div class="category-icon-cell gradient-pink">
+                                            <i class="fas fa-hiking"></i>
+                                        </div>
+                                        <div>
+                                            <span class="table-user-name">Activities</span>
+                                            <span class="table-user-id">#CAT-004</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="slug-badge">activities</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td><strong>245</strong></td>
+                                <td><strong>98</strong></td>
+                                <td><strong>$545K</strong></td>
+                                <td>Jan 01, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="category-view.html?id=CAT-004" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="category-edit.html?id=CAT-004" class="action-btn action-edit" title="Edit Category"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Deactivate"><i class="fas fa-toggle-off"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <div class="category-icon-cell gradient-purple">
+                                            <i class="fas fa-taxi"></i>
+                                        </div>
+                                        <div>
+                                            <span class="table-user-name">Cabs</span>
+                                            <span class="table-user-id">#CAT-005</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="slug-badge">cabs</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td><strong>112</strong></td>
+                                <td><strong>45</strong></td>
+                                <td><strong>$320K</strong></td>
+                                <td>Jan 15, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="category-view.html?id=CAT-005" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="category-edit.html?id=CAT-005" class="action-btn action-edit" title="Edit Category"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Deactivate"><i class="fas fa-toggle-off"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <div class="category-icon-cell gradient-cyan">
+                                            <i class="fas fa-spa"></i>
+                                        </div>
+                                        <div>
+                                            <span class="table-user-name">Wellness & Spa</span>
+                                            <span class="table-user-id">#CAT-006</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="slug-badge">wellness-spa</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td><strong>66</strong></td>
+                                <td><strong>28</strong></td>
+                                <td><strong>$180K</strong></td>
+                                <td>Mar 10, 2025</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="category-view.html?id=CAT-006" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="category-edit.html?id=CAT-006" class="action-btn action-edit" title="Edit Category"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-block" title="Deactivate"><i class="fas fa-toggle-off"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-user">
+                                        <div class="category-icon-cell gradient-orange">
+                                            <i class="fas fa-ship"></i>
+                                        </div>
+                                        <div>
+                                            <span class="table-user-name">Cruises</span>
+                                            <span class="table-user-id">#CAT-007</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="slug-badge">cruises</span></td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td><strong>0</strong></td>
+                                <td><strong>0</strong></td>
                                 <td><strong>$0</strong></td>
-                                <td><span class="commission-badge">—</span></td>
-                                <td>Jul 22, 2025</td>
+                                <td>Jun 01, 2025</td>
                                 <td>
                                     <div class="table-actions">
-                                        <a href="vendor-view.html?id=VND-003" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-approve" title="Approve"><i class="fas fa-check"></i></button>
-                                        <button class="action-btn action-reject" title="Reject"><i class="fas fa-times"></i></button>
+                                        <a href="category-view.html?id=CAT-007" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <a href="category-edit.html?id=CAT-007" class="action-btn action-edit" title="Edit Category"><i class="fas fa-pen"></i></a>
+                                        <button class="action-btn action-unblock" title="Activate"><i class="fas fa-toggle-on"></i></button>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Red+Sea+Resort&background=e74c3c&color=fff&size=36" alt="">
+                                        <div class="category-icon-cell gradient-pink">
+                                            <i class="fas fa-campground"></i>
+                                        </div>
                                         <div>
-                                            <span class="table-user-name">Red Sea Resort</span>
-                                            <span class="table-user-id">#VND-004</span>
+                                            <span class="table-user-name">Camping</span>
+                                            <span class="table-user-id">#CAT-008</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td><span class="type-badge type-hotel"><i class="fas fa-hotel"></i> Hotel</span></td>
-                                <td><span class="status-badge status-approved">Approved</span></td>
-                                <td>
-                                    <div class="rating-display">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.9</span>
-                                    </div>
-                                </td>
-                                <td><strong>$312,800</strong></td>
-                                <td><span class="commission-badge">15%</span></td>
-                                <td>Mar 05, 2025</td>
+                                <td><span class="slug-badge">camping</span></td>
+                                <td><span class="status-badge status-archived">Archived</span></td>
+                                <td><strong>14</strong></td>
+                                <td><strong>5</strong></td>
+                                <td><strong>$45K</strong></td>
+                                <td>Feb 20, 2025</td>
                                 <td>
                                     <div class="table-actions">
-                                        <a href="vendor-view.html?id=VND-004" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                                        <a href="vendor-edit.html?id=VND-004" class="action-btn action-edit" title="Edit Vendor"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Jeddah+Rides&background=9b59b6&color=fff&size=36" alt="">
-                                        <div>
-                                            <span class="table-user-name">Jeddah Rides</span>
-                                            <span class="table-user-id">#VND-005</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="type-badge type-transport"><i class="fas fa-car"></i> Transport</span></td>
-                                <td><span class="status-badge status-pending">Pending</span></td>
-                                <td>
-                                    <div class="rating-display">
-                                        <i class="fas fa-star"></i>
-                                        <span>N/A</span>
-                                    </div>
-                                </td>
-                                <td><strong>$0</strong></td>
-                                <td><span class="commission-badge">—</span></td>
-                                <td>Jul 28, 2025</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="vendor-view.html?id=VND-005" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-approve" title="Approve"><i class="fas fa-check"></i></button>
-                                        <button class="action-btn action-reject" title="Reject"><i class="fas fa-times"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Arabian+Nights+Dining&background=16a085&color=fff&size=36" alt="">
-                                        <div>
-                                            <span class="table-user-name">Arabian Nights Dining</span>
-                                            <span class="table-user-id">#VND-006</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="type-badge type-restaurant"><i class="fas fa-utensils"></i> Restaurant</span></td>
-                                <td><span class="status-badge status-approved">Approved</span></td>
-                                <td>
-                                    <div class="rating-display">
-                                        <i class="fas fa-star"></i>
-                                        <span>4.4</span>
-                                    </div>
-                                </td>
-                                <td><strong>$67,200</strong></td>
-                                <td><span class="commission-badge">10%</span></td>
-                                <td>Apr 12, 2025</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="vendor-view.html?id=VND-006" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                                        <a href="vendor-edit.html?id=VND-006" class="action-btn action-edit" title="Edit Vendor"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Summit+Trekkers&background=f093fb&color=fff&size=36" alt="">
-                                        <div>
-                                            <span class="table-user-name">Summit Trekkers</span>
-                                            <span class="table-user-id">#VND-007</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="type-badge type-activity"><i class="fas fa-hiking"></i> Activity</span></td>
-                                <td><span class="status-badge status-rejected">Rejected</span></td>
-                                <td>
-                                    <div class="rating-display">
-                                        <i class="fas fa-star"></i>
-                                        <span>N/A</span>
-                                    </div>
-                                </td>
-                                <td><strong>$0</strong></td>
-                                <td><span class="commission-badge">—</span></td>
-                                <td>Jun 30, 2025</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="vendor-view.html?id=VND-007" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-approve" title="Re-approve"><i class="fas fa-redo"></i></button>
-                                        <button class="action-btn action-delete" title="Delete"><i class="fas fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table-user">
-                                        <img src="https://ui-avatars.com/api/?name=Riyadh+Grand+Hotel&background=4facfe&color=fff&size=36" alt="">
-                                        <div>
-                                            <span class="table-user-name">Riyadh Grand Hotel</span>
-                                            <span class="table-user-id">#VND-008</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><span class="type-badge type-hotel"><i class="fas fa-hotel"></i> Hotel</span></td>
-                                <td><span class="status-badge status-disabled">Disabled</span></td>
-                                <td>
-                                    <div class="rating-display">
-                                        <i class="fas fa-star"></i>
-                                        <span>3.9</span>
-                                    </div>
-                                </td>
-                                <td><strong>$156,400</strong></td>
-                                <td><span class="commission-badge">12%</span></td>
-                                <td>Dec 20, 2024</td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="vendor-view.html?id=VND-008" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-unblock" title="Enable"><i class="fas fa-toggle-on"></i></button>
+                                        <a href="category-view.html?id=CAT-008" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
+                                        <button class="action-btn action-unblock" title="Restore"><i class="fas fa-undo"></i></button>
                                         <button class="action-btn action-delete" title="Delete"><i class="fas fa-trash"></i></button>
                                     </div>
                                 </td>
@@ -524,16 +494,12 @@
                 <!-- Pagination -->
                 <div class="table-pagination">
                     <div class="pagination-info">
-                        Showing <strong>1-8</strong> of <strong>482</strong> vendors
+                        Showing <strong>1-8</strong> of <strong>8</strong> categories
                     </div>
                     <div class="pagination-controls">
                         <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
                         <button class="pagination-btn pagination-active">1</button>
-                        <button class="pagination-btn">2</button>
-                        <button class="pagination-btn">3</button>
-                        <span class="pagination-dots">...</span>
-                        <button class="pagination-btn">61</button>
-                        <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        <button class="pagination-btn" disabled><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
             </div>

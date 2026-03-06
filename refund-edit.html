@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Refund - Tourism Admin</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <nav class="topbar">
+            <div class="topbar-left">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <span>Tourism</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                    <div class="profile-info">
+                        <span class="profile-name">Admin User</span>
+                        <span class="profile-role">Super Admin</span>
+                    </div>
+                    <div class="profile-dropdown">
+                        <div class="profile-dropdown-header">
+                            <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a085&color=fff" alt="Admin">
+                            <div>
+                                <span class="dropdown-user-name">Admin User</span>
+                                <span class="dropdown-user-role">Super Admin</span>
+                            </div>
+                        </div>
+                        <ul class="profile-dropdown-menu">
+                            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><a href="#"><i class="fas fa-key"></i> Change Password</a></li>
+                            <li class="profile-dropdown-divider"></li>
+                            <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+                <i class="fas fa-angles-left"></i>
+                <span>Collapse</span>
+            </button>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item" data-section="dashboard" data-tooltip="Dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="vendors.html" class="nav-item" data-section="vendors" data-tooltip="Vendors">
+                    <i class="fas fa-store"></i>
+                    <span>Vendors</span>
+                </a>
+                <a href="service-providers.html" class="nav-item" data-section="providers" data-tooltip="Service Providers">
+                    <i class="fas fa-handshake"></i>
+                    <span>Service Providers</span>
+                </a>
+                <a href="categories.html" class="nav-item" data-section="categories" data-tooltip="Categories">
+                    <i class="fas fa-th-large"></i>
+                    <span>Categories</span>
+                </a>
+                <a href="hotels.html" class="nav-item" data-section="hotels" data-tooltip="Hotels">
+                    <i class="fas fa-hotel"></i>
+                    <span>Hotels</span>
+                </a>
+                <a href="restaurants.html" class="nav-item" data-section="restaurants" data-tooltip="Restaurants">
+                    <i class="fas fa-utensils"></i>
+                    <span>Restaurants</span>
+                </a>
+                <a href="packages.html" class="nav-item" data-section="packages" data-tooltip="Packages">
+                    <i class="fas fa-suitcase-rolling"></i>
+                    <span>Packages</span>
+                </a>
+                <a href="activities.html" class="nav-item" data-section="activities" data-tooltip="Activities">
+                    <i class="fas fa-hiking"></i>
+                    <span>Activities</span>
+                </a>
+                <a href="cabs.html" class="nav-item" data-section="cabs" data-tooltip="Cabs">
+                    <i class="fas fa-taxi"></i>
+                    <span>Cabs</span>
+                </a>
+                <a href="bookings.html" class="nav-item" data-section="bookings" data-tooltip="Bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </a>
+                <a href="subscriptions.html" class="nav-item" data-section="subscriptions" data-tooltip="Subscriptions">
+                    <i class="fas fa-crown"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="payouts.html" class="nav-item" data-section="payouts" data-tooltip="Payouts">
+                    <i class="fas fa-wallet"></i>
+                    <span>Payouts</span>
+                </a>
+                <a href="ads.html" class="nav-item" data-section="ads" data-tooltip="Ads">
+                    <i class="fas fa-ad"></i>
+                    <span>Ads</span>
+                </a>
+                <a href="banners.html" class="nav-item" data-section="banners" data-tooltip="Banners">
+                    <i class="fas fa-images"></i>
+                    <span>Banners</span>
+                </a>
+                <a href="refunds.html" class="nav-item active" data-section="refunds" data-tooltip="Refunds">
+                    <i class="fas fa-undo-alt"></i>
+                    <span>Refunds</span>
+                </a>
+                <a href="transactions.html" class="nav-item" data-section="transactions" data-tooltip="Transactions">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Transactions</span>
+                </a>
+                <a href="notifications.html" class="nav-item" data-section="notifications" data-tooltip="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+                <a href="support.html" class="nav-item" data-section="support" data-tooltip="Support">
+                    <i class="fas fa-headset"></i>
+                    <span>Support</span>
+                </a>
+                <a href="cms.html" class="nav-item" data-section="cms" data-tooltip="CMS">
+                    <i class="fas fa-file-alt"></i>
+                    <span>CMS</span>
+                </a>
+                
+            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
+                <i class="fas fa-percentage"></i>
+                <span>Commission</span>
+            </a>
+            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
+                <i class="fas fa-tags"></i>
+                <span>Ads Rates</span>
+            </a>
+            
+                <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
+                </a>
+            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="settings.html" class="nav-item" data-section="settings" data-tooltip="Settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="login.html" class="logout-link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-content">
+                <!-- Page Header with Breadcrumb -->
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <nav class="breadcrumb">
+                            <a href="refunds.html"><i class="fas fa-arrow-left"></i> Back to Refunds</a>
+                        </nav>
+                        <h1>Process Refund</h1>
+                        <p class="page-subtitle">Review and process refund request</p>
+                    </div>
+                </div>
+
+                <!-- Edit Page Grid -->
+                <div class="edit-page-grid">
+                    <!-- Left Column: Refund Summary Card -->
+                    <div class="detail-card profile-card">
+                        <div class="profile-card-header">
+                            <div class="profile-avatar-xl">
+                                <img src="https://ui-avatars.com/api/?name=RF&background=e74c3c&color=fff&size=120" alt="" id="editRefundAvatar">
+                            </div>
+                            <h2 id="editRefundDisplayName">RFD-001</h2>
+                            <p class="profile-card-id" id="editRefundDisplayId">#BKG-1234</p>
+                            <span class="status-badge status-pending" id="editRefundDisplayStatus">Pending</span>
+                        </div>
+                        <div class="profile-card-body">
+                            <div class="info-group">
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-user"></i> Customer</span>
+                                    <span class="info-value" id="editRefundCustomerDisplay">Ahmed Al-Rashid</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-money-bill-wave"></i> Booking Amount</span>
+                                    <span class="info-value" id="editRefundBookingAmountDisplay">SAR 4,500</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Edit Form -->
+                    <div class="detail-column-right">
+                        <form id="refundEditForm">
+                            <!-- Refund Decision -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-gavel"></i> Refund Decision</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editRefundStatus">Decision</label>
+                                            <select id="editRefundStatus" class="form-control" required>
+                                                <option value="pending">Pending Review</option>
+                                                <option value="approved">Approve</option>
+                                                <option value="rejected">Reject</option>
+                                                <option value="partial">Partial Refund</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editRefundPriority">Priority</label>
+                                            <select id="editRefundPriority" class="form-control">
+                                                <option value="normal">Normal</option>
+                                                <option value="high">High</option>
+                                                <option value="urgent">Urgent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Refund Amount -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-calculator"></i> Refund Calculation</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editRefundOriginalAmount">Original Booking Amount (SAR)</label>
+                                            <input type="text" id="editRefundOriginalAmount" class="form-control" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editRefundDeduction">Deduction %</label>
+                                            <input type="number" id="editRefundDeduction" class="form-control" min="0" max="100" value="10">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editRefundFinalAmount">Final Refund Amount (SAR)</label>
+                                            <input type="text" id="editRefundFinalAmount" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editRefundType">Refund Type</label>
+                                            <select id="editRefundType" class="form-control">
+                                                <option value="full">Full Refund</option>
+                                                <option value="partial">Partial Refund</option>
+                                                <option value="penalty">With Cancellation Penalty</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Refund Method -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-route"></i> Refund Method</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editRefundMethod">Refund To</label>
+                                            <select id="editRefundMethod" class="form-control" required>
+                                                <option value="original">Original Payment Method</option>
+                                                <option value="wallet">Wallet Credit</option>
+                                                <option value="bank">Bank Transfer</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editRefundPaymentMethod">Original Payment Method</label>
+                                            <input type="text" id="editRefundPaymentMethod" class="form-control" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editRefundGateway">Payment Gateway</label>
+                                            <input type="text" id="editRefundGateway" class="form-control" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editRefundTxnRef">Transaction Reference</label>
+                                            <input type="text" id="editRefundTxnRef" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notifications -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-bell"></i> Notifications</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="editRefundNotifyEmail">Send Email Confirmation</label>
+                                            <select id="editRefundNotifyEmail" class="form-control">
+                                                <option value="yes">Yes</option>
+                                                <option value="no">No</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editRefundNotifySms">Send SMS Notification</label>
+                                            <select id="editRefundNotifySms" class="form-control">
+                                                <option value="yes">Yes</option>
+                                                <option value="no">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Admin Notes -->
+                            <div class="detail-card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-sticky-note"></i> Admin Notes</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="editRefundAdminNotes">Processing Notes</label>
+                                        <textarea id="editRefundAdminNotes" class="form-control" rows="4" placeholder="Enter processing notes..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="form-actions">
+                                <a href="refunds.html" class="btn btn-outline">Cancel</a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Process Refund
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/script.js"></script>
+</body>
+</html>

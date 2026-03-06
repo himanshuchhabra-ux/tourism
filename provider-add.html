@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User - Tourism Admin</title>
+    <title>Add Service Provider - Tourism Admin</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -25,7 +25,7 @@
                 <div class="notifications">
                     <button class="notification-btn">
                         <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
+                        <span class="notification-badge">5</span>
                     </button>
                 </div>
                 <div class="user-profile">
@@ -65,7 +65,7 @@
                     <i class="fas fa-chart-line"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href="users.html" class="nav-item active" data-section="users" data-tooltip="Users">
+                <a href="users.html" class="nav-item" data-section="users" data-tooltip="Users">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
@@ -73,7 +73,7 @@
                     <i class="fas fa-store"></i>
                     <span>Vendors</span>
                 </a>
-                <a href="service-providers.html" class="nav-item" data-section="providers" data-tooltip="Service Providers">
+                <a href="service-providers.html" class="nav-item active" data-section="providers" data-tooltip="Service Providers">
                     <i class="fas fa-handshake"></i>
                     <span>Service Providers</span>
                 </a>
@@ -173,10 +173,10 @@
                 <div class="page-header">
                     <div class="page-header-left">
                         <nav class="breadcrumb">
-                            <a href="users.html"><i class="fas fa-arrow-left"></i> Back to Users</a>
+                            <a href="service-providers.html"><i class="fas fa-arrow-left"></i> Back to Service Providers</a>
                         </nav>
-                        <h1 id="editUserTitle">Edit User</h1>
-                        <p class="page-subtitle">Update user profile information and account settings</p>
+                        <h1 id="editProviderTitle">Add New Service Provider</h1>
+                        <p class="page-subtitle">Register a new service provider on the platform</p>
                     </div>
                 </div>
 
@@ -186,23 +186,24 @@
                     <div class="detail-card profile-card">
                         <div class="profile-card-header">
                             <div class="profile-avatar-xl">
-                                <img src="https://ui-avatars.com/api/?name=Ahmed+Al-Rashid&background=667eea&color=fff&size=120" alt="" id="editUserAvatar">
+                                <img src="https://ui-avatars.com/api/?name=New+Provider&background=16a085&color=fff&size=120" alt="" id="editProviderAvatar">
                             </div>
-                            <h2 id="editUserDisplayName">Ahmed Al-Rashid</h2>
-                            <p class="profile-card-id" id="editUserId">#USR-001</p>
+                            <h2 id="editProviderDisplayName">New Provider</h2>
+                            <p class="profile-card-id" id="editProviderId">#SPR-NEW</p>
                         </div>
                         <div class="profile-card-body">
                             <div class="form-group">
-                                <label for="editStatus">Account Status</label>
-                                <select id="editStatus" class="form-input">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                    <option value="blocked">Blocked</option>
+                                <label for="editProviderStatus">Provider Status</label>
+                                <select id="editProviderStatus" class="form-input">
+                                    <option value="approved">Approved</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="under review">Under Review</option>
+                                    <option value="suspended">Suspended</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Member Since</label>
-                                <input type="text" class="form-input" id="editUserJoinedDisplay" readonly value="Jan 15, 2025">
+                                <input type="text" class="form-input" id="editProviderJoinedDisplay" readonly value="">
                             </div>
                         </div>
                     </div>
@@ -210,111 +211,156 @@
                     <!-- Right: Edit Form -->
                     <div class="detail-card">
                         <div class="detail-card-header">
-                            <h3><i class="fas fa-user-edit"></i> Personal Information</h3>
+                            <h3><i class="fas fa-handshake"></i> Provider Information</h3>
                         </div>
                         <div class="detail-card-body">
-                            <form id="editUserForm">
+                            <form id="addProviderForm">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="editFirstName">First Name</label>
-                                        <input type="text" id="editFirstName" class="form-input" value="Ahmed" placeholder="Enter first name">
+                                        <label for="editProviderName">Business Name</label>
+                                        <input type="text" id="editProviderName" class="form-input" value="" placeholder="Enter business name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="editLastName">Last Name</label>
-                                        <input type="text" id="editLastName" class="form-input" value="Al-Rashid" placeholder="Enter last name">
+                                        <label for="editProviderContactName">Contact Person</label>
+                                        <input type="text" id="editProviderContactName" class="form-input" value="" placeholder="Enter contact name">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="editEmail">Email Address</label>
-                                        <input type="email" id="editEmail" class="form-input" value="ahmed.rashid@email.com" placeholder="Enter email">
+                                        <label for="editProviderEmail">Email Address</label>
+                                        <input type="email" id="editProviderEmail" class="form-input" value="" placeholder="Enter email">
                                     </div>
                                     <div class="form-group">
-                                        <label for="editPhone">Phone Number</label>
-                                        <input type="tel" id="editPhone" class="form-input" value="+966 50 123 4567" placeholder="Enter phone number">
+                                        <label for="editProviderPhone">Phone Number</label>
+                                        <input type="tel" id="editProviderPhone" class="form-input" value="" placeholder="Enter phone number">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="editLocation">Location</label>
-                                        <input type="text" id="editLocation" class="form-input" value="Riyadh, Saudi Arabia" placeholder="Enter location">
+                                        <label for="editProviderType">Service Type</label>
+                                        <select id="editProviderType" class="form-input">
+                                            <option value="package">Package Provider</option>
+                                            <option value="activity">Activity Operator</option>
+                                            <option value="guide">Guide Service</option>
+                                            <option value="experience">Experience Host</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="editDob">Date of Birth</label>
-                                        <input type="date" id="editDob" class="form-input" value="1992-06-15">
+                                        <label for="editProviderArea">Service Area</label>
+                                        <input type="text" id="editProviderArea" class="form-input" value="" placeholder="Enter service area">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="editGender">Gender</label>
-                                    <select id="editGender" class="form-input">
-                                        <option value="male" selected>Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                        <option value="prefer-not">Prefer not to say</option>
-                                    </select>
+                                    <label for="editProviderWebsite">Website</label>
+                                    <input type="url" id="editProviderWebsite" class="form-input" value="" placeholder="Enter website URL">
+                                </div>
+                                <div class="form-group">
+                                    <label for="editProviderDesc">Service Description</label>
+                                    <textarea id="editProviderDesc" class="form-input form-textarea" rows="3" placeholder="Describe the services offered..."></textarea>
                                 </div>
 
                                 <div class="form-divider"></div>
 
                                 <div class="detail-card-header">
-                                    <h3><i class="fas fa-shield-alt"></i> Security & Preferences</h3>
+                                    <h3><i class="fas fa-crown"></i> Subscription & Plan</h3>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="editLanguage">Preferred Language</label>
-                                        <select id="editLanguage" class="form-input">
-                                            <option value="en">English</option>
-                                            <option value="ar" selected>Arabic</option>
-                                            <option value="fr">French</option>
-                                            <option value="ur">Urdu</option>
+                                        <label for="editSubscriptionPlan">Subscription Plan</label>
+                                        <select id="editSubscriptionPlan" class="form-input">
+                                            <option value="premium">Premium</option>
+                                            <option value="standard">Standard</option>
+                                            <option value="basic">Basic</option>
+                                            <option value="trial">Trial</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="editCurrency">Preferred Currency</label>
-                                        <select id="editCurrency" class="form-input">
-                                            <option value="sar" selected>SAR — Saudi Riyal</option>
-                                            <option value="usd">USD — US Dollar</option>
-                                            <option value="eur">EUR — Euro</option>
-                                            <option value="gbp">GBP — British Pound</option>
+                                        <label for="editBillingCycle">Billing Cycle</label>
+                                        <select id="editBillingCycle" class="form-input">
+                                            <option value="monthly">Monthly</option>
+                                            <option value="quarterly">Quarterly</option>
+                                            <option value="annual">Annual</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="edit2fa" checked>
-                                        <span>Two-Factor Authentication Enabled</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editEmailNotif" checked>
-                                        <span>Email Notifications</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editSmsNotif">
-                                        <span>SMS Notifications</span>
-                                    </label>
                                 </div>
 
                                 <div class="form-divider"></div>
 
                                 <div class="detail-card-header">
-                                    <h3><i class="fas fa-sticky-note"></i> Admin Notes</h3>
+                                    <h3><i class="fas fa-percent"></i> Commission Configuration</h3>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editProviderCommission">Commission Rate (%)</label>
+                                        <input type="number" id="editProviderCommission" class="form-input" value="" min="0" max="50" step="0.5">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editPayoutSchedule">Payout Schedule</label>
+                                        <select id="editPayoutSchedule" class="form-input">
+                                            <option value="weekly">Weekly</option>
+                                            <option value="biweekly">Bi-Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-divider"></div>
+
+                                <div class="detail-card-header">
+                                    <h3><i class="fas fa-university"></i> Bank Details</h3>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editProviderBankName">Bank Name</label>
+                                        <input type="text" id="editProviderBankName" class="form-input" value="" placeholder="Enter bank name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editProviderAccountNumber">Account Number / IBAN</label>
+                                        <input type="text" id="editProviderAccountNumber" class="form-input" value="" placeholder="Enter account number">
+                                    </div>
+                                </div>
+
+                                <div class="form-divider"></div>
+
+                                <div class="detail-card-header">
+                                    <h3><i class="fas fa-bell"></i> Notifications & Notes</h3>
                                 </div>
                                 <div class="form-group">
-                                    <label for="editNotes">Internal Notes</label>
-                                    <textarea id="editNotes" class="form-input form-textarea" rows="4" placeholder="Add any internal notes about this user...">VIP customer. Frequent traveler with premium bookings. No policy violations.</textarea>
+                                    <label class="toggle-label">
+                                        <input type="checkbox" id="editProviderEmailNotif">
+                                        <span>Email Notifications for New Bookings</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="toggle-label">
+                                        <input type="checkbox" id="editProviderSmsNotif">
+                                        <span>SMS Notifications for New Bookings</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="toggle-label">
+                                        <input type="checkbox" id="editProviderPayoutNotif">
+                                        <span>Payout Processing Notifications</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="toggle-label">
+                                        <input type="checkbox" id="editProviderRenewalNotif">
+                                        <span>Subscription Renewal Reminders</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editProviderNotes">Admin Notes</label>
+                                    <textarea id="editProviderNotes" class="form-input form-textarea" rows="4" placeholder="Add any internal notes about this provider..."></textarea>
                                 </div>
 
                                 <!-- Form Actions -->
                                 <div class="form-actions">
-                                    <a href="users.html" class="btn btn-outline">
+                                    <a href="service-providers.html" class="btn btn-outline">
                                         <i class="fas fa-times"></i> Cancel
                                     </a>
-                                    <button type="submit" class="btn btn-primary" id="saveUserBtn">
-                                        <i class="fas fa-save"></i> Save Changes
+                                    <button type="submit" class="btn btn-primary" id="saveProviderBtn">
+                                        <i class="fas fa-plus-circle"></i> Create Provider
                                     </button>
                                 </div>
                             </form>
