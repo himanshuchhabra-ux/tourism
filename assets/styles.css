@@ -6114,3 +6114,48 @@ html[data-theme="dark"] .restricted-notice {
     }
 }
 
+/* ============================================
+   CHANGE PASSWORD PAGE
+   ============================================ */
+.password-requirements {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.password-requirements li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border-light, #eee);
+}
+
+.password-requirements li:last-child {
+    border-bottom: none;
+}
+
+.password-requirements li i {
+    font-size: 12px;
+    width: 16px;
+    text-align: center;
+}
+
+.password-requirements li.met {
+    color: #27ae60;
+}
+
+.password-requirements li.met i {
+    color: #27ae60;
+}
+
+.password-requirements li.unmet {
+    color: var(--text-secondary);
+}
+
+.password-requirements li.unmet i {
+    color: #ccc;
+}
+

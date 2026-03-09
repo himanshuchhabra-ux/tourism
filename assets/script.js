@@ -357,6 +357,11 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeSettingsPage();
     }
 
+    // Check if we're on the change password page
+    if (document.getElementById('changePasswordForm')) {
+        initializeChangePasswordPage();
+    }
+
     // Phase 11: Commission Management
     if (document.getElementById('commissionTable')) {
         initializeCommissionManagement();
@@ -6624,6 +6629,80 @@ function initializeDashboard() {
             html += `<div class="activity-item"><div class="activity-icon" style="${color}"><i class="fas ${icon}"></i></div><div class="activity-content"><p>${entry.action} <span style="color: var(--text-secondary); font-size: 12px;">from ${entry.ip} - ${entry.device}</span></p><span class="activity-time">${entry.time}</span></div></div>`;
         });
         activityEl.innerHTML = html;
+    }
+
+// ============================================
+// CHANGE PASSWORD PAGE
+// ============================================
+
+    function initializeChangePasswordPage() {
+        const form = document.getElementById('changePasswordForm');
+        const newPasswordInput = document.getElementById('newPassword');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+
+        const requirements = {
+            reqLength: function(val) { return val.length >= 8; },
+            reqUppercase: function(val) { return /[A-Z]/.test(val); },
+            reqLowercase: function(val) { return /[a-z]/.test(val); },
+            reqNumber: function(val) { return /[0-9]/.test(val); },
+            reqSpecial: function(val) { return /[!@#$%^&*]/.test(val); },
+            reqMatch: function(val) { return val.length > 0 && val === confirmPasswordInput.value; }
+        };
+
+        function validatePassword() {
+            var val = newPasswordInput.value;
+            var allMet = true;
+            for (var id in requirements) {
+                var el = document.getElementById(id);
+                if (!el) continue;
+                var met = requirements[id](val);
+                var icon = el.querySelector('i');
+                if (met) {
+                    el.classList.add('met');
+                    el.classList.remove('unmet');
+                    if (icon) icon.className = 'fas fa-check-circle';
+                } else {
+                    el.classList.remove('met');
+                    el.classList.add('unmet');
+                    if (icon) icon.className = 'fas fa-circle';
+                    allMet = false;
+                }
+            }
+            return allMet;
+        }
+
+        if (newPasswordInput) {
+            newPasswordInput.addEventListener('input', validatePassword);
+        }
+        if (confirmPasswordInput) {
+            confirmPasswordInput.addEventListener('input', validatePassword);
+        }
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var currentPassword = document.getElementById('currentPassword');
+                if (!currentPassword || !currentPassword.value) {
+                    alert('Please enter your current password.');
+                    return;
+                }
+                if (!validatePassword()) {
+                    alert('Please meet all password requirements.');
+                    return;
+                }
+                var btn = document.getElementById('updatePasswordBtn');
+                if (btn) {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Password Updated';
+                    btn.disabled = true;
+                    btn.style.opacity = '0.8';
+                    setTimeout(function() {
+                        window.location.href = 'settings.html';
+                    }, 1500);
+                }
+            });
+        }
+
+        initializeLogout();
     }
 
 /* ============================================
