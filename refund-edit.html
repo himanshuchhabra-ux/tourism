@@ -268,7 +268,7 @@
                                     <div class="form-grid">
                                         <div class="form-group">
                                             <label for="editRefundStatus">Decision</label>
-                                            <select id="editRefundStatus" class="form-control" required>
+                                            <select id="editRefundStatus" class="form-input" required>
                                                 <option value="pending">Pending Review</option>
                                                 <option value="approved">Approve</option>
                                                 <option value="rejected">Reject</option>
@@ -277,7 +277,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="editRefundPriority">Priority</label>
-                                            <select id="editRefundPriority" class="form-control">
+                                            <select id="editRefundPriority" class="form-input">
                                                 <option value="normal">Normal</option>
                                                 <option value="high">High</option>
                                                 <option value="urgent">Urgent</option>
@@ -296,19 +296,19 @@
                                     <div class="form-grid">
                                         <div class="form-group">
                                             <label for="editRefundOriginalAmount">Original Booking Amount (SAR)</label>
-                                            <input type="text" id="editRefundOriginalAmount" class="form-control" readonly>
+                                            <input type="text" id="editRefundOriginalAmount" class="form-input" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label for="editRefundDeduction">Deduction %</label>
-                                            <input type="number" id="editRefundDeduction" class="form-control" min="0" max="100" value="10">
+                                            <input type="number" id="editRefundDeduction" class="form-input" min="0" max="100" value="10">
                                         </div>
                                         <div class="form-group">
                                             <label for="editRefundFinalAmount">Final Refund Amount (SAR)</label>
-                                            <input type="text" id="editRefundFinalAmount" class="form-control" required>
+                                            <input type="text" id="editRefundFinalAmount" class="form-input" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="editRefundType">Refund Type</label>
-                                            <select id="editRefundType" class="form-control">
+                                            <select id="editRefundType" class="form-input">
                                                 <option value="full">Full Refund</option>
                                                 <option value="partial">Partial Refund</option>
                                                 <option value="penalty">With Cancellation Penalty</option>
@@ -327,7 +327,7 @@
                                     <div class="form-grid">
                                         <div class="form-group">
                                             <label for="editRefundMethod">Refund To</label>
-                                            <select id="editRefundMethod" class="form-control" required>
+                                            <select id="editRefundMethod" class="form-input" required>
                                                 <option value="original">Original Payment Method</option>
                                                 <option value="wallet">Wallet Credit</option>
                                                 <option value="bank">Bank Transfer</option>
@@ -335,15 +335,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="editRefundPaymentMethod">Original Payment Method</label>
-                                            <input type="text" id="editRefundPaymentMethod" class="form-control" readonly>
+                                            <input type="text" id="editRefundPaymentMethod" class="form-input" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label for="editRefundGateway">Payment Gateway</label>
-                                            <input type="text" id="editRefundGateway" class="form-control" readonly>
+                                            <input type="text" id="editRefundGateway" class="form-input" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label for="editRefundTxnRef">Transaction Reference</label>
-                                            <input type="text" id="editRefundTxnRef" class="form-control" readonly>
+                                            <input type="text" id="editRefundTxnRef" class="form-input" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -358,14 +358,14 @@
                                     <div class="form-grid">
                                         <div class="form-group">
                                             <label for="editRefundNotifyEmail">Send Email Confirmation</label>
-                                            <select id="editRefundNotifyEmail" class="form-control">
+                                            <select id="editRefundNotifyEmail" class="form-input">
                                                 <option value="yes">Yes</option>
                                                 <option value="no">No</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="editRefundNotifySms">Send SMS Notification</label>
-                                            <select id="editRefundNotifySms" class="form-control">
+                                            <select id="editRefundNotifySms" class="form-input">
                                                 <option value="yes">Yes</option>
                                                 <option value="no">No</option>
                                             </select>
@@ -382,7 +382,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="editRefundAdminNotes">Processing Notes</label>
-                                        <textarea id="editRefundAdminNotes" class="form-control" rows="4" placeholder="Enter processing notes..."></textarea>
+                                        <textarea id="editRefundAdminNotes" class="form-input" rows="4" placeholder="Enter processing notes..."></textarea>
                                     </div>
                                 </div>
                             </div>
