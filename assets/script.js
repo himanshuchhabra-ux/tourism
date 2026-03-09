@@ -9936,11 +9936,57 @@ function initializeDateFilter() {
   }
 }
 
+var dashboardRevenueChart = null;
+var dashboardDistributionChart = null;
+
+var dashboardFilterData = {
+  daily: {
+    kpi: { users: '582', vendors: '34', bookings: '128', revenue: '$4,850', subscriptions: '12', ads: '$920' },
+    kpiChange: { users: '+5.2%', vendors: '+2.1%', bookings: '+15.3%', revenue: '+11.8%', subscriptions: '+1.5%', ads: '+8.7%' },
+    kpiDir: { users: 'positive', vendors: 'positive', bookings: 'positive', revenue: 'positive', subscriptions: 'positive', ads: 'positive' },
+    chartLabels: ['12 AM','2 AM','4 AM','6 AM','8 AM','10 AM','12 PM','2 PM','4 PM','6 PM','8 PM','10 PM'],
+    chartRevenue: [120,80,60,150,380,520,680,750,620,480,350,210],
+    chartCommission: [12,8,6,15,38,52,68,75,62,48,35,21],
+    chartInfo: 'Today (Hourly)',
+    distribution: [30,22,28,12,8]
+  },
+  weekly: {
+    kpi: { users: '3,420', vendors: '156', bookings: '812', revenue: '$32,180', subscriptions: '89', ads: '$5,640' },
+    kpiChange: { users: '+8.1%', vendors: '+5.4%', bookings: '+19.2%', revenue: '+14.6%', subscriptions: '+3.2%', ads: '+12.3%' },
+    kpiDir: { users: 'positive', vendors: 'positive', bookings: 'positive', revenue: 'positive', subscriptions: 'positive', ads: 'positive' },
+    chartLabels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    chartRevenue: [3800,4200,4600,5100,5800,4900,3780],
+    chartCommission: [380,420,460,510,580,490,378],
+    chartInfo: 'This Week (Daily)',
+    distribution: [32,21,26,13,8]
+  },
+  monthly: {
+    kpi: { users: '14,285', vendors: '892', bookings: '3,456', revenue: '$127,450', subscriptions: '567', ads: '$24,890' },
+    kpiChange: { users: '+12.5%', vendors: '+8.3%', bookings: '+23.7%', revenue: '+18.2%', subscriptions: '0%', ads: '+31.4%' },
+    kpiDir: { users: 'positive', vendors: 'positive', bookings: 'positive', revenue: 'positive', subscriptions: 'neutral', ads: 'positive' },
+    chartLabels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    chartRevenue: [12000,15000,18000,22000,25000,28000,31000,35000,32000,38000,42000,48000],
+    chartCommission: [1200,1500,1800,2200,2500,2800,3100,3500,3200,3800,4200,4800],
+    chartInfo: 'Last 12 Months',
+    distribution: [35,20,25,12,8]
+  },
+  yearly: {
+    kpi: { users: '58,320', vendors: '2,145', bookings: '41,280', revenue: '$1,528,400', subscriptions: '2,340', ads: '$298,650' },
+    kpiChange: { users: '+24.8%', vendors: '+18.6%', bookings: '+32.1%', revenue: '+28.5%', subscriptions: '+15.3%', ads: '+42.7%' },
+    kpiDir: { users: 'positive', vendors: 'positive', bookings: 'positive', revenue: 'positive', subscriptions: 'positive', ads: 'positive' },
+    chartLabels: ['2020','2021','2022','2023','2024','2025','2026'],
+    chartRevenue: [185000,320000,480000,720000,980000,1350000,1528400],
+    chartCommission: [18500,32000,48000,72000,98000,135000,152840],
+    chartInfo: 'Last 7 Years',
+    distribution: [33,19,27,14,7]
+  }
+};
+
 function initializeCharts() {
   // Initialize Revenue Chart
   const revenueCtx = document.getElementById("revenueChart");
   if (revenueCtx) {
-    new Chart(revenueCtx, {
+    dashboardRevenueChart = new Chart(revenueCtx, {
       type: "line",
       data: {
         labels: [
@@ -10039,7 +10085,7 @@ function initializeCharts() {
   // Initialize Distribution Chart (Pie)
   const distributionCtx = document.getElementById("distributionChart");
   if (distributionCtx) {
-    new Chart(distributionCtx, {
+    dashboardDistributionChart = new Chart(distributionCtx, {
       type: "doughnut",
       data: {
         labels: ["Hotels", "Restaurants", "Packages", "Activities", "Cabs"],
@@ -10080,19 +10126,51 @@ function initializeCharts() {
 }
 
 function updateChartsByFilter(filter, startDate, endDate) {
-  // This function would normally reload chart data based on the selected filter
-  const filterLabels = {
-    daily: "daily breakdown",
-    weekly: "weekly summary",
-    monthly: "monthly overview",
-    yearly: "yearly analysis",
-    custom: "custom range",
-  };
+  var data = dashboardFilterData[filter];
+  if (!data) return;
 
-  if (filter === "custom" && startDate && endDate) {
-    console.log(`Filtering data from ${startDate} to ${endDate}`);
-    // In production: fetch data for the custom date range from API
+  // Update KPI cards
+  var kpiCards = document.querySelectorAll('.kpi-card');
+  var kpiKeys = ['users','vendors','bookings','revenue','subscriptions','ads'];
+  var periodLabels = { daily: 'from yesterday', weekly: 'from last week', monthly: 'from last month', yearly: 'from last year' };
+  var periodLabel = periodLabels[filter] || 'from last month';
+
+  kpiCards.forEach(function(card, i) {
+    if (kpiKeys[i] && data.kpi[kpiKeys[i]]) {
+      var valEl = card.querySelector('.kpi-value');
+      var changeEl = card.querySelector('.kpi-change');
+      if (valEl) valEl.textContent = data.kpi[kpiKeys[i]];
+      if (changeEl) {
+        var dir = data.kpiDir[kpiKeys[i]];
+        var icon = dir === 'positive' ? 'fa-arrow-up' : dir === 'negative' ? 'fa-arrow-down' : 'fa-minus';
+        changeEl.className = 'kpi-change ' + dir;
+        changeEl.innerHTML = '<i class="fas ' + icon + '"></i> <span>' + data.kpiChange[kpiKeys[i]] + ' ' + periodLabel + '</span>';
+      }
+    }
+  });
+
+  // Update Revenue Chart
+  if (dashboardRevenueChart) {
+    dashboardRevenueChart.data.labels = data.chartLabels;
+    dashboardRevenueChart.data.datasets[0].data = data.chartRevenue;
+    dashboardRevenueChart.data.datasets[1].data = data.chartCommission;
+    dashboardRevenueChart.update();
   }
+
+  // Update chart info label
+  var chartInfo = document.querySelector('.chart-card .info-label');
+  if (chartInfo) chartInfo.textContent = data.chartInfo;
+
+  // Update Distribution Chart
+  if (dashboardDistributionChart) {
+    dashboardDistributionChart.data.datasets[0].data = data.distribution;
+    dashboardDistributionChart.update();
+  }
+
+  // Update distribution chart info
+  var distInfo = document.querySelectorAll('.chart-card .info-label');
+  var distLabels = { daily: 'Today', weekly: 'This week', monthly: 'Current month', yearly: 'This year' };
+  if (distInfo[1]) distInfo[1].textContent = distLabels[filter] || 'Current month';
 }
 
 function initializeLogout() {
