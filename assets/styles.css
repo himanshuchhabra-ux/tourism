@@ -1383,6 +1383,168 @@ input, select, textarea {
     font-weight: bold;
 }
 
+/* Notification Dropdown */
+.notification-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 360px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    border: 1px solid var(--border-color);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .notification-dropdown {
+    background: #1e1e2d;
+}
+
+.notification-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.notification-dropdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.notification-dropdown-header h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.notification-dropdown-header .mark-all-read {
+    font-size: 12px;
+    color: var(--primary-color);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.notification-dropdown-header .mark-all-read:hover {
+    opacity: 0.8;
+}
+
+.notification-dropdown-body {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.notification-dropdown-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.notification-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.notification-dropdown-item:hover {
+    background: var(--bg-hover, rgba(0,0,0,0.02));
+}
+
+.notification-dropdown-item.unread {
+    background: rgba(22, 160, 133, 0.05);
+}
+
+.notification-dropdown-item .notif-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+}
+
+.notification-dropdown-item .notif-icon.notif-booking {
+    background: rgba(52, 152, 219, 0.12);
+    color: #3498db;
+}
+
+.notification-dropdown-item .notif-icon.notif-user {
+    background: rgba(46, 204, 113, 0.12);
+    color: #2ecc71;
+}
+
+.notification-dropdown-item .notif-icon.notif-payment {
+    background: rgba(241, 196, 15, 0.12);
+    color: #f1c40f;
+}
+
+.notification-dropdown-item .notif-icon.notif-alert {
+    background: rgba(231, 76, 60, 0.12);
+    color: #e74c3c;
+}
+
+.notification-dropdown-item .notif-icon.notif-review {
+    background: rgba(155, 89, 182, 0.12);
+    color: #9b59b6;
+}
+
+.notification-dropdown-item .notif-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-dropdown-item .notif-content p {
+    font-size: 13px;
+    color: var(--text-primary);
+    margin: 0 0 4px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.notification-dropdown-item .notif-content .notif-time {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.notification-dropdown-footer {
+    padding: 12px 20px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.notification-dropdown-footer a {
+    font-size: 13px;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.notification-dropdown-footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .notification-dropdown {
+        width: 300px;
+        right: -40px;
+    }
+}
+
 .user-profile {
     display: flex;
     align-items: center;

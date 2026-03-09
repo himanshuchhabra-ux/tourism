@@ -7117,12 +7117,45 @@ window.addEventListener('resize', () => {
     }
 });
 
-// Prevent default on notification button (for prototype)
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.notification-btn')) {
-        e.preventDefault();
-    }
-});
+// Notification dropdown toggle
+(function() {
+    document.addEventListener('click', function(e) {
+        var btn = e.target.closest('.notification-btn');
+        var dropdown = document.querySelector('.notification-dropdown');
+        if (btn) {
+            e.preventDefault();
+            if (dropdown) {
+                dropdown.classList.toggle('active');
+            }
+            // Close profile dropdown if open
+            var profileDropdown = document.querySelector('.profile-dropdown');
+            if (profileDropdown) profileDropdown.classList.remove('active');
+            return;
+        }
+        // Close notification dropdown when clicking outside
+        if (dropdown && !e.target.closest('.notification-dropdown')) {
+            dropdown.classList.remove('active');
+        }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            var dropdown = document.querySelector('.notification-dropdown');
+            if (dropdown) dropdown.classList.remove('active');
+        }
+    });
+
+    // Mark all as read
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.mark-all-read')) {
+            var items = document.querySelectorAll('.notification-dropdown-item.unread');
+            items.forEach(function(item) { item.classList.remove('unread'); });
+            var badge = document.querySelector('.notification-badge');
+            if (badge) badge.style.display = 'none';
+        }
+    });
+})();
 
 /* ============================================
    USER MANAGEMENT FUNCTIONALITY
