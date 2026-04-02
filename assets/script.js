@@ -1131,7 +1131,6 @@ function populateHotelsTable() {
                     <td>
                         <div class="table-actions">
                             <a href="hotel-view.html?id=${hotel.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="hotel-edit.html?id=${hotel.id}" class="action-btn action-edit" title="Edit Hotel"><i class="fas fa-pen"></i></a>
                             <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
                         </div>
                     </td>
@@ -1298,12 +1297,6 @@ function populateHotelView(hotel) {
                   .join(" ")}</span>
             </div>
         `;
-
-  // Edit link
-  const editLink = document.getElementById("editHotelLink");
-  if (editLink) {
-    editLink.href = "hotel-edit.html?id=" + hotel.id;
-  }
 }
 
 function initializeHotelEditPage() {
