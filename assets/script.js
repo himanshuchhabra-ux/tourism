@@ -777,6 +777,7 @@ const hotelsData = {
   "HTL-001": {
     id: "HTL-001",
     name: "Grand Plaza Hotel",
+    category: "Luxury",
     location: "Riyadh",
     address: "King Fahd Road, Olaya District, Riyadh",
     stars: 5,
@@ -818,6 +819,7 @@ const hotelsData = {
   "HTL-002": {
     id: "HTL-002",
     name: "Jeddah Seaside Resort",
+    category: "Resort",
     location: "Jeddah",
     address: "Corniche Road, North Obhur, Jeddah",
     stars: 5,
@@ -859,6 +861,7 @@ const hotelsData = {
   "HTL-003": {
     id: "HTL-003",
     name: "Mecca Pilgrims Inn",
+    category: "Budget",
     location: "Mecca",
     address: "Al Hijra Road, near Haram, Mecca",
     stars: 4,
@@ -899,6 +902,7 @@ const hotelsData = {
   "HTL-004": {
     id: "HTL-004",
     name: "Medina Heritage Hotel",
+    category: "Budget",
     location: "Medina",
     address: "Quba Road, Al Madinah Al Munawwarah",
     stars: 4,
@@ -1125,6 +1129,7 @@ function populateHotelsTable() {
                     </td>
                     <td>${hotel.location}</td>
                     <td><span class="star-rating">${"★".repeat(hotel.stars)}</span></td>
+                    <td><span class="category-badge" style="background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">${hotel.category}</span></td>
                     <td><span class="rating-badge">${hotel.rating}/5.0</span></td>
                     <td><span class="status-badge ${statusClass}">${hotel.status.charAt(0).toUpperCase() + hotel.status.slice(1)}</span></td>
                     <td><strong>${hotel.revenue}</strong></td>
@@ -1236,11 +1241,14 @@ function populateHotelView(hotel) {
   document.getElementById("viewHotelId").textContent = "#" + hotel.id;
   document.getElementById("viewHotelLocation").textContent = hotel.location;
   document.getElementById("viewHotelStars").textContent = hotel.stars + " Star";
+  document.getElementById("viewHotelCategory").textContent = hotel.category;
   document.getElementById("viewHotelRating").textContent =
     hotel.rating + "/5.0";
   document.getElementById("viewHotelOwner").textContent = hotel.owner;
   document.getElementById("viewHotelContact").textContent = hotel.contact;
   document.getElementById("viewHotelEmail").textContent = hotel.email;
+  document.getElementById("viewHotelAddress").textContent = hotel.address;
+  document.getElementById("viewHotelAbout").textContent = hotel.description;
   document.getElementById("viewHotelJoined").textContent = hotel.joined;
 
   // Status badge
@@ -1297,6 +1305,21 @@ function populateHotelView(hotel) {
                   .join(" ")}</span>
             </div>
         `;
+
+  // Disable approve button if already approved
+  const approveBtn = document.getElementById("approveHotelViewBtn");
+  if (approveBtn) {
+    if (hotel.status === "approved") {
+      approveBtn.disabled = true;
+      approveBtn.style.opacity = "0.5";
+      approveBtn.style.cursor = "not-allowed";
+      approveBtn.title = "Hotel is already approved";
+    } else {
+      approveBtn.disabled = false;
+      approveBtn.style.opacity = "1";
+      approveBtn.style.cursor = "pointer";
+    }
+  }
 }
 
 function initializeHotelEditPage() {
@@ -1691,7 +1714,6 @@ function populateRestaurantsTable() {
                     <td>
                         <div class="table-actions">
                             <a href="restaurant-view.html?id=${restaurant.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="restaurant-edit.html?id=${restaurant.id}" class="action-btn action-edit" title="Edit Restaurant"><i class="fas fa-pen"></i></a>
                             <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
                         </div>
                     </td>
@@ -1800,6 +1822,8 @@ function populateRestaurantView(restaurant) {
     restaurant.location;
   document.getElementById("viewRestaurantCuisine").textContent =
     restaurant.cuisine;
+  document.getElementById("viewRestaurantCategory").textContent =
+    restaurant.cuisine;
   document.getElementById("viewRestaurantRating").textContent =
     restaurant.rating + "/5.0";
   document.getElementById("viewRestaurantCapacity").textContent =
@@ -1808,6 +1832,10 @@ function populateRestaurantView(restaurant) {
   document.getElementById("viewRestaurantContact").textContent =
     restaurant.contact;
   document.getElementById("viewRestaurantEmail").textContent = restaurant.email;
+  document.getElementById("viewRestaurantAddress").textContent =
+    restaurant.address;
+  document.getElementById("viewRestaurantAbout").textContent =
+    restaurant.description;
   document.getElementById("viewRestaurantJoined").textContent =
     restaurant.joined;
 
@@ -1822,14 +1850,7 @@ function populateRestaurantView(restaurant) {
     restaurant.rating;
   document.getElementById("viewRestaurantReviewCount").textContent =
     restaurant.reviewCount + " reviews";
-  document.getElementById("viewRestaurantFoodQuality").textContent =
-    restaurant.foodQuality + "/5.0";
-  document.getElementById("viewRestaurantServiceRating").textContent =
-    restaurant.service + "/5.0";
-  document.getElementById("viewRestaurantAmbianceRating").textContent =
-    restaurant.ambiance + "/5.0";
-  document.getElementById("viewRestaurantValueRating").textContent =
-    restaurant.value + "/5.0";
+
 
   // Performance stats
   document.getElementById("viewRestaurantReservations").textContent =
@@ -1876,12 +1897,6 @@ function populateRestaurantView(restaurant) {
                 <span>${restaurant.license}</span>
             </div>
         `;
-
-  // Edit link
-  const editLink = document.getElementById("editRestaurantLink");
-  if (editLink) {
-    editLink.href = "restaurant-edit.html?id=" + restaurant.id;
-  }
 }
 
 function initializeRestaurantEditPage() {

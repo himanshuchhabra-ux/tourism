@@ -223,9 +223,7 @@
                         <p class="page-subtitle">View restaurant details, ratings, reviews, and performance</p>
                     </div>
                     <div class="page-header-right">
-                        <a href="#" class="btn btn-primary" id="editRestaurantLink">
-                            <i class="fas fa-pen"></i> Edit Restaurant
-                        </a>
+
                         <button class="btn btn-outline" id="approveRestaurantViewBtn">
                             <i class="fas fa-check"></i> Approve
                         </button>
@@ -258,6 +256,10 @@
                                     <span class="info-value" id="viewRestaurantCuisine">Saudi Traditional</span>
                                 </div>
                                 <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-tag"></i> Category</span>
+                                    <span class="info-value" id="viewRestaurantCategory">Fine Dining</span>
+                                </div>
+                                <div class="info-item">
                                     <span class="info-label"><i class="fas fa-star"></i> Rating</span>
                                     <span class="info-value" id="viewRestaurantRating">4.7/5.0</span>
                                 </div>
@@ -278,6 +280,14 @@
                                     <span class="info-value" id="viewRestaurantEmail">info@nakheel.sa</span>
                                 </div>
                                 <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-map"></i> Full Address</span>
+                                    <span class="info-value" id="viewRestaurantAddress">Palestine Street, Riyadh, Saudi Arabia</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-align-left"></i> About</span>
+                                    <span class="info-value" id="viewRestaurantAbout">Authentic Saudi cuisine in an elegant traditional setting.</span>
+                                </div>
+                                <div class="info-item">
                                     <span class="info-label"><i class="fas fa-calendar"></i> Joined</span>
                                     <span class="info-value" id="viewRestaurantJoined">Feb 10, 2023</span>
                                 </div>
@@ -287,6 +297,29 @@
 
                     <!-- Right Column: Details -->
                     <div class="detail-column-right">
+                        <!-- Restaurant Gallery -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-images"></i> Restaurant Gallery</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="restaurant-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;">
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Restaurant Interior" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dining Area" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Food Presentation" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ambiance" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Cuisine & Menu -->
                         <div class="detail-card">
                             <div class="card-header">
@@ -343,24 +376,7 @@
                                             <span class="rating-count" id="viewRestaurantReviewCount">245 reviews</span>
                                         </div>
                                     </div>
-                                    <div class="rating-categories">
-                                        <div class="rating-category">
-                                            <span class="category-label">Food Quality</span>
-                                            <span class="category-value" id="viewRestaurantFoodQuality">4.8/5.0</span>
-                                        </div>
-                                        <div class="rating-category">
-                                            <span class="category-label">Service</span>
-                                            <span class="category-value" id="viewRestaurantServiceRating">4.6/5.0</span>
-                                        </div>
-                                        <div class="rating-category">
-                                            <span class="category-label">Ambiance</span>
-                                            <span class="category-value" id="viewRestaurantAmbianceRating">4.7/5.0</span>
-                                        </div>
-                                        <div class="rating-category">
-                                            <span class="category-label">Value for Money</span>
-                                            <span class="category-value" id="viewRestaurantValueRating">4.5/5.0</span>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
