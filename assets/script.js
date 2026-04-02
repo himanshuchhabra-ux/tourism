@@ -10463,7 +10463,6 @@ function initializeUserViewPage() {
       user.avatarBg +
       "&color=fff&size=120";
     document.getElementById("viewUserName").textContent = user.name;
-    document.getElementById("viewUserTitle").textContent = user.name;
     document.getElementById("viewUserId").textContent = "#" + userId;
     document.getElementById("viewUserEmail").textContent = user.email;
     document.getElementById("viewUserPhone").textContent = user.phone;

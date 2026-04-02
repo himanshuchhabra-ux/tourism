@@ -1679,20 +1679,21 @@ input, select, textarea {
 }
 
 /* KPI Section */
+/* KPI Section */
 .kpi-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
 }
 
 .kpi-card {
     background: var(--bg-primary);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
-    border-top: 3px solid transparent;
+    border-top: 1px solid transparent;
 }
 
 .kpi-card:hover {
@@ -1703,12 +1704,12 @@ input, select, textarea {
 .kpi-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: var(--spacing-lg);
+    align-items: center;
+    margin-bottom: 6px;
 }
 
 .kpi-header h3 {
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-sm);
     color: var(--text-secondary);
     font-weight: 600;
     text-transform: uppercase;
@@ -1716,42 +1717,34 @@ input, select, textarea {
 }
 
 .kpi-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .kpi-value {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-lg);
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 6px;
 }
 
 .kpi-change {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    font-size: var(--font-size-sm);
+    gap: 4px;
+    font-size: var(--font-size-xs);
     font-weight: 500;
 }
 
-.kpi-change.positive {
-    color: var(--success);
-}
-
-.kpi-change.neutral {
-    color: var(--text-secondary);
-}
-
-.kpi-change.negative {
-    color: var(--danger);
-}
+.kpi-change.positive { color: var(--success); }
+.kpi-change.neutral  { color: var(--text-secondary); }
+.kpi-change.negative { color: var(--danger); }
 
 /* Charts Section */
 .charts-section {
@@ -1784,6 +1777,16 @@ input, select, textarea {
 .chart-info {
     font-size: var(--font-size-sm);
     color: var(--text-secondary);
+}
+.chart-canvas-wrapper {
+    position: relative;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+}
+
+.chart-canvas-wrapper canvas {
+    max-height: 260px;
 }
 
 .info-label {
