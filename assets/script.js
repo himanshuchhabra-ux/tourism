@@ -2540,7 +2540,6 @@ function populatePackagesTable() {
                     <td>
                         <div class="table-actions">
                             <a href="package-view.html?id=${pkg.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="package-edit.html?id=${pkg.id}" class="action-btn action-edit" title="Edit Package"><i class="fas fa-pen"></i></a>
                             <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
                         </div>
                     </td>
@@ -2623,10 +2622,7 @@ function initializePackageViewPage() {
     populatePackageView(packagesData[packageId]);
   }
 
-  const editLink = document.getElementById("editPackageLink");
-  if (editLink && packageId) {
-    editLink.href = "package-edit.html?id=" + packageId;
-  }
+
 
   initializeLogout();
 }
@@ -3157,7 +3153,6 @@ function populateActivitiesTable() {
                     <td>
                         <div class="table-actions">
                             <a href="activity-view.html?id=${activity.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="activity-edit.html?id=${activity.id}" class="action-btn action-edit" title="Edit Activity"><i class="fas fa-pen"></i></a>
                             <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
                         </div>
                     </td>
@@ -3241,10 +3236,7 @@ function initializeActivityViewPage() {
     populateActivityView(activitiesData[activityId]);
   }
 
-  const editLink = document.getElementById("editActivityLink");
-  if (editLink && activityId) {
-    editLink.href = "activity-edit.html?id=" + activityId;
-  }
+
 
   initializeLogout();
 }
@@ -3728,7 +3720,6 @@ function populateCabsTable() {
                     <td>
                         <div class="table-actions">
                             <a href="cab-view.html?id=${cab.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="cab-edit.html?id=${cab.id}" class="action-btn action-edit" title="Edit Cab"><i class="fas fa-pen"></i></a>
                             <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
                         </div>
                     </td>
@@ -3805,10 +3796,7 @@ function initializeCabViewPage() {
     populateCabView(cabsData[cabId]);
   }
 
-  const editLink = document.getElementById("editCabLink");
-  if (editLink && cabId) {
-    editLink.href = "cab-edit.html?id=" + cabId;
-  }
+
 
   initializeLogout();
 }
@@ -3900,6 +3888,22 @@ function populateCabView(cab) {
                     <span>Safety Score: ${cab.safetyScore}/100</span>
                 </div>
             `;
+  }
+
+  // Disable approve button if already approved
+  const approveBtn = document.getElementById("approveCabViewBtn");
+  if (approveBtn) {
+    if (cab.status === "approved") {
+      approveBtn.disabled = true;
+      approveBtn.style.opacity = "0.5";
+      approveBtn.style.cursor = "not-allowed";
+      approveBtn.title = "Cab is already approved";
+    } else {
+      approveBtn.disabled = false;
+      approveBtn.style.opacity = "1";
+      approveBtn.style.cursor = "pointer";
+      approveBtn.title = "Approve this cab";
+    }
   }
 }
 
