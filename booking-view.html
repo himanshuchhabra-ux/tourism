@@ -90,6 +90,7 @@
                         </div>
                         <ul class="profile-dropdown-menu">
                             <li><a href="settings.html"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
                             <li class="profile-dropdown-divider"></li>
                             <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                         </ul>
@@ -223,14 +224,8 @@
                         <p class="page-subtitle">View booking information, payment details, and service assignment</p>
                     </div>
                     <div class="page-header-right">
-                        <a href="#" class="btn btn-primary" id="editBookingLink">
-                            <i class="fas fa-pen"></i> Edit Booking
-                        </a>
                         <button class="btn btn-outline" id="printBookingBtn">
                             <i class="fas fa-print"></i> Print
-                        </button>
-                        <button class="btn btn-danger" id="cancelBookingBtn">
-                            <i class="fas fa-times-circle"></i> Cancel
                         </button>
                     </div>
                 </div>
@@ -243,19 +238,14 @@
                             <div class="profile-avatar-xl">
                                 <img src="https://ui-avatars.com/api/?name=BK+001&background=667eea&color=fff&size=120" alt="" id="viewBookingAvatar">
                             </div>
-                            <h2 id="viewBookingId">BK-2025-001</h2>
                             <p class="profile-card-id" id="viewBookingServiceType">Hotel Booking</p>
                             <span class="status-badge status-confirmed" id="viewBookingStatus">Confirmed</span>
                         </div>
                         <div class="profile-card-body">
                             <div class="info-group">
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-user"></i> Customer</span>
-                                    <span class="info-value" id="viewBookingCustomer">Mohammed Al Rashid</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-concierge-bell"></i> Service</span>
-                                    <span class="info-value" id="viewBookingService">Grand Plaza Hotel</span>
+                                    <span class="info-label"><i class="fas fa-concierge-bell"></i> Category</span>
+                                    <span class="info-value" id="viewBookingService">Hotel</span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label"><i class="fas fa-calendar"></i> Booking Date</span>

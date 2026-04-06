@@ -77,11 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initializeUserViewPage();
   }
 
-  // Check if we're on the user edit page
-  if (document.getElementById("editUserForm")) {
-    initializeUserEditPage();
-  }
-
   // Check if we're on the vendors page
   if (document.getElementById("vendorsTable")) {
     initializeVendorManagement();
@@ -764,6 +759,7 @@ function initializeForgotPasswordPage() {
 function initializeDashboard() {
   initializeSidebar();
   initializeDateFilter();
+  initializeFilterAccordion();
   initializeCharts();
   initializeLogout();
   loadSidebarPreferences();
@@ -1101,6 +1097,7 @@ function initializeHotelManagement() {
   populateHotelsTable();
   setupHotelFilters();
   setupHotelActions();
+  initializeHotelsActions();
   initializeLogout();
 }
 
@@ -1683,6 +1680,7 @@ function initializeRestaurantManagement() {
   populateRestaurantsTable();
   setupRestaurantFilters();
   setupRestaurantActions();
+  initializeRestaurantsActions();
   initializeLogout();
 }
 
@@ -2503,6 +2501,7 @@ function initializePackageManagement() {
   populatePackagesTable();
   setupPackageFilters();
   setupPackageActions();
+  initializePackagesActions();
   initializeLogout();
 }
 
@@ -3115,6 +3114,7 @@ function initializeActivityManagement() {
   populateActivitiesTable();
   setupActivityFilters();
   setupActivityActions();
+  initializeActivitiesActions();
   initializeLogout();
 }
 
@@ -3682,6 +3682,7 @@ function initializeCabManagement() {
   populateCabsTable();
   setupCabFilters();
   setupCabActions();
+  initializeCabsActions();
   initializeLogout();
 }
 
@@ -4191,7 +4192,6 @@ const bookingsData = {
 function initializeBookingManagement() {
   populateBookingsTable();
   setupBookingFilters();
-  setupBookingActions();
   initializeLogout();
 }
 
@@ -4241,8 +4241,6 @@ function populateBookingsTable() {
                     <td>
                         <div class="table-actions">
                             <a href="booking-view.html?id=${booking.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="booking-edit.html?id=${booking.id}" class="action-btn action-edit" title="Edit Booking"><i class="fas fa-pen"></i></a>
-                            <button class="action-btn action-block" title="Cancel"><i class="fas fa-times-circle"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -4296,22 +4294,7 @@ function filterBookings() {
   });
 }
 
-function setupBookingActions() {
-  document.addEventListener("click", function (e) {
-    if (
-      e.target.closest(".action-block") &&
-      e.target.closest("#bookingsTableBody")
-    ) {
-      const row = e.target.closest("tr");
-      const bkId = row.dataset.bookingId;
-      if (bookingsData[bkId]) {
-        bookingsData[bkId].status =
-          bookingsData[bkId].status === "cancelled" ? "confirmed" : "cancelled";
-        populateBookingsTable();
-      }
-    }
-  });
-}
+
 
 function initializeBookingViewPage() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -4319,11 +4302,6 @@ function initializeBookingViewPage() {
 
   if (bookingId && bookingsData[bookingId]) {
     populateBookingView(bookingsData[bookingId]);
-  }
-
-  const editLink = document.getElementById("editBookingLink");
-  if (editLink && bookingId) {
-    editLink.href = "booking-edit.html?id=" + bookingId;
   }
 
   initializeLogout();
@@ -4349,7 +4327,7 @@ function populateBookingView(booking) {
 
   document.getElementById("viewBookingCustomer").textContent = booking.customer;
   document.getElementById("viewBookingService").textContent =
-    booking.serviceName;
+    booking.serviceType.charAt(0).toUpperCase() + booking.serviceType.slice(1);
   document.getElementById("viewBookingDate").textContent = booking.bookingDate;
   document.getElementById("viewBookingCheckin").textContent = booking.checkin;
   document.getElementById("viewBookingCheckout").textContent = booking.checkout;
@@ -4376,8 +4354,8 @@ function populateBookingView(booking) {
   if (serviceDetailsEl) {
     serviceDetailsEl.innerHTML = `
                 <div class="info-item">
-                    <span class="info-label">Service Name</span>
-                    <span class="info-value">${booking.serviceName}</span>
+                    <span class="info-label">Category</span>
+                    <span class="info-value">${booking.serviceType.charAt(0).toUpperCase() + booking.serviceType.slice(1)}</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Service ID</span>
@@ -5301,7 +5279,7 @@ function populatePayoutsTable() {
                         <div class="table-actions">
                             <a href="payout-view.html?id=${payout.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
                             <a href="payout-edit.html?id=${payout.id}" class="action-btn action-edit" title="Edit Payout"><i class="fas fa-pen"></i></a>
-                            <button class="action-btn action-block" title="Hold/Release"><i class="fas fa-${payout.status === "on-hold" ? "play" : "pause"}"></i></button>
+                            <button class="action-btn action-block ${payout.status === "on-hold" ? "status-disabled" : "status-active"}" title="Hold/Release"><i class="fas fa-toggle-${payout.status === "on-hold" ? "off" : "on"}"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -5584,11 +5562,14 @@ const adsData = {
     ctr: 5.0,
     conversions: 612,
     description: "Full-width banner promoting luxury hotel stays in Riyadh.",
+    image: "https://placehold.co/800x400/c0392b/ffffff?text=Luxury+Hotel+Banner",
     paymentStatus: "paid",
     discount: 0,
     targetRegion: "riyadh",
     targetAudience: "premium",
     adminNotes: "High-performing campaign. Vendor requested extension.",
+    approvalReason: "Ad meets all compliance guidelines. High-quality creative and reasonable budget.",
+    rejectionReason: "",
   },
   "AD-002": {
     id: "AD-002",
@@ -5614,11 +5595,14 @@ const adsData = {
     conversions: 468,
     description:
       "Featured listing for desert safari activities in search results.",
+    image: "https://placehold.co/800x400/e74c3c/ffffff?text=Desert+Safari",
     paymentStatus: "paid",
     discount: 10,
     targetRegion: "all",
     targetAudience: "tourists",
     adminNotes: "Good CTR. Consider for featured case study.",
+    approvalReason: "Excellent engagement metrics. Content aligns with platform guidelines.",
+    rejectionReason: "",
   },
   "AD-003": {
     id: "AD-003",
@@ -5644,11 +5628,14 @@ const adsData = {
     conversions: 1140,
     description:
       "Sponsored content for Umrah premium packages on listing pages.",
+    image: "https://placehold.co/800x400/3498db/ffffff?text=Umrah+Package",
     paymentStatus: "partial",
     discount: 5,
     targetRegion: "mecca",
     targetAudience: "all",
     adminNotes: "Long-running campaign. 60% spent so far. Strong ROI.",
+    approvalReason: "Compliant content with verified vendor. Strong conversion potential.",
+    rejectionReason: "",
   },
   "AD-004": {
     id: "AD-004",
@@ -5673,12 +5660,15 @@ const adsData = {
     ctr: 4.0,
     conversions: 90,
     description: "Pop-up ad for seafood restaurant promotion in Jeddah area.",
+    image: "https://placehold.co/800x400/27ae60/ffffff?text=Seafood+Promo",
     paymentStatus: "paid",
     discount: 0,
     targetRegion: "jeddah",
     targetAudience: "families",
     adminNotes:
       "Paused by vendor request. Low conversion rate - review targeting.",
+    approvalReason: "",
+    rejectionReason: "",
   },
   "AD-005": {
     id: "AD-005",
@@ -5704,12 +5694,15 @@ const adsData = {
     conversions: 0,
     description:
       "Launch campaign for premium cab service with airport transfers.",
+    image: "https://placehold.co/800x400/f39c12/ffffff?text=Cab+Service",
     paymentStatus: "invoiced",
     discount: 15,
     targetRegion: "riyadh",
     targetAudience: "business",
     adminNotes:
       "Pending approval. Verify ad creative meets guidelines before activation.",
+    approvalReason: "",
+    rejectionReason: "",
   },
   "AD-006": {
     id: "AD-006",
@@ -5734,12 +5727,15 @@ const adsData = {
     ctr: 4.0,
     conversions: 420,
     description: "Featured hotel listings for Medina area properties.",
+    image: "https://placehold.co/800x400/9b59b6/ffffff?text=Medina+Hotels",
     paymentStatus: "paid",
     discount: 0,
     targetRegion: "medina",
     targetAudience: "all",
     adminNotes:
       "Campaign completed. Good results. Vendor interested in renewal.",
+    approvalReason: "Quality content. Positive vendor history. Approved for featured placement.",
+    rejectionReason: "",
   },
   "AD-007": {
     id: "AD-007",
@@ -5765,11 +5761,14 @@ const adsData = {
     conversions: 0,
     description:
       "Sponsored listings for adventure activity bundles during spring season.",
+    image: "https://placehold.co/800x400/16a085/ffffff?text=Adventure+Bundle",
     paymentStatus: "unpaid",
     discount: 0,
     targetRegion: "all",
     targetAudience: "tourists",
     adminNotes: "Awaiting payment before approval. Follow up with vendor.",
+    approvalReason: "",
+    rejectionReason: "",
   },
   "AD-008": {
     id: "AD-008",
@@ -5794,12 +5793,15 @@ const adsData = {
     ctr: 0,
     conversions: 0,
     description: "Summer season hotel deals banner for coastal properties.",
+    image: "https://placehold.co/800x400/2980b9/ffffff?text=Summer+Hotels",
     paymentStatus: "unpaid",
     discount: 0,
     targetRegion: "jeddah",
     targetAudience: "families",
     adminNotes:
       "Rejected - ad creative contains misleading pricing. Vendor notified to revise.",
+    approvalReason: "",
+    rejectionReason: "Ad creative contains misleading pricing. False discount claims detected. Please revise and resubmit.",
   },
 };
 
@@ -5849,14 +5851,17 @@ function populateAdsTable() {
                     <td>
                         <div class="table-actions">
                             <a href="ad-view.html?id=${ad.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="ad-edit.html?id=${ad.id}" class="action-btn action-edit" title="Edit Ad"><i class="fas fa-pen"></i></a>
-                            <button class="action-btn action-block" title="Pause/Resume"><i class="fas fa-${ad.status === "active" ? "pause" : "play"}"></i></button>
+                            ${ad.status === "pending" ? `
+                                <button class="action-btn action-approve" data-ad-id="${ad.id}" title="Approve Ad"><i class="fas fa-check-circle"></i></button>
+                                <button class="action-btn action-reject" data-ad-id="${ad.id}" title="Reject Ad"><i class="fas fa-times-circle"></i></button>
+                            ` : ``}
                         </div>
                     </td>
                 </tr>
             `;
   }
   tbody.innerHTML = html;
+  setupAdTableActions();
 }
 
 function setupAdFilters() {
@@ -5867,6 +5872,64 @@ function setupAdFilters() {
   if (searchInput) searchInput.addEventListener("input", filterAds);
   if (statusFilter) statusFilter.addEventListener("change", filterAds);
   if (typeFilter) typeFilter.addEventListener("change", filterAds);
+}
+
+function setupAdTableActions() {
+  // Approve buttons
+  const approveButtons = document.querySelectorAll(".action-approve");
+  approveButtons.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      const adId = this.getAttribute("data-ad-id");
+      openAdActionModal("approve", adId);
+    });
+  });
+
+  // Reject buttons
+  const rejectButtons = document.querySelectorAll(".action-reject");
+  rejectButtons.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      const adId = this.getAttribute("data-ad-id");
+      openAdActionModal("reject", adId);
+    });
+  });
+}
+
+function approveAd(adId, reason) {
+  if (adsData[adId]) {
+    adsData[adId].status = "active";
+    adsData[adId].approvalReason = reason;
+    // If on view page, update the view
+    const viewAdNameEl = document.getElementById("viewAdName");
+    if (viewAdNameEl) {
+      populateAdView(adsData[adId]);
+    }
+    // If on ads table page, refresh the table
+    const adsTableBody = document.getElementById("adsTableBody");
+    if (adsTableBody) {
+      populateAdsTable();
+    }
+    alert("Ad approved successfully!");
+  }
+}
+
+function rejectAd(adId, reason) {
+  if (adsData[adId]) {
+    adsData[adId].status = "rejected";
+    adsData[adId].rejectionReason = reason;
+    // If on view page, update the view
+    const viewAdNameEl = document.getElementById("viewAdName");
+    if (viewAdNameEl) {
+      populateAdView(adsData[adId]);
+    }
+    // If on ads table page, refresh the table
+    const adsTableBody = document.getElementById("adsTableBody");
+    if (adsTableBody) {
+      populateAdsTable();
+    }
+    alert("Ad rejected successfully!");
+  }
 }
 
 function filterAds() {
@@ -5916,12 +5979,76 @@ function initializeAdViewPage() {
     populateAdView(adsData[adId]);
   }
 
-  const editLink = document.getElementById("editAdLink");
-  if (editLink && adId) {
-    editLink.href = "ad-edit.html?id=" + adId;
+  // Approve button
+  const approveBtn = document.getElementById("approveAdBtn");
+  if (approveBtn) {
+    approveBtn.addEventListener("click", function () {
+      openAdActionModal("approve", adId);
+    });
+  }
+
+  // Reject button
+  const rejectBtn = document.getElementById("rejectAdBtn");
+  if (rejectBtn) {
+    rejectBtn.addEventListener("click", function () {
+      openAdActionModal("reject", adId);
+    });
   }
 
   initializeLogout();
+}
+
+let currentAdAction = { type: null, adId: null };
+
+function openAdActionModal(actionType, adId) {
+  currentAdAction.type = actionType;
+  currentAdAction.adId = adId;
+  
+  const modal = document.getElementById("adActionModal");
+  const overlay = document.getElementById("modalOverlay");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalBtn = document.getElementById("modalActionBtn");
+  const reasonInput = document.getElementById("adActionReason");
+  
+  if (actionType === "approve") {
+    modalTitle.textContent = "Approve Ad Campaign";
+    modalBtn.textContent = "Approve";
+    modalBtn.className = "btn btn-success";
+  } else {
+    modalTitle.textContent = "Reject Ad Campaign";
+    modalBtn.textContent = "Reject";
+    modalBtn.className = "btn btn-danger";
+  }
+  
+  reasonInput.value = "";
+  reasonInput.focus();
+  
+  overlay.style.display = "flex";
+}
+
+function closeAdActionModal() {
+  const overlay = document.getElementById("modalOverlay");
+  overlay.style.display = "none";
+  currentAdAction = { type: null, adId: null };
+}
+
+function submitAdAction() {
+  const reason = document.getElementById("adActionReason").value.trim();
+  
+  if (!reason) {
+    alert("Please enter a reason");
+    return;
+  }
+  
+  const { type, adId } = currentAdAction;
+  
+  if (type === "approve") {
+    approveAd(adId, reason);
+  } else if (type === "reject") {
+    rejectAd(adId, reason);
+  }
+  
+  closeAdActionModal();
 }
 
 function populateAdView(ad) {
@@ -6025,6 +6152,43 @@ function populateAdView(ad) {
   document.getElementById("viewAdVendorEmail").textContent = ad.vendorEmail;
   document.getElementById("viewAdVendorPhone").textContent = ad.vendorPhone;
 
+  // Ad Creative/Image
+  const imageEl = document.getElementById("viewAdImage");
+  const imagePlaceholder = document.getElementById("viewAdImagePlaceholder");
+  if (ad.image && ad.image.trim() !== "") {
+    imageEl.src = ad.image;
+    imageEl.style.display = "block";
+    imagePlaceholder.style.display = "none";
+  } else {
+    imageEl.style.display = "none";
+    imagePlaceholder.style.display = "block";
+  }
+
+  // Approval & Rejection Reasons
+  const approvalSection = document.getElementById("viewAdApprovalSection");
+  const approvalReasonItem = document.getElementById("viewAdApprovalReason");
+  const rejectionReasonItem = document.getElementById("viewAdRejectionReason");
+  
+  if (ad.approvalReason || ad.rejectionReason) {
+    approvalSection.style.display = "block";
+    
+    if (ad.approvalReason && ad.approvalReason.trim() !== "") {
+      approvalReasonItem.style.display = "block";
+      document.getElementById("viewAdApprovalReasonText").textContent = ad.approvalReason;
+    } else {
+      approvalReasonItem.style.display = "none";
+    }
+    
+    if (ad.rejectionReason && ad.rejectionReason.trim() !== "") {
+      rejectionReasonItem.style.display = "block";
+      document.getElementById("viewAdRejectionReasonText").textContent = ad.rejectionReason;
+    } else {
+      rejectionReasonItem.style.display = "none";
+    }
+  } else {
+    approvalSection.style.display = "none";
+  }
+
   // Timeline
   const timelineEl = document.getElementById("viewAdTimeline");
   if (timelineEl) {
@@ -6088,6 +6252,7 @@ function populateAdEdit(ad) {
   document.getElementById("editAdVendor").value = ad.vendor;
   document.getElementById("editAdPlacement").value = ad.placement;
   document.getElementById("editAdDescription").value = ad.description || "";
+  document.getElementById("editAdImage").value = ad.image || "";
   document.getElementById("editAdDailyHours").value = ad.dailyHours;
   document.getElementById("editAdRate").value = ad.rate;
   document.getElementById("editAdBudget").value = ad.budget;
@@ -6096,6 +6261,8 @@ function populateAdEdit(ad) {
   document.getElementById("editAdTargetRegion").value = ad.targetRegion;
   document.getElementById("editAdTargetAudience").value = ad.targetAudience;
   document.getElementById("editAdAdminNotes").value = ad.adminNotes || "";
+  document.getElementById("editAdApprovalReason").value = ad.approvalReason || "";
+  document.getElementById("editAdRejectionReason").value = ad.rejectionReason || "";
 }
 
 // ============================================
@@ -6445,7 +6612,7 @@ function populateBannersTable() {
                         <div class="table-actions">
                             <a href="banner-view.html?id=${banner.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
                             <a href="banner-edit.html?id=${banner.id}" class="action-btn action-edit" title="Edit Banner"><i class="fas fa-pen"></i></a>
-                            <button class="action-btn action-block" title="Pause/Resume"><i class="fas fa-${banner.status === "active" ? "pause" : "play"}"></i></button>
+                            <button class="action-btn action-block ${banner.status === "active" ? "status-active" : "status-disabled"}" title="Pause/Resume"><i class="fas fa-toggle-${banner.status === "active" ? "on" : "off"}"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -6915,7 +7082,7 @@ function populateScheduledReports() {
                         <div class="table-actions">
                             <button class="action-btn action-view" title="Download Report"><i class="fas fa-download"></i></button>
                             <button class="action-btn action-edit" title="Edit Schedule"><i class="fas fa-pen"></i></button>
-                            <button class="action-btn action-block" title="Pause/Resume"><i class="fas fa-${report.status === "active" ? "pause" : "play"}"></i></button>
+                            <button class="action-btn action-block ${report.status === "active" ? "status-active" : "status-disabled"}" title="Pause/Resume"><i class="fas fa-toggle-${report.status === "active" ? "on" : "off"}"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -6984,6 +7151,35 @@ function setupReportFilters() {
       }
     });
   }
+
+  // Report Tabs Functionality
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".report-tab-btn")) {
+      const btn = e.target.closest(".report-tab-btn");
+      const tabName = btn.getAttribute("data-tab");
+      
+      // Remove active state from all tabs
+      document.querySelectorAll(".report-tab-btn").forEach(tab => {
+        tab.style.color = "#666";
+        tab.style.borderBottom = "3px solid transparent";
+      });
+      
+      // Remove display from all tab content
+      document.querySelectorAll(".report-tab-content").forEach(content => {
+        content.style.display = "none";
+      });
+      
+      // Add active state to clicked tab
+      btn.style.color = "#16a085";
+      btn.style.borderBottom = "3px solid #16a085";
+      
+      // Show corresponding tab content
+      const tabContent = document.getElementById(tabName + "-tab");
+      if (tabContent) {
+        tabContent.style.display = "block";
+      }
+    }
+  });
 
   // Toggle scheduled report status
   document.addEventListener("click", function (e) {
@@ -7281,7 +7477,6 @@ function populateRefundsTable() {
                     <td>
                         <div class="table-actions">
                             <a href="refund-view.html?id=${refund.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="refund-edit.html?id=${refund.id}" class="action-btn action-edit" title="Process Refund"><i class="fas fa-pen"></i></a>
                             ${refund.status === "pending" ? '<button class="action-btn action-approve" title="Quick Approve"><i class="fas fa-check"></i></button>' : ""}
                         </div>
                     </td>
@@ -8397,6 +8592,7 @@ function populateNotificationsTable() {
                         <div class="table-actions">
                             <a href="notification-view.html?id=${notif.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
                             <a href="notification-edit.html?id=${notif.id}" class="action-btn action-edit" title="Edit"><i class="fas fa-pen"></i></a>
+                            <button class="action-btn action-delete" data-notif-id="${notif.id}" title="Delete"><i class="fas fa-trash"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -8414,6 +8610,18 @@ function setupNotificationFilters() {
   if (typeFilter) typeFilter.addEventListener("change", filterNotifications);
   if (statusFilter)
     statusFilter.addEventListener("change", filterNotifications);
+
+  // Handle delete button
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".action-delete") && e.target.closest("#notificationsTableBody")) {
+      const btn = e.target.closest(".action-delete");
+      const notifId = btn.getAttribute("data-notif-id");
+      if (confirm("Are you sure you want to delete this notification?")) {
+        delete notificationsData[notifId];
+        populateNotificationsTable();
+      }
+    }
+  });
 }
 
 function filterNotifications() {
@@ -9388,6 +9596,8 @@ function populateCmsTable() {
                         <div class="table-actions">
                             <a href="cms-view.html?id=${page.id}" class="action-btn action-view" title="Preview"><i class="fas fa-eye"></i></a>
                             <a href="cms-edit.html?id=${page.id}" class="action-btn action-edit" title="Edit"><i class="fas fa-pen"></i></a>
+                            <button class="action-btn action-toggle ${page.status === "published" ? "status-active" : "status-inactive"}" data-cms-id="${page.id}" title="Publish/Draft"><i class="fas fa-toggle-${page.status === "published" ? "on" : "off"}"></i></button>
+                            <button class="action-btn action-delete" data-cms-id="${page.id}" title="Delete"><i class="fas fa-trash"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -9404,6 +9614,30 @@ function setupCmsFilters() {
   if (searchInput) searchInput.addEventListener("input", filterCmsPages);
   if (statusFilter) statusFilter.addEventListener("change", filterCmsPages);
   if (typeFilter) typeFilter.addEventListener("change", filterCmsPages);
+
+  // Handle toggle status button
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".action-toggle") && e.target.closest("#cmsTableBody")) {
+      const btn = e.target.closest(".action-toggle");
+      const cmsId = btn.getAttribute("data-cms-id");
+      if (cmsPagesData[cmsId]) {
+        cmsPagesData[cmsId].status = cmsPagesData[cmsId].status === "published" ? "draft" : "published";
+        populateCmsTable();
+      }
+    }
+  });
+
+  // Handle delete button
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".action-delete") && e.target.closest("#cmsTableBody")) {
+      const btn = e.target.closest(".action-delete");
+      const cmsId = btn.getAttribute("data-cms-id");
+      if (confirm("Are you sure you want to delete this page?")) {
+        delete cmsPagesData[cmsId];
+        populateCmsTable();
+      }
+    }
+  });
 }
 
 function filterCmsPages() {
@@ -9948,6 +10182,42 @@ function initializeDateFilter() {
   }
 }
 
+/* ============================================
+   FILTER ACCORDION INITIALIZATION
+   ============================================ */
+
+function initializeFilterAccordion() {
+  const filterAccordionHeader = document.getElementById("filterAccordionHeader");
+  const filterAccordionBody = document.getElementById("filterAccordionBody");
+
+  if (!filterAccordionHeader || !filterAccordionBody) {
+    return; // Elements not found, likely on a different page
+  }
+
+  // Handle click on filter accordion header to toggle
+  filterAccordionHeader.addEventListener("click", function () {
+    // Toggle collapsed class on header
+    filterAccordionHeader.classList.toggle("collapsed");
+    // Toggle collapsed class on body
+    filterAccordionBody.classList.toggle("collapsed");
+  });
+
+  // Load saved preference from localStorage
+  const filterState = localStorage.getItem("filterAccordionCollapsed");
+  if (filterState === "true") {
+    filterAccordionHeader.classList.add("collapsed");
+    filterAccordionBody.classList.add("collapsed");
+  }
+
+  // Save preference when toggled
+  const observer = new MutationObserver(function () {
+    const isCollapsed = filterAccordionHeader.classList.contains("collapsed");
+    localStorage.setItem("filterAccordionCollapsed", isCollapsed);
+  });
+
+  observer.observe(filterAccordionHeader, { attributes: true, attributeFilter: ["class"] });
+}
+
 var dashboardRevenueChart = null;
 var dashboardDistributionChart = null;
 
@@ -10303,28 +10573,49 @@ function initializeUserManagement() {
 }
 
 function initializeUserActions() {
-  // Block/Unblock inline buttons
+  // Status toggle buttons
   document
-    .querySelectorAll("#usersTable .action-block, #usersTable .action-unblock")
+    .querySelectorAll("#usersTable .action-toggle-status")
     .forEach(function (btn) {
+      const row = btn.closest("tr");
+      const statusBadge = row.querySelector(".status-badge");
+      
+      // Initialize button color based on current status
+      if (statusBadge.textContent.trim() === "Active") {
+        btn.classList.add("status-active");
+        btn.classList.remove("status-inactive");
+      } else {
+        btn.classList.add("status-inactive");
+        btn.classList.remove("status-active");
+      }
+      
       btn.addEventListener("click", function () {
         const row = this.closest("tr");
         const statusBadge = row.querySelector(".status-badge");
-
-        if (statusBadge.textContent.trim() === "Blocked") {
-          // Unblock
+        const userId = this.getAttribute("data-user-id");
+        
+        if (statusBadge.textContent.trim() === "Active") {
+          // Toggle to Inactive
+          statusBadge.textContent = "Inactive";
+          statusBadge.className = "status-badge status-inactive";
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.classList.remove("status-active");
+          this.classList.add("status-inactive");
+          // Update user data
+          if (usersData[userId]) {
+            usersData[userId].status = "Inactive";
+          }
+        } else {
+          // Toggle to Active
           statusBadge.textContent = "Active";
           statusBadge.className = "status-badge status-active";
-          this.className = "action-btn action-block";
-          this.title = "Block User";
-          this.innerHTML = '<i class="fas fa-ban"></i>';
-        } else {
-          // Block
-          statusBadge.textContent = "Blocked";
-          statusBadge.className = "status-badge status-blocked";
-          this.className = "action-btn action-unblock";
-          this.title = "Unblock User";
-          this.innerHTML = '<i class="fas fa-check-circle"></i>';
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.classList.remove("status-inactive");
+          this.classList.add("status-active");
+          // Update user data
+          if (usersData[userId]) {
+            usersData[userId].status = "Active";
+          }
         }
       });
     });
@@ -10401,7 +10692,7 @@ var usersData = {
     email: "k.omar@email.com",
     phone: "+966 59 654 3210",
     joined: "May 05, 2025",
-    status: "Blocked",
+    status: "Inactive",
     bookings: "2",
     spent: "$340",
     location: "Medina, Saudi Arabia",
@@ -10488,38 +10779,6 @@ function initializeUserViewPage() {
     statusEl.textContent = user.status;
     statusEl.className = "status-badge status-" + user.status.toLowerCase();
 
-    // Edit user link
-    var editLink = document.getElementById("editUserLink");
-    if (editLink) {
-      editLink.href = "user-edit.html?id=" + userId;
-    }
-
-    // Block/Unblock button
-    var blockBtn = document.getElementById("blockUserBtn");
-    if (blockBtn) {
-      if (user.status === "Blocked") {
-        blockBtn.innerHTML = '<i class="fas fa-check-circle"></i> Unblock User';
-        blockBtn.classList.remove("btn-danger");
-        blockBtn.classList.add("btn-outline");
-      }
-      blockBtn.addEventListener("click", function () {
-        var currentStatus = statusEl.textContent.trim();
-        if (currentStatus === "Blocked") {
-          statusEl.textContent = "Active";
-          statusEl.className = "status-badge status-active";
-          this.innerHTML = '<i class="fas fa-ban"></i> Block User';
-          this.classList.remove("btn-outline");
-          this.classList.add("btn-danger");
-        } else {
-          statusEl.textContent = "Blocked";
-          statusEl.className = "status-badge status-blocked";
-          this.innerHTML = '<i class="fas fa-check-circle"></i> Unblock User';
-          this.classList.remove("btn-danger");
-          this.classList.add("btn-outline");
-        }
-      });
-    }
-
     // Reset password button
     var resetPwdBtn = document.getElementById("resetPasswordBtn");
     if (resetPwdBtn) {
@@ -10535,61 +10794,6 @@ function initializeUserViewPage() {
         }, 2500);
       });
     }
-  }
-
-  initializeLogout();
-}
-
-/* ============================================
-   USER EDIT PAGE
-   ============================================ */
-
-function initializeUserEditPage() {
-  var userId = getUserIdFromUrl();
-  var user = usersData[userId];
-
-  if (user) {
-    document.getElementById("editUserAvatar").src =
-      "https://ui-avatars.com/api/?name=" +
-      user.avatar +
-      "&background=" +
-      user.avatarBg +
-      "&color=fff&size=120";
-    document.getElementById("editUserDisplayName").textContent = user.name;
-    document.getElementById("editUserId").textContent = "#" + userId;
-    document.getElementById("editUserTitle").textContent =
-      "Edit — " + user.name;
-    document.getElementById("editFirstName").value = user.firstName;
-    document.getElementById("editLastName").value = user.lastName;
-    document.getElementById("editEmail").value = user.email;
-    document.getElementById("editPhone").value = user.phone;
-    document.getElementById("editLocation").value = user.location;
-    document.getElementById("editUserJoinedDisplay").value = user.joined;
-
-    // Set status dropdown
-    var statusSelect = document.getElementById("editStatus");
-    if (statusSelect) {
-      statusSelect.value = user.status.toLowerCase();
-    }
-  }
-
-  // Form submission
-  var form = document.getElementById("editUserForm");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      var saveBtn = document.getElementById("saveUserBtn");
-      if (saveBtn) {
-        saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved Successfully';
-        saveBtn.disabled = true;
-        saveBtn.style.opacity = "0.8";
-
-        setTimeout(function () {
-          window.location.href = "user-view.html?id=" + userId;
-        }, 1200);
-      }
-    });
   }
 
   initializeLogout();
@@ -10891,19 +11095,61 @@ function initializeVendorActions() {
   document
     .querySelectorAll("#vendorsTable .action-block")
     .forEach(function (btn) {
+      // Initialize with green background (for Approved status)
+      btn.classList.add("status-approved");
+      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
-        if (statusBadge.textContent.trim() === "Disabled") {
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Approved") {
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-approved");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+        } else {
           statusBadge.textContent = "Approved";
           statusBadge.className = "status-badge status-approved";
           this.title = "Disable";
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.className = "action-btn action-block";
+          this.classList.add("status-approved");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+        }
+      });
+    });
+
+  document
+    .querySelectorAll("#vendorsTable .action-unblock")
+    .forEach(function (btn) {
+      // Initialize with red background (for Disabled status)
+      btn.classList.add("status-disabled");
+      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Disabled") {
+          statusBadge.textContent = "Approved";
+          statusBadge.className = "status-badge status-approved";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-approved");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
         } else {
           statusBadge.textContent = "Disabled";
           statusBadge.className = "status-badge status-disabled";
           this.title = "Enable";
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-approved");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
         }
       });
     });
@@ -11489,28 +11735,66 @@ function initializeProviderActions() {
   document
     .querySelectorAll("#providersTable .action-block")
     .forEach(function (btn) {
+      // Initialize with green background (for Approved status)
+      btn.classList.add("status-approved");
+      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
-        statusBadge.textContent = "Suspended";
-        statusBadge.className = "status-badge status-suspended";
-        this.title = "Reinstate";
-        this.className = "action-btn action-unblock";
-        this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Approved") {
+          // Change to Suspended
+          statusBadge.textContent = "Suspended";
+          statusBadge.className = "status-badge status-suspended";
+          this.title = "Reinstate";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-suspended");
+          this.classList.remove("status-approved");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+        } else {
+          // Change to Approved
+          statusBadge.textContent = "Approved";
+          statusBadge.className = "status-badge status-approved";
+          this.title = "Suspend";
+          this.className = "action-btn action-block";
+          this.classList.add("status-approved");
+          this.classList.remove("status-suspended");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+        }
       });
     });
 
   document
     .querySelectorAll("#providersTable .action-unblock")
     .forEach(function (btn) {
+      // Initialize with red background (for Suspended status)
+      btn.classList.add("status-suspended");
+      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
-        statusBadge.textContent = "Approved";
-        statusBadge.className = "status-badge status-approved";
-        this.title = "Suspend";
-        this.className = "action-btn action-block";
-        this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Suspended") {
+          // Change to Approved
+          statusBadge.textContent = "Approved";
+          statusBadge.className = "status-badge status-approved";
+          this.title = "Suspend";
+          this.className = "action-btn action-block";
+          this.classList.add("status-approved");
+          this.classList.remove("status-suspended");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+        } else {
+          // Change to Suspended
+          statusBadge.textContent = "Suspended";
+          statusBadge.className = "status-badge status-suspended";
+          this.title = "Reinstate";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-suspended");
+          this.classList.remove("status-approved");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+        }
       });
     });
 }
@@ -11961,28 +12245,526 @@ function initializeCategoryActions() {
   document
     .querySelectorAll("#categoriesTable .action-block")
     .forEach(function (btn) {
+      // Initialize with green background (for Active status)
+      btn.classList.add("status-active");
+      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
-        statusBadge.textContent = "Inactive";
-        statusBadge.className = "status-badge status-inactive";
-        this.title = "Activate";
-        this.className = "action-btn action-unblock";
-        this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Active") {
+          // Change to Inactive
+          statusBadge.textContent = "Inactive";
+          statusBadge.className = "status-badge status-inactive";
+          this.title = "Activate";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-inactive");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+        } else {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Deactivate";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-inactive");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+        }
       });
     });
 
   document
     .querySelectorAll("#categoriesTable .action-unblock")
     .forEach(function (btn) {
+      // Initialize with red background (for Inactive status)
+      btn.classList.add("status-inactive");
+      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
-        statusBadge.textContent = "Active";
-        statusBadge.className = "status-badge status-active";
-        this.title = "Deactivate";
-        this.className = "action-btn action-block";
-        this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Inactive") {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Deactivate";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-inactive");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+        } else {
+          // Change to Inactive
+          statusBadge.textContent = "Inactive";
+          statusBadge.className = "status-badge status-inactive";
+          this.title = "Activate";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-inactive");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+        }
+      });
+    });
+}
+
+/* ============================================
+   HOTELS TABLE - TOGGLE STATUS
+   ============================================ */
+
+function initializeHotelsActions() {
+  document
+    .querySelectorAll("#hotelsTable .action-block")
+    .forEach(function (btn) {
+      // Initialize with green background (for Active status)
+      btn.classList.add("status-active");
+      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Active") {
+          // Change to Disabled
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          // Update data
+          const hotelId = row.dataset.hotelId;
+          if (hotelsData[hotelId]) {
+            hotelsData[hotelId].status = "disabled";
+          }
+        } else {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          // Update data
+          const hotelId = row.dataset.hotelId;
+          if (hotelsData[hotelId]) {
+            hotelsData[hotelId].status = "active";
+          }
+        }
+      });
+    });
+
+  document
+    .querySelectorAll("#hotelsTable .action-unblock")
+    .forEach(function (btn) {
+      // Initialize with red background (for Disabled status)
+      btn.classList.add("status-disabled");
+      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Disabled") {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          // Update data
+          const hotelId = row.dataset.hotelId;
+          if (hotelsData[hotelId]) {
+            hotelsData[hotelId].status = "active";
+          }
+        } else {
+          // Change to Disabled
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          // Update data
+          const hotelId = row.dataset.hotelId;
+          if (hotelsData[hotelId]) {
+            hotelsData[hotelId].status = "disabled";
+          }
+        }
+      });
+    });
+}
+
+/* ============================================
+   RESTAURANTS TABLE - TOGGLE STATUS
+   ============================================ */
+
+function initializeRestaurantsActions() {
+  document
+    .querySelectorAll("#restaurantsTable .action-block")
+    .forEach(function (btn) {
+      // Initialize with green background (for Active status)
+      btn.classList.add("status-active");
+      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Active") {
+          // Change to Disabled
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          // Update data
+          const restaurantId = row.dataset.restaurantId;
+          if (restaurantsData[restaurantId]) {
+            restaurantsData[restaurantId].status = "disabled";
+          }
+        } else {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          // Update data
+          const restaurantId = row.dataset.restaurantId;
+          if (restaurantsData[restaurantId]) {
+            restaurantsData[restaurantId].status = "active";
+          }
+        }
+      });
+    });
+
+  document
+    .querySelectorAll("#restaurantsTable .action-unblock")
+    .forEach(function (btn) {
+      // Initialize with red background (for Disabled status)
+      btn.classList.add("status-disabled");
+      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Disabled") {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          // Update data
+          const restaurantId = row.dataset.restaurantId;
+          if (restaurantsData[restaurantId]) {
+            restaurantsData[restaurantId].status = "active";
+          }
+        } else {
+          // Change to Disabled
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          // Update data
+          const restaurantId = row.dataset.restaurantId;
+          if (restaurantsData[restaurantId]) {
+            restaurantsData[restaurantId].status = "disabled";
+          }
+        }
+      });
+    });
+}
+
+/* ============================================
+   PACKAGES TABLE - TOGGLE STATUS
+   ============================================ */
+
+function initializePackagesActions() {
+  document
+    .querySelectorAll("#packagesTable .action-block")
+    .forEach(function (btn) {
+      // Initialize with green background (for Active status)
+      btn.classList.add("status-active");
+      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Active") {
+          // Change to Disabled
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          // Update data
+          const packageId = row.dataset.packageId;
+          if (packagesData[packageId]) {
+            packagesData[packageId].status = "disabled";
+          }
+        } else {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          // Update data
+          const packageId = row.dataset.packageId;
+          if (packagesData[packageId]) {
+            packagesData[packageId].status = "active";
+          }
+        }
+      });
+    });
+
+  document
+    .querySelectorAll("#packagesTable .action-unblock")
+    .forEach(function (btn) {
+      // Initialize with red background (for Disabled status)
+      btn.classList.add("status-disabled");
+      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Disabled") {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          // Update data
+          const packageId = row.dataset.packageId;
+          if (packagesData[packageId]) {
+            packagesData[packageId].status = "active";
+          }
+        } else {
+          // Change to Disabled
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          // Update data
+          const packageId = row.dataset.packageId;
+          if (packagesData[packageId]) {
+            packagesData[packageId].status = "disabled";
+          }
+        }
+      });
+    });
+}
+
+/* ============================================
+   ACTIVITIES TABLE - TOGGLE STATUS
+   ============================================ */
+
+function initializeActivitiesActions() {
+  document
+    .querySelectorAll("#activitiesTable .action-block")
+    .forEach(function (btn) {
+      // Initialize with green background (for Active status)
+      btn.classList.add("status-active");
+      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Active") {
+          // Change to Disabled
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          // Update data
+          const activityId = row.dataset.activityId;
+          if (activitiesData[activityId]) {
+            activitiesData[activityId].status = "disabled";
+          }
+        } else {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          // Update data
+          const activityId = row.dataset.activityId;
+          if (activitiesData[activityId]) {
+            activitiesData[activityId].status = "active";
+          }
+        }
+      });
+    });
+
+  document
+    .querySelectorAll("#activitiesTable .action-unblock")
+    .forEach(function (btn) {
+      // Initialize with red background (for Disabled status)
+      btn.classList.add("status-disabled");
+      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Disabled") {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          // Update data
+          const activityId = row.dataset.activityId;
+          if (activitiesData[activityId]) {
+            activitiesData[activityId].status = "active";
+          }
+        } else {
+          // Change to Disabled
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          // Update data
+          const activityId = row.dataset.activityId;
+          if (activitiesData[activityId]) {
+            activitiesData[activityId].status = "disabled";
+          }
+        }
+      });
+    });
+}
+
+/* ============================================
+   CABS TABLE - TOGGLE STATUS
+   ============================================ */
+
+function initializeCabsActions() {
+  document
+    .querySelectorAll("#cabsTable .action-block")
+    .forEach(function (btn) {
+      // Initialize with green background (for Active status)
+      btn.classList.add("status-active");
+      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Active") {
+          // Change to Disabled
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          // Update data
+          const cabId = row.dataset.cabId;
+          if (cabsData[cabId]) {
+            cabsData[cabId].status = "disabled";
+          }
+        } else {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          // Update data
+          const cabId = row.dataset.cabId;
+          if (cabsData[cabId]) {
+            cabsData[cabId].status = "active";
+          }
+        }
+      });
+    });
+
+  document
+    .querySelectorAll("#cabsTable .action-unblock")
+    .forEach(function (btn) {
+      // Initialize with red background (for Disabled status)
+      btn.classList.add("status-disabled");
+      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.addEventListener("click", function () {
+        var row = this.closest("tr");
+        var statusBadge = row.querySelector(".status-badge");
+        var currentStatus = statusBadge.textContent.trim();
+        
+        if (currentStatus === "Disabled") {
+          // Change to Active
+          statusBadge.textContent = "Active";
+          statusBadge.className = "status-badge status-active";
+          this.title = "Disable";
+          this.className = "action-btn action-block";
+          this.classList.add("status-active");
+          this.classList.remove("status-disabled");
+          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          // Update data
+          const cabId = row.dataset.cabId;
+          if (cabsData[cabId]) {
+            cabsData[cabId].status = "active";
+          }
+        } else {
+          // Change to Disabled
+          statusBadge.textContent = "Disabled";
+          statusBadge.className = "status-badge status-disabled";
+          this.title = "Enable";
+          this.className = "action-btn action-unblock";
+          this.classList.add("status-disabled");
+          this.classList.remove("status-active");
+          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          // Update data
+          const cabId = row.dataset.cabId;
+          if (cabsData[cabId]) {
+            cabsData[cabId].status = "disabled";
+          }
+        }
       });
     });
 }

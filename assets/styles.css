@@ -2406,6 +2406,16 @@ input, select, textarea {
     box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
 }
 
+.btn-success {
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: white;
+}
+
+.btn-success:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
+}
+
 /* ================================================
    TABLE CONTROLS — SEARCH & FILTERS
    ================================================ */
@@ -2634,7 +2644,8 @@ input, select, textarea {
 .table-actions,
 .action-buttons {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content:center;
     gap: 6px;
 }
 
@@ -2650,6 +2661,13 @@ input, select, textarea {
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 14px;
+}
+
+.action-btn i {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .action-btn:hover {
@@ -2672,13 +2690,92 @@ input, select, textarea {
 }
 
 .action-block {
-    background: #f39c12; /* solid orange/warning for block */
+    background: #27ae60; /* green for approved/active */
+    transition: all 0.3s ease;
 }
 .action-block:hover {
-    background: #d68910;
+    background: #229954;
 }
 
 .action-unblock {
+    background: #e74c3c; /* red for suspended/disabled */
+    transition: all 0.3s ease;
+}
+.action-unblock:hover {
+    background: #c0392b;
+}
+
+/* Status-based styling for buttons */
+.action-btn.status-approved {
+    background: #27ae60; /* green for approved */
+}
+.action-btn.status-approved:hover {
+    background: #229954;
+}
+
+.action-btn.status-suspended {
+    background: #e74c3c; /* red for suspended */
+}
+.action-btn.status-suspended:hover {
+    background: #c0392b;
+}
+
+.action-btn.status-inactive {
+    background: #e74c3c; /* red for inactive */
+}
+.action-btn.status-inactive:hover {
+    background: #c0392b;
+}
+
+.action-btn.status-active {
+    background: #27ae60; /* green for active */
+}
+.action-btn.status-active:hover {
+    background: #229954;
+}
+
+.action-btn.status-disabled {
+    background: #e74c3c; /* red for disabled */
+}
+.action-btn.status-disabled:hover {
+    background: #c0392b;
+}
+
+.action-approve {
+    background: #27ae60 !important;
+}
+.action-approve:hover {
+    background: #229954 !important;
+}
+.action-approve i {
+    color: white !important;
+}
+
+.action-reject {
+    background: #e74c3c !important;
+}
+.action-reject:hover {
+    background: #c0392b !important;
+}
+.action-reject i {
+    color: white !important;
+}
+
+.action-toggle-status.status-active {
+    background: #27ae60; /* green for active */
+}
+.action-toggle-status.status-active:hover {
+    background: #229954;
+}
+
+.action-toggle-status.status-inactive {
+    background: #e74c3c; /* red for inactive */
+}
+.action-toggle-status.status-inactive:hover {
+    background: #c0392b;
+}
+
+.action-block-old {
     background: #20c997;
 }
 .action-unblock:hover {
@@ -2686,10 +2783,10 @@ input, select, textarea {
 }
 
 .action-approve {
-    background: #20c997; /* solid green */
+    background: #27ae60; /* green like active/approved toggle button */
 }
 .action-approve:hover {
-    background: #17a589;
+    background: #229954;
 }
 
 .action-reject {
@@ -2776,7 +2873,6 @@ input, select, textarea {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
     display: none;
     align-items: center;
     justify-content: center;
@@ -2792,7 +2888,7 @@ input, select, textarea {
     background: var(--bg-primary);
     border-radius: var(--radius-xl);
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     max-height: 90vh;
     overflow-y: auto;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
@@ -5929,16 +6025,16 @@ html[data-theme="dark"] .restricted-notice {
 
 /* Quick Approve Button */
 .action-approve {
-    background: rgba(39, 174, 96, 0.1);
-    color: #27ae60;
+    background: #27ae60; /* green for approve */
+    color: white;
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .action-approve:hover {
-    background: rgba(39, 174, 96, 0.2);
-    color: #219a52;
+    background: #229954;
+    color: white;
 }
 
 /* ============================================

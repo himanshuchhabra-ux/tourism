@@ -90,6 +90,7 @@
                         </div>
                         <ul class="profile-dropdown-menu">
                             <li><a href="settings.html"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
                             <li class="profile-dropdown-divider"></li>
                             <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                         </ul>
@@ -233,15 +234,15 @@
                 </div>
 
                 <!-- Report Filters -->
-                <div class="detail-card">
+                <div class="detail-card" style="margin-bottom: 30px;">
                     <div class="card-header">
                         <h3><i class="fas fa-filter"></i> Report Filters</h3>
                     </div>
-                    <div class="card-body">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="reportType">Report Type</label>
-                                <select id="reportType" class="form-input">
+                    <div class="card-body" style="padding: 15px;">
+                        <div class="form-grid" style="gap: 10px; margin: 0;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="reportType" style="font-size: 0.9rem; margin-bottom: 5px;">Report Type</label>
+                                <select id="reportType" class="form-input" style="font-size: 0.9rem;">
                                     <option value="revenue">Revenue Report</option>
                                     <option value="bookings">Bookings Summary</option>
                                     <option value="subscriptions">Subscriptions Overview</option>
@@ -251,9 +252,9 @@
                                     <option value="custom">Custom Report</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="reportDateRange">Date Range</label>
-                                <select id="reportDateRange" class="form-input">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="reportDateRange" style="font-size: 0.9rem; margin-bottom: 5px;">Date Range</label>
+                                <select id="reportDateRange" class="form-input" style="font-size: 0.9rem;">
                                     <option value="today">Today</option>
                                     <option value="this-week">This Week</option>
                                     <option value="this-month" selected>This Month</option>
@@ -263,13 +264,13 @@
                                     <option value="custom">Custom Range</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="reportStartDate">Start Date</label>
-                                <input type="date" id="reportStartDate" class="form-input">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="reportStartDate" style="font-size: 0.9rem; margin-bottom: 5px;">Start Date</label>
+                                <input type="date" id="reportStartDate" class="form-input" style="font-size: 0.9rem;">
                             </div>
-                            <div class="form-group">
-                                <label for="reportEndDate">End Date</label>
-                                <input type="date" id="reportEndDate" class="form-input">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="reportEndDate" style="font-size: 0.9rem; margin-bottom: 5px;">End Date</label>
+                                <input type="date" id="reportEndDate" class="form-input" style="font-size: 0.9rem;">
                             </div>
                         </div>
                     </div>
@@ -331,184 +332,183 @@
                     </div>
                 </section>
 
-                <!-- Report Content Area -->
-                <div class="detail-page-grid">
-                    <!-- Revenue Breakdown -->
-                    <div class="detail-card">
-                        <div class="card-header">
-                            <h3><i class="fas fa-chart-pie"></i> Revenue by Service Type</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="info-group" id="reportRevenueBreakdown">
-                                <div class="payment-row">
-                                    <span><i class="fas fa-hotel"></i> Hotels</span>
-                                    <span><strong>SAR 1,250,000</strong></span>
-                                </div>
-                                <div class="payment-row">
-                                    <span><i class="fas fa-suitcase-rolling"></i> Packages</span>
-                                    <span><strong>SAR 680,000</strong></span>
-                                </div>
-                                <div class="payment-row">
-                                    <span><i class="fas fa-hiking"></i> Activities</span>
-                                    <span><strong>SAR 420,000</strong></span>
-                                </div>
-                                <div class="payment-row">
-                                    <span><i class="fas fa-utensils"></i> Restaurants</span>
-                                    <span><strong>SAR 295,000</strong></span>
-                                </div>
-                                <div class="payment-row">
-                                    <span><i class="fas fa-taxi"></i> Cabs</span>
-                                    <span><strong>SAR 155,000</strong></span>
-                                </div>
-                                <div class="payment-row total">
-                                    <span><strong>Total Revenue</strong></span>
-                                    <span><strong>SAR 2,800,000</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bookings Summary -->
-                    <div class="detail-card">
-                        <div class="card-header">
-                            <h3><i class="fas fa-calendar-alt"></i> Bookings Summary</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="info-group" id="reportBookingsSummary">
-                                <div class="info-item">
-                                    <span class="info-label">Total Bookings</span>
-                                    <span class="info-value">3,842</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Confirmed</span>
-                                    <span class="info-value">2,956 (76.9%)</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Pending</span>
-                                    <span class="info-value">456 (11.9%)</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Completed</span>
-                                    <span class="info-value">2,180 (56.7%)</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Cancelled</span>
-                                    <span class="info-value">312 (8.1%)</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Refunded</span>
-                                    <span class="info-value">118 (3.1%)</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Avg Booking Value</span>
-                                    <span class="info-value">SAR 729</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Detailed Report Tables -->
+                <!-- Report Content Area with Tabs -->
                 <div class="detail-card">
                     <div class="card-header">
-                        <h3><i class="fas fa-crown"></i> Subscription Report</h3>
+                        <h3><i class="fas fa-chart-line"></i> Report Details</h3>
                     </div>
-                    <div class="card-body">
-                        <div class="info-group" id="reportSubscriptionData">
-                            <div class="info-item">
-                                <span class="info-label">Total Plans</span>
-                                <span class="info-value">8</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Active Subscribers</span>
-                                <span class="info-value">1,245</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">New Subscribers (This Month)</span>
-                                <span class="info-value">156</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Subscription Revenue</span>
-                                <span class="info-value">SAR 354,705</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Average Renewal Rate</span>
-                                <span class="info-value">88.9%</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Average Churn Rate</span>
-                                <span class="info-value">4.4%</span>
-                            </div>
+                    <div class="card-body" style="padding: 0;">
+                        <!-- Tab Navigation -->
+                        <div style="display: flex; border-bottom: 2px solid #e0e0e0; background: #f9f9f9; border-radius: 8px 8px 0 0;">
+                            <button class="report-tab-btn active" data-tab="revenue" style="flex: 1; padding: 15px 20px; border: none; background: transparent; cursor: pointer; font-weight: 500; color: #666; border-bottom: 3px solid transparent; transition: all 0.3s;"><i class="fas fa-chart-pie" style="margin-right: 8px;"></i>Revenue</button>
+                            <button class="report-tab-btn" data-tab="bookings" style="flex: 1; padding: 15px 20px; border: none; background: transparent; cursor: pointer; font-weight: 500; color: #666; border-bottom: 3px solid transparent; transition: all 0.3s;"><i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>Bookings</button>
+                            <button class="report-tab-btn" data-tab="subscriptions" style="flex: 1; padding: 15px 20px; border: none; background: transparent; cursor: pointer; font-weight: 500; color: #666; border-bottom: 3px solid transparent; transition: all 0.3s;"><i class="fas fa-crown" style="margin-right: 8px;"></i>Subscriptions</button>
+                            <button class="report-tab-btn" data-tab="ads" style="flex: 1; padding: 15px 20px; border: none; background: transparent; cursor: pointer; font-weight: 500; color: #666; border-bottom: 3px solid transparent; transition: all 0.3s;"><i class="fas fa-ad" style="margin-right: 8px;"></i>Ads</button>
+                            <button class="report-tab-btn" data-tab="vendors" style="flex: 1; padding: 15px 20px; border: none; background: transparent; cursor: pointer; font-weight: 500; color: #666; border-bottom: 3px solid transparent; transition: all 0.3s;"><i class="fas fa-store" style="margin-right: 8px;"></i>Vendors</button>
                         </div>
-                    </div>
-                </div>
 
-                <div class="detail-page-grid">
-                    <!-- Ads Performance Report -->
-                    <div class="detail-card">
-                        <div class="card-header">
-                            <h3><i class="fas fa-ad"></i> Ads Performance Report</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="info-group" id="reportAdsData">
-                                <div class="info-item">
-                                    <span class="info-label">Total Ad Campaigns</span>
-                                    <span class="info-value">324</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Active Campaigns</span>
-                                    <span class="info-value">156</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Total Impressions</span>
-                                    <span class="info-value">1,236,000</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Total Clicks</span>
-                                    <span class="info-value">54,610</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Average CTR</span>
-                                    <span class="info-value">4.4%</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Ad Revenue</span>
-                                    <span class="info-value">SAR 85,088</span>
+                        <!-- Tab Content -->
+                        <div style="padding: 25px;">
+                            <!-- Revenue Tab -->
+                            <div id="revenue-tab" class="report-tab-content" style="display: block;">
+                                <div class="detail-page-grid">
+                                    <div style="grid-column: 1 / -1;">
+                                        <h4 style="margin-bottom: 15px; color: #333;"><i class="fas fa-chart-pie"></i> Revenue by Service Type</h4>
+                                        <div class="info-group" id="reportRevenueBreakdown">
+                                            <div class="payment-row">
+                                                <span><i class="fas fa-hotel"></i> Hotels</span>
+                                                <span><strong>SAR 1,250,000</strong></span>
+                                            </div>
+                                            <div class="payment-row">
+                                                <span><i class="fas fa-suitcase-rolling"></i> Packages</span>
+                                                <span><strong>SAR 680,000</strong></span>
+                                            </div>
+                                            <div class="payment-row">
+                                                <span><i class="fas fa-hiking"></i> Activities</span>
+                                                <span><strong>SAR 420,000</strong></span>
+                                            </div>
+                                            <div class="payment-row">
+                                                <span><i class="fas fa-utensils"></i> Restaurants</span>
+                                                <span><strong>SAR 295,000</strong></span>
+                                            </div>
+                                            <div class="payment-row">
+                                                <span><i class="fas fa-taxi"></i> Cabs</span>
+                                                <span><strong>SAR 155,000</strong></span>
+                                            </div>
+                                            <div class="payment-row total">
+                                                <span><strong>Total Revenue</strong></span>
+                                                <span><strong>SAR 2,800,000</strong></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- Vendor Performance Report -->
-                    <div class="detail-card">
-                        <div class="card-header">
-                            <h3><i class="fas fa-store"></i> Vendor Performance</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="info-group" id="reportVendorData">
-                                <div class="info-item">
-                                    <span class="info-label">Total Active Vendors</span>
-                                    <span class="info-value">342</span>
+                            <!-- Bookings Tab -->
+                            <div id="bookings-tab" class="report-tab-content" style="display: none;">
+                                <h4 style="margin-bottom: 15px; color: #333;"><i class="fas fa-calendar-alt"></i> Bookings Summary</h4>
+                                <div class="info-group" id="reportBookingsSummary">
+                                    <div class="info-item">
+                                        <span class="info-label">Total Bookings</span>
+                                        <span class="info-value">3,842</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Confirmed</span>
+                                        <span class="info-value">2,956 (76.9%)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Pending</span>
+                                        <span class="info-value">456 (11.9%)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Completed</span>
+                                        <span class="info-value">2,180 (56.7%)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Cancelled</span>
+                                        <span class="info-value">312 (8.1%)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Refunded</span>
+                                        <span class="info-value">118 (3.1%)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Avg Booking Value</span>
+                                        <span class="info-value">SAR 729</span>
+                                    </div>
                                 </div>
-                                <div class="info-item">
-                                    <span class="info-label">New Vendors (This Month)</span>
-                                    <span class="info-value">28</span>
+                            </div>
+
+                            <!-- Subscriptions Tab -->
+                            <div id="subscriptions-tab" class="report-tab-content" style="display: none;">
+                                <h4 style="margin-bottom: 15px; color: #333;"><i class="fas fa-crown"></i> Subscription Report</h4>
+                                <div class="info-group" id="reportSubscriptionData">
+                                    <div class="info-item">
+                                        <span class="info-label">Total Plans</span>
+                                        <span class="info-value">8</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Active Subscribers</span>
+                                        <span class="info-value">1,245</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">New Subscribers (This Month)</span>
+                                        <span class="info-value">156</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Subscription Revenue</span>
+                                        <span class="info-value">SAR 354,705</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Average Renewal Rate</span>
+                                        <span class="info-value">88.9%</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Average Churn Rate</span>
+                                        <span class="info-value">4.4%</span>
+                                    </div>
                                 </div>
-                                <div class="info-item">
-                                    <span class="info-label">Total Commissions Earned</span>
-                                    <span class="info-value">SAR 392,000</span>
+                            </div>
+
+                            <!-- Ads Tab -->
+                            <div id="ads-tab" class="report-tab-content" style="display: none;">
+                                <h4 style="margin-bottom: 15px; color: #333;"><i class="fas fa-ad"></i> Ads Performance Report</h4>
+                                <div class="info-group" id="reportAdsData">
+                                    <div class="info-item">
+                                        <span class="info-label">Total Ad Campaigns</span>
+                                        <span class="info-value">324</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Active Campaigns</span>
+                                        <span class="info-value">156</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Total Impressions</span>
+                                        <span class="info-value">1,236,000</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Total Clicks</span>
+                                        <span class="info-value">54,610</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Average CTR</span>
+                                        <span class="info-value">4.4%</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Ad Revenue</span>
+                                        <span class="info-value">SAR 85,088</span>
+                                    </div>
                                 </div>
-                                <div class="info-item">
-                                    <span class="info-label">Average Commission Rate</span>
-                                    <span class="info-value">14%</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Top Performing Vendor</span>
-                                    <span class="info-value">Luxury Hotels Group</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Payouts Processed</span>
-                                    <span class="info-value">SAR 2.4M</span>
+                            </div>
+
+                            <!-- Vendors Tab -->
+                            <div id="vendors-tab" class="report-tab-content" style="display: none;">
+                                <h4 style="margin-bottom: 15px; color: #333;"><i class="fas fa-store"></i> Vendor Performance</h4>
+                                <div class="info-group" id="reportVendorData">
+                                    <div class="info-item">
+                                        <span class="info-label">Total Active Vendors</span>
+                                        <span class="info-value">342</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">New Vendors (This Month)</span>
+                                        <span class="info-value">28</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Total Commissions Earned</span>
+                                        <span class="info-value">SAR 392,000</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Average Commission Rate</span>
+                                        <span class="info-value">14%</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Top Performing Vendor</span>
+                                        <span class="info-value">Luxury Hotels Group</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Payouts Processed</span>
+                                        <span class="info-value">SAR 2.4M</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

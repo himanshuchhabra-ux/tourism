@@ -90,6 +90,7 @@
                         </div>
                         <ul class="profile-dropdown-menu">
                             <li><a href="settings.html"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
                             <li class="profile-dropdown-divider"></li>
                             <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                         </ul>
@@ -223,11 +224,8 @@
                         <p class="page-subtitle">View campaign performance, billing, and vendor information</p>
                     </div>
                     <div class="page-header-right">
-                        <a href="#" class="btn btn-primary" id="editAdLink">
-                            <i class="fas fa-pen"></i> Edit Ad
-                        </a>
-                        <button class="btn btn-outline" id="pauseAdBtn">
-                            <i class="fas fa-pause"></i> Pause
+                        <button class="btn btn-success" id="approveAdBtn">
+                            <i class="fas fa-check"></i> Approve
                         </button>
                         <button class="btn btn-danger" id="rejectAdBtn">
                             <i class="fas fa-times"></i> Reject
@@ -338,6 +336,38 @@
                             </div>
                         </div>
 
+                        <!-- Ad Creative/Image -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-images"></i> Ad Creative</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="ad-creative-display" id="viewAdCreative" style="text-align: center; padding: 20px;">
+                                    <img id="viewAdImage" src="" alt="Ad Creative" style="max-width: 100%; max-height: 300px; border-radius: 4px; display: none;">
+                                    <p style="color: #999;" id="viewAdImagePlaceholder">No image available</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Approval & Rejection Reasons -->
+                        <div class="detail-card" id="viewAdApprovalSection" style="display: none;">
+                            <div class="card-header">
+                                <h3><i class="fas fa-check-circle"></i> Approval & Rejection</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group">
+                                    <div class="info-item" id="viewAdApprovalReason" style="display: none;">
+                                        <span class="info-label"><i class="fas fa-thumbs-up"></i> Approval Reason</span>
+                                        <span class="info-value" id="viewAdApprovalReasonText">-</span>
+                                    </div>
+                                    <div class="info-item" id="viewAdRejectionReason" style="display: none;">
+                                        <span class="info-label"><i class="fas fa-thumbs-down"></i> Rejection Reason</span>
+                                        <span class="info-value" id="viewAdRejectionReasonText" style="color: #e74c3c;">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Activity Timeline -->
                         <div class="detail-card">
                             <div class="card-header">
@@ -353,6 +383,29 @@
                 </div>
             </div>
         </main>
+
+        <!-- Modal Overlay (contains modal inside for flexbox centering) -->
+        <div id="modalOverlay" class="modal-overlay" style="display: none;" onclick="if(event.target === this) closeAdActionModal()">
+            <!-- Approval/Rejection Modal -->
+            <div id="adActionModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="modalTitle">Ad Approval</h2>
+                        <button class="modal-close" onclick="closeAdActionModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="adActionReason">Reason <span style="color: #e74c3c;">*</span></label>
+                            <textarea id="adActionReason" class="form-input" rows="5" placeholder="Enter your reason here..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline" onclick="closeAdActionModal()">Cancel</button>
+                        <button class="btn btn-primary" id="modalActionBtn" onclick="submitAdAction()">Proceed</button>
+                    </div>
+                </div>
+            </div>
+        
     </div>
     <script src="assets/script.js"></script>
 </body>

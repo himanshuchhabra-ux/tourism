@@ -90,6 +90,7 @@
                         </div>
                         <ul class="profile-dropdown-menu">
                             <li><a href="settings.html"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
                             <li class="profile-dropdown-divider"></li>
                             <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                         </ul>
@@ -341,8 +342,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-001" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-001" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-001" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -365,8 +365,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-002" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-002" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-002" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -389,8 +388,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-003" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-003" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-003" title="Toggle Status"><i class="fas fa-toggle-on"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -413,8 +411,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-004" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-004" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-004" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -432,13 +429,12 @@
                                 <td>Male</td>
                                 <td>18 Feb 1988</td>
                                 <td><span class="booking-count">2</span></td>
-                                <td><span class="status-badge status-blocked">Blocked</span></td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
                                 <td>May 05, 2025</td>
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-005" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-005" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-unblock" title="Unblock User"><i class="fas fa-check-circle"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-005" title="Toggle Status"><i class="fas fa-toggle-on"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -461,8 +457,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-006" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-006" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-006" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -485,8 +480,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-007" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-007" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-007" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -509,8 +503,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-008" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <a href="user-edit.html?id=USR-008" class="action-btn action-edit" title="Edit User"><i class="fas fa-pen"></i></a>
-                                        <button class="action-btn action-block" title="Block User"><i class="fas fa-ban"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-008" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
                                     </div>
                                 </td>
                             </tr>

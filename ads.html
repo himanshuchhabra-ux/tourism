@@ -90,6 +90,7 @@
                         </div>
                         <ul class="profile-dropdown-menu">
                             <li><a href="settings.html"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
                             <li class="profile-dropdown-divider"></li>
                             <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                         </ul>
@@ -220,9 +221,6 @@
                         <p class="page-subtitle">Manage ad campaigns, approve requests, configure rates, and track performance</p>
                     </div>
                     <div class="page-header-right">
-                        <a href="ad-add.html" class="btn btn-primary">
-                            <i class="fas fa-plus"></i> Create Ad
-                        </a>
                         <button class="btn btn-outline" id="exportAdsBtn">
                             <i class="fas fa-download"></i> Export
                         </button>
@@ -333,7 +331,36 @@
                 </div>
             </div>
         </main>
+
+        <!-- Modal Overlay (contains modal inside for flexbox centering) -->
+        <div id="modalOverlay" class="modal-overlay" style="display: none;" onclick="if(event.target === this) closeAdActionModal()">
+            <!-- Approval/Rejection Modal -->
+            <div id="adActionModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="modalTitle">Ad Approval</h2>
+                        <button class="modal-close" onclick="closeAdActionModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="adActionReason">Reason <span style="color: #e74c3c;">*</span></label>
+                            <textarea id="adActionReason" class="form-input" rows="5" placeholder="Enter your reason here..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline" onclick="closeAdActionModal()">Cancel</button>
+                        <button class="btn btn-primary" id="modalActionBtn" onclick="submitAdAction()">Proceed</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="assets/script.js"></script>
 </body>
 </html>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/script.js"></script>
+</body>
