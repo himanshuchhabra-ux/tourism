@@ -315,60 +315,6 @@
             <div class="filter-accordion-body" id="filterAccordionBody">
               <div class="filter-grid">
                 <div class="filter-group">
-                  <label><i class="far fa-calendar"></i> FILTER BY DAILY</label>
-                  <select class="filter-select">
-                    <option value="" disabled selected hidden>Select Day</option>
-                    <option value="monday">Monday</option>
-                    <option value="tuesday">Tuesday</option>
-                    <option value="wednesday">Wednesday</option>
-                    <option value="thursday">Thursday</option>
-                    <option value="friday">Friday</option>
-                    <option value="saturday">Saturday</option>
-                    <option value="sunday">Sunday</option>
-                  </select>
-                </div>
-                <div class="filter-group">
-                  <label><i class="far fa-calendar"></i> FILTER BY WEEKLY</label>
-                  <select class="filter-select">
-                    <option value="" disabled selected hidden>Select Week</option>
-                    <option value="week_1">Week 1</option>
-                    <option value="week_2">Week 2</option>
-                    <option value="week_3">Week 3</option>
-                    <option value="week_4">Week 4</option>
-                  </select>
-                </div>
-                <div class="filter-group">
-                  <label><i class="far fa-calendar"></i> FILTER BY MONTHLY</label>
-                  <select class="filter-select">
-                    <option value="" disabled selected hidden>Select Month</option>
-                    <option value="jan">January</option>
-                    <option value="feb">February</option>
-                    <option value="mar">March</option>
-                    <option value="apr">April</option>
-                    <option value="may">May</option>
-                    <option value="jun">June</option>
-                    <option value="jul">July</option>
-                    <option value="aug">August</option>
-                    <option value="sep">September</option>
-                    <option value="oct">October</option>
-                    <option value="nov">November</option>
-                    <option value="dec">December</option>
-                  </select>
-                </div>
-                <div class="filter-group">
-                  <label><i class="far fa-calendar"></i> FILTER BY YEARLY</label>
-                  <select class="filter-select">
-                    <option value="" disabled selected hidden>Select Year</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                  </select>
-                </div>
-                <div class="filter-group">
                   <label><i class="far fa-calendar-check"></i> START DATE</label>
                   <input type="date" class="filter-date" placeholder="mm/dd/yyyy">
                 </div>
@@ -376,8 +322,7 @@
                   <label><i class="far fa-calendar-check"></i> END DATE</label>
                   <input type="date" class="filter-date" placeholder="mm/dd/yyyy">
                 </div>
-              </div>
-              <div class="filter-actions">
+                <div class="filter-actions">
                 <button class="btn-apply-filters">
                   <i class="far fa-check-circle"></i> Apply Filters
                 </button>
@@ -385,6 +330,8 @@
                   <i class="fas fa-redo-alt"></i> <span class="reset-text">Reset</span>
                 </button>
               </div>
+              </div>
+              
             </div>
           </div>
 
@@ -403,8 +350,6 @@
                 <span>12.5% from last month</span>
               </div>
             </div>
-
-          
           
 
             <div class="kpi-card">
@@ -627,8 +572,18 @@
             <div class="chart-card">
               <div class="chart-header">
                 <h3>Revenue Trend</h3>
-                <div class="chart-info">
-                  <span class="info-label">Last 12 months</span>
+                <div class="period-filter">
+                  <input type="radio" id="daily" name="period" class="period-input" />
+                  <label for="daily" class="period-label">Daily</label>
+                  
+                  <input type="radio" id="weekly" name="period" class="period-input" />
+                  <label for="weekly" class="period-label">Weekly</label>
+                  
+                  <input type="radio" id="monthly" name="period" class="period-input" checked />
+                  <label for="monthly" class="period-label">Monthly</label>
+                  
+                  <input type="radio" id="yearly" name="period" class="period-input" />
+                  <label for="yearly" class="period-label">Yearly</label>
                 </div>
               </div>
               <canvas id="revenueChart"></canvas>
