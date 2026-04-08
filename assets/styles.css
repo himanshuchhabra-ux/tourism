@@ -1058,7 +1058,8 @@ input, select, textarea {
 
 .dashboard-container.sidebar-collapsed .sidebar {
     width: 70px;
-    overflow: visible;
+    overflow-y: auto;
+    overflow-x: visible;
 }
 
 .dashboard-container.sidebar-collapsed .nav-item {
@@ -3244,6 +3245,7 @@ input, select, textarea {
     font-size: var(--font-size-sm);
     color: var(--text-primary);
     font-weight: 500;
+    margin-left: 14px;
 }
 
 /* Detail Stats Row */

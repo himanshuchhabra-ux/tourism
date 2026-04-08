@@ -1120,13 +1120,12 @@ function populateHotelsTable() {
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(hotel.name)}&background=667eea&color=fff&size=36" alt="${hotel.name}">
                             <div>
                                 <span class="table-user-name">${hotel.name}</span>
-                                <span class="table-user-id">${hotel.id}</span>
                             </div>
                         </div>
                     </td>
                     <td>${hotel.location}</td>
                     <td><span class="star-rating">${"★".repeat(hotel.stars)}</span></td>
-                    <td><span class="category-badge" style="background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">${hotel.category}</span></td>
+                    <td><span class="category-badge" style=" padding: 4px 8px; border-radius: 4px;">${hotel.category}</span></td>
                     <td><span class="rating-badge">${hotel.rating}/5.0</span></td>
                     <td><span class="status-badge ${statusClass}">${hotel.status.charAt(0).toUpperCase() + hotel.status.slice(1)}</span></td>
                     <td><strong>${hotel.revenue}</strong></td>
@@ -1700,7 +1699,6 @@ function populateRestaurantsTable() {
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(restaurant.name)}&background=f093fb&color=fff&size=36" alt="${restaurant.name}">
                             <div>
                                 <span class="table-user-name">${restaurant.name}</span>
-                                <span class="table-user-id">${restaurant.id}</span>
                             </div>
                         </div>
                     </td>
@@ -2521,7 +2519,6 @@ function populatePackagesTable() {
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(pkg.name)}&background=667eea&color=fff&size=36" alt="${pkg.name}">
                             <div>
                                 <span class="table-user-name">${pkg.name}</span>
-                                <span class="table-user-id">${pkg.id}</span>
                             </div>
                         </div>
                     </td>
@@ -3135,7 +3132,6 @@ function populateActivitiesTable() {
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(activity.name)}&background=f093fb&color=fff&size=36" alt="${activity.name}">
                             <div>
                                 <span class="table-user-name">${activity.name}</span>
-                                <span class="table-user-id">${activity.id}</span>
                             </div>
                         </div>
                     </td>
@@ -3703,7 +3699,6 @@ function populateCabsTable() {
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(cab.driverName)}&background=f39c12&color=fff&size=36" alt="${cab.driverName}">
                             <div>
                                 <span class="table-user-name">${cab.driverName}</span>
-                                <span class="table-user-id">${cab.id}</span>
                             </div>
                         </div>
                     </td>
@@ -4749,7 +4744,6 @@ function populateSubscriptionsTable() {
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(sub.planName)}&background=8e44ad&color=fff&size=36" alt="${sub.planName}">
                             <div>
                                 <span class="table-user-name">${sub.planName}</span>
-                                <span class="table-user-id">${sub.id}</span>
                             </div>
                         </div>
                     </td>
@@ -5266,7 +5260,6 @@ function populatePayoutsTable() {
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(payout.vendor)}&background=2c3e50&color=fff&size=36" alt="${payout.vendor}">
                             <div>
                                 <span class="table-user-name">${payout.vendor}</span>
-                                <span class="table-user-id">#${payout.vendorId}</span>
                             </div>
                         </div>
                     </td>
@@ -5829,7 +5822,6 @@ function populateAdsTable() {
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(ad.name.substring(0, 2))}&background=e74c3c&color=fff&size=36" alt="${ad.name}">
                             <div>
                                 <span class="table-user-name">${ad.name}</span>
-                                <span class="table-user-id">${ad.id}</span>
                             </div>
                         </div>
                     </td>
@@ -5838,7 +5830,6 @@ function populateAdsTable() {
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(ad.vendor)}&background=2c3e50&color=fff&size=36" alt="${ad.vendor}">
                             <div>
                                 <span class="table-user-name">${ad.vendor}</span>
-                                <span class="table-user-id">#${ad.vendorId}</span>
                             </div>
                         </div>
                     </td>
@@ -6597,7 +6588,6 @@ function populateBannersTable() {
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(banner.name.substring(0, 2))}&background=e67e22&color=fff&size=36" alt="${banner.name}">
                             <div>
                                 <span class="table-user-name">${banner.name}</span>
-                                <span class="table-user-id">${banner.id}</span>
                             </div>
                         </div>
                     </td>
@@ -10573,21 +10563,28 @@ function initializeUserManagement() {
 }
 
 function initializeUserActions() {
+  function applyUserToggleButtonState(btn, statusText) {
+    if (statusText === "Active") {
+      btn.classList.add("status-active");
+      btn.classList.remove("status-inactive");
+      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.title = "Set Inactive";
+    } else {
+      btn.classList.add("status-inactive");
+      btn.classList.remove("status-active");
+      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.title = "Set Active";
+    }
+  }
+
   // Status toggle buttons
   document
     .querySelectorAll("#usersTable .action-toggle-status")
     .forEach(function (btn) {
       const row = btn.closest("tr");
       const statusBadge = row.querySelector(".status-badge");
-      
-      // Initialize button color based on current status
-      if (statusBadge.textContent.trim() === "Active") {
-        btn.classList.add("status-active");
-        btn.classList.remove("status-inactive");
-      } else {
-        btn.classList.add("status-inactive");
-        btn.classList.remove("status-active");
-      }
+
+      applyUserToggleButtonState(btn, statusBadge.textContent.trim());
       
       btn.addEventListener("click", function () {
         const row = this.closest("tr");
@@ -10598,9 +10595,7 @@ function initializeUserActions() {
           // Toggle to Inactive
           statusBadge.textContent = "Inactive";
           statusBadge.className = "status-badge status-inactive";
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
-          this.classList.remove("status-active");
-          this.classList.add("status-inactive");
+          applyUserToggleButtonState(this, "Inactive");
           // Update user data
           if (usersData[userId]) {
             usersData[userId].status = "Inactive";
@@ -10609,9 +10604,7 @@ function initializeUserActions() {
           // Toggle to Active
           statusBadge.textContent = "Active";
           statusBadge.className = "status-badge status-active";
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
-          this.classList.remove("status-inactive");
-          this.classList.add("status-active");
+          applyUserToggleButtonState(this, "Active");
           // Update user data
           if (usersData[userId]) {
             usersData[userId].status = "Active";
