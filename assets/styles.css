@@ -2063,19 +2063,19 @@ input, select, textarea {
 .insights-section h2 {
     font-size: var(--font-size-xl);
     color: var(--text-primary);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     font-weight: 600;
 }
 
 .insights-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
 }
 
 .insight-card {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-sm);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
     border-left: 4px solid var(--primary-color);
@@ -2090,7 +2090,7 @@ input, select, textarea {
 .insight-icon {
     font-size: 2rem;
     color: var(--primary-color);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .insight-card h4 {
