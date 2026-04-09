@@ -66,8 +66,8 @@ html[data-theme="dark"] {
     
     /* Neutral Colors - Dark Mode */
     --bg-primary: #1a1a2e;
-    --bg-secondary: #16213e;
-    --bg-tertiary: #0f3460;
+    --bg-secondary: #0e253a;
+    --bg-tertiary: #1e3755;
     --text-primary: #eaeaea;
     --text-secondary: #b0b0b0;
     --text-light: #808080;
@@ -1704,7 +1704,7 @@ input, select, textarea {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #8e44ad; /* purple matches the theme */
+    color: var(--primary-color); /* purple matches the theme */
     font-weight: 600;
     font-size: var(--font-size-md);
 }
@@ -1788,7 +1788,7 @@ input, select, textarea {
 }
 
 .btn-apply-filters {
-    background: #8e44ad;
+    background: var(--primary-color);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -1802,7 +1802,7 @@ input, select, textarea {
 }
 
 .btn-apply-filters:hover {
-    background: #732d91;
+    background: var(--primary-color);
 }
 
 .btn-reset-filters {
@@ -1902,7 +1902,8 @@ input, select, textarea {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-2xl);
+    align-items: start;
+    margin-bottom: var(--spacing-2xl)
 }
 
 .chart-card {
@@ -1910,19 +1911,24 @@ input, select, textarea {
     padding: var(--spacing-lg);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
 }
 
 .chart-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 52px;
     margin-bottom: var(--spacing-lg);
 }
 
 .chart-header h3 {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     color: var(--text-primary);
     font-weight: 600;
+    margin: 0;
+    white-space: nowrap;
 }
 
 .chart-info {
@@ -1931,13 +1937,15 @@ input, select, textarea {
 }
 .chart-canvas-wrapper {
     position: relative;
-    height: 260px;
+    height: 240px;
     display: flex;
     justify-content: center;
 }
 
 .chart-canvas-wrapper canvas {
-    max-height: 260px;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none;
 }
 
 .info-label {
@@ -1951,19 +1959,19 @@ input, select, textarea {
 .stats-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-2xl);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
 }
 
 .stat-card {
     background: var(--bg-primary);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
 }
 
 .stat-header {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
 }
 
 .stat-header h3 {
@@ -1975,17 +1983,17 @@ input, select, textarea {
 .stat-content {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xs);
 }
 
 .stat-item {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
 }
 
 .stat-label {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     font-weight: 600;
     color: var(--text-primary);
 }
@@ -2004,7 +2012,7 @@ input, select, textarea {
 }
 
 .stat-number {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     color: var(--text-secondary);
     text-align: right;
 }
@@ -2012,14 +2020,14 @@ input, select, textarea {
 .subscription-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
 }
 
 .subscription-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     background-color: var(--bg-secondary);
     border-radius: 8px;
     transition: var(--transition);
@@ -2502,7 +2510,7 @@ input, select, textarea {
 }
 
 .data-table thead {
-    background: var(--bg-secondary);
+    background: #1a1a2e;
     border-bottom: 2px solid var(--border-color);
 }
 
@@ -5610,7 +5618,7 @@ html[data-theme="dark"] .perm-denied {
     gap: 0.5rem;
     align-items: center;
     background-color: var(--bg-secondary);
-    padding: 0.4rem;
+    padding: 0.3rem;
     border-radius: 8px;
 }
 
@@ -5621,7 +5629,7 @@ html[data-theme="dark"] .perm-denied {
 
 /* Style for unselected period labels */
 .period-label {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
     font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--text-secondary);
@@ -5641,7 +5649,7 @@ html[data-theme="dark"] .perm-denied {
 
 /* Style for selected period label */
 .period-input:checked + .period-label {
-    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    background: var(--primary-color);
     color: #ffffff;
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
@@ -5653,7 +5661,7 @@ html[data-theme="dark"] .period-label:hover {
 }
 
 html[data-theme="dark"] .period-input:checked + .period-label {
-    background: linear-gradient(135deg, #a569bd, #9355a8);
+    background:var(--primary-color);
     box-shadow: 0 2px 8px rgba(165, 105, 189, 0.4);
 }
 

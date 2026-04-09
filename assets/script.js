@@ -10314,7 +10314,7 @@ function initializeCharts() {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             display: true,
@@ -10371,22 +10371,25 @@ function initializeCharts() {
               "#f39c12",
               "#2980b9",
             ],
-            borderColor: "#fff",
-            borderWidth: 2,
+            borderWidth: 0,
           },
         ],
       },
       options: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
+        cutout: "52%",
+        radius: "76%",
         plugins: {
           legend: {
             position: "bottom",
             labels: {
               usePointStyle: true,
-              padding: 15,
+              padding: 12,
+              boxWidth: 10,
+              boxHeight: 10,
               font: {
-                size: 12,
+                size: 11,
                 weight: "600",
               },
             },
