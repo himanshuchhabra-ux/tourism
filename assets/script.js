@@ -29,11 +29,11 @@ function updateThemeIcon(theme) {
   if (themeToggle) {
     const icon = themeToggle.querySelector("i");
     if (theme === "dark") {
-      icon.classList.remove("fa-moon");
-      icon.classList.add("fa-sun");
+      icon.classList.remove("fa-d");
+      icon.classList.add("fa-l");
     } else {
-      icon.classList.remove("fa-sun");
-      icon.classList.add("fa-moon");
+      icon.classList.remove("fa-l");
+      icon.classList.add("fa-d");
     }
   }
 }
