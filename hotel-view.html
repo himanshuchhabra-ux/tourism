@@ -17,8 +17,7 @@
         <nav class="topbar">
             <div class="topbar-left">
                 <div class="logo">
-                    <span>Mirhal</span>
-                    <span class="logo-arabic">مِرحال</span>
+                    <img src="assets/images/logo.svg" alt="Mirhal Logo">
                 </div>
             </div>
             <div class="topbar-right">
@@ -181,18 +180,13 @@
                     <span>CMS</span>
                 </a>
                 
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+<a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
+                </a>
+                            <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -213,15 +207,7 @@
                             <a href="hotels.html"><i class="fas fa-arrow-left"></i> Back to Hotels</a>
                         </nav>
                         <h1 id="viewHotelTitle">Hotel Profile</h1>
-                        <p class="page-subtitle">View hotel details, quality metrics, and performance analytics</p>
-                    </div>
-                    <div class="page-header-right">
-                        <button class="btn btn-outline" id="approveHotelViewBtn">
-                            <i class="fas fa-check"></i> Approve
-                        </button>
-                        <button class="btn btn-danger" id="disableHotelViewBtn">
-                            <i class="fas fa-toggle-off"></i> Disable
-                        </button>
+                        <p class="page-subtitle">View hotel details and performance analytics</p>
                     </div>
                 </div>
 
@@ -256,10 +242,6 @@
                                     <span class="info-value" id="viewHotelRating">4.8/5.0</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-user-tie"></i> Owner</span>
-                                    <span class="info-value" id="viewHotelOwner">Luxury Hotels Group</span>
-                                </div>
-                                <div class="info-item">
                                     <span class="info-label"><i class="fas fa-phone"></i> Contact</span>
                                     <span class="info-value" id="viewHotelContact">+966-11-555-0101</span>
                                 </div>
@@ -274,10 +256,6 @@
                                 <div class="info-item">
                                     <span class="info-label"><i class="fas fa-align-left"></i> About</span>
                                     <span class="info-value" id="viewHotelAbout">Luxury 5-star hotel offering world-class amenities, fine dining, and exceptional guest services in the heart of Riyadh's business district.</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-calendar"></i> Joined</span>
-                                    <span class="info-value" id="viewHotelJoined">Jan 15, 2023</span>
                                 </div>
                             </div>
                         </div>
@@ -308,33 +286,6 @@
                             </div>
                         </div>
 
-                        <!-- Quality Metrics -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-gauge"></i> Quality Metrics</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="metrics-grid">
-                                    <div class="metric-item">
-                                        <span class="metric-label">Overall Quality Score</span>
-                                        <span class="metric-value quality-excellent" id="viewHotelQuality">92%</span>
-                                    </div>
-                                    <div class="metric-item">
-                                        <span class="metric-label">Cleanliness</span>
-                                        <span class="metric-value" id="viewHotelCleanliness">4.9/5.0</span>
-                                    </div>
-                                    <div class="metric-item">
-                                        <span class="metric-label">Service</span>
-                                        <span class="metric-value" id="viewHotelService">4.7/5.0</span>
-                                    </div>
-                                    <div class="metric-item">
-                                        <span class="metric-label">Facilities</span>
-                                        <span class="metric-value" id="viewHotelFacilities">4.8/5.0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Amenities -->
                         <div class="detail-card">
                             <div class="card-header">
@@ -342,7 +293,18 @@
                             </div>
                             <div class="card-body">
                                 <div class="amenities-list" id="viewHotelAmenities">
-                                    <!-- Will be populated by JavaScript -->
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Free WiFi</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Swimming Pool</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Fitness Center</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Room Service</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Restaurant</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Free Parking</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Airport Shuttle</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Air Conditioning</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Spa & Wellness</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Business Center</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Laundry Service</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>24-Hour Reception</span></div>
                                 </div>
                             </div>
                         </div>
@@ -353,72 +315,146 @@
                                 <h3><i class="fas fa-bed"></i> Room Types & Pricing</h3>
                             </div>
                             <div class="card-body">
-                                <div id="viewHotelRooms">
-                                    <!-- Will be populated by JavaScript -->
+                                <div id="viewHotelRooms" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:20px;">
+                                    <!-- Standard Room -->
+                                    <div style="border:1px solid var(--border-color, #e5e7eb); border-radius:10px; overflow:hidden;">
+                                        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=220&fit=crop" alt="Standard Room" style="width:100%; height:180px; object-fit:cover;">
+                                        <div style="padding:14px;">
+                                            <h4 style="margin:0 0 8px; font-size:15px;">Standard Room</h4>
+                                            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-wifi" style="margin-right:4px;"></i>WiFi</span>
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-snowflake" style="margin-right:4px;"></i>AC</span>
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-tv" style="margin-right:4px;"></i>TV</span>
+                                            </div>
+                                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                                <span style="font-size:13px; color:var(--text-secondary,#6b7280);">Per Night</span>
+                                                <span style="font-weight:700; color:#A95631; font-size:16px;">SAR 350</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Deluxe Room -->
+                                    <div style="border:1px solid var(--border-color, #e5e7eb); border-radius:10px; overflow:hidden;">
+                                        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=400&h=220&fit=crop" alt="Deluxe Room" style="width:100%; height:180px; object-fit:cover;">
+                                        <div style="padding:14px;">
+                                            <h4 style="margin:0 0 8px; font-size:15px;">Deluxe Room</h4>
+                                            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-wifi" style="margin-right:4px;"></i>WiFi</span>
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-snowflake" style="margin-right:4px;"></i>AC</span>
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-bath" style="margin-right:4px;"></i>Jacuzzi</span>
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-mountain" style="margin-right:4px;"></i>View</span>
+                                            </div>
+                                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                                <span style="font-size:13px; color:var(--text-secondary,#6b7280);">Per Night</span>
+                                                <span style="font-weight:700; color:#A95631; font-size:16px;">SAR 550</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Junior Suite -->
+                                    <div style="border:1px solid var(--border-color, #e5e7eb); border-radius:10px; overflow:hidden;">
+                                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=220&fit=crop" alt="Junior Suite" style="width:100%; height:180px; object-fit:cover;">
+                                        <div style="padding:14px;">
+                                            <h4 style="margin:0 0 8px; font-size:15px;">Junior Suite</h4>
+                                            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-wifi" style="margin-right:4px;"></i>WiFi</span>
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-couch" style="margin-right:4px;"></i>Lounge</span>
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-utensils" style="margin-right:4px;"></i>Breakfast</span>
+                                            </div>
+                                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                                <span style="font-size:13px; color:var(--text-secondary,#6b7280);">Per Night</span>
+                                                <span style="font-weight:700; color:#A95631; font-size:16px;">SAR 850</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Presidential Suite -->
+                                    <div style="border:1px solid var(--border-color, #e5e7eb); border-radius:10px; overflow:hidden;">
+                                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=220&fit=crop" alt="Presidential Suite" style="width:100%; height:180px; object-fit:cover;">
+                                        <div style="padding:14px;">
+                                            <h4 style="margin:0 0 8px; font-size:15px;">Presidential Suite</h4>
+                                            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-wifi" style="margin-right:4px;"></i>WiFi</span>
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-hot-tub" style="margin-right:4px;"></i>Spa</span>
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-concierge-bell" style="margin-right:4px;"></i>Butler</span>
+                                                <span style="font-size:12px; background:var(--bg-secondary,#f3f4f6); padding:3px 8px; border-radius:20px;"><i class="fas fa-utensils" style="margin-right:4px;"></i>Dining</span>
+                                            </div>
+                                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                                <span style="font-size:13px; color:var(--text-secondary,#6b7280);">Per Night</span>
+                                                <span style="font-weight:700; color:#A95631; font-size:16px;">SAR 2,200</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Performance Analytics -->
+                        <!-- Policies -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-chart-bar"></i> Performance Analytics</h3>
+                                <h3><i class="fas fa-clipboard-list"></i> Policies</h3>
                             </div>
                             <div class="card-body">
-                                <div class="stats-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-label">Total Bookings</span>
-                                        <span class="stat-value" id="viewHotelBookings">1,248</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 12%
-                                        </span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Monthly Revenue</span>
-                                        <span class="stat-value" id="viewHotelRevenue">SAR 450K</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 8%
-                                        </span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Occupancy Rate</span>
-                                        <span class="stat-value" id="viewHotelOccupancy">85%</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 5%
-                                        </span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Avg. Stay Duration</span>
-                                        <span class="stat-value" id="viewHotelDuration">3.2 days</span>
-                                        <span class="stat-change neutral">
-                                            <i class="fas fa-minus"></i> 0%
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Policy Compliance -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-shield-alt"></i> Policy Compliance</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="compliance-list" id="viewHotelCompliance">
-                                    <!-- Will be populated by JavaScript -->
+                                <h4 style="margin-bottom: 10px;"><i class="fas fa-hotel"></i> Hotel Policies</h4>
+                                <div class="info-group" style="margin-bottom: 16px;">
+                                    <div class="info-item">
+                                        <span class="info-label">Check-in Time</span>
+                                        <span class="info-value">2:00 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Check-out Time</span>
+                                        <span class="info-value">12:00 PM (Noon)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Pets</span>
+                                        <span class="info-value">Not allowed</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Smoking</span>
+                                        <span class="info-value">Designated areas only</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Extra Beds</span>
+                                        <span class="info-value">Available on request (SAR 80/night)</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Activity Log -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-history"></i> Recent Activity</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="activity-log" id="viewHotelActivity">
-                                    <!-- Will be populated by JavaScript -->
+                                <h4 style="margin-bottom: 10px;"><i class="fas fa-undo-alt"></i> Cancellation Policy</h4>
+                                <div class="info-group" style="margin-bottom: 16px;">
+                                    <div class="info-item">
+                                        <span class="info-label">Free Cancellation</span>
+                                        <span class="info-value">Up to 48 hours before check-in</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Late Cancellation</span>
+                                        <span class="info-value">1 night charge within 48 hours</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">No Show</span>
+                                        <span class="info-value">Full booking amount charged</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Refund Processing</span>
+                                        <span class="info-value">5–7 business days</span>
+                                    </div>
                                 </div>
+
+                                <h4 style="margin-bottom: 10px;"><i class="fas fa-wheelchair"></i> Accessibility</h4>
+                                <div style="margin-bottom: 16px;">
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Wheelchair accessible entrance</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Elevator access to all floors</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Accessible parking spaces</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Roll-in shower available</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Braille signage throughout</span></div>
+                                </div>
+
+                                <h4 style="margin-bottom: 10px;"><i class="fas fa-exclamation-triangle"></i> Important Information</h4>
+                                <div>
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>No parties or events in rooms</span></div>
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Outside food & beverages not permitted in dining areas</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Valid government ID required at check-in</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Credit card hold of SAR 500 required on arrival</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Early check-in subject to availability (fee may apply)</span></div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -429,3 +465,6 @@
     <script src="assets/script.js"></script>
 </body>
 </html>
+
+
+

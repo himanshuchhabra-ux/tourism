@@ -17,8 +17,7 @@
         <nav class="topbar">
             <div class="topbar-left">
                 <div class="logo">
-                    <span>Mirhal</span>
-                    <span class="logo-arabic">مِرحال</span>
+                    <img src="assets/images/logo.svg" alt="Mirhal Logo">
                 </div>
             </div>
             <div class="topbar-right">
@@ -181,18 +180,13 @@
                     <span>CMS</span>
                 </a>
                 
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+<a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
+                </a>
+                            <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -222,8 +216,8 @@
                         <button class="btn btn-outline" id="viewDocumentsBtn">
                             <i class="fas fa-file-alt"></i> Documents
                         </button>
-                        <button class="btn btn-danger" id="disableVendorViewBtn">
-                            <i class="fas fa-toggle-off"></i> Disable Vendor
+                        <button class="btn btn-outline" id="disableVendorViewBtn">
+                            <img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"> Enable Vendor
                         </button>
                     </div>
                 </div>
@@ -349,14 +343,7 @@
                             </div>
                             <div class="detail-card-body">
                                 <div class="vendor-performance-grid">
-                                    <div class="performance-item">
-                                        <span class="performance-label">Response Time</span>
-                                        <span class="performance-value" id="viewVendorResponseTime">2.3 hours</span>
-                                    </div>
-                                    <div class="performance-item">
-                                        <span class="performance-label">Cancellation Rate</span>
-                                        <span class="performance-value" id="viewVendorCancelRate">1.8%</span>
-                                    </div>
+                                    
                                     <div class="performance-item">
                                         <span class="performance-label">Payout Schedule</span>
                                         <span class="performance-value" id="viewVendorPayout">Monthly</span>
@@ -369,39 +356,63 @@
                             </div>
                         </div>
 
-                        <!-- Business Documents -->
+                        <!-- Vendor Documents & Details -->
                         <div class="detail-card">
                             <div class="detail-card-header">
-                                <h3><i class="fas fa-file-alt"></i> Business Documents</h3>
+                                <h3><i class="fas fa-file-alt"></i> Vendor Documents & Details</h3>
                             </div>
                             <div class="detail-card-body">
                                 <div class="document-grid">
                                     <div class="document-card">
                                         <div class="document-icon"><i class="fas fa-id-card"></i></div>
                                         <div class="document-info">
-                                            <span class="document-name">Commercial Registration</span>
+                                            <span class="document-name">National ID</span>
                                             <span class="document-status verified"><i class="fas fa-check-circle"></i> Verified</span>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-outline document-view-btn" title="View National ID"><i class="fas fa-eye"></i> View</a>
+                                    </div>
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-image"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">Company Logo</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Uploaded</span>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-outline document-view-btn" title="View Company Logo"><i class="fas fa-eye"></i> View</a>
+                                    </div>
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-building"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">Company Name</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Al Faisaliah Hotel Group</span>
                                         </div>
                                     </div>
                                     <div class="document-card">
-                                        <div class="document-icon"><i class="fas fa-file-invoice"></i></div>
+                                        <div class="document-icon"><i class="fas fa-th-large"></i></div>
                                         <div class="document-info">
-                                            <span class="document-name">Tax Certificate</span>
-                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Verified</span>
-                                        </div>
-                                    </div>
-                                    <div class="document-card">
-                                        <div class="document-icon"><i class="fas fa-shield-alt"></i></div>
-                                        <div class="document-info">
-                                            <span class="document-name">Insurance Policy</span>
-                                            <span class="document-status pending-doc"><i class="fas fa-clock"></i> Pending Review</span>
+                                            <span class="document-name">Category Type</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Hotel & Restaurant</span>
                                         </div>
                                     </div>
                                     <div class="document-card">
                                         <div class="document-icon"><i class="fas fa-certificate"></i></div>
                                         <div class="document-info">
-                                            <span class="document-name">Tourism License</span>
+                                            <span class="document-name">Business Certificate</span>
                                             <span class="document-status verified"><i class="fas fa-check-circle"></i> Verified</span>
+                                        </div>
+                                        <a href="#" class="btn btn-sm btn-outline document-view-btn" title="View Business Certificate"><i class="fas fa-eye"></i> View</a>
+                                    </div>
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-university"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">Bank Account / IBAN</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> SA44 2000 0001 2345 6789 0123</span>
+                                        </div>
+                                    </div>
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">Business Address</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> King Fahd Rd, Al Olaya, Riyadh</span>
                                         </div>
                                     </div>
                                 </div>
@@ -474,51 +485,7 @@
                             </div>
                         </div>
 
-                        <!-- Activity Log -->
-                        <div class="detail-card">
-                            <div class="detail-card-header">
-                                <h3><i class="fas fa-stream"></i> Activity Log</h3>
-                            </div>
-                            <div class="detail-card-body">
-                                <div class="activity-timeline">
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot dot-green"></div>
-                                        <div class="timeline-content">
-                                            <span class="timeline-title">New booking received from Omar Farooq</span>
-                                            <span class="timeline-time">3 hours ago</span>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot dot-blue"></div>
-                                        <div class="timeline-content">
-                                            <span class="timeline-title">Payout of $18,400 processed</span>
-                                            <span class="timeline-time">Feb 28, 2026</span>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot dot-yellow"></div>
-                                        <div class="timeline-content">
-                                            <span class="timeline-title">Commission rate updated from 10% to 12%</span>
-                                            <span class="timeline-time">Feb 20, 2026</span>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot dot-green"></div>
-                                        <div class="timeline-content">
-                                            <span class="timeline-title">Insurance policy document submitted</span>
-                                            <span class="timeline-time">Feb 15, 2026</span>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot dot-purple"></div>
-                                        <div class="timeline-content">
-                                            <span class="timeline-title">Received 5-star review from Sara Abdullah</span>
-                                            <span class="timeline-time">Feb 10, 2026</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      
                     </div>
                 </div>
             </div>
@@ -528,3 +495,6 @@
     <script src="assets/script.js"></script>
 </body>
 </html>
+
+
+

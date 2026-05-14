@@ -17,8 +17,9 @@
         <nav class="topbar">
             <div class="topbar-left">
                 <div class="logo">
-                    <span>Mirhal</span>
-                    <span class="logo-arabic">مِرحال</span>
+                    <img src="assets/images/logo.svg" alt="Mirhal Logo">
+                    <!-- <span>Mirhal</span>
+                    <span class="logo-arabic">مِرحال</span> -->
                 </div>
             </div>
             <div class="topbar-right">
@@ -181,18 +182,13 @@
                     <span>CMS</span>
                 </a>
                 
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+<a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
+                </a>
+                            <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -230,7 +226,6 @@
                             <option value="all">All Status</option>
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>
-                            <option value="blocked">Blocked</option>
                         </select>
                         <select id="sortFilter" class="filter-select">
                             <option value="newest">Newest First</option>
@@ -274,7 +269,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-001" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-toggle-status" data-user-id="USR-001" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-001" title="Toggle Status"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -295,7 +290,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-002" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-toggle-status" data-user-id="USR-002" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-002" title="Toggle Status"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -316,7 +311,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-003" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-toggle-status" data-user-id="USR-003" title="Toggle Status"><i class="fas fa-toggle-on"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-003" title="Toggle Status"><img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -337,7 +332,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-004" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-toggle-status" data-user-id="USR-004" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-004" title="Toggle Status"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -358,7 +353,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-005" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-toggle-status" data-user-id="USR-005" title="Toggle Status"><i class="fas fa-toggle-on"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-005" title="Toggle Status"><img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -379,7 +374,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-006" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-toggle-status" data-user-id="USR-006" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-006" title="Toggle Status"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -400,7 +395,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-007" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-toggle-status" data-user-id="USR-007" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-007" title="Toggle Status"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -421,7 +416,7 @@
                                 <td>
                                     <div class="table-actions">
                                         <a href="user-view.html?id=USR-008" class="action-btn action-view" title="View Profile"><i class="fas fa-eye"></i></a>
-                                        <button class="action-btn action-toggle-status" data-user-id="USR-008" title="Toggle Status"><i class="fas fa-toggle-off"></i></button>
+                                        <button class="action-btn action-toggle-status" data-user-id="USR-008" title="Toggle Status"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -451,3 +446,4 @@
     <script src="assets/script.js"></script>
 </body>
 </html>
+

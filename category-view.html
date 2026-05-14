@@ -17,8 +17,7 @@
         <nav class="topbar">
             <div class="topbar-left">
                 <div class="logo">
-                    <span>Mirhal</span>
-                    <span class="logo-arabic">مِرحال</span>
+                    <img src="assets/images/logo.svg" alt="Mirhal Logo">
                 </div>
             </div>
             <div class="topbar-right">
@@ -181,18 +180,13 @@
                     <span>CMS</span>
                 </a>
                 
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+<a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
+                </a>
+                            <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -213,39 +207,38 @@
                             <a href="categories.html"><i class="fas fa-arrow-left"></i> Back to Categories</a>
                         </nav>
                         <h1 id="viewCategoryTitle">Category Details</h1>
-                        <p class="page-subtitle">View category properties, listings, rules, and guidelines</p>
+                        <p class="page-subtitle">View category details and sub-categories</p>
                     </div>
                     <div class="page-header-right">
                         <a href="#" class="btn btn-primary" id="editCategoryLink">
                             <i class="fas fa-pen"></i> Edit Category
                         </a>
-                        <button class="btn btn-outline" id="archiveCategoryBtn">
-                            <i class="fas fa-archive"></i> Archive
-                        </button>
-                        <button class="btn btn-danger" id="deleteCategoryBtn">
-                            <i class="fas fa-trash"></i> Delete Category
-                        </button>
                     </div>
                 </div>
 
-                <!-- Category Profile -->
                 <div class="detail-page-grid">
-                    <!-- Left Column: Category Info -->
                     <div class="detail-card profile-card">
                         <div class="profile-card-header">
                             <div class="category-icon-large gradient-purple" id="viewCategoryIconWrap">
                                 <i class="fas fa-hotel" id="viewCategoryIcon"></i>
                             </div>
-                            <h2 id="viewCategoryName">Hotels</h2>
+                            <h2 id="viewCategoryName">Hotel</h2>
                             <span class="status-badge status-active" id="viewCategoryStatus">Active</span>
                             <p class="profile-card-id" id="viewCategoryId">#CAT-001</p>
                         </div>
                         <div class="profile-card-body">
                             <div class="info-row">
+                                <div class="info-icon"><i class="fas fa-heading"></i></div>
+                                <div class="info-content">
+                                    <span class="info-label">Title</span>
+                                    <span class="info-value" id="viewCategoryTitle2">Hotels & Accommodations</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
                                 <div class="info-icon"><i class="fas fa-align-left"></i></div>
                                 <div class="info-content">
                                     <span class="info-label">Description</span>
-                                    <span class="info-value" id="viewCategoryDesc">Hotels and accommodation listings including resorts, boutique hotels, and budget stays</span>
+                                    <span class="info-value" id="viewCategoryDesc">All types of hotels and accommodation listings</span>
                                 </div>
                             </div>
                             <div class="info-row">
@@ -255,207 +248,72 @@
                                     <span class="info-value" id="viewCategoryCreated">Jan 01, 2025</span>
                                 </div>
                             </div>
-                            <div class="info-row">
-                                <div class="info-icon"><i class="fas fa-sort-numeric-up"></i></div>
-                                <div class="info-content">
-                                    <span class="info-label">Display Order</span>
-                                    <span class="info-value" id="viewCategoryOrder">1</span>
-                                </div>
-                            </div>
-                            <div class="info-row">
-                                <div class="info-icon"><i class="fas fa-eye"></i></div>
-                                <div class="info-content">
-                                    <span class="info-label">Visibility</span>
-                                    <span class="info-value" id="viewCategoryVisibility">Public</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Right Column: Stats & Details -->
                     <div class="detail-right-col">
-                        <!-- Quick Stats -->
-                        <div class="detail-stats-row">
-                            <div class="detail-stat-card">
-                                <div class="detail-stat-icon gradient-purple"><i class="fas fa-list-alt"></i></div>
-                                <div class="detail-stat-info">
-                                    <span class="detail-stat-value" id="viewCategoryListings">342</span>
-                                    <span class="detail-stat-label">Total Listings</span>
-                                </div>
-                            </div>
-                            <div class="detail-stat-card">
-                                <div class="detail-stat-icon gradient-cyan"><i class="fas fa-store"></i></div>
-                                <div class="detail-stat-info">
-                                    <span class="detail-stat-value" id="viewCategoryVendors">89</span>
-                                    <span class="detail-stat-label">Active Vendors</span>
-                                </div>
-                            </div>
-                            <div class="detail-stat-card">
-                                <div class="detail-stat-icon gradient-orange"><i class="fas fa-dollar-sign"></i></div>
-                                <div class="detail-stat-info">
-                                    <span class="detail-stat-value" id="viewCategoryRevenue">$1.2M</span>
-                                    <span class="detail-stat-label">Total Revenue</span>
-                                </div>
-                            </div>
-                            <div class="detail-stat-card">
-                                <div class="detail-stat-icon gradient-pink"><i class="fas fa-ticket"></i></div>
-                                <div class="detail-stat-info">
-                                    <span class="detail-stat-value" id="viewCategoryBookings">4,567</span>
-                                    <span class="detail-stat-label">Total Bookings</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Listing Structure -->
                         <div class="detail-card">
                             <div class="detail-card-header">
-                                <h3><i class="fas fa-sitemap"></i> Listing Structure</h3>
+                                <h3><i class="fas fa-sitemap"></i> Sub-Categories</h3>
+                                <button class="btn btn-primary btn-sm" id="addSubCategoryBtn">
+                                    <i class="fas fa-plus"></i> Add Sub-Category
+                                </button>
                             </div>
                             <div class="detail-card-body">
-                                <div class="vendor-performance-grid">
-                                    <div class="performance-item">
-                                        <span class="performance-label">Required Fields</span>
-                                        <span class="performance-value" id="viewCategoryReqFields">12</span>
-                                    </div>
-                                    <div class="performance-item">
-                                        <span class="performance-label">Optional Fields</span>
-                                        <span class="performance-value" id="viewCategoryOptFields">8</span>
-                                    </div>
-                                    <div class="performance-item">
-                                        <span class="performance-label">Photo Limit</span>
-                                        <span class="performance-value" id="viewCategoryPhotoLimit">20 photos</span>
-                                    </div>
-                                    <div class="performance-item">
-                                        <span class="performance-label">Price Model</span>
-                                        <span class="performance-value" id="viewCategoryPriceModel">Per Night</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Category Rules & Guidelines -->
-                        <div class="detail-card">
-                            <div class="detail-card-header">
-                                <h3><i class="fas fa-gavel"></i> Rules & Guidelines</h3>
-                            </div>
-                            <div class="detail-card-body">
-                                <div class="rules-list">
-                                    <div class="rule-item">
-                                        <div class="rule-icon"><i class="fas fa-check-circle"></i></div>
-                                        <div class="rule-content">
-                                            <span class="rule-title">Minimum Rating Requirement</span>
-                                            <span class="rule-desc">Vendors must maintain a minimum 3.5 star rating to remain listed</span>
+                                <div class="document-grid">
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-star"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">4-Star Hotels</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Active</span>
+                                        </div>
+                                        <div class="sub-category-actions">
+                                            <button class="action-btn action-edit" title="Edit"><i class="fas fa-pen"></i></button>
+                                            <button class="action-btn action-toggle-status" title="Disable"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                         </div>
                                     </div>
-                                    <div class="rule-item">
-                                        <div class="rule-icon"><i class="fas fa-check-circle"></i></div>
-                                        <div class="rule-content">
-                                            <span class="rule-title">Photo Quality Standards</span>
-                                            <span class="rule-desc">All listing photos must be minimum 1200x800px resolution, professionally taken</span>
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-building"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">Furnished Apartments</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Active</span>
+                                        </div>
+                                        <div class="sub-category-actions">
+                                            <button class="action-btn action-edit" title="Edit"><i class="fas fa-pen"></i></button>
+                                            <button class="action-btn action-toggle-status" title="Disable"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                         </div>
                                     </div>
-                                    <div class="rule-item">
-                                        <div class="rule-icon"><i class="fas fa-check-circle"></i></div>
-                                        <div class="rule-content">
-                                            <span class="rule-title">Pricing Transparency</span>
-                                            <span class="rule-desc">All prices must include applicable taxes and service charges upfront</span>
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-gem"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">Boutique Hotels</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Active</span>
+                                        </div>
+                                        <div class="sub-category-actions">
+                                            <button class="action-btn action-edit" title="Edit"><i class="fas fa-pen"></i></button>
+                                            <button class="action-btn action-toggle-status" title="Disable"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                         </div>
                                     </div>
-                                    <div class="rule-item">
-                                        <div class="rule-icon"><i class="fas fa-check-circle"></i></div>
-                                        <div class="rule-content">
-                                            <span class="rule-title">Response Time SLA</span>
-                                            <span class="rule-desc">Booking requests must be confirmed or declined within 4 hours</span>
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-campground"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">Desert Camps</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Active</span>
+                                        </div>
+                                        <div class="sub-category-actions">
+                                            <button class="action-btn action-edit" title="Edit"><i class="fas fa-pen"></i></button>
+                                            <button class="action-btn action-toggle-status" title="Disable"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                         </div>
                                     </div>
-                                    <div class="rule-item">
-                                        <div class="rule-icon"><i class="fas fa-check-circle"></i></div>
-                                        <div class="rule-content">
-                                            <span class="rule-title">Cancellation Policy Required</span>
-                                            <span class="rule-desc">Each listing must define a clear cancellation and refund policy</span>
+                                    <div class="document-card">
+                                        <div class="document-icon"><i class="fas fa-crown"></i></div>
+                                        <div class="document-info">
+                                            <span class="document-name">5-Star Hotels</span>
+                                            <span class="document-status verified"><i class="fas fa-check-circle"></i> Active</span>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Top Vendors in Category -->
-                        <div class="detail-card">
-                            <div class="detail-card-header">
-                                <h3><i class="fas fa-trophy"></i> Top Vendors</h3>
-                            </div>
-                            <div class="detail-card-body">
-                                <div class="booking-list">
-                                    <div class="booking-item">
-                                        <div class="booking-item-icon gradient-purple"><i class="fas fa-store"></i></div>
-                                        <div class="booking-item-info">
-                                            <span class="booking-item-title">Al Faisaliah Hotel</span>
-                                            <span class="booking-item-date">1,247 bookings • 4.8 rating</span>
-                                        </div>
-                                        <div class="booking-item-right">
-                                            <span class="status-badge status-approved">Approved</span>
-                                            <span class="booking-item-price">$245K</span>
-                                        </div>
-                                    </div>
-                                    <div class="booking-item">
-                                        <div class="booking-item-icon gradient-orange"><i class="fas fa-store"></i></div>
-                                        <div class="booking-item-info">
-                                            <span class="booking-item-title">Red Sea Resort</span>
-                                            <span class="booking-item-date">1,892 bookings • 4.9 rating</span>
-                                        </div>
-                                        <div class="booking-item-right">
-                                            <span class="status-badge status-approved">Approved</span>
-                                            <span class="booking-item-price">$312K</span>
-                                        </div>
-                                    </div>
-                                    <div class="booking-item">
-                                        <div class="booking-item-icon gradient-cyan"><i class="fas fa-store"></i></div>
-                                        <div class="booking-item-info">
-                                            <span class="booking-item-title">Riyadh Grand Hotel</span>
-                                            <span class="booking-item-date">943 bookings • 3.9 rating</span>
-                                        </div>
-                                        <div class="booking-item-right">
-                                            <span class="status-badge status-disabled">Disabled</span>
-                                            <span class="booking-item-price">$156K</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Activity Log -->
-                        <div class="detail-card">
-                            <div class="detail-card-header">
-                                <h3><i class="fas fa-stream"></i> Activity Log</h3>
-                            </div>
-                            <div class="detail-card-body">
-                                <div class="activity-timeline">
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot dot-green"></div>
-                                        <div class="timeline-content">
-                                            <span class="timeline-title">New vendor "Luxury Suites Jeddah" added to category</span>
-                                            <span class="timeline-time">5 hours ago</span>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot dot-blue"></div>
-                                        <div class="timeline-content">
-                                            <span class="timeline-title">Category rules updated — Response time SLA added</span>
-                                            <span class="timeline-time">Mar 01, 2026</span>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot dot-yellow"></div>
-                                        <div class="timeline-content">
-                                            <span class="timeline-title">Photo quality standards enforced for all listings</span>
-                                            <span class="timeline-time">Feb 25, 2026</span>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot dot-purple"></div>
-                                        <div class="timeline-content">
-                                            <span class="timeline-title">Category reached 300+ active listings milestone</span>
-                                            <span class="timeline-time">Feb 15, 2026</span>
+                                        <div class="sub-category-actions">
+                                            <button class="action-btn action-edit" title="Edit"><i class="fas fa-pen"></i></button>
+                                            <button class="action-btn action-toggle-status" title="Disable"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
                                         </div>
                                     </div>
                                 </div>
@@ -467,6 +325,115 @@
         </main>
     </div>
 
+    <!-- Sub-Category Modal -->
+    <div id="subCategoryModalOverlay" class="modal-overlay" style="display: none;" onclick="if(event.target === this) closeSubCategoryModal()">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="subCategoryModalTitle"><i class="fas fa-plus-circle"></i> Add Sub-Category</h2>
+                <button class="modal-close" onclick="closeSubCategoryModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="subCategoryForm">
+                    <div class="form-group">
+                        <label for="subCategoryName">Sub-Category Name <span style="color: #e74c3c;">*</span></label>
+                        <input type="text" id="subCategoryName" class="form-input" placeholder="Enter sub-category name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subCategoryDesc">Description</label>
+                        <textarea id="subCategoryDesc" class="form-input form-textarea" rows="3" placeholder="Enter description (optional)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="subCategoryStatus">Status</label>
+                        <select id="subCategoryStatus" class="form-input">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeSubCategoryModal()">Cancel</button>
+                <button class="btn btn-primary" id="subCategorySubmitBtn" onclick="saveSubCategory()">
+                    <i class="fas fa-plus-circle"></i> Add Sub-Category
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/script.js"></script>
+    <script>
+        // Sub-Category Modal Logic
+        let editingSubCategory = null;
+
+        function openAddSubCategoryModal() {
+            editingSubCategory = null;
+            document.getElementById('subCategoryModalTitle').innerHTML = '<i class="fas fa-plus-circle"></i> Add Sub-Category';
+            document.getElementById('subCategorySubmitBtn').innerHTML = '<i class="fas fa-plus-circle"></i> Add Sub-Category';
+            document.getElementById('subCategoryName').value = '';
+            document.getElementById('subCategoryDesc').value = '';
+            document.getElementById('subCategoryStatus').value = 'active';
+            document.getElementById('subCategoryModalOverlay').style.display = 'flex';
+        }
+
+        function openEditSubCategoryModal(card) {
+            editingSubCategory = card;
+            const name = card.querySelector('.document-name').textContent;
+            document.getElementById('subCategoryModalTitle').innerHTML = '<i class="fas fa-pen"></i> Edit Sub-Category';
+            document.getElementById('subCategorySubmitBtn').innerHTML = '<i class="fas fa-save"></i> Save Changes';
+            document.getElementById('subCategoryName').value = name;
+            document.getElementById('subCategoryDesc').value = '';
+            document.getElementById('subCategoryStatus').value = 'active';
+            document.getElementById('subCategoryModalOverlay').style.display = 'flex';
+        }
+
+        function closeSubCategoryModal() {
+            document.getElementById('subCategoryModalOverlay').style.display = 'none';
+            editingSubCategory = null;
+        }
+
+        function saveSubCategory() {
+            const name = document.getElementById('subCategoryName').value.trim();
+            if (!name) {
+                alert('Please enter a sub-category name.');
+                return;
+            }
+
+            if (editingSubCategory) {
+                // Update existing sub-category name
+                editingSubCategory.querySelector('.document-name').textContent = name;
+            } else {
+                // Add new sub-category card
+                const grid = document.querySelector('.document-grid');
+                const newCard = document.createElement('div');
+                newCard.className = 'document-card';
+                newCard.innerHTML = `
+                    <div class="document-icon"><i class="fas fa-tag"></i></div>
+                    <div class="document-info">
+                        <span class="document-name">${name}</span>
+                        <span class="document-status verified"><i class="fas fa-check-circle"></i> Active</span>
+                    </div>
+                    <div class="sub-category-actions">
+                        <button class="action-btn action-edit" title="Edit" onclick="openEditSubCategoryModal(this.closest('.document-card'))"><i class="fas fa-pen"></i></button>
+                        <button class="action-btn action-toggle-status" title="Disable"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>
+                    </div>
+                `;
+                grid.appendChild(newCard);
+            }
+
+            closeSubCategoryModal();
+        }
+
+        // Bind Add button
+        document.getElementById('addSubCategoryBtn').addEventListener('click', openAddSubCategoryModal);
+
+        // Bind Edit buttons
+        document.querySelectorAll('.sub-category-actions .action-edit').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                openEditSubCategoryModal(this.closest('.document-card'));
+            });
+        });
+    </script>
 </body>
 </html>
+
+

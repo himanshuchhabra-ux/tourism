@@ -17,8 +17,7 @@
         <nav class="topbar">
             <div class="topbar-left">
                 <div class="logo">
-                    <span>Mirhal</span>
-                    <span class="logo-arabic">مِرحال</span>
+                    <img src="assets/images/logo.svg" alt="Mirhal Logo">
                 </div>
             </div>
             <div class="topbar-right">
@@ -181,18 +180,13 @@
                     <span>CMS</span>
                 </a>
                 
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+<a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
+                </a>
+                            <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -210,12 +204,75 @@
                 <div class="page-header">
                     <div class="page-header-left">
                         <h1>Ads Management</h1>
-                        <p class="page-subtitle">Manage ad campaigns, approve requests, configure rates, and track performance</p>
+                        <p class="page-subtitle">Review, approve, or reject ad requests submitted by users</p>
                     </div>
                     <div class="page-header-right">
                         <button class="btn btn-outline" id="exportAdsBtn">
                             <i class="fas fa-download"></i> Export
                         </button>
+                    </div>
+                </div>
+
+                <!-- Ad Statistics Cards -->
+                <section class="kpi-section" style="margin-bottom: 1.5rem;">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>Total Ad Revenue</h3>
+                            <div class="kpi-icon gradient-orange">
+                                <i class="fas fa-sack-dollar"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value" id="adTotalRevenue">SAR 0</div>
+                        <div class="kpi-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>From all advertisements</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>Active Advertisements</h3>
+                            <div class="kpi-icon gradient-mint">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value" id="adActiveCount">0</div>
+                        <div class="kpi-change neutral">
+                            <i class="fas fa-circle-check"></i>
+                            <span>Currently running</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <h3>Pending Ad Approvals</h3>
+                            <div class="kpi-icon gradient-purple">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="kpi-value" id="adPendingCount">0</div>
+                        <div class="kpi-change neutral">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>Awaiting review</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ad Hourly Rate Setting -->
+                <div class="detail-card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                        <h3><i class="fas fa-money-bill-wave"></i> Ad Hourly Rate (Price per Hour)</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                            <div class="form-group" style="margin-bottom: 0; flex: 0 0 auto;">
+                                <label for="adHourlyRate" style="margin-bottom: 4px; font-weight: 600;">Hourly Rate (SAR)</label>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <input type="number" id="adHourlyRate" class="form-input" value="15" min="1" step="1" style="width: 150px;">
+                                    <button class="btn btn-primary" id="saveAdRateBtn">
+                                        <i class="fas fa-save"></i> Save Rate
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -242,6 +299,11 @@
                             <option value="sponsored">Sponsored</option>
                             <option value="popup">Pop-up</option>
                         </select>
+                        <select id="adProviderTypeFilter" class="filter-select">
+                            <option value="all">All Providers</option>
+                            <option value="vendor">Vendor</option>
+                            <option value="service-provider">Service Provider</option>
+                        </select>
                     </div>
                 </div>
 
@@ -250,13 +312,11 @@
                     <table class="data-table" id="adsTable">
                         <thead>
                             <tr>
-                                <th>Ad Campaign</th>
-                                <th>Vendor</th>
+                                <th>Ad Title</th>
+                                <th>Name</th>
                                 <th>Type</th>
                                 <th>Duration</th>
-                                <th>Rate/hr</th>
-                                <th>Impressions</th>
-                                <th>Revenue</th>
+                                <th>Pricing</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -269,6 +329,7 @@
             </div>
         </main>
 
+
         <!-- Modal Overlay (contains modal inside for flexbox centering) -->
         <div id="modalOverlay" class="modal-overlay" style="display: none;" onclick="if(event.target === this) closeAdActionModal()">
             <!-- Approval/Rejection Modal -->
@@ -280,8 +341,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="adActionReason">Reason <span style="color: #e74c3c;">*</span></label>
-                            <textarea id="adActionReason" class="form-input" rows="5" placeholder="Enter your reason here..." required></textarea>
+                            <label for="adActionReason">Comments / Remarks <span style="color: #e74c3c;">*</span></label>
+                            <textarea id="adActionReason" class="form-input" rows="5" placeholder="Enter your comments/remarks here (mandatory)..." required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -301,3 +362,5 @@
     </div>
     <script src="assets/script.js"></script>
 </body>
+
+

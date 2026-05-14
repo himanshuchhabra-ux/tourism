@@ -1,4 +1,4 @@
-/* ============================================
+﻿/* ============================================
    THEME TOGGLE FUNCTIONALITY
    ============================================ */
 
@@ -29,11 +29,11 @@ function updateThemeIcon(theme) {
   if (themeToggle) {
     const icon = themeToggle.querySelector("i");
     if (theme === "dark") {
-      icon.classList.remove("fa-d");
-      icon.classList.add("fa-l");
+      icon.classList.remove("fa-sun");
+      icon.classList.add("fa-moon");
     } else {
-      icon.classList.remove("fa-l");
-      icon.classList.add("fa-d");
+      icon.classList.remove("fa-moon");
+      icon.classList.add("fa-sun");
     }
   }
 }
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Check if we're on the cab view page
-  if (document.getElementById("viewCabDriverName")) {
+  if (document.getElementById("cabSectionAirport")) {
     initializeCabViewPage();
   }
 
@@ -448,6 +448,8 @@ document.addEventListener("DOMContentLoaded", function () {
       initializeAddPageForm(form, cfg.redirect, cfg.label);
     }
   });
+
+  setupCustomFeatures();
 });
 
 // ============================================
@@ -1124,15 +1126,13 @@ function populateHotelsTable() {
                         </div>
                     </td>
                     <td>${hotel.location}</td>
-                    <td><span class="star-rating">${"★".repeat(hotel.stars)}</span></td>
                     <td><span class="category-badge" style=" padding: 4px 8px; border-radius: 4px;">${hotel.category}</span></td>
                     <td><span class="rating-badge">${hotel.rating}/5.0</span></td>
                     <td><span class="status-badge ${statusClass}">${hotel.status.charAt(0).toUpperCase() + hotel.status.slice(1)}</span></td>
-                    <td><strong>${hotel.revenue}</strong></td>
                     <td>
                         <div class="table-actions">
                             <a href="hotel-view.html?id=${hotel.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
+                            <button class="action-btn action-toggle" title="Disable"><img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"></button>
                         </div>
                     </td>
                 </tr>
@@ -1640,14 +1640,14 @@ const restaurantsData = {
   },
   "RST-008": {
     id: "RST-008",
-    name: "Global Bites Café",
+    name: "Global Bites CafÃ©",
     location: "Riyadh",
     address: "Diplomatic Quarter, Riyadh",
     cuisine: "International",
     rating: 4.2,
     capacity: 65,
     priceRange: "50-130",
-    owner: "Café Culture Co",
+    owner: "CafÃ© Culture Co",
     contact: "+966-11-555-2008",
     email: "info@globalbites.sa",
     website: "www.globalbites.sa",
@@ -1670,7 +1670,7 @@ const restaurantsData = {
     compliance: "compliant",
     license: "FL-RYD-2023-178",
     description:
-      "Casual café offering international comfort food and specialty coffees.",
+      "Casual cafÃ© offering international comfort food and specialty coffees.",
     adminNotes: "Good breakfast traffic. Consider expanding menu.",
   },
 };
@@ -1710,7 +1710,7 @@ function populateRestaurantsTable() {
                     <td>
                         <div class="table-actions">
                             <a href="restaurant-view.html?id=${restaurant.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
+                            <button class="action-btn action-toggle" title="Disable"><img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"></button>
                         </div>
                     </td>
                 </tr>
@@ -2536,7 +2536,7 @@ function populatePackagesTable() {
                     <td>
                         <div class="table-actions">
                             <a href="package-view.html?id=${pkg.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
+                            <button class="action-btn action-toggle" title="Disable"><img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"></button>
                         </div>
                     </td>
                 </tr>
@@ -2596,7 +2596,7 @@ function filterPackages() {
 function setupPackageActions() {
   document.addEventListener("click", function (e) {
     if (
-      e.target.closest(".action-block") &&
+      e.target.closest(".action-toggle") &&
       e.target.closest("#packagesTableBody")
     ) {
       const row = e.target.closest("tr");
@@ -3149,7 +3149,7 @@ function populateActivitiesTable() {
                     <td>
                         <div class="table-actions">
                             <a href="activity-view.html?id=${activity.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
+                            <button class="action-btn action-toggle" title="Disable"><img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"></button>
                         </div>
                     </td>
                 </tr>
@@ -3210,7 +3210,7 @@ function filterActivities() {
 function setupActivityActions() {
   document.addEventListener("click", function (e) {
     if (
-      e.target.closest(".action-block") &&
+      e.target.closest(".action-toggle") &&
       e.target.closest("#activitiesTableBody")
     ) {
       const row = e.target.closest("tr");
@@ -3360,317 +3360,187 @@ function populateActivityEdit(activity) {
 const cabsData = {
   "CAB-001": {
     id: "CAB-001",
-    driverName: "Ahmed Al Fahad",
-    phone: "+966-50-555-1234",
-    email: "ahmed.fahad@email.com",
-    license: "SA-DRV-2024-0815",
-    licenseExpiry: "2027-06-30",
-    vehicle: "Toyota Camry 2024",
-    make: "Toyota",
+    vehicleName: "Toyota Camry",
     model: "Camry",
+    vehicleType: "Sedan",
+    category: "airport",
     year: 2024,
-    color: "White",
-    type: "Sedan",
-    plate: "ABC 1234",
-    capacity: 4,
-    city: "Riyadh",
+    basePrice: 15,
+    pricePerKm: 2.5,
+    waitingCharge: 1.0,
+    seats: 4,
+    about: "Comfortable sedan for airport transfers with spacious trunk for luggage. Professional driver with excellent knowledge of all airport routes.",
+    amenities: ["AC", "WiFi", "Luggage Space", "Phone Charger", "Water Bottles"],
+    image: "https://ui-avatars.com/api/?name=Toyota+Camry&background=f39c12&color=fff&size=120",
+    status: "active",
     rating: 4.8,
     trips: 1248,
-    status: "active",
-    baseFare: 15,
-    perKm: 2.5,
-    perMin: 0.75,
-    commission: 18,
-    earnings: "SAR 8,500",
-    acceptance: 92,
-    cancellation: 4,
-    insuranceExpiry: "2026-12-31",
-    registrationExpiry: "2026-06-30",
-    safetyScore: 94,
-    compliance: "compliant",
-    featured: "yes",
-    schedule: {
-      days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      start: "06:00",
-      end: "22:00",
-    },
+    city: "Riyadh",
     joined: "Feb 10, 2025",
-    adminNotes: "Top-rated driver. Excellent customer feedback consistently.",
   },
   "CAB-002": {
     id: "CAB-002",
-    driverName: "Khalid Al Otaibi",
-    phone: "+966-50-555-2345",
-    email: "khalid.otaibi@email.com",
-    license: "SA-DRV-2024-1023",
-    licenseExpiry: "2027-03-15",
-    vehicle: "Hyundai Tucson 2023",
-    make: "Hyundai",
+    vehicleName: "Hyundai Tucson",
     model: "Tucson",
+    vehicleType: "SUV",
+    category: "city-tour",
     year: 2023,
-    color: "Silver",
-    type: "SUV",
-    plate: "DEF 5678",
-    capacity: 5,
-    city: "Jeddah",
+    basePrice: 20,
+    pricePerKm: 3.0,
+    waitingCharge: 1.5,
+    seats: 5,
+    about: "Spacious SUV perfect for city sightseeing tours. Enjoy comfortable rides through the vibrant streets and famous landmarks.",
+    amenities: ["AC", "WiFi", "Panoramic Sunroof", "Phone Charger", "Water Bottles", "Tour Guide Book"],
+    image: "https://ui-avatars.com/api/?name=Hyundai+Tucson&background=f39c12&color=fff&size=120",
+    status: "active",
     rating: 4.6,
     trips: 876,
-    status: "active",
-    baseFare: 20,
-    perKm: 3.0,
-    perMin: 0.85,
-    commission: 18,
-    earnings: "SAR 7,200",
-    acceptance: 88,
-    cancellation: 6,
-    insuranceExpiry: "2026-08-15",
-    registrationExpiry: "2026-11-20",
-    safetyScore: 90,
-    compliance: "compliant",
-    featured: "no",
-    schedule: {
-      days: ["Sun", "Mon", "Tue", "Wed", "Thu"],
-      start: "07:00",
-      end: "20:00",
-    },
+    city: "Jeddah",
     joined: "Mar 22, 2025",
-    adminNotes: "Reliable SUV driver. Good for airport transfers.",
+    tourHighlights: ["Old Town Jeddah (Al Balad)", "Jeddah Corniche", "King Fahd Fountain", "Floating Mosque"],
+    whatsIncluded: ["Professional driver", "Fuel charges", "Bottled water", "City map"],
+    whatsNotIncluded: ["Entry tickets", "Meals", "Personal expenses", "Tips"],
+    itinerary: "Old Town → Corniche → King Fahd Fountain → Floating Mosque → Drop-off",
+    stops: 4,
+    duration: "6 hours",
   },
   "CAB-003": {
     id: "CAB-003",
-    driverName: "Omar Hassan",
-    phone: "+966-50-555-3456",
-    email: "omar.hassan@email.com",
-    license: "SA-DRV-2023-0456",
-    licenseExpiry: "2026-09-10",
-    vehicle: "Mercedes S-Class 2024",
-    make: "Mercedes",
+    vehicleName: "Mercedes S-Class",
     model: "S-Class",
+    vehicleType: "Luxury",
+    category: "airport",
     year: 2024,
-    color: "Black",
-    type: "Luxury",
-    plate: "GHI 9012",
-    capacity: 4,
-    city: "Riyadh",
+    basePrice: 50,
+    pricePerKm: 5.0,
+    waitingCharge: 3.0,
+    seats: 4,
+    about: "Premium luxury airport transfer experience with Mercedes S-Class. Meet and greet service included with flight tracking.",
+    amenities: ["AC", "WiFi", "Leather Seats", "Premium Sound System", "Phone Charger", "Complimentary Refreshments", "Newspaper"],
+    image: "https://ui-avatars.com/api/?name=Mercedes+S-Class&background=f39c12&color=fff&size=120",
+    status: "active",
     rating: 4.9,
     trips: 542,
-    status: "active",
-    baseFare: 50,
-    perKm: 5.0,
-    perMin: 1.5,
-    commission: 15,
-    earnings: "SAR 15,800",
-    acceptance: 96,
-    cancellation: 2,
-    insuranceExpiry: "2027-01-15",
-    registrationExpiry: "2027-03-30",
-    safetyScore: 98,
-    compliance: "compliant",
-    featured: "yes",
-    schedule: {
-      days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      start: "08:00",
-      end: "23:00",
-    },
+    city: "Riyadh",
     joined: "Jan 05, 2025",
-    adminNotes:
-      "Premium luxury driver. VIP clientele. Prioritize for high-value bookings.",
   },
   "CAB-004": {
     id: "CAB-004",
-    driverName: "Saad Al Qahtani",
-    phone: "+966-50-555-4567",
-    email: "saad.qahtani@email.com",
-    license: "SA-DRV-2024-0789",
-    licenseExpiry: "2027-01-20",
-    vehicle: "Toyota Hiace 2023",
-    make: "Toyota",
+    vehicleName: "Toyota Hiace",
     model: "Hiace",
+    vehicleType: "Van",
+    category: "whole-day",
     year: 2023,
-    color: "White",
-    type: "Van",
-    plate: "JKL 3456",
-    capacity: 12,
-    city: "Mecca",
+    basePrice: 25,
+    pricePerNight: 450,
+    seats: 12,
+    duration: "12 hours",
+    about: "Large capacity van ideal for group travel and full-day excursions. Perfect for Hajj/Umrah group transfers and sightseeing.",
+    amenities: ["AC", "WiFi", "Large Luggage Space", "PA System", "First Aid Kit", "Phone Charger"],
+    image: "https://ui-avatars.com/api/?name=Toyota+Hiace&background=f39c12&color=fff&size=120",
+    status: "active",
     rating: 4.5,
     trips: 1567,
-    status: "on-trip",
-    baseFare: 25,
-    perKm: 2.0,
-    perMin: 0.6,
-    commission: 20,
-    earnings: "SAR 9,200",
-    acceptance: 94,
-    cancellation: 3,
-    insuranceExpiry: "2026-10-05",
-    registrationExpiry: "2026-07-15",
-    safetyScore: 86,
-    compliance: "compliant",
-    featured: "no",
-    schedule: {
-      days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      start: "05:00",
-      end: "23:00",
-    },
+    city: "Mecca",
     joined: "Dec 15, 2024",
-    adminNotes: "Group transport specialist. Mainly Hajj/Umrah transfers.",
+    tourHighlights: ["Flexible full-day itinerary", "Multiple stop points", "Group-friendly seating"],
+    whatsIncluded: ["Professional driver", "Fuel charges", "Bottled water", "Flexible routing"],
+    whatsNotIncluded: ["Entry tickets", "Meals", "Personal expenses", "Overnight parking fees"],
+    importantNote: "Maximum 12 passengers. Driver rest break of 1 hour included. Overtime charges apply beyond 12 hours at SAR 50/hour.",
   },
   "CAB-005": {
     id: "CAB-005",
-    driverName: "Faisal Al Harbi",
-    phone: "+966-50-555-5678",
-    email: "faisal.harbi@email.com",
-    license: "SA-DRV-2024-1156",
-    licenseExpiry: "2027-08-22",
-    vehicle: "Kia Cerato 2024",
-    make: "Kia",
+    vehicleName: "Kia Cerato",
     model: "Cerato",
+    vehicleType: "Economy",
+    category: "airport",
     year: 2024,
-    color: "Grey",
-    type: "Economy",
-    plate: "MNO 7890",
-    capacity: 4,
-    city: "Dammam",
+    basePrice: 10,
+    pricePerKm: 1.8,
+    waitingCharge: 0.5,
+    seats: 4,
+    about: "Affordable airport transfer option with a reliable economy sedan. Budget-friendly without compromising comfort.",
+    amenities: ["AC", "Phone Charger", "Luggage Space"],
+    image: "https://ui-avatars.com/api/?name=Kia+Cerato&background=f39c12&color=fff&size=120",
+    status: "active",
     rating: 4.3,
     trips: 654,
-    status: "active",
-    baseFare: 10,
-    perKm: 1.8,
-    perMin: 0.5,
-    commission: 22,
-    earnings: "SAR 4,800",
-    acceptance: 85,
-    cancellation: 8,
-    insuranceExpiry: "2026-11-30",
-    registrationExpiry: "2027-02-10",
-    safetyScore: 80,
-    compliance: "minor-issues",
-    featured: "no",
-    schedule: {
-      days: ["Sun", "Mon", "Tue", "Wed", "Thu"],
-      start: "06:00",
-      end: "18:00",
-    },
+    city: "Dammam",
     joined: "Apr 05, 2025",
-    adminNotes:
-      "Budget option. Minor vehicle cleanliness issue noted in last inspection.",
   },
   "CAB-006": {
     id: "CAB-006",
-    driverName: "Turki Al Dossari",
-    phone: "+966-50-555-6789",
-    email: "turki.dossari@email.com",
-    license: "SA-DRV-2023-0987",
-    licenseExpiry: "2026-05-18",
-    vehicle: "Nissan Patrol 2023",
-    make: "Nissan",
+    vehicleName: "Nissan Patrol",
     model: "Patrol",
+    vehicleType: "SUV",
+    category: "city-tour",
     year: 2023,
-    color: "White",
-    type: "SUV",
-    plate: "PQR 1234",
-    capacity: 7,
-    city: "Medina",
+    basePrice: 22,
+    pricePerKm: 3.2,
+    waitingCharge: 1.5,
+    seats: 7,
+    about: "Powerful SUV for city tours through Medina. Experienced driver with deep knowledge of all holy sites and historical landmarks.",
+    amenities: ["AC", "WiFi", "Spacious Interior", "Phone Charger", "Water Bottles", "Cooler Box"],
+    image: "https://ui-avatars.com/api/?name=Nissan+Patrol&background=f39c12&color=fff&size=120",
+    status: "active",
     rating: 4.7,
     trips: 923,
-    status: "active",
-    baseFare: 22,
-    perKm: 3.2,
-    perMin: 0.9,
-    commission: 17,
-    earnings: "SAR 10,100",
-    acceptance: 91,
-    cancellation: 5,
-    insuranceExpiry: "2026-09-20",
-    registrationExpiry: "2026-12-01",
-    safetyScore: 92,
-    compliance: "compliant",
-    featured: "yes",
-    schedule: {
-      days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      start: "05:00",
-      end: "22:00",
-    },
+    city: "Medina",
     joined: "Nov 20, 2024",
-    adminNotes: "Experienced Medina driver. Knows all holy sites routes.",
+    tourHighlights: ["Al-Masjid an-Nabawi", "Quba Mosque", "Mount Uhud", "Qiblatain Mosque"],
+    whatsIncluded: ["Professional driver", "Fuel charges", "Bottled water", "Historical commentary"],
+    whatsNotIncluded: ["Entry tickets", "Meals", "Personal expenses", "Tips"],
+    itinerary: "Hotel Pickup → Quba Mosque → Mount Uhud → Qiblatain Mosque → Al-Masjid an-Nabawi → Drop-off",
+    stops: 5,
+    duration: "8 hours",
   },
   "CAB-007": {
     id: "CAB-007",
-    driverName: "Nasser Al Shehri",
-    phone: "+966-50-555-7890",
-    email: "nasser.shehri@email.com",
-    license: "SA-DRV-2024-0321",
-    licenseExpiry: "2027-04-12",
-    vehicle: "Toyota Corolla 2022",
-    make: "Toyota",
+    vehicleName: "Toyota Corolla",
     model: "Corolla",
+    vehicleType: "Sedan",
+    category: "whole-day",
     year: 2022,
-    color: "Blue",
-    type: "Sedan",
-    plate: "STU 5678",
-    capacity: 4,
-    city: "Jeddah",
+    basePrice: 12,
+    pricePerNight: 300,
+    seats: 4,
+    duration: "10 hours",
+    about: "Reliable sedan available for whole-day hire. Suitable for business meetings, multiple errands, or flexible day trips.",
+    amenities: ["AC", "WiFi", "Phone Charger", "Water Bottles"],
+    image: "https://ui-avatars.com/api/?name=Toyota+Corolla&background=f39c12&color=fff&size=120",
+    status: "pending",
     rating: 4.1,
     trips: 432,
-    status: "pending",
-    baseFare: 12,
-    perKm: 2.0,
-    perMin: 0.6,
-    commission: 20,
-    earnings: "SAR 3,200",
-    acceptance: 78,
-    cancellation: 12,
-    insuranceExpiry: "2026-06-15",
-    registrationExpiry: "2026-04-30",
-    safetyScore: 72,
-    compliance: "minor-issues",
-    featured: "no",
-    schedule: {
-      days: ["Mon", "Tue", "Wed", "Thu"],
-      start: "08:00",
-      end: "16:00",
-    },
+    city: "Jeddah",
     joined: "May 10, 2025",
-    adminNotes: "Pending verification. High cancellation rate needs review.",
+    tourHighlights: ["Flexible schedule", "Multiple pickups/drop-offs", "City-wide coverage"],
+    whatsIncluded: ["Professional driver", "Fuel charges", "Bottled water"],
+    whatsNotIncluded: ["Toll charges", "Parking fees", "Meals", "Tips"],
+    importantNote: "Maximum 10 hours per day. Overtime charges apply at SAR 30/hour. Driver break of 45 minutes included.",
   },
   "CAB-008": {
     id: "CAB-008",
-    driverName: "Youssef Ibrahim",
-    phone: "+966-50-555-8901",
-    email: "youssef.ibrahim@email.com",
-    license: "SA-DRV-2024-0654",
-    licenseExpiry: "2027-07-05",
-    vehicle: "Lexus ES 2024",
-    make: "Lexus",
+    vehicleName: "Lexus ES",
     model: "ES",
+    vehicleType: "Luxury",
+    category: "whole-day",
     year: 2024,
-    color: "Pearl White",
-    type: "Luxury",
-    plate: "VWX 9012",
-    capacity: 4,
-    city: "Riyadh",
+    basePrice: 45,
+    pricePerNight: 800,
+    seats: 4,
+    duration: "12 hours",
+    about: "Premium luxury vehicle available for whole-day hire. Experience world-class comfort for business or leisure throughout the day.",
+    amenities: ["AC", "WiFi", "Leather Seats", "Premium Sound System", "Phone Charger", "Complimentary Refreshments", "Newspaper"],
+    image: "https://ui-avatars.com/api/?name=Lexus+ES&background=f39c12&color=fff&size=120",
+    status: "active",
     rating: 4.8,
     trips: 312,
-    status: "offline",
-    baseFare: 45,
-    perKm: 4.5,
-    perMin: 1.3,
-    commission: 15,
-    earnings: "SAR 11,400",
-    acceptance: 95,
-    cancellation: 3,
-    insuranceExpiry: "2027-03-20",
-    registrationExpiry: "2027-05-15",
-    safetyScore: 96,
-    compliance: "compliant",
-    featured: "yes",
-    schedule: {
-      days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
-      start: "09:00",
-      end: "21:00",
-    },
+    city: "Riyadh",
     joined: "Mar 01, 2025",
-    adminNotes: "Currently on scheduled leave. Returns next week.",
+    tourHighlights: ["VIP luxury experience", "Flexible routing", "Premium amenities throughout"],
+    whatsIncluded: ["Professional chauffeur", "Fuel charges", "Premium refreshments", "WiFi", "Newspaper"],
+    whatsNotIncluded: ["Entry tickets", "Meals", "Personal expenses", "Overnight charges"],
+    importantNote: "Maximum 12 hours per day. Includes 1-hour driver break. Overtime at SAR 80/hour. Meet and greet service included.",
   },
 };
 
@@ -3686,24 +3556,25 @@ function populateCabsTable() {
   const tbody = document.getElementById("cabsTableBody");
   if (!tbody) return;
 
+  const categoryLabels = { "airport": "Airport", "city-tour": "City Tour", "whole-day": "Whole Day" };
+
   let html = "";
   for (let id in cabsData) {
     const cab = cabsData[id];
     const statusClass = "status-" + cab.status.replace(" ", "-");
-    const typeClass = "type-" + cab.type.toLowerCase();
 
     html += `
-                <tr data-cab-id="${cab.id}" data-status="${cab.status}" data-type="${cab.type.toLowerCase()}" data-city="${cab.city.toLowerCase()}">
+                <tr data-cab-id="${cab.id}" data-status="${cab.status}" data-type="${cab.vehicleType.toLowerCase()}" data-city="${cab.city.toLowerCase()}" data-category="${cab.category}">
                     <td>
                         <div class="table-user">
-                            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(cab.driverName)}&background=f39c12&color=fff&size=36" alt="${cab.driverName}">
+                            <img src="${cab.image}" alt="${cab.vehicleName}">
                             <div>
-                                <span class="table-user-name">${cab.driverName}</span>
+                                <span class="table-user-name">${cab.vehicleName}</span>
                             </div>
                         </div>
                     </td>
-                    <td>${cab.vehicle}</td>
-                    <td><span class="type-badge ${typeClass}"><i class="fas fa-car"></i> ${cab.type}</span></td>
+                    <td>${cab.vehicleType}</td>
+                    <td>${categoryLabels[cab.category] || cab.category}</td>
                     <td>${cab.city}</td>
                     <td>
                         <div class="rating-display">
@@ -3716,7 +3587,7 @@ function populateCabsTable() {
                     <td>
                         <div class="table-actions">
                             <a href="cab-view.html?id=${cab.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>
+                            <button class="action-btn action-toggle" title="Disable"><img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"></button>
                         </div>
                     </td>
                 </tr>
@@ -3727,23 +3598,22 @@ function populateCabsTable() {
 
 function setupCabFilters() {
   const searchInput = document.getElementById("cabSearchInput");
-  const statusFilter = document.getElementById("cabStatusFilter");
   const typeFilter = document.getElementById("cabTypeFilter");
   const cityFilter = document.getElementById("cabCityFilter");
+  const categoryFilter = document.getElementById("cabCategoryFilter");
 
   if (searchInput) searchInput.addEventListener("input", filterCabs);
-  if (statusFilter) statusFilter.addEventListener("change", filterCabs);
   if (typeFilter) typeFilter.addEventListener("change", filterCabs);
   if (cityFilter) cityFilter.addEventListener("change", filterCabs);
+  if (categoryFilter) categoryFilter.addEventListener("change", filterCabs);
 }
 
 function filterCabs() {
   const searchTerm =
     document.getElementById("cabSearchInput")?.value.toLowerCase() || "";
-  const statusFilter =
-    document.getElementById("cabStatusFilter")?.value || "all";
   const typeFilter = document.getElementById("cabTypeFilter")?.value || "all";
   const cityFilter = document.getElementById("cabCityFilter")?.value || "all";
+  const categoryFilter = document.getElementById("cabCategoryFilter")?.value || "all";
 
   const rows = document.querySelectorAll("#cabsTableBody tr");
 
@@ -3751,17 +3621,18 @@ function filterCabs() {
     const cabId = row.dataset.cabId;
     const cab = cabsData[cabId];
     const matchesSearch =
-      cab.driverName.toLowerCase().includes(searchTerm) ||
-      cab.vehicle.toLowerCase().includes(searchTerm) ||
+      cab.vehicleName.toLowerCase().includes(searchTerm) ||
+      cab.model.toLowerCase().includes(searchTerm) ||
       cabId.toLowerCase().includes(searchTerm);
-    const matchesStatus = statusFilter === "all" || cab.status === statusFilter;
     const matchesType =
-      typeFilter === "all" || cab.type.toLowerCase() === typeFilter;
+      typeFilter === "all" || cab.vehicleType.toLowerCase() === typeFilter;
     const matchesCity =
       cityFilter === "all" || cab.city.toLowerCase() === cityFilter;
+    const matchesCategory =
+      categoryFilter === "all" || cab.category === categoryFilter;
 
     row.style.display =
-      matchesSearch && matchesStatus && matchesType && matchesCity
+      matchesSearch && matchesType && matchesCity && matchesCategory
         ? ""
         : "none";
   });
@@ -3770,7 +3641,7 @@ function filterCabs() {
 function setupCabActions() {
   document.addEventListener("click", function (e) {
     if (
-      e.target.closest(".action-block") &&
+      e.target.closest(".action-toggle") &&
       e.target.closest("#cabsTableBody")
     ) {
       const row = e.target.closest("tr");
@@ -3798,109 +3669,152 @@ function initializeCabViewPage() {
 }
 
 function populateCabView(cab) {
-  document.getElementById("viewCabDriverName").textContent = cab.driverName;
-  document.getElementById("viewCabId").textContent = "#" + cab.id;
-  document.getElementById("viewCabTitle").textContent =
-    cab.driverName + " - " + cab.vehicle;
-  document.getElementById("viewCabAvatar").src =
-    "https://ui-avatars.com/api/?name=" +
-    encodeURIComponent(cab.driverName) +
-    "&background=f39c12&color=fff&size=120";
+  var categoryLabels = { "airport": "Airport", "city-tour": "City Tour", "whole-day": "Whole Day" };
 
-  const statusEl = document.getElementById("viewCabStatus");
-  statusEl.textContent =
-    cab.status.charAt(0).toUpperCase() + cab.status.slice(1);
-  statusEl.className = "status-badge status-" + cab.status;
+  // Update page title
+  var titleEl = document.getElementById("viewCabTitle");
+  if (titleEl) titleEl.textContent = cab.vehicleName + " - " + (categoryLabels[cab.category] || cab.category);
 
-  document.getElementById("viewCabVehicle").textContent = cab.vehicle;
-  document.getElementById("viewCabType").textContent = cab.type;
-  document.getElementById("viewCabPlate").textContent = cab.plate;
-  document.getElementById("viewCabCity").textContent = cab.city;
-  document.getElementById("viewCabRating").textContent = cab.rating + "/5.0";
-  document.getElementById("viewCabPhone").textContent = cab.phone;
-  document.getElementById("viewCabLicense").textContent = cab.license;
-  document.getElementById("viewCabJoined").textContent = cab.joined;
+  // Hide all sections, show only the matching one
+  var sectionMap = { "airport": "cabSectionAirport", "city-tour": "cabSectionCityTour", "whole-day": "cabSectionWholeDay" };
+  ["cabSectionAirport", "cabSectionCityTour", "cabSectionWholeDay"].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  });
+  var activeSection = document.getElementById(sectionMap[cab.category]);
+  if (!activeSection) return;
+  activeSection.style.display = "";
 
-  // Vehicle details
-  document.getElementById("viewCabMakeModel").textContent =
-    cab.make + " " + cab.model;
-  document.getElementById("viewCabYear").textContent = cab.year;
-  document.getElementById("viewCabColor").textContent = cab.color;
-  document.getElementById("viewCabCapacity").textContent =
-    cab.capacity + " Passengers";
-  document.getElementById("viewCabInsurance").textContent = cab.insuranceExpiry;
-  document.getElementById("viewCabRegistration").textContent =
-    cab.registrationExpiry;
+  // Populate profile card header
+  var img = activeSection.querySelector(".profile-avatar-xl img");
+  if (img) { img.src = cab.image; img.alt = cab.vehicleName; }
 
-  // Pricing
-  document.getElementById("viewCabBaseFare").textContent =
-    "SAR " + cab.baseFare;
-  document.getElementById("viewCabPerKm").textContent = "SAR " + cab.perKm;
-  document.getElementById("viewCabPerMin").textContent = "SAR " + cab.perMin;
-  document.getElementById("viewCabSurge").textContent = "1.0x";
+  var nameEl = activeSection.querySelector(".profile-card-header h2");
+  if (nameEl) nameEl.textContent = cab.vehicleName;
 
-  // Performance
-  document.getElementById("viewCabTotalTrips").textContent =
-    cab.trips.toLocaleString();
-  document.getElementById("viewCabEarnings").textContent = cab.earnings;
-  document.getElementById("viewCabAcceptance").textContent =
-    cab.acceptance + "%";
-  document.getElementById("viewCabCancellation").textContent =
-    cab.cancellation + "%";
+  var idEl = activeSection.querySelector(".profile-card-id");
+  if (idEl) idEl.textContent = "#" + cab.id;
 
-  // Schedule
-  const scheduleEl = document.getElementById("viewCabSchedule");
-  if (scheduleEl && cab.schedule) {
-    scheduleEl.innerHTML = cab.schedule.days
-      .map(
-        (day) => `
-                <div class="hours-row">
-                    <span class="hours-day">${day}</span>
-                    <span class="hours-time">${cab.schedule.start} - ${cab.schedule.end}</span>
-                </div>
-            `,
-      )
-      .join("");
+  var statusEl = activeSection.querySelector(".status-badge");
+  if (statusEl) {
+    statusEl.textContent = cab.status.charAt(0).toUpperCase() + cab.status.slice(1);
+    statusEl.className = "status-badge status-" + cab.status;
   }
 
-  // Compliance
-  const complianceEl = document.getElementById("viewCabCompliance");
-  if (complianceEl) {
-    complianceEl.innerHTML = `
-                <div class="compliance-item ${cab.compliance === "compliant" ? "compliant" : "warning"}">
-                    <i class="fas fa-${cab.compliance === "compliant" ? "check-circle" : "exclamation-triangle"}"></i>
-                    <span>Overall Compliance: ${cab.compliance.charAt(0).toUpperCase() + cab.compliance.slice(1)}</span>
-                </div>
-                <div class="compliance-item compliant">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Driver License: Valid until ${cab.licenseExpiry}</span>
-                </div>
-                <div class="compliance-item compliant">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Vehicle Insurance: Valid until ${cab.insuranceExpiry}</span>
-                </div>
-                <div class="compliance-item compliant">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Safety Score: ${cab.safetyScore}/100</span>
-                </div>
-            `;
+  // Populate profile card body info values (vehicleName, model, vehicleType, category, year, seats)
+  var infoValues = activeSection.querySelectorAll(".profile-card-body .info-value");
+  if (infoValues.length >= 6) {
+    infoValues[0].textContent = cab.vehicleName;
+    infoValues[1].textContent = cab.model;
+    infoValues[2].textContent = cab.vehicleType;
+    infoValues[3].textContent = categoryLabels[cab.category] || cab.category;
+    infoValues[4].textContent = cab.year;
+    infoValues[5].textContent = cab.seats;
   }
 
-  // Disable approve button if already approved
-  const approveBtn = document.getElementById("approveCabViewBtn");
-  if (approveBtn) {
-    if (cab.status === "approved") {
-      approveBtn.disabled = true;
-      approveBtn.style.opacity = "0.5";
-      approveBtn.style.cursor = "not-allowed";
-      approveBtn.title = "Cab is already approved";
-    } else {
-      approveBtn.disabled = false;
-      approveBtn.style.opacity = "1";
-      approveBtn.style.cursor = "pointer";
-      approveBtn.title = "Approve this cab";
+  // Populate pricing card (always first card in right column)
+  var pricingGroup = activeSection.querySelector(".detail-column-right .detail-card:first-child .card-body .info-group");
+  if (pricingGroup) {
+    var pricingHtml = '<div class="info-item"><span class="info-label">Base Price</span><span class="info-value">SAR ' + cab.basePrice + '</span></div>';
+    if (cab.category === "airport" || cab.category === "city-tour") {
+      pricingHtml += '<div class="info-item"><span class="info-label">Price per KM</span><span class="info-value">SAR ' + (cab.pricePerKm || "") + '</span></div>';
+      pricingHtml += '<div class="info-item"><span class="info-label">Waiting Charge</span><span class="info-value">SAR ' + (cab.waitingCharge || "") + '/min</span></div>';
+    } else if (cab.category === "whole-day") {
+      pricingHtml += '<div class="info-item"><span class="info-label">Price per Night</span><span class="info-value">SAR ' + (cab.pricePerNight || "") + '</span></div>';
+    }
+    pricingGroup.innerHTML = pricingHtml;
+  }
+
+  // Populate About card
+  var aboutCards = activeSection.querySelectorAll(".detail-column-right .detail-card");
+  if (cab.category === "airport") {
+    // cards: [0]=pricing, [1]=about, [2]=amenities
+    if (aboutCards[1]) {
+      var aboutP = aboutCards[1].querySelector(".card-body p");
+      if (aboutP) aboutP.textContent = cab.about || "";
+    }
+    if (aboutCards[2] && cab.amenities) {
+      var amenGroup = aboutCards[2].querySelector(".card-body .info-group");
+      if (amenGroup) {
+        amenGroup.innerHTML = cab.amenities.map(function(a) {
+          return '<div class="inclusion-item included"><i class="fas fa-check"></i><span>' + a + '</span></div>';
+        }).join("");
+      }
+    }
+  } else if (cab.category === "city-tour") {
+    // cards: [0]=pricing, [1]=about, [2]=amenities, [3]=policies, [4]=itinerary
+    if (aboutCards[1]) {
+      var aboutP2 = aboutCards[1].querySelector(".card-body p");
+      if (aboutP2) aboutP2.textContent = cab.about || "";
+    }
+    if (aboutCards[2] && cab.amenities) {
+      var amenGroup2 = aboutCards[2].querySelector(".card-body .info-group");
+      if (amenGroup2) {
+        amenGroup2.innerHTML = cab.amenities.map(function(a) {
+          return '<div class="inclusion-item included"><i class="fas fa-check"></i><span>' + a + '</span></div>';
+        }).join("");
+      }
+    }
+    if (aboutCards[3]) {
+      var policiesBody = aboutCards[3].querySelector(".card-body");
+      if (policiesBody) policiesBody.innerHTML = buildPoliciesHtml(cab);
+    }
+    if (aboutCards[4]) {
+      var itinValues = aboutCards[4].querySelectorAll(".info-value");
+      if (itinValues[0]) itinValues[0].textContent = cab.itinerary || "";
+      if (itinValues[1]) itinValues[1].textContent = cab.stops || "";
+      if (itinValues[2]) itinValues[2].textContent = cab.duration || "";
+    }
+  } else if (cab.category === "whole-day") {
+    // cards: [0]=pricing, [1]=duration, [2]=about, [3]=amenities, [4]=policies
+    if (aboutCards[1]) {
+      var durValue = aboutCards[1].querySelector(".info-value");
+      if (durValue) durValue.textContent = cab.duration || "";
+    }
+    if (aboutCards[2]) {
+      var aboutP3 = aboutCards[2].querySelector(".card-body p");
+      if (aboutP3) aboutP3.textContent = cab.about || "";
+    }
+    if (aboutCards[3] && cab.amenities) {
+      var amenGroup3 = aboutCards[3].querySelector(".card-body .info-group");
+      if (amenGroup3) {
+        amenGroup3.innerHTML = cab.amenities.map(function(a) {
+          return '<div class="inclusion-item included"><i class="fas fa-check"></i><span>' + a + '</span></div>';
+        }).join("");
+      }
+    }
+    if (aboutCards[4]) {
+      var policiesBody2 = aboutCards[4].querySelector(".card-body");
+      if (policiesBody2) policiesBody2.innerHTML = buildPoliciesHtml(cab);
     }
   }
+}
+
+function buildPoliciesHtml(cab) {
+  var html = "";
+  if (cab.tourHighlights && cab.tourHighlights.length > 0) {
+    html += '<h4 style="margin-bottom: 8px;"><i class="fas fa-star"></i> Tour Highlights</h4>';
+    html += cab.tourHighlights.map(function(h) {
+      return '<div class="inclusion-item included"><i class="fas fa-check"></i><span>' + h + '</span></div>';
+    }).join("");
+  }
+  if (cab.whatsIncluded && cab.whatsIncluded.length > 0) {
+    html += '<h4 style="margin-top: 16px; margin-bottom: 8px;"><i class="fas fa-check-circle"></i> What\'s Included</h4>';
+    html += cab.whatsIncluded.map(function(item) {
+      return '<div class="inclusion-item included"><i class="fas fa-check"></i><span>' + item + '</span></div>';
+    }).join("");
+  }
+  if (cab.whatsNotIncluded && cab.whatsNotIncluded.length > 0) {
+    html += '<h4 style="margin-top: 16px; margin-bottom: 8px;"><i class="fas fa-times-circle"></i> What\'s Not Included</h4>';
+    html += cab.whatsNotIncluded.map(function(item) {
+      return '<div class="inclusion-item excluded"><i class="fas fa-times"></i><span>' + item + '</span></div>';
+    }).join("");
+  }
+  if (cab.importantNote) {
+    html += '<h4 style="margin-top: 16px; margin-bottom: 8px;"><i class="fas fa-exclamation-triangle"></i> Important Note</h4>';
+    html += '<p style="color: #e67e22;">' + cab.importantNote + '</p>';
+  }
+  return html;
 }
 
 function initializeCabEditPage() {
@@ -3925,29 +3839,23 @@ function initializeCabEditPage() {
 }
 
 function populateCabEdit(cab) {
-  document.getElementById("editCabDisplayName").textContent = cab.driverName;
+  document.getElementById("editCabDisplayName").textContent = cab.vehicleName;
   document.getElementById("editCabId").textContent = "#" + cab.id;
-  document.getElementById("editCabDriverName").value = cab.driverName;
-  document.getElementById("editCabPhone").value = cab.phone;
-  document.getElementById("editCabEmail").value = cab.email || "";
-  document.getElementById("editCabLicense").value = cab.license;
-  document.getElementById("editCabCity").value = cab.city.toLowerCase();
-  document.getElementById("editCabVehicleMake").value = cab.make;
-  document.getElementById("editCabVehicleModel").value = cab.model;
-  document.getElementById("editCabVehicleYear").value = cab.year;
-  document.getElementById("editCabVehicleColor").value = cab.color;
-  document.getElementById("editCabVehicleType").value = cab.type.toLowerCase();
-  document.getElementById("editCabCapacity").value = cab.capacity;
-  document.getElementById("editCabPlate").value = cab.plate;
-  document.getElementById("editCabBaseFare").value = cab.baseFare;
-  document.getElementById("editCabPerKm").value = cab.perKm;
-  document.getElementById("editCabPerMin").value = cab.perMin;
-  document.getElementById("editCabCommission").value = cab.commission;
-  document.getElementById("editCabSafetyScore").value = cab.safetyScore;
-  document.getElementById("editCabCompliance").value = cab.compliance;
-  document.getElementById("editCabStatus").value = cab.status;
-  document.getElementById("editCabFeatured").value = cab.featured;
-  document.getElementById("editCabAdminNotes").value = cab.adminNotes || "";
+  var el;
+  el = document.getElementById("editCabVehicleName"); if (el) el.value = cab.vehicleName;
+  el = document.getElementById("editCabVehicleModel"); if (el) el.value = cab.model;
+  el = document.getElementById("editCabVehicleType"); if (el) el.value = cab.vehicleType.toLowerCase();
+  el = document.getElementById("editCabCategory"); if (el) el.value = cab.category;
+  el = document.getElementById("editCabVehicleYear"); if (el) el.value = cab.year;
+  el = document.getElementById("editCabBasePrice"); if (el) el.value = cab.basePrice;
+  el = document.getElementById("editCabPricePerKm"); if (el) el.value = cab.pricePerKm || "";
+  el = document.getElementById("editCabWaitingCharge"); if (el) el.value = cab.waitingCharge || "";
+  el = document.getElementById("editCabPricePerNight"); if (el) el.value = cab.pricePerNight || "";
+  el = document.getElementById("editCabSeats"); if (el) el.value = cab.seats;
+  el = document.getElementById("editCabAbout"); if (el) el.value = cab.about || "";
+  el = document.getElementById("editCabCity"); if (el) el.value = cab.city.toLowerCase();
+  el = document.getElementById("editCabStatus"); if (el) el.value = cab.status;
+  el = document.getElementById("editCabDuration"); if (el) el.value = cab.duration || "";
 }
 
 // ============================================
@@ -3965,9 +3873,7 @@ const bookingsData = {
     serviceName: "Grand Plaza Hotel",
     serviceId: "HTL-001",
     bookingDate: "Mar 15, 2025",
-    checkin: "Apr 01, 2025",
-    checkout: "Apr 04, 2025",
-    guests: "2 Adults, 1 Child",
+    bookingTime: "10:30 AM",
     amount: 2400,
     discount: 0,
     amountDisplay: "SAR 2,400",
@@ -3993,6 +3899,7 @@ const bookingsData = {
     serviceName: "Riyadh Heritage Tour",
     serviceId: "PKG-001",
     bookingDate: "Mar 18, 2025",
+    bookingTime: "02:15 PM",
     checkin: "Apr 10, 2025",
     checkout: "Apr 15, 2025",
     guests: "2 Adults",
@@ -4021,6 +3928,7 @@ const bookingsData = {
     serviceName: "Desert Safari Adventure",
     serviceId: "ACT-001",
     bookingDate: "Mar 20, 2025",
+    bookingTime: "04:00 PM",
     checkin: "Mar 28, 2025",
     checkout: "Mar 28, 2025",
     guests: "4 Adults, 2 Children",
@@ -4049,6 +3957,7 @@ const bookingsData = {
     serviceName: "Airport Transfer - Luxury",
     serviceId: "CAB-003",
     bookingDate: "Mar 22, 2025",
+    bookingTime: "06:45 AM",
     checkin: "Mar 25, 2025",
     checkout: "Mar 25, 2025",
     guests: "1 Adult",
@@ -4077,6 +3986,7 @@ const bookingsData = {
     serviceName: "Seaside Resort Jeddah",
     serviceId: "HTL-002",
     bookingDate: "Mar 24, 2025",
+    bookingTime: "11:00 AM",
     checkin: "May 01, 2025",
     checkout: "May 08, 2025",
     guests: "2 Adults, 2 Children",
@@ -4105,6 +4015,7 @@ const bookingsData = {
     serviceName: "The Spice Kitchen",
     serviceId: "RST-003",
     bookingDate: "Mar 25, 2025",
+    bookingTime: "07:30 PM",
     checkin: "Mar 30, 2025",
     checkout: "Mar 30, 2025",
     guests: "6 Adults",
@@ -4134,6 +4045,7 @@ const bookingsData = {
     serviceName: "Umrah Premium Package",
     serviceId: "PKG-003",
     bookingDate: "Mar 10, 2025",
+    bookingTime: "09:00 AM",
     checkin: "Mar 20, 2025",
     checkout: "Mar 27, 2025",
     guests: "3 Adults",
@@ -4163,6 +4075,7 @@ const bookingsData = {
     serviceName: "Saudi Food Tour",
     serviceId: "ACT-005",
     bookingDate: "Mar 26, 2025",
+    bookingTime: "12:00 PM",
     checkin: "Apr 05, 2025",
     checkout: "Apr 05, 2025",
     guests: "2 Adults",
@@ -4206,19 +4119,10 @@ function populateBookingsTable() {
   for (let id in bookingsData) {
     const booking = bookingsData[id];
     const statusClass = "status-" + booking.status;
-    const paymentClass = "payment-" + booking.paymentStatus;
     const svcIcon = serviceIcons[booking.serviceType] || "fa-concierge-bell";
 
     html += `
-                <tr data-booking-id="${booking.id}" data-status="${booking.status}" data-service="${booking.serviceType}" data-payment="${booking.paymentStatus}">
-                    <td>
-                        <div class="table-user">
-                            <div>
-                                <span class="table-user-name">${booking.id}</span>
-                                <span class="table-user-id">${booking.bookingDate}</span>
-                            </div>
-                        </div>
-                    </td>
+                <tr data-booking-id="${booking.id}" data-status="${booking.status}" data-service="${booking.serviceType}">
                     <td>
                         <div class="table-user">
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(booking.customer)}&background=16a085&color=fff&size=36" alt="${booking.customer}">
@@ -4231,7 +4135,6 @@ function populateBookingsTable() {
                     <td><span class="type-badge type-${booking.serviceType}"><i class="fas ${svcIcon}"></i> ${booking.serviceType.charAt(0).toUpperCase() + booking.serviceType.slice(1)}</span></td>
                     <td>${booking.checkin}</td>
                     <td><strong>${booking.amountDisplay}</strong></td>
-                    <td><span class="payment-badge ${paymentClass}">${booking.paymentStatus.charAt(0).toUpperCase() + booking.paymentStatus.slice(1)}</span></td>
                     <td><span class="status-badge ${statusClass}">${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}</span></td>
                     <td>
                         <div class="table-actions">
@@ -4248,12 +4151,10 @@ function setupBookingFilters() {
   const searchInput = document.getElementById("bookingSearchInput");
   const statusFilter = document.getElementById("bookingStatusFilter");
   const serviceFilter = document.getElementById("bookingServiceFilter");
-  const paymentFilter = document.getElementById("bookingPaymentFilter");
 
   if (searchInput) searchInput.addEventListener("input", filterBookings);
   if (statusFilter) statusFilter.addEventListener("change", filterBookings);
   if (serviceFilter) serviceFilter.addEventListener("change", filterBookings);
-  if (paymentFilter) paymentFilter.addEventListener("change", filterBookings);
 }
 
 function filterBookings() {
@@ -4263,8 +4164,6 @@ function filterBookings() {
     document.getElementById("bookingStatusFilter")?.value || "all";
   const serviceFilter =
     document.getElementById("bookingServiceFilter")?.value || "all";
-  const paymentFilter =
-    document.getElementById("bookingPaymentFilter")?.value || "all";
 
   const rows = document.querySelectorAll("#bookingsTableBody tr");
 
@@ -4279,11 +4178,9 @@ function filterBookings() {
       statusFilter === "all" || booking.status === statusFilter;
     const matchesService =
       serviceFilter === "all" || booking.serviceType === serviceFilter;
-    const matchesPayment =
-      paymentFilter === "all" || booking.paymentStatus === paymentFilter;
 
     row.style.display =
-      matchesSearch && matchesStatus && matchesService && matchesPayment
+      matchesSearch && matchesStatus && matchesService
         ? ""
         : "none";
   });
@@ -4324,16 +4221,10 @@ function populateBookingView(booking) {
   document.getElementById("viewBookingService").textContent =
     booking.serviceType.charAt(0).toUpperCase() + booking.serviceType.slice(1);
   document.getElementById("viewBookingDate").textContent = booking.bookingDate;
-  document.getElementById("viewBookingCheckin").textContent = booking.checkin;
-  document.getElementById("viewBookingCheckout").textContent = booking.checkout;
+  document.getElementById("viewBookingTime").textContent = booking.bookingTime;
   document.getElementById("viewBookingGuests").textContent = booking.guests;
   document.getElementById("viewBookingAmount").textContent =
     booking.amountDisplay;
-  document.getElementById("viewBookingPayment").textContent =
-    booking.paymentStatus.charAt(0).toUpperCase() +
-    booking.paymentStatus.slice(1) +
-    " - " +
-    booking.paymentMethod;
 
   // Customer info
   document.getElementById("viewBookingCustName").textContent = booking.customer;
@@ -4341,101 +4232,6 @@ function populateBookingView(booking) {
     booking.custEmail;
   document.getElementById("viewBookingCustPhone").textContent =
     booking.custPhone;
-  document.getElementById("viewBookingCustNationality").textContent =
-    booking.custNationality;
-
-  // Service details
-  const serviceDetailsEl = document.getElementById("viewBookingServiceDetails");
-  if (serviceDetailsEl) {
-    serviceDetailsEl.innerHTML = `
-                <div class="info-item">
-                    <span class="info-label">Category</span>
-                    <span class="info-value">${booking.serviceType.charAt(0).toUpperCase() + booking.serviceType.slice(1)}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Service ID</span>
-                    <span class="info-value">#${booking.serviceId}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Check-in / Start</span>
-                    <span class="info-value">${booking.checkin}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Check-out / End</span>
-                    <span class="info-value">${booking.checkout}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Special Requests</span>
-                    <span class="info-value">${booking.specialRequest || "None"}</span>
-                </div>
-            `;
-  }
-
-  // Payment breakdown
-  const paymentEl = document.getElementById("viewBookingPaymentBreakdown");
-  if (paymentEl) {
-    const net = booking.amount - booking.discount;
-    paymentEl.innerHTML = `
-                <div class="payment-row">
-                    <span>Subtotal</span>
-                    <span>SAR ${booking.amount.toLocaleString()}</span>
-                </div>
-                ${booking.discount > 0 ? `<div class="payment-row discount"><span>Discount</span><span>- SAR ${booking.discount.toLocaleString()}</span></div>` : ""}
-                <div class="payment-row total">
-                    <span><strong>Total</strong></span>
-                    <span><strong>SAR ${net.toLocaleString()}</strong></span>
-                </div>
-                <div class="payment-row">
-                    <span>Payment Method</span>
-                    <span>${booking.paymentMethod}</span>
-                </div>
-                <div class="payment-row">
-                    <span>Transaction ID</span>
-                    <span>${booking.transactionId || "N/A"}</span>
-                </div>
-                <div class="payment-row">
-                    <span>Payment Status</span>
-                    <span class="payment-badge payment-${booking.paymentStatus}">${booking.paymentStatus.charAt(0).toUpperCase() + booking.paymentStatus.slice(1)}</span>
-                </div>
-            `;
-  }
-
-  // Vendor assignment
-  document.getElementById("viewBookingVendor").textContent = booking.vendor;
-  document.getElementById("viewBookingVendorId").textContent =
-    "#" + booking.vendorId;
-  document.getElementById("viewBookingCommission").textContent =
-    booking.commission + "% (SAR " + booking.commissionAmount + ")";
-  document.getElementById("viewBookingPayout").textContent =
-    "SAR " + booking.payout.toLocaleString();
-
-  // Timeline
-  const timelineEl = document.getElementById("viewBookingTimeline");
-  if (timelineEl) {
-    timelineEl.innerHTML = `
-                <div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-plus-circle"></i></div>
-                    <div class="activity-content">
-                        <p>Booking created by ${booking.customer}</p>
-                        <span class="activity-time">${booking.bookingDate}</span>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-credit-card"></i></div>
-                    <div class="activity-content">
-                        <p>Payment ${booking.paymentStatus} via ${booking.paymentMethod}</p>
-                        <span class="activity-time">${booking.bookingDate}</span>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-check-circle"></i></div>
-                    <div class="activity-content">
-                        <p>Booking ${booking.status} - Vendor notified</p>
-                        <span class="activity-time">${booking.bookingDate}</span>
-                    </div>
-                </div>
-            `;
-  }
 }
 
 function initializeBookingEditPage() {
@@ -4480,8 +4276,6 @@ function populateBookingEdit(booking) {
     booking.paymentMethod.toLowerCase().replace(" ", "-");
   document.getElementById("editBookingTransactionId").value =
     booking.transactionId || "";
-  document.getElementById("editBookingVendor").value = booking.vendor;
-  document.getElementById("editBookingCommission").value = booking.commission;
   document.getElementById("editBookingSpecialRequest").value =
     booking.specialRequest || "";
   document.getElementById("editBookingAdminNotes").value =
@@ -4496,9 +4290,8 @@ const subscriptionsData = {
   "SUB-001": {
     id: "SUB-001",
     planName: "Starter",
-    type: "vendor",
-    price: 99,
-    billing: "monthly",
+    monthlyPrice: 99,
+    yearlyPrice: 990,
     status: "active",
     featured: "no",
     subscribers: 420,
@@ -4510,23 +4303,14 @@ const subscriptionsData = {
       "Basic plan for new vendors to list their services with essential features.",
     maxListings: 5,
     maxPhotos: 10,
-    prioritySupport: "no",
-    analytics: "no",
-    featuredPlacement: "no",
-    commissionRate: 18,
-    trialDays: 14,
-    autoRenew: "yes",
-    gracePeriod: 7,
-    cancellationPolicy: "end-of-period",
+    customFeatures: ["Basic listing management", "Email support"],
     created: "Jan 10, 2025",
-    adminNotes: "Entry-level plan. Good conversion from trial.",
   },
   "SUB-002": {
     id: "SUB-002",
     planName: "Professional",
-    type: "vendor",
-    price: 299,
-    billing: "monthly",
+    monthlyPrice: 299,
+    yearlyPrice: 2990,
     status: "active",
     featured: "yes",
     subscribers: 245,
@@ -4538,23 +4322,14 @@ const subscriptionsData = {
       "Most popular plan for established vendors with advanced tools and priority support.",
     maxListings: 25,
     maxPhotos: 50,
-    prioritySupport: "yes",
-    analytics: "yes",
-    featuredPlacement: "yes",
-    commissionRate: 15,
-    trialDays: 7,
-    autoRenew: "yes",
-    gracePeriod: 14,
-    cancellationPolicy: "end-of-period",
+    customFeatures: ["Advanced listing tools", "Performance dashboard", "Promotional tools"],
     created: "Jan 15, 2025",
-    adminNotes: "Best seller. Recommend for mid-tier vendors.",
   },
   "SUB-003": {
     id: "SUB-003",
     planName: "Enterprise",
-    type: "vendor",
-    price: 799,
-    billing: "monthly",
+    monthlyPrice: 799,
+    yearlyPrice: 7990,
     status: "active",
     featured: "yes",
     subscribers: 68,
@@ -4566,23 +4341,14 @@ const subscriptionsData = {
       "Premium plan for large vendors with unlimited listings, dedicated support, and custom features.",
     maxListings: -1,
     maxPhotos: -1,
-    prioritySupport: "yes",
-    analytics: "yes",
-    featuredPlacement: "yes",
-    commissionRate: 10,
-    trialDays: 0,
-    autoRenew: "yes",
-    gracePeriod: 30,
-    cancellationPolicy: "prorated",
+    customFeatures: ["Unlimited listings", "Dedicated account manager", "Custom branding", "API access"],
     created: "Jan 15, 2025",
-    adminNotes: "Premium tier. Dedicated account manager assigned.",
   },
   "SUB-004": {
     id: "SUB-004",
     planName: "Provider Basic",
-    type: "provider",
-    price: 149,
-    billing: "monthly",
+    monthlyPrice: 149,
+    yearlyPrice: 1490,
     status: "active",
     featured: "no",
     subscribers: 180,
@@ -4594,23 +4360,14 @@ const subscriptionsData = {
       "Essential plan for activity operators and tour providers to get started.",
     maxListings: 10,
     maxPhotos: 20,
-    prioritySupport: "no",
-    analytics: "no",
-    featuredPlacement: "no",
-    commissionRate: 17,
-    trialDays: 14,
-    autoRenew: "yes",
-    gracePeriod: 7,
-    cancellationPolicy: "end-of-period",
+    customFeatures: ["Tour listing management", "Booking calendar"],
     created: "Feb 01, 2025",
-    adminNotes: "Good entry point for tour operators.",
   },
   "SUB-005": {
     id: "SUB-005",
     planName: "Provider Pro",
-    type: "provider",
-    price: 399,
-    billing: "monthly",
+    monthlyPrice: 399,
+    yearlyPrice: 3990,
     status: "active",
     featured: "yes",
     subscribers: 112,
@@ -4622,23 +4379,14 @@ const subscriptionsData = {
       "Advanced tools for professional tour operators and activity providers.",
     maxListings: 50,
     maxPhotos: 100,
-    prioritySupport: "yes",
-    analytics: "yes",
-    featuredPlacement: "yes",
-    commissionRate: 12,
-    trialDays: 7,
-    autoRenew: "yes",
-    gracePeriod: 14,
-    cancellationPolicy: "prorated",
+    customFeatures: ["Advanced booking tools", "Revenue analytics", "Multi-location support"],
     created: "Feb 01, 2025",
-    adminNotes: "Popular among established tour operators.",
   },
   "SUB-006": {
     id: "SUB-006",
     planName: "Premium Annual",
-    type: "premium",
-    price: 2999,
-    billing: "yearly",
+    monthlyPrice: 250,
+    yearlyPrice: 2999,
     status: "active",
     featured: "yes",
     subscribers: 35,
@@ -4650,23 +4398,14 @@ const subscriptionsData = {
       "Annual premium plan with maximum savings - all features included with lowest commission rate.",
     maxListings: -1,
     maxPhotos: -1,
-    prioritySupport: "yes",
-    analytics: "yes",
-    featuredPlacement: "yes",
-    commissionRate: 8,
-    trialDays: 0,
-    autoRenew: "yes",
-    gracePeriod: 30,
-    cancellationPolicy: "prorated",
+    customFeatures: ["All features included", "Lowest commission rate", "Dedicated support", "Custom integrations"],
     created: "Jan 20, 2025",
-    adminNotes: "Best value plan. Focus upselling to this from monthly plans.",
   },
   "SUB-007": {
     id: "SUB-007",
     planName: "Quarterly Plus",
-    type: "vendor",
-    price: 749,
-    billing: "quarterly",
+    monthlyPrice: 250,
+    yearlyPrice: 2499,
     status: "inactive",
     featured: "no",
     subscribers: 0,
@@ -4678,24 +4417,14 @@ const subscriptionsData = {
       "Quarterly billing option with moderate savings. Currently paused for review.",
     maxListings: 25,
     maxPhotos: 50,
-    prioritySupport: "yes",
-    analytics: "yes",
-    featuredPlacement: "no",
-    commissionRate: 14,
-    trialDays: 7,
-    autoRenew: "yes",
-    gracePeriod: 14,
-    cancellationPolicy: "end-of-period",
+    customFeatures: ["All professional features", "Quarterly billing"],
     created: "Mar 01, 2025",
-    adminNotes:
-      "Temporarily deactivated. Low adoption rate - consider repricing.",
   },
   "SUB-008": {
     id: "SUB-008",
     planName: "Legacy Basic",
-    type: "vendor",
-    price: 49,
-    billing: "monthly",
+    monthlyPrice: 49,
+    yearlyPrice: 490,
     status: "archived",
     featured: "no",
     subscribers: 185,
@@ -4707,18 +4436,30 @@ const subscriptionsData = {
       "Original basic plan - grandfathered for existing subscribers. No new sign-ups.",
     maxListings: 3,
     maxPhotos: 5,
-    prioritySupport: "no",
-    analytics: "no",
-    featuredPlacement: "no",
-    commissionRate: 20,
-    trialDays: 30,
-    autoRenew: "yes",
-    gracePeriod: 7,
-    cancellationPolicy: "immediate",
+    customFeatures: ["Basic listing", "Standard support"],
     created: "Nov 15, 2024",
-    adminNotes: "Legacy plan. Encourage migration to Starter or Professional.",
   },
 };
+
+function setupCustomFeatures() {
+  const addBtn = document.getElementById("addFeatureBtn");
+  const container = document.getElementById("customFeaturesContainer");
+  if (!addBtn || !container) return;
+
+  addBtn.addEventListener("click", function () {
+    const row = document.createElement("div");
+    row.className = "custom-feature-row";
+    row.style.cssText = "display: flex; gap: 8px; margin-bottom: 8px;";
+    row.innerHTML = '<input type="text" class="form-input custom-feature-input" placeholder="Enter a feature..." style="flex: 1;"><button type="button" class="btn btn-danger btn-sm remove-feature-btn" style="padding: 8px 12px;"><i class="fas fa-trash"></i></button>';
+    container.appendChild(row);
+  });
+
+  container.addEventListener("click", function (e) {
+    if (e.target.closest(".remove-feature-btn")) {
+      e.target.closest(".custom-feature-row").remove();
+    }
+  });
+}
 
 function initializeSubscriptionManagement() {
   populateSubscriptionsTable();
@@ -4735,10 +4476,9 @@ function populateSubscriptionsTable() {
   for (let id in subscriptionsData) {
     const sub = subscriptionsData[id];
     const statusClass = "status-" + sub.status;
-    const typeClass = "type-" + sub.type;
 
     html += `
-                <tr data-sub-id="${sub.id}" data-status="${sub.status}" data-type="${sub.type}">
+                <tr data-sub-id="${sub.id}" data-status="${sub.status}">
                     <td>
                         <div class="table-user">
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(sub.planName)}&background=8e44ad&color=fff&size=36" alt="${sub.planName}">
@@ -4747,9 +4487,8 @@ function populateSubscriptionsTable() {
                             </div>
                         </div>
                     </td>
-                    <td><span class="type-badge ${typeClass}"><i class="fas fa-tag"></i> ${sub.type.charAt(0).toUpperCase() + sub.type.slice(1)}</span></td>
-                    <td><strong>SAR ${sub.price.toLocaleString()}</strong></td>
-                    <td>${sub.billing.charAt(0).toUpperCase() + sub.billing.slice(1)}</td>
+                    <td><strong>SAR ${sub.monthlyPrice.toLocaleString()}</strong></td>
+                    <td><strong>SAR ${sub.yearlyPrice.toLocaleString()}</strong></td>
                     <td>${sub.subscribers.toLocaleString()}</td>
                     <td>${sub.revenueDisplay}</td>
                     <td><span class="status-badge ${statusClass}">${sub.status.charAt(0).toUpperCase() + sub.status.slice(1)}</span></td>
@@ -4757,7 +4496,7 @@ function populateSubscriptionsTable() {
                         <div class="table-actions">
                             <a href="subscription-view.html?id=${sub.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
                             <a href="subscription-edit.html?id=${sub.id}" class="action-btn action-edit" title="Edit Plan"><i class="fas fa-pen"></i></a>
-                            <button class="action-btn action-block" title="Toggle Status"><i class="fas fa-toggle-${sub.status === "active" ? "on" : "off"}"></i></button>
+                            <button class="action-btn action-toggle" title="Toggle Status"><i class="fas fa-toggle-${sub.status === "active" ? "on" : "off"}"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -4769,12 +4508,10 @@ function populateSubscriptionsTable() {
 function setupSubscriptionFilters() {
   const searchInput = document.getElementById("subscriptionSearchInput");
   const statusFilter = document.getElementById("subscriptionStatusFilter");
-  const typeFilter = document.getElementById("subscriptionTypeFilter");
 
   if (searchInput) searchInput.addEventListener("input", filterSubscriptions);
   if (statusFilter)
     statusFilter.addEventListener("change", filterSubscriptions);
-  if (typeFilter) typeFilter.addEventListener("change", filterSubscriptions);
 }
 
 function filterSubscriptions() {
@@ -4783,8 +4520,6 @@ function filterSubscriptions() {
     "";
   const statusFilter =
     document.getElementById("subscriptionStatusFilter")?.value || "all";
-  const typeFilter =
-    document.getElementById("subscriptionTypeFilter")?.value || "all";
 
   const rows = document.querySelectorAll("#subscriptionsTableBody tr");
   rows.forEach((row) => {
@@ -4794,16 +4529,15 @@ function filterSubscriptions() {
       sub.planName.toLowerCase().includes(searchTerm) ||
       subId.toLowerCase().includes(searchTerm);
     const matchesStatus = statusFilter === "all" || sub.status === statusFilter;
-    const matchesType = typeFilter === "all" || sub.type === typeFilter;
     row.style.display =
-      matchesSearch && matchesStatus && matchesType ? "" : "none";
+      matchesSearch && matchesStatus ? "" : "none";
   });
 }
 
 function setupSubscriptionActions() {
   document.addEventListener("click", function (e) {
     if (
-      e.target.closest(".action-block") &&
+      e.target.closest(".action-toggle") &&
       e.target.closest("#subscriptionsTableBody")
     ) {
       const row = e.target.closest("tr");
@@ -4847,12 +4581,10 @@ function populateSubscriptionView(sub) {
     sub.status.charAt(0).toUpperCase() + sub.status.slice(1);
   statusEl.className = "status-badge status-" + sub.status;
 
-  document.getElementById("viewSubType").textContent =
-    sub.type.charAt(0).toUpperCase() + sub.type.slice(1);
-  document.getElementById("viewSubPrice").textContent =
-    "SAR " + sub.price.toLocaleString() + "/" + sub.billing;
-  document.getElementById("viewSubBilling").textContent =
-    sub.billing.charAt(0).toUpperCase() + sub.billing.slice(1);
+  document.getElementById("viewSubMonthlyPrice").textContent =
+    "SAR " + sub.monthlyPrice.toLocaleString() + "/month";
+  document.getElementById("viewSubYearlyPrice").textContent =
+    "SAR " + sub.yearlyPrice.toLocaleString() + "/year";
   document.getElementById("viewSubSubscribers").textContent =
     sub.subscribers.toLocaleString();
   document.getElementById("viewSubRevenue").textContent = sub.revenueDisplay;
@@ -4863,7 +4595,7 @@ function populateSubscriptionView(sub) {
   // Features
   const featuresEl = document.getElementById("viewSubFeatures");
   if (featuresEl) {
-    featuresEl.innerHTML = `
+    let featuresHtml = `
                 <div class="inclusion-item ${sub.maxListings !== 0 ? "included" : "excluded"}">
                     <i class="fas fa-${sub.maxListings !== 0 ? "check" : "times"}"></i>
                     <span>Max Listings: ${sub.maxListings === -1 ? "Unlimited" : sub.maxListings}</span>
@@ -4871,28 +4603,17 @@ function populateSubscriptionView(sub) {
                 <div class="inclusion-item ${sub.maxPhotos !== 0 ? "included" : "excluded"}">
                     <i class="fas fa-${sub.maxPhotos !== 0 ? "check" : "times"}"></i>
                     <span>Max Photos: ${sub.maxPhotos === -1 ? "Unlimited" : sub.maxPhotos}</span>
-                </div>
-                <div class="inclusion-item ${sub.prioritySupport === "yes" ? "included" : "excluded"}">
-                    <i class="fas fa-${sub.prioritySupport === "yes" ? "check" : "times"}"></i>
-                    <span>Priority Support</span>
-                </div>
-                <div class="inclusion-item ${sub.analytics === "yes" ? "included" : "excluded"}">
-                    <i class="fas fa-${sub.analytics === "yes" ? "check" : "times"}"></i>
-                    <span>Advanced Analytics</span>
-                </div>
-                <div class="inclusion-item ${sub.featuredPlacement === "yes" ? "included" : "excluded"}">
-                    <i class="fas fa-${sub.featuredPlacement === "yes" ? "check" : "times"}"></i>
-                    <span>Featured Placement</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Commission Rate</span>
-                    <span class="info-value">${sub.commissionRate}%</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Trial Period</span>
-                    <span class="info-value">${sub.trialDays > 0 ? sub.trialDays + " Days" : "No Trial"}</span>
-                </div>
-            `;
+                </div>`;
+    if (sub.customFeatures && sub.customFeatures.length > 0) {
+      sub.customFeatures.forEach(function(feature) {
+        featuresHtml += `
+                <div class="inclusion-item included">
+                    <i class="fas fa-check"></i>
+                    <span>${feature}</span>
+                </div>`;
+      });
+    }
+    featuresEl.innerHTML = featuresHtml;
   }
 
   // Analytics
@@ -4990,6 +4711,7 @@ function initializeSubscriptionEditPage() {
     });
   }
 
+  setupCustomFeatures();
   initializeLogout();
 }
 
@@ -4999,25 +4721,26 @@ function populateSubscriptionEdit(sub) {
   document.getElementById("editSubStatus").value = sub.status;
   document.getElementById("editSubFeatured").value = sub.featured;
   document.getElementById("editSubPlanName").value = sub.planName;
-  document.getElementById("editSubType").value = sub.type;
-  document.getElementById("editSubPrice").value = sub.price;
-  document.getElementById("editSubBilling").value = sub.billing;
+  document.getElementById("editSubMonthlyPrice").value = sub.monthlyPrice;
+  document.getElementById("editSubYearlyPrice").value = sub.yearlyPrice;
   document.getElementById("editSubDescription").value = sub.description || "";
   document.getElementById("editSubMaxListings").value =
     sub.maxListings === -1 ? 9999 : sub.maxListings;
   document.getElementById("editSubMaxPhotos").value =
     sub.maxPhotos === -1 ? 9999 : sub.maxPhotos;
-  document.getElementById("editSubPrioritySupport").value = sub.prioritySupport;
-  document.getElementById("editSubAnalytics").value = sub.analytics;
-  document.getElementById("editSubFeaturedPlacement").value =
-    sub.featuredPlacement;
-  document.getElementById("editSubCommissionRate").value = sub.commissionRate;
-  document.getElementById("editSubTrialDays").value = sub.trialDays;
-  document.getElementById("editSubAutoRenew").value = sub.autoRenew;
-  document.getElementById("editSubGracePeriod").value = sub.gracePeriod;
-  document.getElementById("editSubCancellationPolicy").value =
-    sub.cancellationPolicy;
-  document.getElementById("editSubAdminNotes").value = sub.adminNotes || "";
+
+  // Populate custom features
+  const container = document.getElementById("customFeaturesContainer");
+  if (container && sub.customFeatures && sub.customFeatures.length > 0) {
+    container.innerHTML = "";
+    sub.customFeatures.forEach(function(feature) {
+      const row = document.createElement("div");
+      row.className = "custom-feature-row";
+      row.style.cssText = "display: flex; gap: 8px; margin-bottom: 8px;";
+      row.innerHTML = '<input type="text" class="form-input custom-feature-input" placeholder="Enter a feature..." style="flex: 1;" value="' + feature + '"><button type="button" class="btn btn-danger btn-sm remove-feature-btn" style="padding: 8px 12px;"><i class="fas fa-trash"></i></button>';
+      container.appendChild(row);
+    });
+  }
 }
 
 // ============================================
@@ -5231,30 +4954,13 @@ function populatePayoutsTable() {
   const tbody = document.getElementById("payoutsTableBody");
   if (!tbody) return;
 
-  const typeIcons = {
-    hotel: "fa-hotel",
-    restaurant: "fa-utensils",
-    package: "fa-suitcase-rolling",
-    activity: "fa-hiking",
-    cab: "fa-taxi",
-  };
-
   let html = "";
   for (let id in payoutsData) {
     const payout = payoutsData[id];
     const statusClass = "status-" + payout.status.replace(" ", "-");
-    const typeIcon = typeIcons[payout.vendorType] || "fa-store";
 
     html += `
-                <tr data-payout-id="${payout.id}" data-status="${payout.status}" data-type="${payout.vendorType}">
-                    <td>
-                        <div class="table-user">
-                            <div>
-                                <span class="table-user-name">${payout.id}</span>
-                                <span class="table-user-id">${payout.period}</span>
-                            </div>
-                        </div>
-                    </td>
+                <tr data-payout-id="${payout.id}" data-status="${payout.status}">
                     <td>
                         <div class="table-user">
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(payout.vendor)}&background=2c3e50&color=fff&size=36" alt="${payout.vendor}">
@@ -5263,16 +4969,13 @@ function populatePayoutsTable() {
                             </div>
                         </div>
                     </td>
-                    <td><span class="type-badge type-${payout.vendorType}"><i class="fas ${typeIcon}"></i> ${payout.vendorType.charAt(0).toUpperCase() + payout.vendorType.slice(1)}</span></td>
                     <td>SAR ${payout.gross.toLocaleString()}</td>
                     <td>SAR ${payout.commissionAmount.toLocaleString()}</td>
-                    <td><strong>SAR ${payout.net.toLocaleString()}</strong></td>
-                    <td><span class="status-badge ${statusClass}">${payout.status.charAt(0).toUpperCase() + payout.status.slice(1).replace("-", " ")}</span></td>
+                    <td>${payout.payoutDate || "Not set"}</td>
+                    <td><span class="status-badge ${statusClass}">${payout.status === "completed" ? "Paid" : payout.status.charAt(0).toUpperCase() + payout.status.slice(1).replace("-", " ")}</span></td>
                     <td>
                         <div class="table-actions">
                             <a href="payout-view.html?id=${payout.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="payout-edit.html?id=${payout.id}" class="action-btn action-edit" title="Edit Payout"><i class="fas fa-pen"></i></a>
-                            <button class="action-btn action-block ${payout.status === "on-hold" ? "status-disabled" : "status-active"}" title="Hold/Release"><i class="fas fa-toggle-${payout.status === "on-hold" ? "off" : "on"}"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -5284,11 +4987,13 @@ function populatePayoutsTable() {
 function setupPayoutFilters() {
   const searchInput = document.getElementById("payoutSearchInput");
   const statusFilter = document.getElementById("payoutStatusFilter");
-  const typeFilter = document.getElementById("payoutVendorTypeFilter");
+  const startDate = document.getElementById("payoutStartDate");
+  const endDate = document.getElementById("payoutEndDate");
 
   if (searchInput) searchInput.addEventListener("input", filterPayouts);
   if (statusFilter) statusFilter.addEventListener("change", filterPayouts);
-  if (typeFilter) typeFilter.addEventListener("change", filterPayouts);
+  if (startDate) startDate.addEventListener("change", filterPayouts);
+  if (endDate) endDate.addEventListener("change", filterPayouts);
 }
 
 function filterPayouts() {
@@ -5296,8 +5001,8 @@ function filterPayouts() {
     document.getElementById("payoutSearchInput")?.value.toLowerCase() || "";
   const statusFilter =
     document.getElementById("payoutStatusFilter")?.value || "all";
-  const typeFilter =
-    document.getElementById("payoutVendorTypeFilter")?.value || "all";
+  const startDateVal = document.getElementById("payoutStartDate")?.value || "";
+  const endDateVal = document.getElementById("payoutEndDate")?.value || "";
 
   const rows = document.querySelectorAll("#payoutsTableBody tr");
   rows.forEach((row) => {
@@ -5308,17 +5013,25 @@ function filterPayouts() {
       payId.toLowerCase().includes(searchTerm);
     const matchesStatus =
       statusFilter === "all" || payout.status === statusFilter;
-    const matchesType =
-      typeFilter === "all" || payout.vendorType === typeFilter;
+
+    let matchesDate = true;
+    if (payout.payoutDate && (startDateVal || endDateVal)) {
+      const payDate = new Date(payout.payoutDate);
+      if (startDateVal) matchesDate = payDate >= new Date(startDateVal);
+      if (endDateVal && matchesDate) matchesDate = payDate <= new Date(endDateVal);
+    } else if (!payout.payoutDate && (startDateVal || endDateVal)) {
+      matchesDate = false;
+    }
+
     row.style.display =
-      matchesSearch && matchesStatus && matchesType ? "" : "none";
+      matchesSearch && matchesStatus && matchesDate ? "" : "none";
   });
 }
 
 function setupPayoutActions() {
   document.addEventListener("click", function (e) {
     if (
-      e.target.closest(".action-block") &&
+      e.target.closest(".action-toggle") &&
       e.target.closest("#payoutsTableBody")
     ) {
       const row = e.target.closest("tr");
@@ -5537,6 +5250,7 @@ const adsData = {
     name: "Premium Hotel Banner",
     vendor: "Luxury Hotels Group",
     vendorId: "VND-015",
+    providerType: "vendor",
     vendorEmail: "marketing@luxuryhotels.com",
     vendorPhone: "+966-11-555-1234",
     type: "banner",
@@ -5544,6 +5258,8 @@ const adsData = {
     status: "active",
     startDate: "Mar 01, 2025",
     endDate: "Mar 31, 2025",
+    startTime: "00:00",
+    endTime: "23:59",
     duration: 30,
     dailyHours: 24,
     rate: 15,
@@ -5569,6 +5285,7 @@ const adsData = {
     name: "Desert Safari Featured",
     vendor: "Desert Adventures Ltd",
     vendorId: "VND-012",
+    providerType: "vendor",
     vendorEmail: "ads@desertadventures.com",
     vendorPhone: "+966-11-555-5678",
     type: "featured",
@@ -5576,6 +5293,8 @@ const adsData = {
     status: "active",
     startDate: "Mar 05, 2025",
     endDate: "Apr 04, 2025",
+    startTime: "06:00",
+    endTime: "18:00",
     duration: 30,
     dailyHours: 12,
     rate: 8,
@@ -5602,6 +5321,7 @@ const adsData = {
     name: "Umrah Package Sponsored",
     vendor: "Heritage Explorers",
     vendorId: "VND-010",
+    providerType: "service-provider",
     vendorEmail: "marketing@heritageexplorers.com",
     vendorPhone: "+966-11-555-9012",
     type: "sponsored",
@@ -5609,6 +5329,8 @@ const adsData = {
     status: "active",
     startDate: "Feb 15, 2025",
     endDate: "Apr 15, 2025",
+    startTime: "00:00",
+    endTime: "23:59",
     duration: 60,
     dailyHours: 24,
     rate: 12,
@@ -5635,6 +5357,7 @@ const adsData = {
     name: "Jeddah Seafood Popup",
     vendor: "Gourmet Dining Group",
     vendorId: "VND-025",
+    providerType: "vendor",
     vendorEmail: "ads@gourmetdining.com",
     vendorPhone: "+966-12-555-3456",
     type: "popup",
@@ -5642,6 +5365,8 @@ const adsData = {
     status: "paused",
     startDate: "Mar 10, 2025",
     endDate: "Mar 25, 2025",
+    startTime: "09:00",
+    endTime: "17:00",
     duration: 15,
     dailyHours: 8,
     rate: 20,
@@ -5668,6 +5393,7 @@ const adsData = {
     name: "Cab Service Launch",
     vendor: "Al Fahad Transport",
     vendorId: "CAB-001",
+    providerType: "service-provider",
     vendorEmail: "ahmed.fahad@email.com",
     vendorPhone: "+966-50-555-1234",
     type: "banner",
@@ -5675,6 +5401,8 @@ const adsData = {
     status: "pending",
     startDate: "Apr 01, 2025",
     endDate: "Apr 30, 2025",
+    startTime: "00:00",
+    endTime: "23:59",
     duration: 30,
     dailyHours: 24,
     rate: 10,
@@ -5702,6 +5430,7 @@ const adsData = {
     name: "Medina Hotels Promo",
     vendor: "Turki Al Dossari Hotels",
     vendorId: "VND-030",
+    providerType: "vendor",
     vendorEmail: "promo@tdhhotels.com",
     vendorPhone: "+966-14-555-7890",
     type: "featured",
@@ -5709,6 +5438,8 @@ const adsData = {
     status: "expired",
     startDate: "Jan 15, 2025",
     endDate: "Feb 14, 2025",
+    startTime: "00:00",
+    endTime: "23:59",
     duration: 30,
     dailyHours: 24,
     rate: 10,
@@ -5735,6 +5466,7 @@ const adsData = {
     name: "Adventure Activities Bundle",
     vendor: "Saudi Tours Co",
     vendorId: "VND-008",
+    providerType: "service-provider",
     vendorEmail: "marketing@sauditours.com",
     vendorPhone: "+966-11-555-2345",
     type: "sponsored",
@@ -5742,6 +5474,8 @@ const adsData = {
     status: "pending",
     startDate: "Apr 05, 2025",
     endDate: "May 05, 2025",
+    startTime: "06:00",
+    endTime: "18:00",
     duration: 30,
     dailyHours: 12,
     rate: 12,
@@ -5768,6 +5502,7 @@ const adsData = {
     name: "Summer Special Hotels",
     vendor: "Coastal Hotels Co",
     vendorId: "VND-020",
+    providerType: "vendor",
     vendorEmail: "marketing@coastalhotels.com",
     vendorPhone: "+966-12-555-6789",
     type: "banner",
@@ -5775,6 +5510,8 @@ const adsData = {
     status: "rejected",
     startDate: "",
     endDate: "",
+    startTime: "",
+    endTime: "",
     duration: 30,
     dailyHours: 24,
     rate: 18,
@@ -5799,10 +5536,49 @@ const adsData = {
 };
 
 function initializeAdManagement() {
+  populateAdStats();
   populateAdsTable();
   setupAdFilters();
   setupAdActions();
+  setupAdRateSetting();
   initializeLogout();
+}
+
+function populateAdStats() {
+  const ads = Object.values(adsData);
+  const totalRevenue = ads.reduce(function (sum, ad) { return sum + (ad.spent || 0); }, 0);
+  const activeCount = ads.filter(function (ad) { return ad.status === "active"; }).length;
+  const pendingCount = ads.filter(function (ad) { return ad.status === "pending"; }).length;
+
+  var revenueEl = document.getElementById("adTotalRevenue");
+  var activeEl = document.getElementById("adActiveCount");
+  var pendingEl = document.getElementById("adPendingCount");
+
+  if (revenueEl) revenueEl.textContent = "SAR " + totalRevenue.toLocaleString();
+  if (activeEl) activeEl.textContent = activeCount;
+  if (pendingEl) pendingEl.textContent = pendingCount;
+}
+
+function setupAdRateSetting() {
+  const rateInput = document.getElementById("adHourlyRate");
+  const saveBtn = document.getElementById("saveAdRateBtn");
+  if (!rateInput || !saveBtn) return;
+
+  // Load saved rate
+  const savedRate = localStorage.getItem("adHourlyRate");
+  if (savedRate) {
+    rateInput.value = savedRate;
+  }
+
+  saveBtn.addEventListener("click", function () {
+    const rate = parseInt(rateInput.value);
+    if (!rate || rate < 1) {
+      alert("Please enter a valid hourly rate (minimum SAR 1).");
+      return;
+    }
+    localStorage.setItem("adHourlyRate", rate);
+    alert("Ad hourly rate updated to SAR " + rate + "/hr successfully.");
+  });
 }
 
 function populateAdsTable() {
@@ -5813,18 +5589,10 @@ function populateAdsTable() {
   for (let id in adsData) {
     const ad = adsData[id];
     const statusClass = "status-" + ad.status;
-    const typeClass = "ad-type-" + ad.type;
 
     html += `
-                <tr data-ad-id="${ad.id}" data-status="${ad.status}" data-type="${ad.type}">
-                    <td>
-                        <div class="table-user">
-                            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(ad.name.substring(0, 2))}&background=e74c3c&color=fff&size=36" alt="${ad.name}">
-                            <div>
-                                <span class="table-user-name">${ad.name}</span>
-                            </div>
-                        </div>
-                    </td>
+                <tr data-ad-id="${ad.id}" data-status="${ad.status}" data-type="${ad.type}" data-provider-type="${ad.providerType}">
+                    <td><span class="table-user-name">${ad.name}</span></td>
                     <td>
                         <div class="table-user">
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(ad.vendor)}&background=2c3e50&color=fff&size=36" alt="${ad.vendor}">
@@ -5833,11 +5601,9 @@ function populateAdsTable() {
                             </div>
                         </div>
                     </td>
-                    <td><span class="type-badge ${typeClass}"><i class="fas fa-${ad.type === "banner" ? "image" : ad.type === "featured" ? "star" : ad.type === "sponsored" ? "bullhorn" : "window-maximize"}"></i> ${ad.type.charAt(0).toUpperCase() + ad.type.slice(1)}</span></td>
-                    <td>${ad.startDate ? ad.startDate + " - " + ad.endDate : "Not set"}</td>
+                    <td><span class="status-badge ${ad.providerType === 'vendor' ? 'status-active' : 'status-info'}">${ad.providerType === 'vendor' ? 'Vendor' : 'Service Provider'}</span></td>
+                    <td>${ad.startDate ? ad.startDate + " - " + ad.endDate : "Not set"}<br><small style="color: var(--text-secondary);">${ad.startTime && ad.endTime ? ad.startTime + " - " + ad.endTime : ""}</small></td>
                     <td>SAR ${ad.rate}/hr</td>
-                    <td>${ad.impressions > 0 ? (ad.impressions / 1000).toFixed(0) + "K" : "0"}</td>
-                    <td><strong>SAR ${ad.spent > 0 ? ad.spent.toLocaleString() : "0"}</strong></td>
                     <td><span class="status-badge ${statusClass}">${ad.status.charAt(0).toUpperCase() + ad.status.slice(1)}</span></td>
                     <td>
                         <div class="table-actions">
@@ -5859,10 +5625,12 @@ function setupAdFilters() {
   const searchInput = document.getElementById("adSearchInput");
   const statusFilter = document.getElementById("adStatusFilter");
   const typeFilter = document.getElementById("adTypeFilter");
+  const providerTypeFilter = document.getElementById("adProviderTypeFilter");
 
   if (searchInput) searchInput.addEventListener("input", filterAds);
   if (statusFilter) statusFilter.addEventListener("change", filterAds);
   if (typeFilter) typeFilter.addEventListener("change", filterAds);
+  if (providerTypeFilter) providerTypeFilter.addEventListener("change", filterAds);
 }
 
 function setupAdTableActions() {
@@ -5929,6 +5697,7 @@ function filterAds() {
   const statusFilter =
     document.getElementById("adStatusFilter")?.value || "all";
   const typeFilter = document.getElementById("adTypeFilter")?.value || "all";
+  const providerTypeFilter = document.getElementById("adProviderTypeFilter")?.value || "all";
 
   const rows = document.querySelectorAll("#adsTableBody tr");
   rows.forEach((row) => {
@@ -5940,15 +5709,16 @@ function filterAds() {
       adId.toLowerCase().includes(searchTerm);
     const matchesStatus = statusFilter === "all" || ad.status === statusFilter;
     const matchesType = typeFilter === "all" || ad.type === typeFilter;
+    const matchesProviderType = providerTypeFilter === "all" || ad.providerType === providerTypeFilter;
     row.style.display =
-      matchesSearch && matchesStatus && matchesType ? "" : "none";
+      matchesSearch && matchesStatus && matchesType && matchesProviderType ? "" : "none";
   });
 }
 
 function setupAdActions() {
   document.addEventListener("click", function (e) {
     if (
-      e.target.closest(".action-block") &&
+      e.target.closest(".action-toggle") &&
       e.target.closest("#adsTableBody")
     ) {
       const row = e.target.closest("tr");
@@ -6027,7 +5797,7 @@ function submitAdAction() {
   const reason = document.getElementById("adActionReason").value.trim();
   
   if (!reason) {
-    alert("Please enter a reason");
+    alert("Comments/remarks are mandatory. Please enter your comments before proceeding.");
     return;
   }
   
@@ -6055,95 +5825,24 @@ function populateAdView(ad) {
   statusEl.textContent = ad.status.charAt(0).toUpperCase() + ad.status.slice(1);
   statusEl.className = "status-badge status-" + ad.status;
 
-  document.getElementById("viewAdVendor").textContent = ad.vendor;
-  document.getElementById("viewAdType").textContent =
-    ad.type.charAt(0).toUpperCase() + ad.type.slice(1);
-  document.getElementById("viewAdPlacement").textContent = ad.placement
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (l) => l.toUpperCase());
+  document.getElementById("viewAdDuration").textContent = ad.duration + " Days";
   document.getElementById("viewAdStart").textContent =
     ad.startDate || "Not set";
   document.getElementById("viewAdEnd").textContent = ad.endDate || "Not set";
-  document.getElementById("viewAdDuration").textContent = ad.duration + " Days";
+  const startTimeEl = document.getElementById("viewAdStartTime");
+  if (startTimeEl) startTimeEl.textContent = ad.startTime || "Not set";
+  const endTimeEl = document.getElementById("viewAdEndTime");
+  if (endTimeEl) endTimeEl.textContent = ad.endTime || "Not set";
   document.getElementById("viewAdRate").textContent = "SAR " + ad.rate + "/hr";
   document.getElementById("viewAdCost").textContent = ad.costDisplay;
 
-  // Performance
-  const perfEl = document.getElementById("viewAdPerformance");
-  if (perfEl) {
-    perfEl.innerHTML = `
-                <div class="info-item">
-                    <span class="info-label">Total Impressions</span>
-                    <span class="info-value">${ad.impressions.toLocaleString()}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Total Clicks</span>
-                    <span class="info-value">${ad.clicks.toLocaleString()}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Click-Through Rate</span>
-                    <span class="info-value">${ad.ctr}%</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Conversions</span>
-                    <span class="info-value">${ad.conversions.toLocaleString()}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Cost per Click</span>
-                    <span class="info-value">SAR ${ad.clicks > 0 ? (ad.spent / ad.clicks).toFixed(2) : "0.00"}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Cost per Conversion</span>
-                    <span class="info-value">SAR ${ad.conversions > 0 ? (ad.spent / ad.conversions).toFixed(2) : "0.00"}</span>
-                </div>
-            `;
+  // Description
+  const descEl = document.getElementById("viewAdDescription");
+  if (descEl) {
+    descEl.textContent = ad.description || "No description provided.";
   }
 
-  // Billing
-  const billingEl = document.getElementById("viewAdBilling");
-  if (billingEl) {
-    const discountAmount = ad.budget * (ad.discount / 100);
-    const netCost = ad.budget - discountAmount;
-    billingEl.innerHTML = `
-                <div class="payment-row">
-                    <span>Hourly Rate</span>
-                    <span>SAR ${ad.rate}/hr</span>
-                </div>
-                <div class="payment-row">
-                    <span>Daily Hours</span>
-                    <span>${ad.dailyHours}h</span>
-                </div>
-                <div class="payment-row">
-                    <span>Duration</span>
-                    <span>${ad.duration} Days</span>
-                </div>
-                <div class="payment-row">
-                    <span>Total Budget</span>
-                    <span>SAR ${ad.budget.toLocaleString()}</span>
-                </div>
-                ${ad.discount > 0 ? `<div class="payment-row discount"><span>Discount (${ad.discount}%)</span><span>- SAR ${discountAmount.toLocaleString()}</span></div>` : ""}
-                <div class="payment-row total">
-                    <span><strong>Net Cost</strong></span>
-                    <span><strong>SAR ${netCost.toLocaleString()}</strong></span>
-                </div>
-                <div class="payment-row">
-                    <span>Amount Spent</span>
-                    <span>SAR ${ad.spent.toLocaleString()}</span>
-                </div>
-                <div class="payment-row">
-                    <span>Payment Status</span>
-                    <span class="payment-badge payment-${ad.paymentStatus}">${ad.paymentStatus.charAt(0).toUpperCase() + ad.paymentStatus.slice(1)}</span>
-                </div>
-            `;
-  }
-
-  // Vendor info
-  document.getElementById("viewAdVendorName").textContent = ad.vendor;
-  document.getElementById("viewAdVendorId").textContent = "#" + ad.vendorId;
-  document.getElementById("viewAdVendorEmail").textContent = ad.vendorEmail;
-  document.getElementById("viewAdVendorPhone").textContent = ad.vendorPhone;
-
-  // Ad Creative/Image
+  // Ad Image
   const imageEl = document.getElementById("viewAdImage");
   const imagePlaceholder = document.getElementById("viewAdImagePlaceholder");
   if (ad.image && ad.image.trim() !== "") {
@@ -6155,7 +5854,13 @@ function populateAdView(ad) {
     imagePlaceholder.style.display = "block";
   }
 
-  // Approval & Rejection Reasons
+  // Vendor / Service Provider Details
+  document.getElementById("viewAdVendorName").textContent = ad.vendor;
+  document.getElementById("viewAdVendorId").textContent = "#" + ad.vendorId;
+  document.getElementById("viewAdVendorEmail").textContent = ad.vendorEmail;
+  document.getElementById("viewAdVendorPhone").textContent = ad.vendorPhone;
+
+  // Approval & Rejection Remarks
   const approvalSection = document.getElementById("viewAdApprovalSection");
   const approvalReasonItem = document.getElementById("viewAdApprovalReason");
   const rejectionReasonItem = document.getElementById("viewAdRejectionReason");
@@ -6178,38 +5883,6 @@ function populateAdView(ad) {
     }
   } else {
     approvalSection.style.display = "none";
-  }
-
-  // Timeline
-  const timelineEl = document.getElementById("viewAdTimeline");
-  if (timelineEl) {
-    timelineEl.innerHTML = `
-                <div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-plus-circle"></i></div>
-                    <div class="activity-content">
-                        <p>Ad campaign created by ${ad.vendor}</p>
-                        <span class="activity-time">${ad.startDate || "Not started"}</span>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-${ad.status === "active" ? "check-circle" : ad.status === "pending" ? "hourglass-half" : "info-circle"}"></i></div>
-                    <div class="activity-content">
-                        <p>Status changed to ${ad.status.charAt(0).toUpperCase() + ad.status.slice(1)}</p>
-                        <span class="activity-time">${ad.startDate || "Pending"}</span>
-                    </div>
-                </div>
-                ${
-                  ad.impressions > 0
-                    ? `<div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="activity-content">
-                        <p>Reached ${(ad.impressions / 1000).toFixed(0)}K impressions</p>
-                        <span class="activity-time">Latest update</span>
-                    </div>
-                </div>`
-                    : ""
-                }
-            `;
   }
 }
 
@@ -6254,6 +5927,11 @@ function populateAdEdit(ad) {
   document.getElementById("editAdAdminNotes").value = ad.adminNotes || "";
   document.getElementById("editAdApprovalReason").value = ad.approvalReason || "";
   document.getElementById("editAdRejectionReason").value = ad.rejectionReason || "";
+
+  const startTimeEl = document.getElementById("editAdStartTime");
+  if (startTimeEl) startTimeEl.value = ad.startTime || "";
+  const endTimeEl = document.getElementById("editAdEndTime");
+  if (endTimeEl) endTimeEl.value = ad.endTime || "";
 }
 
 // ============================================
@@ -6411,7 +6089,7 @@ const bannersData = {
     id: "BNR-005",
     name: "Ramadan Special Offers",
     placement: "homepage-hero",
-    status: "scheduled",
+    status: "active",
     priority: 1,
     redirect: "https://tourhub.com/ramadan-special",
     startDate: "Mar 10, 2026",
@@ -6447,7 +6125,7 @@ const bannersData = {
     id: "BNR-006",
     name: "Cab Service Launch Promo",
     placement: "category-page",
-    status: "paused",
+    status: "inactive",
     priority: 3,
     redirect: "https://tourhub.com/cabs",
     startDate: "Feb 15, 2026",
@@ -6483,7 +6161,7 @@ const bannersData = {
     id: "BNR-007",
     name: "Valentine Getaway Deals",
     placement: "homepage-hero",
-    status: "expired",
+    status: "inactive",
     priority: 1,
     redirect: "https://tourhub.com/valentine-deals",
     startDate: "Feb 01, 2026",
@@ -6520,7 +6198,7 @@ const bannersData = {
     id: "BNR-008",
     name: "Mobile App Download Banner",
     placement: "mobile-app",
-    status: "draft",
+    status: "inactive",
     priority: 5,
     redirect: "https://tourhub.com/download-app",
     startDate: "",
@@ -6564,45 +6242,24 @@ function populateBannersTable() {
   const tbody = document.getElementById("bannersTableBody");
   if (!tbody) return;
 
-  const placementLabels = {
-    "homepage-hero": "Homepage Hero",
-    "homepage-sidebar": "Homepage Sidebar",
-    "search-results": "Search Results",
-    "category-page": "Category Page",
-    checkout: "Checkout",
-    "mobile-app": "Mobile App",
-  };
-
   let html = "";
   for (let id in bannersData) {
     const banner = bannersData[id];
     const statusClass = "status-" + banner.status;
-    const schedule = banner.startDate
-      ? banner.startDate + " - " + banner.endDate
-      : "Not scheduled";
 
     html += `
-                <tr data-banner-id="${banner.id}" data-status="${banner.status}" data-placement="${banner.placement}">
-                    <td>
-                        <div class="table-user">
-                            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(banner.name.substring(0, 2))}&background=e67e22&color=fff&size=36" alt="${banner.name}">
-                            <div>
-                                <span class="table-user-name">${banner.name}</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td><span class="type-badge placement-${banner.placement.split("-")[0]}"><i class="fas fa-map-marker-alt"></i> ${placementLabels[banner.placement] || banner.placement}</span></td>
-                    <td>${schedule}</td>
-                    <td><span class="priority-badge priority-${banner.priority <= 2 ? "high" : banner.priority <= 3 ? "medium" : "low"}">#${banner.priority}</span></td>
-                    <td>${banner.impressions > 0 ? (banner.impressions / 1000).toFixed(0) + "K" : "0"}</td>
-                    <td>${banner.clicks > 0 ? banner.clicks.toLocaleString() : "0"}</td>
-                    <td>${banner.ctr > 0 ? banner.ctr + "%" : "0%"}</td>
+                <tr data-banner-id="${banner.id}" data-status="${banner.status}">
+                    <td><span class="table-user-name">${banner.name}</span></td>
+                    <td>${banner.startDate || "Not set"}</td>
+                    <td>${banner.endDate || "Not set"}</td>
                     <td><span class="status-badge ${statusClass}">${banner.status.charAt(0).toUpperCase() + banner.status.slice(1)}</span></td>
+                    <td>${banner.created}</td>
                     <td>
                         <div class="table-actions">
                             <a href="banner-view.html?id=${banner.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
                             <a href="banner-edit.html?id=${banner.id}" class="action-btn action-edit" title="Edit Banner"><i class="fas fa-pen"></i></a>
-                            <button class="action-btn action-block ${banner.status === "active" ? "status-active" : "status-disabled"}" title="Pause/Resume"><i class="fas fa-toggle-${banner.status === "active" ? "on" : "off"}"></i></button>
+                            <button class="action-btn action-toggle-status" title="${banner.status === "active" ? "Deactivate" : "Activate"}"><img src="assets/images/status-toggle-${banner.status === "active" ? "on" : "off"}.svg" alt="${banner.status === "active" ? "Active" : "Inactive"}" class="toggle-icon"></button>
+                            <button class="action-btn action-delete" title="Delete Banner"><i class="fas fa-trash"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -6614,12 +6271,9 @@ function populateBannersTable() {
 function setupBannerFilters() {
   const searchInput = document.getElementById("bannerSearchInput");
   const statusFilter = document.getElementById("bannerStatusFilter");
-  const placementFilter = document.getElementById("bannerPlacementFilter");
 
   if (searchInput) searchInput.addEventListener("input", filterBanners);
   if (statusFilter) statusFilter.addEventListener("change", filterBanners);
-  if (placementFilter)
-    placementFilter.addEventListener("change", filterBanners);
 }
 
 function filterBanners() {
@@ -6627,8 +6281,6 @@ function filterBanners() {
     document.getElementById("bannerSearchInput")?.value.toLowerCase() || "";
   const statusFilter =
     document.getElementById("bannerStatusFilter")?.value || "all";
-  const placementFilter =
-    document.getElementById("bannerPlacementFilter")?.value || "all";
 
   const rows = document.querySelectorAll("#bannersTableBody tr");
   rows.forEach((row) => {
@@ -6639,24 +6291,33 @@ function filterBanners() {
       bannerId.toLowerCase().includes(searchTerm);
     const matchesStatus =
       statusFilter === "all" || banner.status === statusFilter;
-    const matchesPlacement =
-      placementFilter === "all" || banner.placement === placementFilter;
     row.style.display =
-      matchesSearch && matchesStatus && matchesPlacement ? "" : "none";
+      matchesSearch && matchesStatus ? "" : "none";
   });
 }
 
 function setupBannerActions() {
   document.addEventListener("click", function (e) {
     if (
-      e.target.closest(".action-block") &&
+      e.target.closest(".action-toggle-status") &&
       e.target.closest("#bannersTableBody")
     ) {
       const row = e.target.closest("tr");
       const bannerId = row.dataset.bannerId;
       if (bannersData[bannerId]) {
         bannersData[bannerId].status =
-          bannersData[bannerId].status === "active" ? "paused" : "active";
+          bannersData[bannerId].status === "active" ? "inactive" : "active";
+        populateBannersTable();
+      }
+    }
+    if (
+      e.target.closest(".action-delete") &&
+      e.target.closest("#bannersTableBody")
+    ) {
+      const row = e.target.closest("tr");
+      const bannerId = row.dataset.bannerId;
+      if (bannersData[bannerId] && confirm("Are you sure you want to delete this banner?")) {
+        delete bannersData[bannerId];
         populateBannersTable();
       }
     }
@@ -6693,200 +6354,26 @@ function populateBannerView(banner) {
     banner.status.charAt(0).toUpperCase() + banner.status.slice(1);
   statusEl.className = "status-badge status-" + banner.status;
 
-  const placementLabels = {
-    "homepage-hero": "Homepage Hero",
-    "homepage-sidebar": "Homepage Sidebar",
-    "search-results": "Search Results",
-    "category-page": "Category Page",
-    checkout: "Checkout",
-    "mobile-app": "Mobile App",
-  };
-
-  document.getElementById("viewBannerPlacement").textContent =
-    placementLabels[banner.placement] || banner.placement;
-  document.getElementById("viewBannerRedirect").textContent = banner.redirect;
   document.getElementById("viewBannerStart").textContent =
     banner.startDate || "Not set";
   document.getElementById("viewBannerEnd").textContent =
     banner.endDate || "Not set";
-  document.getElementById("viewBannerPriority").textContent =
-    banner.priority +
-    (banner.priority === 1
-      ? " (Highest)"
-      : banner.priority <= 3
-        ? " (High)"
-        : " (Normal)");
-  document.getElementById("viewBannerCreatedBy").textContent = banner.createdBy;
   document.getElementById("viewBannerCreated").textContent = banner.created;
 
-  const audienceLabels = {
-    all: "All Users",
-    tourists: "Tourists",
-    business: "Business Travelers",
-    families: "Families",
-    premium: "Premium Users",
-    "new-users": "New Users",
-  };
-  document.getElementById("viewBannerAudience").textContent =
-    audienceLabels[banner.audience] || banner.audience;
-
-  // Performance
-  const perfEl = document.getElementById("viewBannerPerformance");
-  if (perfEl) {
-    perfEl.innerHTML = `
-                <div class="info-item">
-                    <span class="info-label">Total Impressions</span>
-                    <span class="info-value">${banner.impressions.toLocaleString()}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Total Clicks</span>
-                    <span class="info-value">${banner.clicks.toLocaleString()}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Click-Through Rate</span>
-                    <span class="info-value">${banner.ctr}%</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Conversions</span>
-                    <span class="info-value">${banner.conversions.toLocaleString()}</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Conversion Rate</span>
-                    <span class="info-value">${banner.clicks > 0 ? ((banner.conversions / banner.clicks) * 100).toFixed(1) : "0"}%</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Cost per Click</span>
-                    <span class="info-value">${banner.clicks > 0 ? "SAR " + (0).toFixed(2) : "N/A"}</span>
-                </div>
-            `;
-  }
-
-  // A/B Testing
-  const abEl = document.getElementById("viewBannerABTest");
-  if (abEl) {
-    if (banner.abEnabled === "yes") {
-      abEl.innerHTML = `
-                    <div class="info-item">
-                        <span class="info-label">A/B Test Status</span>
-                        <span class="info-value"><span class="status-badge status-active">Enabled</span></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Traffic Split</span>
-                        <span class="info-value">${100 - banner.trafficSplit}% / ${banner.trafficSplit}%</span>
-                    </div>
-                    <div class="info-item" style="grid-column: 1 / -1; padding-top: 8px; border-top: 1px solid var(--border-color);">
-                        <span class="info-label"><strong>Original (Variant A)</strong></span>
-                        <span class="info-value"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Impressions</span>
-                        <span class="info-value">${banner.impressions.toLocaleString()}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Clicks / CTR</span>
-                        <span class="info-value">${banner.clicks.toLocaleString()} / ${banner.ctr}%</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Conversions</span>
-                        <span class="info-value">${banner.conversions.toLocaleString()}</span>
-                    </div>
-                    <div class="info-item" style="grid-column: 1 / -1; padding-top: 8px; border-top: 1px solid var(--border-color);">
-                        <span class="info-label"><strong>${banner.variantName}</strong></span>
-                        <span class="info-value"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Impressions</span>
-                        <span class="info-value">${banner.variantImpressions.toLocaleString()}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Clicks / CTR</span>
-                        <span class="info-value">${banner.variantClicks.toLocaleString()} / ${banner.variantCtr}%</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Conversions</span>
-                        <span class="info-value">${banner.variantConversions.toLocaleString()}</span>
-                    </div>
-                `;
-    } else {
-      abEl.innerHTML = `
-                    <div class="info-item">
-                        <span class="info-label">A/B Test Status</span>
-                        <span class="info-value"><span class="status-badge status-inactive">Disabled</span></span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">No A/B test configured for this banner.</p>
-                `;
-    }
-  }
-
-  // Banner Preview
+  // Banner Image Preview
   const previewEl = document.getElementById("viewBannerPreview");
   if (previewEl) {
     previewEl.innerHTML = `
-                <div class="banner-preview-container" style="border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color);">
+                <div style="border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color);">
                     <img src="${banner.imageUrl}" alt="${banner.altText}" style="width: 100%; display: block; border-radius: 8px;">
-                </div>
-                <div class="info-group" style="margin-top: 16px;">
-                    <div class="info-item">
-                        <span class="info-label">CTA Text</span>
-                        <span class="info-value">${banner.ctaText}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Alt Text</span>
-                        <span class="info-value">${banner.altText}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Display Frequency</span>
-                        <span class="info-value">${banner.frequency.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Display Hours</span>
-                        <span class="info-value">${banner.displayHours.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}</span>
-                    </div>
                 </div>
             `;
   }
 
-  // Timeline
-  const timelineEl = document.getElementById("viewBannerTimeline");
-  if (timelineEl) {
-    timelineEl.innerHTML = `
-                <div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-plus-circle"></i></div>
-                    <div class="activity-content">
-                        <p>Banner created by ${banner.createdBy}</p>
-                        <span class="activity-time">${banner.created}</span>
-                    </div>
-                </div>
-                ${
-                  banner.startDate
-                    ? `<div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-calendar-check"></i></div>
-                    <div class="activity-content">
-                        <p>Campaign scheduled: ${banner.startDate} - ${banner.endDate}</p>
-                        <span class="activity-time">${banner.created}</span>
-                    </div>
-                </div>`
-                    : ""
-                }
-                <div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-${banner.status === "active" ? "check-circle" : banner.status === "scheduled" ? "clock" : "info-circle"}"></i></div>
-                    <div class="activity-content">
-                        <p>Status: ${banner.status.charAt(0).toUpperCase() + banner.status.slice(1)}</p>
-                        <span class="activity-time">Current</span>
-                    </div>
-                </div>
-                ${
-                  banner.impressions > 0
-                    ? `<div class="activity-item">
-                    <div class="activity-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="activity-content">
-                        <p>Reached ${(banner.impressions / 1000).toFixed(0)}K impressions with ${banner.ctr}% CTR</p>
-                        <span class="activity-time">Latest update</span>
-                    </div>
-                </div>`
-                    : ""
-                }
-            `;
+  // Description
+  const descEl = document.getElementById("viewBannerDescription");
+  if (descEl) {
+    descEl.textContent = banner.description || "No description provided.";
   }
 }
 
@@ -7072,7 +6559,7 @@ function populateScheduledReports() {
                         <div class="table-actions">
                             <button class="action-btn action-view" title="Download Report"><i class="fas fa-download"></i></button>
                             <button class="action-btn action-edit" title="Edit Schedule"><i class="fas fa-pen"></i></button>
-                            <button class="action-btn action-block ${report.status === "active" ? "status-active" : "status-disabled"}" title="Pause/Resume"><i class="fas fa-toggle-${report.status === "active" ? "on" : "off"}"></i></button>
+                            <button class="action-btn action-toggle ${report.status === "active" ? "status-active" : "status-disabled"}" title="Pause/Resume"><i class="fas fa-toggle-${report.status === "active" ? "on" : "off"}"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -7174,7 +6661,7 @@ function setupReportFilters() {
   // Toggle scheduled report status
   document.addEventListener("click", function (e) {
     if (
-      e.target.closest(".action-block") &&
+      e.target.closest(".action-toggle") &&
       e.target.closest("#scheduledReportsTableBody")
     ) {
       const row = e.target.closest("tr");
@@ -7234,7 +6721,7 @@ const refundsData = {
     deduction: 10,
     refundType: "full",
     method: "original",
-    status: "approved",
+    status: "processed",
     priority: "normal",
     paymentMethod: "Debit Card ****7832",
     gateway: "Stripe",
@@ -7314,7 +6801,7 @@ const refundsData = {
     deduction: 100,
     refundType: "full",
     method: "original",
-    status: "rejected",
+    status: "processed",
     priority: "normal",
     paymentMethod: "UPI",
     gateway: "Razorpay",
@@ -7322,12 +6809,12 @@ const refundsData = {
     requestDate: "Mar 02, 2026",
     processedDate: "Mar 03, 2026",
     reason: "Did not like the vehicle provided",
-    eligible: false,
-    policyCheck: "Service was completed. Post-completion refunds not eligible.",
+    eligible: true,
+    policyCheck: "Processed per cancellation policy",
     notifyEmail: "yes",
     notifySms: "no",
     adminNotes:
-      "Rejected - service was fully rendered. Suggested customer leave a review instead.",
+      "Automatically processed based on cancellation policy.",
   },
   "RFD-006": {
     id: "RFD-006",
@@ -7341,13 +6828,13 @@ const refundsData = {
     deduction: 10,
     refundType: "full",
     method: "bank",
-    status: "approved",
+    status: "processed",
     priority: "normal",
     paymentMethod: "Bank Transfer",
     gateway: "Direct",
     txnRef: "TXN-BNK-33567",
     requestDate: "Feb 28, 2026",
-    processedDate: "",
+    processedDate: "Mar 01, 2026",
     reason: "Restaurant closed unexpectedly on booking date",
     eligible: true,
     policyCheck: "Vendor-side issue. Full refund applicable.",
@@ -7422,34 +6909,14 @@ function populateRefundsTable() {
   const tbody = document.getElementById("refundsTableBody");
   if (!tbody) return;
 
-  const serviceLabels = {
-    hotel: "Hotel",
-    package: "Package",
-    activity: "Activity",
-    cab: "Cab",
-    restaurant: "Restaurant",
-  };
-  const methodLabels = {
-    original: "Original Method",
-    wallet: "Wallet Credit",
-    bank: "Bank Transfer",
-  };
-
   let html = "";
   for (let id in refundsData) {
     const refund = refundsData[id];
     const statusClass = "status-" + refund.status;
 
     html += `
-                <tr data-refund-id="${refund.id}" data-status="${refund.status}" data-service="${refund.service}" data-method="${refund.method}">
-                    <td>
-                        <div class="table-user">
-                         <div>
-                                <span class="table-user-name">${refund.id}</span>
-                                <span class="table-user-id">${refund.requestDate}</span>
-                            </div>
-                        </div>
-                    </td>
+                <tr data-refund-id="${refund.id}" data-status="${refund.status}">
+                    <td><span class="table-user-name">${refund.bookingId}</span></td>
                     <td>
                         <div class="table-user">
                             <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(refund.customer)}&background=16a085&color=fff&size=36" alt="${refund.customer}">
@@ -7459,15 +6926,14 @@ function populateRefundsTable() {
                             </div>
                         </div>
                     </td>
-                    <td>${refund.bookingId}</td>
-                    <td><span class="type-badge service-${refund.service}"><i class="fas fa-${refund.service === "hotel" ? "hotel" : refund.service === "package" ? "suitcase-rolling" : refund.service === "activity" ? "hiking" : refund.service === "cab" ? "taxi" : "utensils"}"></i> ${serviceLabels[refund.service]}</span></td>
+                    <td>SAR ${refund.bookingAmount.toLocaleString()}</td>
                     <td>SAR ${refund.refundAmount.toLocaleString()}</td>
-                    <td>${methodLabels[refund.method]}</td>
+                    <td>${refund.reason}</td>
+                    <td>${refund.requestDate}</td>
                     <td><span class="status-badge ${statusClass}">${refund.status.charAt(0).toUpperCase() + refund.status.slice(1)}</span></td>
                     <td>
                         <div class="table-actions">
                             <a href="refund-view.html?id=${refund.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
-                            ${refund.status === "pending" ? '<button class="action-btn action-approve" title="Quick Approve"><i class="fas fa-check"></i></button>' : ""}
                         </div>
                     </td>
                 </tr>
@@ -7479,13 +6945,9 @@ function populateRefundsTable() {
 function setupRefundFilters() {
   const searchInput = document.getElementById("refundSearchInput");
   const statusFilter = document.getElementById("refundStatusFilter");
-  const serviceFilter = document.getElementById("refundServiceFilter");
-  const methodFilter = document.getElementById("refundMethodFilter");
 
   if (searchInput) searchInput.addEventListener("input", filterRefunds);
   if (statusFilter) statusFilter.addEventListener("change", filterRefunds);
-  if (serviceFilter) serviceFilter.addEventListener("change", filterRefunds);
-  if (methodFilter) methodFilter.addEventListener("change", filterRefunds);
 }
 
 function filterRefunds() {
@@ -7493,10 +6955,6 @@ function filterRefunds() {
     document.getElementById("refundSearchInput")?.value.toLowerCase() || "";
   const statusFilter =
     document.getElementById("refundStatusFilter")?.value || "all";
-  const serviceFilter =
-    document.getElementById("refundServiceFilter")?.value || "all";
-  const methodFilter =
-    document.getElementById("refundMethodFilter")?.value || "all";
 
   const rows = document.querySelectorAll("#refundsTableBody tr");
   rows.forEach((row) => {
@@ -7508,31 +6966,16 @@ function filterRefunds() {
       refund.bookingId.toLowerCase().includes(searchTerm);
     const matchesStatus =
       statusFilter === "all" || refund.status === statusFilter;
-    const matchesService =
-      serviceFilter === "all" || refund.service === serviceFilter;
-    const matchesMethod =
-      methodFilter === "all" || refund.method === methodFilter;
     row.style.display =
-      matchesSearch && matchesStatus && matchesService && matchesMethod
+      matchesSearch && matchesStatus
         ? ""
         : "none";
   });
 }
 
 function setupRefundActions() {
-  document.addEventListener("click", function (e) {
-    if (
-      e.target.closest(".action-approve") &&
-      e.target.closest("#refundsTableBody")
-    ) {
-      const row = e.target.closest("tr");
-      const refundId = row.dataset.refundId;
-      if (refundsData[refundId] && refundsData[refundId].status === "pending") {
-        refundsData[refundId].status = "approved";
-        populateRefundsTable();
-      }
-    }
-  });
+  // Refund process is handled automatically by the system
+  // No manual approve/reject actions needed
 }
 
 function initializeRefundViewPage() {
@@ -9586,7 +9029,7 @@ function populateCmsTable() {
                         <div class="table-actions">
                             <a href="cms-view.html?id=${page.id}" class="action-btn action-view" title="Preview"><i class="fas fa-eye"></i></a>
                             <a href="cms-edit.html?id=${page.id}" class="action-btn action-edit" title="Edit"><i class="fas fa-pen"></i></a>
-                            <button class="action-btn action-toggle ${page.status === "published" ? "status-active" : "status-inactive"}" data-cms-id="${page.id}" title="Publish/Draft"><i class="fas fa-toggle-${page.status === "published" ? "on" : "off"}"></i></button>
+                            <button class="action-btn action-toggle" data-cms-id="${page.id}" title="Publish/Draft"><img src="assets/images/status-toggle-${page.status === "published" ? "on" : "off"}.svg" alt="${page.status === "published" ? "Published" : "Draft"}" class="toggle-icon"></button>
                             <button class="action-btn action-delete" data-cms-id="${page.id}" title="Delete"><i class="fas fa-trash"></i></button>
                         </div>
                     </td>
@@ -10570,12 +10013,12 @@ function initializeUserActions() {
     if (statusText === "Active") {
       btn.classList.add("status-active");
       btn.classList.remove("status-inactive");
-      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
       btn.title = "Set Inactive";
     } else {
       btn.classList.add("status-inactive");
       btn.classList.remove("status-active");
-      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
       btn.title = "Set Active";
     }
   }
@@ -10828,7 +10271,7 @@ var vendorsData = {
     bankName: "Al Rajhi Bank",
     accountNumber: "SA03 8000 0000 6080 1016 7519",
     notes:
-      "Premium vendor partner. High booking volume. Insurance document pending review — follow up by March 2026.",
+      "Premium vendor partner. High booking volume. Insurance document pending review â€” follow up by March 2026.",
   },
   "VND-002": {
     name: "Najd Cuisine",
@@ -10871,7 +10314,7 @@ var vendorsData = {
     typeIcon: "fa-compass",
     rating: "N/A",
     revenue: "$0",
-    commission: "—",
+    commission: "â€”",
     bookings: "0",
     location: "Riyadh, KSA",
     website: "www.desertadventures.sa",
@@ -10929,7 +10372,7 @@ var vendorsData = {
     typeIcon: "fa-car",
     rating: "N/A",
     revenue: "$0",
-    commission: "—",
+    commission: "â€”",
     bookings: "0",
     location: "Jeddah, KSA",
     website: "www.jeddahrides.com",
@@ -10972,7 +10415,7 @@ var vendorsData = {
     bankName: "Alinma Bank",
     accountNumber: "SA77 0500 0000 0034 5678 9012",
     notes:
-      "Good performance. Slightly higher cancellation rate — monitor. Response time could be improved.",
+      "Good performance. Slightly higher cancellation rate â€” monitor. Response time could be improved.",
   },
   "VND-007": {
     name: "Summit Trekkers",
@@ -10986,7 +10429,7 @@ var vendorsData = {
     typeIcon: "fa-hiking",
     rating: "N/A",
     revenue: "$0",
-    commission: "—",
+    commission: "â€”",
     bookings: "0",
     location: "Abha, KSA",
     website: "www.summittrekkers.sa",
@@ -11001,7 +10444,7 @@ var vendorsData = {
     bankName: "Riyad Bank",
     accountNumber: "SA88 2000 0000 0045 6789 0123",
     notes:
-      "Application rejected — insufficient safety certifications. Can reapply after obtaining required documentation.",
+      "Application rejected â€” insufficient safety certifications. Can reapply after obtaining required documentation.",
   },
   "VND-008": {
     name: "Riyadh Grand Hotel",
@@ -11063,7 +10506,7 @@ function initializeVendorActions() {
         actionsDiv.innerHTML =
           viewBtn +
           '<button class="action-btn action-edit" title="Edit Vendor"><i class="fas fa-pen"></i></button>' +
-          '<button class="action-btn action-block" title="Disable"><i class="fas fa-toggle-off"></i></button>';
+          '<button class="action-btn action-toggle" title="Disable"><img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"></button>';
       });
     });
 
@@ -11089,11 +10532,11 @@ function initializeVendorActions() {
 
   // Enable/Disable inline toggle
   document
-    .querySelectorAll("#vendorsTable .action-block")
+    .querySelectorAll("#vendorsTable .action-toggle")
     .forEach(function (btn) {
       // Initialize with green background (for Approved status)
       btn.classList.add("status-approved");
-      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -11103,18 +10546,18 @@ function initializeVendorActions() {
           statusBadge.textContent = "Disabled";
           statusBadge.className = "status-badge status-disabled";
           this.title = "Enable";
-          this.className = "action-btn action-unblock";
+          this.className = "action-btn action-toggle";
           this.classList.add("status-disabled");
           this.classList.remove("status-approved");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
         } else {
           statusBadge.textContent = "Approved";
           statusBadge.className = "status-badge status-approved";
           this.title = "Disable";
-          this.className = "action-btn action-block";
+          this.className = "action-btn action-toggle";
           this.classList.add("status-approved");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
         }
       });
     });
@@ -11124,7 +10567,7 @@ function initializeVendorActions() {
     .forEach(function (btn) {
       // Initialize with red background (for Disabled status)
       btn.classList.add("status-disabled");
-      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -11137,7 +10580,7 @@ function initializeVendorActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-approved");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
         } else {
           statusBadge.textContent = "Disabled";
           statusBadge.className = "status-badge status-disabled";
@@ -11145,7 +10588,7 @@ function initializeVendorActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-approved");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
         }
       });
     });
@@ -11179,7 +10622,7 @@ function initializeVendorViewPage() {
     document.getElementById("viewVendorRevenue").textContent = vendor.revenue;
     document.getElementById("viewVendorRating").textContent = vendor.rating;
     document.getElementById("viewVendorCommission").textContent =
-      vendor.commission === "—" ? "—" : vendor.commission + "%";
+      vendor.commission === "â€”" ? "â€”" : vendor.commission + "%";
     document.getElementById("viewVendorResponseTime").textContent =
       vendor.responseTime;
     document.getElementById("viewVendorCancelRate").textContent =
@@ -11211,7 +10654,7 @@ function initializeVendorViewPage() {
     var disableBtn = document.getElementById("disableVendorViewBtn");
     if (disableBtn) {
       if (vendor.status === "Disabled") {
-        disableBtn.innerHTML = '<i class="fas fa-toggle-on"></i> Enable Vendor';
+        disableBtn.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"> Enable Vendor';
         disableBtn.classList.remove("btn-danger");
         disableBtn.classList.add("btn-outline");
       }
@@ -11220,13 +10663,13 @@ function initializeVendorViewPage() {
         if (currentStatus === "Disabled") {
           statusEl.textContent = "Approved";
           statusEl.className = "status-badge status-approved";
-          this.innerHTML = '<i class="fas fa-toggle-off"></i> Disable Vendor';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"> Disable Vendor';
           this.classList.remove("btn-outline");
           this.classList.add("btn-danger");
         } else {
           statusEl.textContent = "Disabled";
           statusEl.className = "status-badge status-disabled";
-          this.innerHTML = '<i class="fas fa-toggle-on"></i> Enable Vendor';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"> Enable Vendor';
           this.classList.remove("btn-danger");
           this.classList.add("btn-outline");
         }
@@ -11266,7 +10709,7 @@ function initializeVendorEditPage() {
     document.getElementById("editVendorDisplayName").textContent = vendor.name;
     document.getElementById("editVendorId").textContent = "#" + vendorId;
     document.getElementById("editVendorTitle").textContent =
-      "Edit — " + vendor.name;
+      "Edit â€” " + vendor.name;
     document.getElementById("editBusinessName").value = vendor.name;
     document.getElementById("editOwnerName").value = vendor.owner;
     document.getElementById("editVendorEmail").value = vendor.email;
@@ -11298,7 +10741,7 @@ function initializeVendorEditPage() {
 
     // Commission
     var commissionInput = document.getElementById("editCommissionRate");
-    if (commissionInput && vendor.commission !== "—") {
+    if (commissionInput && vendor.commission !== "â€”") {
       commissionInput.value = vendor.commission;
     }
 
@@ -11480,7 +10923,7 @@ var providersData = {
     typeIcon: "fa-map-signs",
     rating: "N/A",
     revenue: "$0",
-    commission: "—",
+    commission: "â€”",
     bookings: "0",
     area: "Riyadh, Diriyah",
     website: "www.heritageguides.sa",
@@ -11568,7 +11011,7 @@ var providersData = {
     bankName: "Alinma Bank",
     accountNumber: "SA66 0500 0000 0034 5678 9012",
     notes:
-      "Under review — incomplete insurance documentation. Performance metrics need improvement. Follow up on missing documents.",
+      "Under review â€” incomplete insurance documentation. Performance metrics need improvement. Follow up on missing documents.",
   },
   "SPR-006": {
     name: "Falcon Adventures",
@@ -11636,7 +11079,7 @@ var providersData = {
     bankName: "Riyad Bank",
     accountNumber: "SA88 2000 0000 0045 6789 0123",
     notes:
-      "Suspended — high cancellation rate and poor customer reviews. Expired safety certification. Must resubmit documents and improve metrics.",
+      "Suspended â€” high cancellation rate and poor customer reviews. Expired safety certification. Must resubmit documents and improve metrics.",
   },
   "SPR-008": {
     name: "Pearl Diving Tours",
@@ -11650,7 +11093,7 @@ var providersData = {
     typeIcon: "fa-gem",
     rating: "N/A",
     revenue: "$0",
-    commission: "—",
+    commission: "â€”",
     bookings: "0",
     area: "Dammam, Khobar",
     website: "www.pearldivingtours.com",
@@ -11704,7 +11147,7 @@ function initializeProviderActions() {
         actionsDiv.innerHTML =
           viewBtn +
           editHtml +
-          '<button class="action-btn action-block" title="Suspend"><i class="fas fa-toggle-off"></i></button>';
+          '<button class="action-btn action-block" title="Suspend"><img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"></button>';
       });
     });
 
@@ -11722,7 +11165,7 @@ function initializeProviderActions() {
         var viewBtn = actionsDiv.querySelector(".action-view").outerHTML;
         actionsDiv.innerHTML =
           viewBtn +
-          '<button class="action-btn action-unblock" title="Reinstate"><i class="fas fa-toggle-on"></i></button>' +
+          '<button class="action-btn action-unblock" title="Reinstate"><img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon"></button>' +
           '<button class="action-btn action-delete" title="Delete"><i class="fas fa-trash"></i></button>';
       });
     });
@@ -11733,7 +11176,7 @@ function initializeProviderActions() {
     .forEach(function (btn) {
       // Initialize with green background (for Approved status)
       btn.classList.add("status-approved");
-      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -11747,7 +11190,7 @@ function initializeProviderActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-suspended");
           this.classList.remove("status-approved");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
         } else {
           // Change to Approved
           statusBadge.textContent = "Approved";
@@ -11756,7 +11199,7 @@ function initializeProviderActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-approved");
           this.classList.remove("status-suspended");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
         }
       });
     });
@@ -11766,7 +11209,7 @@ function initializeProviderActions() {
     .forEach(function (btn) {
       // Initialize with red background (for Suspended status)
       btn.classList.add("status-suspended");
-      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -11780,7 +11223,7 @@ function initializeProviderActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-approved");
           this.classList.remove("status-suspended");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
         } else {
           // Change to Suspended
           statusBadge.textContent = "Suspended";
@@ -11789,7 +11232,7 @@ function initializeProviderActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-suspended");
           this.classList.remove("status-approved");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
         }
       });
     });
@@ -11827,7 +11270,7 @@ function initializeProviderViewPage() {
       provider.revenue;
     document.getElementById("viewProviderRating").textContent = provider.rating;
     document.getElementById("viewProviderCommission").textContent =
-      provider.commission === "—" ? "—" : provider.commission + "%";
+      provider.commission === "â€”" ? "â€”" : provider.commission + "%";
 
     // Subscription info
     document.getElementById("viewProviderPlan").textContent =
@@ -11930,7 +11373,7 @@ function initializeProviderEditPage() {
       provider.name;
     document.getElementById("editProviderId").textContent = "#" + providerId;
     document.getElementById("editProviderTitle").textContent =
-      "Edit — " + provider.name;
+      "Edit â€” " + provider.name;
     document.getElementById("editProviderName").value = provider.name;
     document.getElementById("editProviderContactName").value = provider.contact;
     document.getElementById("editProviderEmail").value = provider.email;
@@ -11963,7 +11406,7 @@ function initializeProviderEditPage() {
 
     // Commission
     var commissionInput = document.getElementById("editProviderCommission");
-    if (commissionInput && provider.commission !== "—") {
+    if (commissionInput && provider.commission !== "â€”") {
       commissionInput.value = provider.commission;
     }
 
@@ -12243,7 +11686,7 @@ function initializeCategoryActions() {
     .forEach(function (btn) {
       // Initialize with green background (for Active status)
       btn.classList.add("status-active");
-      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12257,7 +11700,7 @@ function initializeCategoryActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-inactive");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
         } else {
           // Change to Active
           statusBadge.textContent = "Active";
@@ -12266,7 +11709,7 @@ function initializeCategoryActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-inactive");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
         }
       });
     });
@@ -12276,7 +11719,7 @@ function initializeCategoryActions() {
     .forEach(function (btn) {
       // Initialize with red background (for Inactive status)
       btn.classList.add("status-inactive");
-      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12290,7 +11733,7 @@ function initializeCategoryActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-inactive");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
         } else {
           // Change to Inactive
           statusBadge.textContent = "Inactive";
@@ -12299,7 +11742,7 @@ function initializeCategoryActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-inactive");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
         }
       });
     });
@@ -12315,7 +11758,7 @@ function initializeHotelsActions() {
     .forEach(function (btn) {
       // Initialize with green background (for Active status)
       btn.classList.add("status-active");
-      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12329,7 +11772,7 @@ function initializeHotelsActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
           // Update data
           const hotelId = row.dataset.hotelId;
           if (hotelsData[hotelId]) {
@@ -12343,7 +11786,7 @@ function initializeHotelsActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
           // Update data
           const hotelId = row.dataset.hotelId;
           if (hotelsData[hotelId]) {
@@ -12358,7 +11801,7 @@ function initializeHotelsActions() {
     .forEach(function (btn) {
       // Initialize with red background (for Disabled status)
       btn.classList.add("status-disabled");
-      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12372,7 +11815,7 @@ function initializeHotelsActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
           // Update data
           const hotelId = row.dataset.hotelId;
           if (hotelsData[hotelId]) {
@@ -12386,7 +11829,7 @@ function initializeHotelsActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
           // Update data
           const hotelId = row.dataset.hotelId;
           if (hotelsData[hotelId]) {
@@ -12407,7 +11850,7 @@ function initializeRestaurantsActions() {
     .forEach(function (btn) {
       // Initialize with green background (for Active status)
       btn.classList.add("status-active");
-      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12421,7 +11864,7 @@ function initializeRestaurantsActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
           // Update data
           const restaurantId = row.dataset.restaurantId;
           if (restaurantsData[restaurantId]) {
@@ -12435,7 +11878,7 @@ function initializeRestaurantsActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
           // Update data
           const restaurantId = row.dataset.restaurantId;
           if (restaurantsData[restaurantId]) {
@@ -12450,7 +11893,7 @@ function initializeRestaurantsActions() {
     .forEach(function (btn) {
       // Initialize with red background (for Disabled status)
       btn.classList.add("status-disabled");
-      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12464,7 +11907,7 @@ function initializeRestaurantsActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
           // Update data
           const restaurantId = row.dataset.restaurantId;
           if (restaurantsData[restaurantId]) {
@@ -12478,7 +11921,7 @@ function initializeRestaurantsActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
           // Update data
           const restaurantId = row.dataset.restaurantId;
           if (restaurantsData[restaurantId]) {
@@ -12499,7 +11942,7 @@ function initializePackagesActions() {
     .forEach(function (btn) {
       // Initialize with green background (for Active status)
       btn.classList.add("status-active");
-      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12513,7 +11956,7 @@ function initializePackagesActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
           // Update data
           const packageId = row.dataset.packageId;
           if (packagesData[packageId]) {
@@ -12527,7 +11970,7 @@ function initializePackagesActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
           // Update data
           const packageId = row.dataset.packageId;
           if (packagesData[packageId]) {
@@ -12542,7 +11985,7 @@ function initializePackagesActions() {
     .forEach(function (btn) {
       // Initialize with red background (for Disabled status)
       btn.classList.add("status-disabled");
-      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12556,7 +11999,7 @@ function initializePackagesActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
           // Update data
           const packageId = row.dataset.packageId;
           if (packagesData[packageId]) {
@@ -12570,7 +12013,7 @@ function initializePackagesActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
           // Update data
           const packageId = row.dataset.packageId;
           if (packagesData[packageId]) {
@@ -12591,7 +12034,7 @@ function initializeActivitiesActions() {
     .forEach(function (btn) {
       // Initialize with green background (for Active status)
       btn.classList.add("status-active");
-      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12605,7 +12048,7 @@ function initializeActivitiesActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
           // Update data
           const activityId = row.dataset.activityId;
           if (activitiesData[activityId]) {
@@ -12619,7 +12062,7 @@ function initializeActivitiesActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
           // Update data
           const activityId = row.dataset.activityId;
           if (activitiesData[activityId]) {
@@ -12634,7 +12077,7 @@ function initializeActivitiesActions() {
     .forEach(function (btn) {
       // Initialize with red background (for Disabled status)
       btn.classList.add("status-disabled");
-      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12648,7 +12091,7 @@ function initializeActivitiesActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
           // Update data
           const activityId = row.dataset.activityId;
           if (activitiesData[activityId]) {
@@ -12662,7 +12105,7 @@ function initializeActivitiesActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
           // Update data
           const activityId = row.dataset.activityId;
           if (activitiesData[activityId]) {
@@ -12683,7 +12126,7 @@ function initializeCabsActions() {
     .forEach(function (btn) {
       // Initialize with green background (for Active status)
       btn.classList.add("status-active");
-      btn.innerHTML = '<i class="fas fa-toggle-on"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12697,7 +12140,7 @@ function initializeCabsActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
           // Update data
           const cabId = row.dataset.cabId;
           if (cabsData[cabId]) {
@@ -12711,7 +12154,7 @@ function initializeCabsActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
           // Update data
           const cabId = row.dataset.cabId;
           if (cabsData[cabId]) {
@@ -12726,7 +12169,7 @@ function initializeCabsActions() {
     .forEach(function (btn) {
       // Initialize with red background (for Disabled status)
       btn.classList.add("status-disabled");
-      btn.innerHTML = '<i class="fas fa-toggle-off"></i>';
+      btn.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
       btn.addEventListener("click", function () {
         var row = this.closest("tr");
         var statusBadge = row.querySelector(".status-badge");
@@ -12740,7 +12183,7 @@ function initializeCabsActions() {
           this.className = "action-btn action-block";
           this.classList.add("status-active");
           this.classList.remove("status-disabled");
-          this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-on.svg" alt="Active" class="toggle-icon">';
           // Update data
           const cabId = row.dataset.cabId;
           if (cabsData[cabId]) {
@@ -12754,7 +12197,7 @@ function initializeCabsActions() {
           this.className = "action-btn action-unblock";
           this.classList.add("status-disabled");
           this.classList.remove("status-active");
-          this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+          this.innerHTML = '<img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon">';
           // Update data
           const cabId = row.dataset.cabId;
           if (cabsData[cabId]) {
@@ -12864,7 +12307,7 @@ function initializeCategoryEditPage() {
       category.name;
     document.getElementById("editCategoryId").textContent = "#" + categoryId;
     document.getElementById("editCategoryTitle").textContent =
-      "Edit — " + category.name;
+      "Edit â€” " + category.name;
     document.getElementById("editCategoryName").value = category.name;
     document.getElementById("editCategorySlug").value = category.slug;
     document.getElementById("editCategoryIcon").value = category.icon;
@@ -13990,7 +13433,7 @@ function initializeAdsRateViewPage() {
           camp.vendor +
           ')</span><span class="info-value">' +
           camp.hours +
-          " hrs — " +
+          " hrs â€” " +
           camp.cost +
           "</span></div>";
       });

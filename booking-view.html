@@ -17,8 +17,7 @@
         <nav class="topbar">
             <div class="topbar-left">
                 <div class="logo">
-                    <span>Mirhal</span>
-                    <span class="logo-arabic">مِرحال</span>
+                    <img src="assets/images/logo.svg" alt="Mirhal Logo">
                 </div>
             </div>
             <div class="topbar-right">
@@ -181,18 +180,13 @@
                     <span>CMS</span>
                 </a>
                 
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+<a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
+                </a>
+                            <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -244,12 +238,8 @@
                                     <span class="info-value" id="viewBookingDate">Mar 15, 2025</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-calendar-check"></i> Check-in</span>
-                                    <span class="info-value" id="viewBookingCheckin">Apr 01, 2025</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-calendar-minus"></i> Check-out</span>
-                                    <span class="info-value" id="viewBookingCheckout">Apr 04, 2025</span>
+                                    <span class="info-label"><i class="fas fa-clock"></i> Time</span>
+                                    <span class="info-value" id="viewBookingTime">10:30 AM</span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label"><i class="fas fa-users"></i> Guests</span>
@@ -258,10 +248,6 @@
                                 <div class="info-item">
                                     <span class="info-label"><i class="fas fa-money-bill-wave"></i> Total Amount</span>
                                     <span class="info-value" id="viewBookingAmount">SAR 2,400</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-credit-card"></i> Payment</span>
-                                    <span class="info-value" id="viewBookingPayment">Paid - Credit Card</span>
                                 </div>
                             </div>
                         </div>
@@ -288,76 +274,10 @@
                                         <span class="info-label">Phone</span>
                                         <span class="info-value" id="viewBookingCustPhone">+966-50-555-6789</span>
                                     </div>
-                                    <div class="info-item">
-                                        <span class="info-label">Nationality</span>
-                                        <span class="info-value" id="viewBookingCustNationality">Saudi Arabia</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Service Details -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-concierge-bell"></i> Service Details</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="info-group" id="viewBookingServiceDetails">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Payment Breakdown -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-receipt"></i> Payment Breakdown</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="payment-breakdown" id="viewBookingPaymentBreakdown">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Vendor/Provider Assignment -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-store"></i> Vendor Assignment</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="info-group">
-                                    <div class="info-item">
-                                        <span class="info-label">Vendor Name</span>
-                                        <span class="info-value" id="viewBookingVendor">Luxury Hotels Group</span>
-                                    </div>
-                                    <div class="info-item">
-                                        <span class="info-label">Vendor ID</span>
-                                        <span class="info-value" id="viewBookingVendorId">#VND-015</span>
-                                    </div>
-                                    <div class="info-item">
-                                        <span class="info-label">Commission</span>
-                                        <span class="info-value" id="viewBookingCommission">12% (SAR 288)</span>
-                                    </div>
-                                    <div class="info-item">
-                                        <span class="info-label">Vendor Payout</span>
-                                        <span class="info-value" id="viewBookingPayout">SAR 2,112</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Booking Timeline -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-history"></i> Booking Timeline</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="activity-log" id="viewBookingTimeline">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -366,3 +286,5 @@
     <script src="assets/script.js"></script>
 </body>
 </html>
+
+

@@ -17,8 +17,7 @@
         <nav class="topbar">
             <div class="topbar-left">
                 <div class="logo">
-                    <span>Mirhal</span>
-                    <span class="logo-arabic">مِرحال</span>
+                    <img src="assets/images/logo.svg" alt="Mirhal Logo">
                 </div>
             </div>
             <div class="topbar-right">
@@ -181,18 +180,13 @@
                     <span>CMS</span>
                 </a>
                 
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+<a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
+                </a>
+                            <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -254,18 +248,32 @@
                             <form id="editProviderForm">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="editProviderName">Business Name</label>
-                                        <input type="text" id="editProviderName" class="form-input" value="Saudi Tours Co" placeholder="Enter business name">
+                                        <label for="editNationalId">National ID</label>
+                                        <input type="text" id="editNationalId" class="form-input" value="1098765432" placeholder="Enter national ID number">
                                     </div>
                                     <div class="form-group">
-                                        <label for="editProviderContactName">Contact Person</label>
-                                        <input type="text" id="editProviderContactName" class="form-input" value="Mansour Al-Harbi" placeholder="Enter contact name">
+                                        <label for="editCompanyLogo">Company Logo</label>
+                                        <input type="file" id="editCompanyLogo" class="form-input" accept="image/*">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="editProviderEmail">Email Address</label>
-                                        <input type="email" id="editProviderEmail" class="form-input" value="info@sauditours.com" placeholder="Enter email">
+                                        <label for="editCompanyName">Company Name</label>
+                                        <input type="text" id="editCompanyName" class="form-input" value="Saudi Tours Co" placeholder="Enter company name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editCategoryType">Category Type</label>
+                                        <select id="editCategoryType" class="form-input">
+                                            <option value="hotel">Hotel</option>
+                                            <option value="restaurant">Restaurant</option>
+                                            <option value="hotel-restaurant" selected>Hotel & Restaurant</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editProviderContactName">Contact Person</label>
+                                        <input type="text" id="editProviderContactName" class="form-input" value="Mansour Al-Harbi" placeholder="Enter contact name">
                                     </div>
                                     <div class="form-group">
                                         <label for="editProviderPhone">Phone Number</label>
@@ -274,13 +282,8 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="editProviderType">Service Type</label>
-                                        <select id="editProviderType" class="form-input">
-                                            <option value="package">Package Provider</option>
-                                            <option value="activity">Activity Operator</option>
-                                            <option value="guide">Guide Service</option>
-                                            <option value="experience">Experience Host</option>
-                                        </select>
+                                        <label for="editProviderEmail">Email Address</label>
+                                        <input type="email" id="editProviderEmail" class="form-input" value="info@sauditours.com" placeholder="Enter email">
                                     </div>
                                     <div class="form-group">
                                         <label for="editProviderArea">Service Area</label>
@@ -288,8 +291,22 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="editProviderWebsite">Website</label>
-                                    <input type="url" id="editProviderWebsite" class="form-input" value="https://www.sauditours.com" placeholder="Enter website URL">
+                                    <label for="editBusinessAddress">Business Address</label>
+                                    <input type="text" id="editBusinessAddress" class="form-input" value="Riyadh, Jeddah, Mecca" placeholder="Enter full business address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="editBusinessCertificate">Business Certificate</label>
+                                    <input type="file" id="editBusinessCertificate" class="form-input" accept=".pdf,.jpg,.jpeg,.png">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editBankIban">Bank Account / IBAN</label>
+                                        <input type="text" id="editBankIban" class="form-input" value="SA44 2000 0001 2345 6789 0123" placeholder="Enter IBAN number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editProviderWebsite">Website</label>
+                                        <input type="url" id="editProviderWebsite" class="form-input" value="https://www.sauditours.com" placeholder="Enter website URL">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="editProviderDesc">Service Description</label>
@@ -411,3 +428,5 @@
     <script src="assets/script.js"></script>
 </body>
 </html>
+
+

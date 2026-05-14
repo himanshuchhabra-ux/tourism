@@ -17,8 +17,7 @@
         <nav class="topbar">
             <div class="topbar-left">
                 <div class="logo">
-                    <span>Mirhal</span>
-                    <span class="logo-arabic">مِرحال</span>
+                    <img src="assets/images/logo.svg" alt="Mirhal Logo">
                 </div>
             </div>
             <div class="topbar-right">
@@ -181,18 +180,13 @@
                     <span>CMS</span>
                 </a>
                 
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+<a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
+                </a>
+                            <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -213,15 +207,12 @@
                             <a href="banners.html"><i class="fas fa-arrow-left"></i> Back to Banners</a>
                         </nav>
                         <h1 id="viewBannerTitle">Banner Details</h1>
-                        <p class="page-subtitle">View banner campaign details, performance metrics, and A/B testing results</p>
+                        <p class="page-subtitle">View complete banner details including image, description, and visibility duration</p>
                     </div>
                     <div class="page-header-right">
                         <a href="#" class="btn btn-primary" id="editBannerLink">
                             <i class="fas fa-pen"></i> Edit Banner
                         </a>
-                        <button class="btn btn-outline" id="duplicateBannerBtn">
-                            <i class="fas fa-copy"></i> Duplicate
-                        </button>
                         <button class="btn btn-danger" id="deleteBannerBtn">
                             <i class="fas fa-trash"></i> Delete
                         </button>
@@ -236,20 +227,12 @@
                             <div class="profile-avatar-xl">
                                 <img src="https://ui-avatars.com/api/?name=BN&background=e67e22&color=fff&size=120" alt="" id="viewBannerAvatar">
                             </div>
-                            <h2 id="viewBannerName">Summer Sale Banner</h2>
+                            <h2 id="viewBannerName">Banner Title</h2>
                             <p class="profile-card-id" id="viewBannerId">#BNR-001</p>
                             <span class="status-badge status-active" id="viewBannerStatus">Active</span>
                         </div>
                         <div class="profile-card-body">
                             <div class="info-group">
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-map-marker-alt"></i> Placement</span>
-                                    <span class="info-value" id="viewBannerPlacement">Homepage Hero</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-link"></i> Redirect URL</span>
-                                    <span class="info-value" id="viewBannerRedirect">https://tourhub.com/summer</span>
-                                </div>
                                 <div class="info-item">
                                     <span class="info-label"><i class="fas fa-calendar-alt"></i> Start Date</span>
                                     <span class="info-value" id="viewBannerStart">Mar 01, 2026</span>
@@ -259,20 +242,8 @@
                                     <span class="info-value" id="viewBannerEnd">Mar 31, 2026</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-sort-numeric-up"></i> Priority</span>
-                                    <span class="info-value" id="viewBannerPriority">1 (Highest)</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-user"></i> Created By</span>
-                                    <span class="info-value" id="viewBannerCreatedBy">Admin User</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-clock"></i> Created On</span>
+                                    <span class="info-label"><i class="fas fa-clock"></i> Created Date</span>
                                     <span class="info-value" id="viewBannerCreated">Feb 20, 2026</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-crosshairs"></i> Target Audience</span>
-                                    <span class="info-value" id="viewBannerAudience">All Users</span>
                                 </div>
                             </div>
                         </div>
@@ -280,34 +251,10 @@
 
                     <!-- Right Column: Details -->
                     <div class="detail-column-right">
-                        <!-- Performance Metrics -->
+                        <!-- Banner Image -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-chart-bar"></i> Performance Metrics</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="info-group" id="viewBannerPerformance">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- A/B Testing -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-flask"></i> A/B Testing</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="info-group" id="viewBannerABTest">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Banner Preview -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-eye"></i> Banner Preview</h3>
+                                <h3><i class="fas fa-image"></i> Banner Image</h3>
                             </div>
                             <div class="card-body">
                                 <div id="viewBannerPreview">
@@ -316,15 +263,13 @@
                             </div>
                         </div>
 
-                        <!-- Activity Timeline -->
+                        <!-- Banner Description -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-history"></i> Campaign Timeline</h3>
+                                <h3><i class="fas fa-align-left"></i> Description</h3>
                             </div>
                             <div class="card-body">
-                                <div class="activity-log" id="viewBannerTimeline">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
+                                <p id="viewBannerDescription" style="color: var(--text-primary); line-height: 1.6;"></p>
                             </div>
                         </div>
                     </div>
@@ -335,3 +280,5 @@
     <script src="assets/script.js"></script>
 </body>
 </html>
+
+

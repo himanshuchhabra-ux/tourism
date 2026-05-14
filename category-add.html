@@ -17,8 +17,7 @@
         <nav class="topbar">
             <div class="topbar-left">
                 <div class="logo">
-                    <span>Mirhal</span>
-                    <span class="logo-arabic">مِرحال</span>
+                    <img src="assets/images/logo.svg" alt="Mirhal Logo">
                 </div>
             </div>
             <div class="topbar-right">
@@ -181,18 +180,13 @@
                     <span>CMS</span>
                 </a>
                 
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+<a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
+                </a>
+                            <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -228,19 +222,7 @@
                             <h2 id="editCategoryDisplayName">New Category</h2>
                             <p class="profile-card-id" id="editCategoryId">#CAT-NEW</p>
                         </div>
-                        <div class="profile-card-body">
-                            <div class="form-group">
-                                <label for="editCategoryStatus">Category Status</label>
-                                <select id="editCategoryStatus" class="form-input">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Created Date</label>
-                                <input type="text" class="form-input" id="editCategoryCreatedDisplay" readonly value="">
-                            </div>
-                        </div>
+                      
                     </div>
 
                     <!-- Right: Edit Form -->
@@ -256,104 +238,13 @@
                                         <input type="text" id="editCategoryName" class="form-input" value="" placeholder="Enter category name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="editCategoryIcon">Icon Class (FontAwesome)</label>
-                                        <input type="text" id="editCategoryIcon" class="form-input" value="" placeholder="e.g., fa-hotel">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editCategoryOrder">Display Order</label>
-                                        <input type="number" id="editCategoryOrder" class="form-input" value="" min="1" max="100">
+                                        <label for="editCategoryTitle">Title</label>
+                                        <input type="text" id="editCategoryTitle" class="form-input" value="" placeholder="Enter category title">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="editCategoryDesc">Description</label>
                                     <textarea id="editCategoryDesc" class="form-input form-textarea" rows="3" placeholder="Describe this category..."></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="editCategoryVisibility">Visibility</label>
-                                    <select id="editCategoryVisibility" class="form-input">
-                                        <option value="public">Public</option>
-                                        <option value="private">Private (Admin Only)</option>
-                                        <option value="hidden">Hidden from Navigation</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-divider"></div>
-
-                                <div class="detail-card-header">
-                                    <h3><i class="fas fa-sitemap"></i> Listing Structure</h3>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editCategoryPhotoLimit">Photo Limit</label>
-                                        <input type="number" id="editCategoryPhotoLimit" class="form-input" value="" min="1" max="50">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editCategoryPriceModel">Price Model</label>
-                                        <select id="editCategoryPriceModel" class="form-input">
-                                            <option value="per-night">Per Night</option>
-                                            <option value="per-person">Per Person</option>
-                                            <option value="per-group">Per Group</option>
-                                            <option value="flat-rate">Flat Rate</option>
-                                            <option value="per-hour">Per Hour</option>
-                                            <option value="per-km">Per Kilometer</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editCategoryMinPrice">Minimum Price ($)</label>
-                                        <input type="number" id="editCategoryMinPrice" class="form-input" value="" min="0" step="1">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editCategoryMaxPrice">Maximum Price ($)</label>
-                                        <input type="number" id="editCategoryMaxPrice" class="form-input" value="" min="0" step="1">
-                                    </div>
-                                </div>
-
-                                <div class="form-divider"></div>
-
-                                <div class="detail-card-header">
-                                    <h3><i class="fas fa-gavel"></i> Rules & Guidelines</h3>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="editCategoryMinRating">Minimum Rating Threshold</label>
-                                        <input type="number" id="editCategoryMinRating" class="form-input" value="" min="0" max="5" step="0.1">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editCategoryResponseSLA">Response Time SLA (hours)</label>
-                                        <input type="number" id="editCategoryResponseSLA" class="form-input" value="" min="1" max="48">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editCategoryPhotoRequired">
-                                        <span>Photos Required for All Listings</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editCategoryPriceRequired">
-                                        <span>Pricing Must Include Taxes & Fees</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editCategoryCancelPolicy">
-                                        <span>Cancellation Policy Required</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="toggle-label">
-                                        <input type="checkbox" id="editCategoryAutoApprove">
-                                        <span>Auto-Approve New Listings (Skip Manual Review)</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="editCategoryGuidelines">Additional Guidelines</label>
-                                    <textarea id="editCategoryGuidelines" class="form-input form-textarea" rows="4" placeholder="Enter any additional rules or guidelines..."></textarea>
                                 </div>
 
                                 <!-- Form Actions -->
@@ -376,3 +267,5 @@
     <script src="assets/script.js"></script>
 </body>
 </html>
+
+

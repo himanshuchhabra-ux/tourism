@@ -17,8 +17,7 @@
         <nav class="topbar">
             <div class="topbar-left">
                 <div class="logo">
-                    <span>Mirhal</span>
-                    <span class="logo-arabic">مِرحال</span>
+                    <img src="assets/images/logo.svg" alt="Mirhal Logo">
                 </div>
             </div>
             <div class="topbar-right">
@@ -181,18 +180,13 @@
                     <span>CMS</span>
                 </a>
                 
-            <a href="commission.html" class="nav-item" data-section="commission" data-tooltip="Commission">
-                <i class="fas fa-percentage"></i>
-                <span>Commission</span>
-            </a>
-            <a href="ads-rate.html" class="nav-item" data-section="ads-rate" data-tooltip="Ads Rates">
-                <i class="fas fa-tags"></i>
-                <span>Ads Rates</span>
-            </a>
-            
-            <a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
+<a href="reports.html" class="nav-item" data-section="reports" data-tooltip="Reports">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports</span>
+                </a>
+                            <a href="sub-admins.html" class="nav-item" data-section="sub-admins" data-tooltip="Sub Admins">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Sub Admins</span>
                 </a>
             </nav>
             <div class="sidebar-footer">
@@ -212,208 +206,399 @@
                         <nav class="breadcrumb">
                             <a href="cabs.html"><i class="fas fa-arrow-left"></i> Back to Cabs</a>
                         </nav>
-                        <h1 id="viewCabTitle">Cab Details</h1>
-                        <p class="page-subtitle">View driver details, vehicle information, and trip analytics</p>
+                        <h1>Cab Details</h1>
+                        <p class="page-subtitle">View vehicle information, pricing, and service details</p>
                     </div>
-                    <div class="page-header-right">
-                        <button class="btn btn-outline" id="approveCabViewBtn">
-                            <i class="fas fa-check"></i> Approve
-                        </button>
-                        <button class="btn btn-danger" id="disableCabViewBtn">
-                            <i class="fas fa-toggle-off"></i> Disable
-                        </button>
-                    </div>
+
                 </div>
 
-                <!-- Cab Detail Grid -->
+                <!-- ============================================ -->
+                <!-- AIRPORT CAB SECTION (hidden by default) -->
+                <!-- ============================================ -->
+                <div id="cabSectionAirport" style="display:none;">
                 <div class="detail-page-grid">
-                    <!-- Left Column: Profile Info -->
+                    <!-- Left Column -->
                     <div class="detail-card profile-card">
                         <div class="profile-card-header">
                             <div class="profile-avatar-xl">
-                                <img src="https://ui-avatars.com/api/?name=Ahmed+Al+Fahad&background=f39c12&color=fff&size=120" alt="" id="viewCabAvatar">
+                                <img src="https://ui-avatars.com/api/?name=Toyota+Camry&background=f39c12&color=fff&size=120" alt="Toyota Camry">
                             </div>
-                            <h2 id="viewCabDriverName">Ahmed Al Fahad</h2>
-                            <p class="profile-card-id" id="viewCabId">#CAB-001</p>
-                            <span class="status-badge status-active" id="viewCabStatus">Active</span>
+                            <h2>Toyota Camry</h2>
+                            <p class="profile-card-id">#CAB-001</p>
+                            <span class="status-badge status-active">Active</span>
                         </div>
                         <div class="profile-card-body">
                             <div class="info-group">
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-car"></i> Vehicle</span>
-                                    <span class="info-value" id="viewCabVehicle">Toyota Camry 2024</span>
+                                    <span class="info-label"><i class="fas fa-car"></i> Vehicle Name</span>
+                                    <span class="info-value">Toyota Camry</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-car-side"></i> Type</span>
-                                    <span class="info-value" id="viewCabType">Sedan</span>
+                                    <span class="info-label"><i class="fas fa-cogs"></i> Model</span>
+                                    <span class="info-value">Camry</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-hashtag"></i> Plate Number</span>
-                                    <span class="info-value" id="viewCabPlate">ABC 1234</span>
+                                    <span class="info-label"><i class="fas fa-car-side"></i> Vehicle Type</span>
+                                    <span class="info-value">Sedan</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-map-marker-alt"></i> City</span>
-                                    <span class="info-value" id="viewCabCity">Riyadh</span>
+                                    <span class="info-label"><i class="fas fa-tags"></i> Category</span>
+                                    <span class="info-value">Airport</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-star"></i> Rating</span>
-                                    <span class="info-value" id="viewCabRating">4.8/5.0</span>
+                                    <span class="info-label"><i class="fas fa-calendar-alt"></i> Year</span>
+                                    <span class="info-value">2024</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-phone"></i> Phone</span>
-                                    <span class="info-value" id="viewCabPhone">+966-50-555-1234</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-id-card"></i> License</span>
-                                    <span class="info-value" id="viewCabLicense">SA-DRV-2024-0815</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-calendar"></i> Joined</span>
-                                    <span class="info-value" id="viewCabJoined">Feb 10, 2025</span>
+                                    <span class="info-label"><i class="fas fa-users"></i> Number of Seats</span>
+                                    <span class="info-value">4</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right Column: Details -->
+                    <!-- Right Column -->
                     <div class="detail-column-right">
-                        <!-- Vehicle Details -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-car"></i> Vehicle Information</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="info-group" id="viewCabVehicleDetails">
-                                    <div class="info-item">
-                                        <span class="info-label">Make & Model</span>
-                                        <span class="info-value" id="viewCabMakeModel">Toyota Camry</span>
-                                    </div>
-                                    <div class="info-item">
-                                        <span class="info-label">Year</span>
-                                        <span class="info-value" id="viewCabYear">2024</span>
-                                    </div>
-                                    <div class="info-item">
-                                        <span class="info-label">Color</span>
-                                        <span class="info-value" id="viewCabColor">White</span>
-                                    </div>
-                                    <div class="info-item">
-                                        <span class="info-label">Capacity</span>
-                                        <span class="info-value" id="viewCabCapacity">4 Passengers</span>
-                                    </div>
-                                    <div class="info-item">
-                                        <span class="info-label">Insurance Expiry</span>
-                                        <span class="info-value" id="viewCabInsurance">Dec 31, 2026</span>
-                                    </div>
-                                    <div class="info-item">
-                                        <span class="info-label">Registration Expiry</span>
-                                        <span class="info-value" id="viewCabRegistration">Jun 30, 2026</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Pricing -->
                         <div class="detail-card">
                             <div class="card-header">
                                 <h3><i class="fas fa-money-bill-wave"></i> Pricing Details</h3>
                             </div>
                             <div class="card-body">
-                                <div class="stats-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-label">Base Fare</span>
-                                        <span class="stat-value" id="viewCabBaseFare">SAR 15</span>
+                                <div class="info-group">
+                                    <div class="info-item">
+                                        <span class="info-label">Base Price</span>
+                                        <span class="info-value">SAR 15</span>
                                     </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Per KM Rate</span>
-                                        <span class="stat-value" id="viewCabPerKm">SAR 2.5</span>
+                                    <div class="info-item">
+                                        <span class="info-label">Price per KM</span>
+                                        <span class="info-value">SAR 2.5</span>
                                     </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Per Min Rate</span>
-                                        <span class="stat-value" id="viewCabPerMin">SAR 0.75</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Surge Multiplier</span>
-                                        <span class="stat-value" id="viewCabSurge">1.0x</span>
+                                    <div class="info-item">
+                                        <span class="info-label">Waiting Charge</span>
+                                        <span class="info-value">SAR 1.0/min</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Performance Analytics -->
+                        <!-- About -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-chart-bar"></i> Performance Analytics</h3>
+                                <h3><i class="fas fa-info-circle"></i> About</h3>
                             </div>
                             <div class="card-body">
-                                <div class="stats-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-label">Total Trips</span>
-                                        <span class="stat-value" id="viewCabTotalTrips">1,248</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 15%
-                                        </span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Monthly Earnings</span>
-                                        <span class="stat-value" id="viewCabEarnings">SAR 8,500</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 10%
-                                        </span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Acceptance Rate</span>
-                                        <span class="stat-value" id="viewCabAcceptance">92%</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 3%
-                                        </span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Cancellation Rate</span>
-                                        <span class="stat-value" id="viewCabCancellation">4%</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-down"></i> 2%
-                                        </span>
-                                    </div>
-                                </div>
+                                <p>Comfortable sedan for airport transfers with spacious trunk for luggage. Professional driver with excellent knowledge of all airport routes.</p>
                             </div>
                         </div>
 
-                        <!-- Availability Schedule -->
+                        <!-- Amenities -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-clock"></i> Availability Schedule</h3>
+                                <h3><i class="fas fa-concierge-bell"></i> Amenities</h3>
                             </div>
                             <div class="card-body">
-                                <div class="opening-hours" id="viewCabSchedule">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Policy Compliance -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-shield-alt"></i> Compliance & Documents</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="compliance-list" id="viewCabCompliance">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Activity Log -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-history"></i> Recent Activity</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="activity-log" id="viewCabActivity">
-                                    <!-- Will be populated by JavaScript -->
+                                <div class="info-group">
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>AC</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>WiFi</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Luggage Space</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Phone Charger</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Water Bottles</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- CITY TOUR CAB SECTION (hidden by default) -->
+                <!-- ============================================ -->
+                <div id="cabSectionCityTour" style="display:none;">
+                <div class="detail-page-grid">
+                    <!-- Left Column -->
+                    <div class="detail-card profile-card">
+                        <div class="profile-card-header">
+                            <div class="profile-avatar-xl">
+                                <img src="https://ui-avatars.com/api/?name=Nissan+Patrol&background=f39c12&color=fff&size=120" alt="Nissan Patrol">
+                            </div>
+                            <h2>Nissan Patrol</h2>
+                            <p class="profile-card-id">#CAB-006</p>
+                            <span class="status-badge status-active">Active</span>
+                        </div>
+                        <div class="profile-card-body">
+                            <div class="info-group">
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-car"></i> Vehicle Name</span>
+                                    <span class="info-value">Nissan Patrol</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-cogs"></i> Model</span>
+                                    <span class="info-value">Patrol</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-car-side"></i> Vehicle Type</span>
+                                    <span class="info-value">SUV</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-tags"></i> Category</span>
+                                    <span class="info-value">City Tour</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-calendar-alt"></i> Year</span>
+                                    <span class="info-value">2023</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-users"></i> Number of Seats</span>
+                                    <span class="info-value">7</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="detail-column-right">
+                        <!-- Pricing -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-money-bill-wave"></i> Pricing Details</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group">
+                                    <div class="info-item">
+                                        <span class="info-label">Base Price</span>
+                                        <span class="info-value">SAR 22</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Price per KM</span>
+                                        <span class="info-value">SAR 3.2</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Waiting Charge</span>
+                                        <span class="info-value">SAR 1.5/min</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- About -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-info-circle"></i> About</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Powerful SUV for city tours through Medina. Experienced driver with deep knowledge of all holy sites and historical landmarks.</p>
+                            </div>
+                        </div>
+
+                        <!-- Amenities -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-concierge-bell"></i> Amenities</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group">
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>AC</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>WiFi</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Spacious Interior</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Phone Charger</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Water Bottles</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Cooler Box</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Policies -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-clipboard-list"></i> Policies</h3>
+                            </div>
+                            <div class="card-body">
+                                <h4 style="margin-bottom: 8px;"><i class="fas fa-star"></i> Tour Highlights</h4>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Al-Masjid an-Nabawi</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Quba Mosque</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Mount Uhud</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Qiblatain Mosque</span></div>
+
+                                <h4 style="margin-top: 16px; margin-bottom: 8px;"><i class="fas fa-check-circle"></i> What's Included</h4>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Professional driver</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Fuel charges</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Bottled water</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Historical commentary</span></div>
+
+                                <h4 style="margin-top: 16px; margin-bottom: 8px;"><i class="fas fa-times-circle"></i> What's Not Included</h4>
+                                <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Entry tickets</span></div>
+                                <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Meals</span></div>
+                                <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Personal expenses</span></div>
+                                <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Tips</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Upload Itinerary -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-route"></i> Upload Itinerary</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group">
+                                    <div class="info-item">
+                                        <span class="info-label">Itinerary</span>
+                                        <span class="info-value">Hotel Pickup → Quba Mosque → Mount Uhud → Qiblatain Mosque → Al-Masjid an-Nabawi → Drop-off</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Stops</span>
+                                        <span class="info-value">5</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Duration</span>
+                                        <span class="info-value">8 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- WHOLE DAY CAB SECTION (hidden by default) -->
+                <!-- ============================================ -->
+                <div id="cabSectionWholeDay" style="display:none;">
+                <div class="detail-page-grid">
+                    <!-- Left Column -->
+                    <div class="detail-card profile-card">
+                        <div class="profile-card-header">
+                            <div class="profile-avatar-xl">
+                                <img src="https://ui-avatars.com/api/?name=Lexus+ES&background=f39c12&color=fff&size=120" alt="Lexus ES">
+                            </div>
+                            <h2>Lexus ES</h2>
+                            <p class="profile-card-id">#CAB-008</p>
+                            <span class="status-badge status-active">Active</span>
+                        </div>
+                        <div class="profile-card-body">
+                            <div class="info-group">
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-car"></i> Vehicle Name</span>
+                                    <span class="info-value">Lexus ES</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-cogs"></i> Model</span>
+                                    <span class="info-value">ES</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-car-side"></i> Vehicle Type</span>
+                                    <span class="info-value">Luxury</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-tags"></i> Category</span>
+                                    <span class="info-value">Whole Day</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-calendar-alt"></i> Year</span>
+                                    <span class="info-value">2024</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-users"></i> Number of Seats</span>
+                                    <span class="info-value">4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="detail-column-right">
+                        <!-- Pricing -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-money-bill-wave"></i> Pricing Details</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group">
+                                    <div class="info-item">
+                                        <span class="info-label">Base Price</span>
+                                        <span class="info-value">SAR 45</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Price per Night</span>
+                                        <span class="info-value">SAR 800</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Duration -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-clock"></i> Duration</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group">
+                                    <div class="info-item">
+                                        <span class="info-label">Duration</span>
+                                        <span class="info-value">12 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- About -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-info-circle"></i> About</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Premium luxury vehicle available for whole-day hire. Experience world-class comfort for business or leisure throughout the day.</p>
+                            </div>
+                        </div>
+
+                        <!-- Amenities -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-concierge-bell"></i> Amenities</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-group">
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>AC</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>WiFi</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Leather Seats</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Premium Sound System</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Phone Charger</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Complimentary Refreshments</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Newspaper</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Policies -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-clipboard-list"></i> Policies</h3>
+                            </div>
+                            <div class="card-body">
+                                <h4 style="margin-bottom: 8px;"><i class="fas fa-star"></i> Tour Highlights</h4>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>VIP luxury experience</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Flexible routing</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Premium amenities throughout</span></div>
+
+                                <h4 style="margin-top: 16px; margin-bottom: 8px;"><i class="fas fa-check-circle"></i> What's Included</h4>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Professional chauffeur</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Fuel charges</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Premium refreshments</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>WiFi</span></div>
+                                <div class="inclusion-item included"><i class="fas fa-check"></i><span>Newspaper</span></div>
+
+                                <h4 style="margin-top: 16px; margin-bottom: 8px;"><i class="fas fa-times-circle"></i> What's Not Included</h4>
+                                <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Entry tickets</span></div>
+                                <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Meals</span></div>
+                                <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Personal expenses</span></div>
+                                <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Overnight charges</span></div>
+
+                                <h4 style="margin-top: 16px; margin-bottom: 8px;"><i class="fas fa-exclamation-triangle"></i> Important Note</h4>
+                                <p style="color: #e67e22;">Maximum 12 hours per day. Includes 1-hour driver break. Overtime at SAR 80/hour. Meet and greet service included.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </main>
@@ -421,3 +606,6 @@
     <script src="assets/script.js"></script>
 </body>
 </html>
+
+
+
