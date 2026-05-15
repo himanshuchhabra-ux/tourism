@@ -1702,11 +1702,9 @@ function populateRestaurantsTable() {
                             </div>
                         </div>
                     </td>
-                    <td>${restaurant.location}</td>
                     <td><span class="cuisine-badge"><i class="fas fa-utensils"></i> ${restaurant.cuisine}</span></td>
                     <td><span class="rating-badge">${restaurant.rating}/5.0</span></td>
                     <td><span class="status-badge ${statusClass}">${restaurant.status.charAt(0).toUpperCase() + restaurant.status.slice(1)}</span></td>
-                    <td><strong>${restaurant.revenue}</strong></td>
                     <td>
                         <div class="table-actions">
                             <a href="restaurant-view.html?id=${restaurant.id}" class="action-btn action-view" title="View Details"><i class="fas fa-eye"></i></a>
@@ -1728,26 +1726,16 @@ function setupRestaurantFilters() {
   if (searchInput) {
     searchInput.addEventListener("input", filterRestaurants);
   }
-  if (statusFilter) {
-    statusFilter.addEventListener("change", filterRestaurants);
-  }
   if (cuisineFilter) {
     cuisineFilter.addEventListener("change", filterRestaurants);
-  }
-  if (locationFilter) {
-    locationFilter.addEventListener("change", filterRestaurants);
   }
 }
 
 function filterRestaurants() {
   const searchTerm =
     document.getElementById("restaurantSearchInput")?.value.toLowerCase() || "";
-  const statusFilter =
-    document.getElementById("restaurantStatusFilter")?.value || "all";
   const cuisineFilter =
     document.getElementById("restaurantCuisineFilter")?.value || "all";
-  const locationFilter =
-    document.getElementById("restaurantLocationFilter")?.value || "all";
 
   const rows = document.querySelectorAll("#restaurantsTableBody tr");
 
@@ -1758,14 +1746,10 @@ function filterRestaurants() {
       restaurant.name.toLowerCase().includes(searchTerm) ||
       restaurant.cuisine.toLowerCase().includes(searchTerm) ||
       restaurantId.toLowerCase().includes(searchTerm);
-    const matchesStatus =
-      statusFilter === "all" || row.dataset.status === statusFilter;
     const matchesCuisine =
       cuisineFilter === "all" || row.dataset.cuisine.includes(cuisineFilter);
-    const matchesLocation =
-      locationFilter === "all" || row.dataset.location === locationFilter;
 
-    if (matchesSearch && matchesStatus && matchesCuisine && matchesLocation) {
+    if (matchesSearch && matchesCuisine) {
       row.style.display = "";
     } else {
       row.style.display = "none";
@@ -2523,7 +2507,7 @@ function populatePackagesTable() {
                         </div>
                     </td>
                     <td><span class="type-badge type-${pkg.type.toLowerCase()}"><i class="fas fa-tag"></i> ${pkg.type}</span></td>
-                    <td>${pkg.duration}</td>
+                    <td>${pkg.days * 24} hrs</td>
                     <td><strong>${pkg.price}</strong></td>
                     <td>
                         <div class="rating-display">
@@ -2531,7 +2515,6 @@ function populatePackagesTable() {
                             <span>${pkg.rating}</span>
                         </div>
                     </td>
-                    <td>${pkg.bookings}</td>
                     <td><span class="status-badge ${statusClass}">${pkg.status.charAt(0).toUpperCase() + pkg.status.slice(1)}</span></td>
                     <td>
                         <div class="table-actions">

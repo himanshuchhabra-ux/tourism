@@ -210,13 +210,6 @@
                         <p class="page-subtitle">View restaurant details, ratings, reviews, and performance</p>
                     </div>
                     <div class="page-header-right">
-
-                        <button class="btn btn-outline" id="approveRestaurantViewBtn">
-                            <i class="fas fa-check"></i> Approve
-                        </button>
-                        <button class="btn btn-danger" id="disableRestaurantViewBtn">
-                            <img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"> Disable
-                        </button>
                     </div>
                 </div>
 
@@ -250,14 +243,7 @@
                                     <span class="info-label"><i class="fas fa-star"></i> Rating</span>
                                     <span class="info-value" id="viewRestaurantRating">4.7/5.0</span>
                                 </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-chair"></i> Capacity</span>
-                                    <span class="info-value" id="viewRestaurantCapacity">120 seats</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-user-tie"></i> Owner</span>
-                                    <span class="info-value" id="viewRestaurantOwner">Nakheel Hospitality</span>
-                                </div>
+
                                 <div class="info-item">
                                     <span class="info-label"><i class="fas fa-phone"></i> Contact</span>
                                     <span class="info-value" id="viewRestaurantContact">+966-11-555-2001</span>
@@ -271,8 +257,8 @@
                                     <span class="info-value" id="viewRestaurantAddress">Palestine Street, Riyadh, Saudi Arabia</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-align-left"></i> About</span>
-                                    <span class="info-value" id="viewRestaurantAbout">Authentic Saudi cuisine in an elegant traditional setting.</span>
+                                    <span class="info-label"><i class="fas fa-dollar-sign"></i> Price Level</span>
+                                    <span class="info-value" id="viewRestaurantPriceLevel">$$$ (Premium)</span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label"><i class="fas fa-calendar"></i> Joined</span>
@@ -284,6 +270,16 @@
 
                     <!-- Right Column: Details -->
                     <div class="detail-column-right">
+                        <!-- About Section -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-align-left"></i> About</h3>
+                            </div>
+                            <div class="card-body">
+                                <p id="viewRestaurantAbout">Authentic Saudi cuisine in an elegant traditional setting.</p>
+                            </div>
+                        </div>
+
                         <!-- Restaurant Gallery -->
                         <div class="detail-card">
                             <div class="card-header">
@@ -307,129 +303,51 @@
                             </div>
                         </div>
 
-                        <!-- Cuisine & Menu -->
+                        <!-- Operations -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-book-open"></i> Cuisine & Menu Highlights</h3>
+                                <h3><i class="fas fa-cogs"></i> Operations</h3>
                             </div>
                             <div class="card-body">
-                                <div class="cuisine-details" id="viewRestaurantCuisineDetails">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Opening Hours -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-clock"></i> Opening Hours</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="opening-hours" id="viewRestaurantHours">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Facilities & Features -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-concierge-bell"></i> Facilities & Features</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="features-list" id="viewRestaurantFeatures">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Ratings & Reviews -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-comment-dots"></i> Ratings & Reviews</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="rating-breakdown">
-                                    <div class="rating-summary">
-                                        <div class="overall-rating">
-                                            <span class="rating-number" id="viewRestaurantOverallRating">4.7</span>
-                                            <div class="rating-stars">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                            </div>
-                                            <span class="rating-count" id="viewRestaurantReviewCount">245 reviews</span>
-                                        </div>
+                                <div class="info-group">
+                                    <div class="info-item">
+                                        <span class="info-label"><i class="fas fa-clock"></i> Opening Hours</span>
+                                        <span class="info-value" id="viewRestaurantHours">10:00 AM - 12:00 AM</span>
                                     </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Performance Stats -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-chart-bar"></i> Performance Statistics</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="stats-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-label">Total Reservations</span>
-                                        <span class="stat-value" id="viewRestaurantReservations">3,456</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 15%
-                                        </span>
+                                    <div class="info-item">
+                                        <span class="info-label"><i class="fas fa-calendar-times"></i> Closed Days</span>
+                                        <span class="info-value" id="viewRestaurantClosedDays">None (Open 7 days)</span>
                                     </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Monthly Revenue</span>
-                                        <span class="stat-value" id="viewRestaurantRevenue">SAR 280K</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 11%
-                                        </span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Avg. Table Turnover</span>
-                                        <span class="stat-value" id="viewRestaurantTurnover">2.3 times/day</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 7%
-                                        </span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Customer Retention</span>
-                                        <span class="stat-value" id="viewRestaurantRetention">68%</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 4%
-                                        </span>
+                                    <div class="info-item">
+                                        <span class="info-label"><i class="fas fa-chair"></i> Seating Capacity</span>
+                                        <span class="info-value" id="viewRestaurantSeatingCapacity">120 seats</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Compliance Checks -->
+                        <!-- Amenities -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-shield-alt"></i> Compliance & Health Checks</h3>
+                                <h3><i class="fas fa-concierge-bell"></i> Amenities</h3>
                             </div>
                             <div class="card-body">
-                                <div class="compliance-list" id="viewRestaurantCompliance">
-                                    <!-- Will be populated by JavaScript -->
+                                <div class="amenities-list" id="viewRestaurantAmenities">
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Free Wi-Fi</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Valet Parking</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Air Conditioning</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Outdoor Seating</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Live Music</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Kids Area</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Wheelchair Accessible</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Non-Smoking</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Private Dining</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Screen / Projector</span></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Activity Log -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-history"></i> Recent Activity</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="activity-log" id="viewRestaurantActivity">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

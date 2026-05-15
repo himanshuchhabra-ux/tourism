@@ -210,12 +210,6 @@
                         <p class="page-subtitle">View activity details, scheduling, ratings, and performance</p>
                     </div>
                     <div class="page-header-right">
-                        <button class="btn btn-outline" id="approveActivityViewBtn">
-                            <i class="fas fa-check"></i> Approve
-                        </button>
-                        <button class="btn btn-danger" id="disableActivityViewBtn">
-                            <img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"> Disable
-                        </button>
                     </div>
                 </div>
 
@@ -234,36 +228,34 @@
                         <div class="profile-card-body">
                             <div class="info-group">
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-tag"></i> Category</span>
+                                    <span class="info-label"><i class="fas fa-tag"></i> Activity Type</span>
                                     <span class="info-value" id="viewActivityCategory">Adventure</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-users"></i> People</span>
+                                    <span class="info-value" id="viewActivityMaxPax">Up to 20 persons</span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label"><i class="fas fa-clock"></i> Duration</span>
                                     <span class="info-value" id="viewActivityDuration">4 Hours</span>
                                 </div>
                                 <div class="info-item">
+                                    <span class="info-label"><i class="fas fa-signal"></i> Difficulty Level</span>
+                                    <span class="info-value" id="viewActivityDifficulty">Moderate</span>
+                                </div>
+                                <div class="info-item">
                                     <span class="info-label"><i class="fas fa-money-bill-wave"></i> Price</span>
                                     <span class="info-value" id="viewActivityPrice">SAR 350/person</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-signal"></i> Difficulty</span>
-                                    <span class="info-value" id="viewActivityDifficulty">Moderate</span>
+                                    <span class="info-label"><i class="fas fa-map-marker-alt"></i> Address</span>
+                                    <span class="info-value" id="viewActivityLocation">Riyadh Desert, Saudi Arabia</span>
                                 </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-users"></i> Max Participants</span>
-                                    <span class="info-value" id="viewActivityMaxPax">20</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-star"></i> Rating</span>
-                                    <span class="info-value" id="viewActivityRating">4.7/5.0</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-map-marker-alt"></i> Location</span>
-                                    <span class="info-value" id="viewActivityLocation">Riyadh Desert</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-building"></i> Operator</span>
-                                    <span class="info-value" id="viewActivityOperator">Desert Adventures Ltd</span>
+                            </div>
+                            <div class="info-group" style="margin-top: var(--spacing-md); padding-top: var(--spacing-md); border-top: 1px solid var(--border-color);">
+                                <div class="info-item" style="border-bottom: none;">
+                                    <span class="info-label"><i class="fas fa-align-left"></i> About</span>
+                                    <span class="info-value" id="viewActivityAbout" style="line-height: 1.6;">Experience the thrill of the Arabian desert with dune bashing, camel riding, and a traditional Bedouin camp dinner under the stars.</span>
                                 </div>
                             </div>
                         </div>
@@ -271,90 +263,109 @@
 
                     <!-- Right Column: Details -->
                     <div class="detail-column-right">
-                        <!-- Schedule -->
+                        <!-- Activity Images -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-calendar-alt"></i> Schedule & Availability</h3>
+                                <h3><i class="fas fa-images"></i> Activity Images</h3>
                             </div>
                             <div class="card-body">
-                                <div class="opening-hours" id="viewActivitySchedule">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- What's Included -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-list-check"></i> What's Included</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="features-list" id="viewActivityIncludes">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Requirements -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-clipboard-list"></i> Requirements & Guidelines</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="compliance-list" id="viewActivityRequirements">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Performance Analytics -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-chart-bar"></i> Performance Analytics</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="stats-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-label">Total Bookings</span>
-                                        <span class="stat-value" id="viewActivityBookings">1,856</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 22%
-                                        </span>
+                                <div class="activity-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;">
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Desert Safari" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
                                     </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Monthly Revenue</span>
-                                        <span class="stat-value" id="viewActivityRevenue">SAR 95K</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 15%
-                                        </span>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dune Bashing" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
                                     </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Avg. Group Size</span>
-                                        <span class="stat-value" id="viewActivityAvgGroup">8.4</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 3%
-                                        </span>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Camel Ride" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
                                     </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Satisfaction</span>
-                                        <span class="stat-value" id="viewActivitySatisfaction">96%</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 2%
-                                        </span>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Bedouin Camp" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Activity Log -->
+                        <!-- Itinerary -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                                <h3><i class="fas fa-route"></i> Itinerary</h3>
                             </div>
                             <div class="card-body">
-                                <div class="activity-log" id="viewActivityLog">
-                                    <!-- Will be populated by JavaScript -->
+                                <div class="itinerary-list" id="viewActivityItinerary">
+                                    <div style="display:flex; gap:1rem; align-items:flex-start; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                                        <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=100&h=80&fit=crop" alt="Stop" style="width:90px; height:70px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+                                        <div>
+                                            <p style="margin:0 0 4px; font-weight:600;">Hotel Pickup & Drive to Desert</p>
+                                            <span style="font-size:13px; color:var(--text-secondary);"><i class="fas fa-clock" style="margin-right:4px;"></i>30 mins</span>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex; gap:1rem; align-items:flex-start; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=100&h=80&fit=crop" alt="Stop" style="width:90px; height:70px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+                                        <div>
+                                            <p style="margin:0 0 4px; font-weight:600;">Dune Bashing</p>
+                                            <span style="font-size:13px; color:var(--text-secondary);"><i class="fas fa-clock" style="margin-right:4px;"></i>1 hour</span>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex; gap:1rem; align-items:flex-start; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=100&h=80&fit=crop" alt="Stop" style="width:90px; height:70px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+                                        <div>
+                                            <p style="margin:0 0 4px; font-weight:600;">Camel Riding & Sandboarding</p>
+                                            <span style="font-size:13px; color:var(--text-secondary);"><i class="fas fa-clock" style="margin-right:4px;"></i>1 hour</span>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex; gap:1rem; align-items:flex-start; padding: 0.75rem 0;">
+                                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=100&h=80&fit=crop" alt="Stop" style="width:90px; height:70px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+                                        <div>
+                                            <p style="margin:0 0 4px; font-weight:600;">Bedouin Camp Dinner & Entertainment</p>
+                                            <span style="font-size:13px; color:var(--text-secondary);"><i class="fas fa-clock" style="margin-right:4px;"></i>1.5 hours</span>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Policies -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-clipboard-list"></i> Policies</h3>
+                            </div>
+                            <div class="card-body">
+
+                                <h4 style="margin-bottom:10px;"><i class="fas fa-check-circle"></i> What's Included</h4>
+                                <div style="margin-bottom:16px;">
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Hotel pickup and drop-off</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Dune bashing in 4x4 vehicle</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Camel riding</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Traditional Bedouin dinner (BBQ)</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Live entertainment (Tanoura dance)</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Safety equipment & experienced guide</span></div>
+                                </div>
+
+                                <h4 style="margin-bottom:10px;"><i class="fas fa-times-circle"></i> What's Not Included</h4>
+                                <div style="margin-bottom:16px;">
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Alcoholic beverages</span></div>
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Personal travel insurance</span></div>
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Tips and gratuities</span></div>
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Professional photography package</span></div>
+                                </div>
+
+                                <h4 style="margin-bottom:10px;"><i class="fas fa-exclamation-circle"></i> Requirements</h4>
+                                <div style="margin-bottom:16px;">
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Minimum age: 6 years (dune bashing: 12 years)</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Not recommended for pregnant women or back problems</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Comfortable clothing and closed shoes recommended</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Sunscreen and sunglasses advised</span></div>
+                                </div>
+
+                                <h4 style="margin-bottom:10px;"><i class="fas fa-undo-alt"></i> Cancellation Policy</h4>
+                                <div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Free cancellation up to 24 hours before activity</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>50% refund for cancellations within 24 hours</span></div>
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>No refund for no-shows</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Refund processed within 5–7 business days</span></div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

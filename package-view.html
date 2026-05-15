@@ -210,12 +210,6 @@
                         <p class="page-subtitle">View package itinerary, pricing, and booking performance</p>
                     </div>
                     <div class="page-header-right">
-                        <button class="btn btn-outline" id="approvePackageViewBtn">
-                            <i class="fas fa-check"></i> Approve
-                        </button>
-                        <button class="btn btn-danger" id="disablePackageViewBtn">
-                            <img src="assets/images/status-toggle-off.svg" alt="Inactive" class="toggle-icon"> Disable
-                        </button>
                     </div>
                 </div>
 
@@ -224,9 +218,6 @@
                     <!-- Left Column: Profile Info -->
                     <div class="detail-card profile-card">
                         <div class="profile-card-header">
-                            <div class="profile-avatar-xl">
-                                <img src="https://ui-avatars.com/api/?name=Riyadh+Heritage+Tour&background=667eea&color=fff&size=120" alt="" id="viewPackageAvatar">
-                            </div>
                             <h2 id="viewPackageName">Riyadh Heritage Tour</h2>
                             <p class="profile-card-id" id="viewPackageId">#PKG-001</p>
                             <span class="status-badge status-active" id="viewPackageStatus">Active</span>
@@ -234,37 +225,25 @@
                         <div class="profile-card-body">
                             <div class="info-group">
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-tag"></i> Type</span>
+                                    <span class="info-label"><i class="fas fa-tag"></i> Category</span>
                                     <span class="info-value" id="viewPackageType">Cultural</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-clock"></i> Duration</span>
-                                    <span class="info-value" id="viewPackageDuration">5 Days / 4 Nights</span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label"><i class="fas fa-money-bill-wave"></i> Price</span>
                                     <span class="info-value" id="viewPackagePrice">SAR 2,500/person</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-users"></i> Group Size</span>
-                                    <span class="info-value" id="viewPackageGroupSize">2-15 persons</span>
+                                    <span class="info-label"><i class="fas fa-clock"></i> Duration</span>
+                                    <span class="info-value" id="viewPackageDuration">5 Days / 4 Nights</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-star"></i> Rating</span>
-                                    <span class="info-value" id="viewPackageRating">4.8/5.0</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-building"></i> Provider</span>
-                                    <span class="info-value" id="viewPackageProvider">Saudi Tours Co</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label"><i class="fas fa-calendar"></i> Created</span>
-                                    <span class="info-value" id="viewPackageCreated">Mar 10, 2025</span>
+                                    <span class="info-label"><i class="fas fa-map-marker-alt"></i> Address</span>
+                                    <span class="info-value" id="viewPackageAddress">Riyadh, Saudi Arabia</span>
                                 </div>
                             </div>
                             <div class="info-group" style="margin-top: var(--spacing-md); padding-top: var(--spacing-md); border-top: 1px solid var(--border-color);">
                                 <div class="info-item" style="border-bottom: none;">
-                                    <span class="info-label"><i class="fas fa-align-left"></i> Description</span>
+                                    <span class="info-label"><i class="fas fa-align-left"></i> About</span>
                                     <span class="info-value" id="viewPackageDescription" style="line-height: 1.6;">Explore the rich heritage of Riyadh with guided tours to historical sites.</span>
                                 </div>
                             </div>
@@ -273,90 +252,120 @@
 
                     <!-- Right Column: Details -->
                     <div class="detail-column-right">
+                        <!-- Package Gallery -->
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-images"></i> Package Gallery</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="package-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;">
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Al-Diriyah" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="National Museum" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Masmak Fortress" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                                    </div>
+                                    <div class="gallery-item">
+                                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Old Souq" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Itinerary -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-route"></i> Itinerary Overview</h3>
+                                <h3><i class="fas fa-route"></i> Itinerary</h3>
                             </div>
                             <div class="card-body">
                                 <div class="itinerary-list" id="viewPackageItinerary">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Inclusions & Exclusions -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-list-check"></i> Inclusions & Exclusions</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="inclusions-grid" id="viewPackageInclusions">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Performance Analytics -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-chart-bar"></i> Performance Analytics</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="stats-grid">
-                                    <div class="stat-item">
-                                        <span class="stat-label">Total Bookings</span>
-                                        <span class="stat-value" id="viewPackageBookings">324</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 18%
-                                        </span>
+                                    <!-- Stop 1 -->
+                                    <div style="display:flex; gap:1rem; align-items:flex-start; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                                        <img src="https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?w=100&h=80&fit=crop" alt="Stop" style="width:90px; height:70px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+                                        <div>
+                                            <p style="margin:0 0 4px; font-weight:600;">Al-Diriyah (UNESCO Site)</p>
+                                            <span style="font-size:13px; color:var(--text-secondary);"><i class="fas fa-clock" style="margin-right:4px;"></i>3 hours</span>
+                                        </div>
                                     </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Monthly Revenue</span>
-                                        <span class="stat-value" id="viewPackageRevenue">SAR 185K</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 12%
-                                        </span>
+                                    <!-- Stop 2 -->
+                                    <div style="display:flex; gap:1rem; align-items:flex-start; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                                        <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?w=100&h=80&fit=crop" alt="Stop" style="width:90px; height:70px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+                                        <div>
+                                            <p style="margin:0 0 4px; font-weight:600;">National Museum of Saudi Arabia</p>
+                                            <span style="font-size:13px; color:var(--text-secondary);"><i class="fas fa-clock" style="margin-right:4px;"></i>2 hours</span>
+                                        </div>
                                     </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Avg. Group Size</span>
-                                        <span class="stat-value" id="viewPackageAvgGroup">6.2</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 8%
-                                        </span>
+                                    <!-- Stop 3 -->
+                                    <div style="display:flex; gap:1rem; align-items:flex-start; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                                        <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=100&h=80&fit=crop" alt="Stop" style="width:90px; height:70px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+                                        <div>
+                                            <p style="margin:0 0 4px; font-weight:600;">Masmak Fortress</p>
+                                            <span style="font-size:13px; color:var(--text-secondary);"><i class="fas fa-clock" style="margin-right:4px;"></i>1.5 hours</span>
+                                        </div>
                                     </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Repeat Rate</span>
-                                        <span class="stat-value" id="viewPackageRepeatRate">42%</span>
-                                        <span class="stat-change positive">
-                                            <i class="fas fa-arrow-up"></i> 5%
-                                        </span>
+                                    <!-- Stop 4 -->
+                                    <div style="display:flex; gap:1rem; align-items:flex-start; padding: 0.75rem 0;">
+                                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=100&h=80&fit=crop" alt="Stop" style="width:90px; height:70px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+                                        <div>
+                                            <p style="margin:0 0 4px; font-weight:600;">Riyadh Old Market (Souq)</p>
+                                            <span style="font-size:13px; color:var(--text-secondary);"><i class="fas fa-clock" style="margin-right:4px;"></i>2 hours</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Compliance -->
+                        <!-- Policies -->
                         <div class="detail-card">
                             <div class="card-header">
-                                <h3><i class="fas fa-shield-alt"></i> Quality & Compliance</h3>
+                                <h3><i class="fas fa-clipboard-list"></i> Policies</h3>
                             </div>
                             <div class="card-body">
-                                <div class="compliance-list" id="viewPackageCompliance">
-                                    <!-- Will be populated by JavaScript -->
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Activity Log -->
-                        <div class="detail-card">
-                            <div class="card-header">
-                                <h3><i class="fas fa-history"></i> Recent Activity</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="activity-log" id="viewPackageActivity">
-                                    <!-- Will be populated by JavaScript -->
+                                <h4 style="margin-bottom:10px;"><i class="fas fa-star"></i> Package Highlights</h4>
+                                <div style="margin-bottom:16px;">
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Guided tour of UNESCO World Heritage sites</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Cultural immersion with local Saudi experiences</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Traditional Saudi dinner with entertainment</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Expert English-speaking guide throughout</span></div>
                                 </div>
+
+                                <h4 style="margin-bottom:10px;"><i class="fas fa-check-circle"></i> What's Included</h4>
+                                <div style="margin-bottom:16px;">
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>4-night accommodation (4-star hotel)</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Daily breakfast and dinner</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Airport transfers (arrival & departure)</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>All entrance fees and permits</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Air-conditioned transport</span></div>
+                                </div>
+
+                                <h4 style="margin-bottom:10px;"><i class="fas fa-times-circle"></i> What's Not Included</h4>
+                                <div style="margin-bottom:16px;">
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>International flights</span></div>
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Travel insurance</span></div>
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Personal shopping & souvenirs</span></div>
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>Lunches and beverages (unless specified)</span></div>
+                                </div>
+
+                                <h4 style="margin-bottom:10px;"><i class="fas fa-exclamation-circle"></i> Requirements</h4>
+                                <div style="margin-bottom:16px;">
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Valid passport with at least 6 months validity</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Saudi tourist visa (assistance provided)</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Modest dress code required at heritage sites</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Minimum age: 5 years</span></div>
+                                </div>
+
+                                <h4 style="margin-bottom:10px;"><i class="fas fa-undo-alt"></i> Cancellation Policy</h4>
+                                <div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Free cancellation up to 7 days before departure</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>50% refund for cancellations 3–6 days before</span></div>
+                                    <div class="inclusion-item excluded"><i class="fas fa-times"></i><span>No refund within 48 hours of departure</span></div>
+                                    <div class="inclusion-item included"><i class="fas fa-check"></i><span>Refund processed within 7–10 business days</span></div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
